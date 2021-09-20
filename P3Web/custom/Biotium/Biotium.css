@@ -1,0 +1,22 @@
+﻿a.biotium-link {
+	text-decoration: none;
+	color: #46b4e7;
+}
+
+	a.biotium-link:before {
+		content: url(../../images/improvementroot.png);
+		padding-right: 5px;
+	}
+
+	a.biotium-link:active {
+		color: #46b4e7;
+	}
+
+	a.biotium-link:visited {
+		color: #46b4e7;
+	}
+
+	a.biotium-link:hover {
+		color: #ff0000;
+		text-decoration: underline;
+	}

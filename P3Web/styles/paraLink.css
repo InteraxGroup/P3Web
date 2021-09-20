@@ -1,0 +1,159 @@
+﻿div {
+	box-sizing: border-box;
+}
+
+.addParaLink {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	font-size: 12px;
+	background-color: #f0f0f0;
+	padding: 0 10px;
+}
+
+	.addParaLink .select-module {
+		flex: 0 0 50px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding-right: 10px;
+	}
+
+	.addParaLink .main-content {
+		flex: 1 1 auto;
+		max-height: calc(100vh - 100px);
+		display: flex;
+		flex-direction: row;
+	}
+
+		.addParaLink .main-content .plink-treeview {
+			flex: 0 0 200px;
+			max-width: 200px;
+			display: block;
+			border: 1px solid #000;
+			background-color: #fff;
+			overflow: auto;
+		}
+
+		.addParaLink .main-content div:nth-child(2) {
+			flex: 0 0 5px;
+		}
+
+		.addParaLink .main-content .plink-listview {
+			flex: 0 0 715px;
+			display: block;
+			border: 1px solid #000;
+			background-color: #fff;
+			overflow: auto;
+		}
+
+	.addParaLink .selected-title {
+		flex: 0 0 30px;
+		display: flex;
+		align-items: center;
+	}
+
+	.addParaLink .selected-plinks {
+		flex: 0 0 100px;
+		display: block;
+		border: 1px solid #000;
+		background-color: #fff;
+	}
+
+	.addParaLink .plink-control-buttons {
+		flex: 0 0 50px;
+		display: flex;
+		flex-direction: row;
+	}
+
+		.addParaLink .plink-control-buttons div:nth-child(1) {
+			flex: 0 0 100px;
+			display: flex;
+			align-items: center;
+		}
+
+		.addParaLink .plink-control-buttons div:nth-child(2) {
+			flex: 1 1 auto;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+		}
+
+/*  Group ParaLinks */
+
+		.addParaLink .main-content .plink-treeview-folder {
+			flex: 0 0 380px;
+			max-width: 380px;
+			display: block;
+			border: 1px solid #000;
+			background-color: #fff;
+			overflow: auto;
+		}
+
+	.addParaLink .selected-plinks-folder {
+		flex: 0 0 40px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+		.addParaLink .selected-plinks-folder div:nth-child(1) {
+			flex: 0 0 50px;
+			display: flex;
+			align-items: center;
+		}
+
+		.addParaLink .selected-plinks-folder div:nth-child(2) {
+			flex: 1 1 auto;
+			padding-right: 5px;
+			box-sizing: border-box;
+		}
+
+
+
+
+.selected-item, .selected-item-sel {
+	display: inline-flex;
+}
+
+	.selected-item .si-icon {
+		display: inline-flex;
+		width: 20px;
+	}
+
+	.selected-item .si-text {
+		display: inline-flex;
+		align-items: center;
+		padding-left: 5px;
+		padding-right: 10px;
+	}
+
+	.selected-item input[type=submit] {
+		padding-left: 5px;
+		padding-right: 10px;
+		border: none;
+		background-color: #fff;
+		font-size: 12px;
+	}
+
+		.selected-item input[type=submit]:hover {
+			cursor: pointer;
+			border: none;
+		}
+
+		.selected-item input[type=submit]:active {
+			color: #000;
+			border: none;
+		}
+
+		.selected-item input[type=submit]:focus {
+			border: none;
+			outline: 0;
+		}
+
+.selected {
+	background-color: #0078D7;
+	color: #fff;
+}

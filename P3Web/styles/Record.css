@@ -1,0 +1,319 @@
+﻿.recordBody {
+    position: relative;
+    background-color: #F0F0F0;
+    text-align: left;
+    margin: 0;
+    font-size: 0.9em;
+    font-family: Arial;
+    overflow: hidden;
+}
+
+.recordLabel {
+    font-size: 9pt;
+    font-family: Arial;
+}
+
+#pnlRecordToolBar {
+    width: 960px;
+    height: 60px
+}
+
+#pnlRecordHeader {
+    width: 960px;
+    height: 90px;
+}
+
+#pnlRecordHeader2 {
+    width: 960px;
+    height: 60px;
+}
+
+#pnlRecordMenu {
+    width: 960px;
+    height: 35px;
+    margin: 5px 0 0 0;
+}
+
+#pnlRecordMenu2 {
+    width: 960px;
+    height: 33px;
+}
+
+#pnlRecordDetails {
+    position: relative;
+    width: 965px;
+    min-height: 480px;
+    border-top: 2px inset #CCCCCC;
+    overflow: auto;
+    margin: 10px 0 0 0;
+}
+
+#pnlRecordDetails2 {
+    position: relative;
+    width: 965px;
+    min-height: 530px;
+    border-top: 2px inset #CCCCCC;
+    overflow: auto;
+    margin: 10px 0 0 0;
+}
+
+#pnlRecordDetails3 {
+    width: 965px;
+    height: 690px;
+}
+
+#pnlRecordStepName {
+    position: relative;
+    width: 870px;
+    min-height: 30px;
+    background-color: #54B4DC;
+    padding: 5px 0 0 5px;
+    font: bold 10pt arial, verdana;
+    border: solid 1px #000000;
+    margin: 0 auto;
+}
+
+/*#pnlRecordStepNameTrain {
+    position: relative;
+    width: 870px;
+    height: 75px;
+    background-color: #54B4DC;
+    padding: 15px 0 0 10px;
+    font-weight: bold;
+    border: 1px solid #000000;
+    margin: 0 auto;
+}*/
+
+.blueButton {
+    position: absolute;
+    right: 20px;
+    top: 2px;
+}
+
+.pnlInstructions {
+    width: 850px;
+    height: 50px;
+    background-color: white;
+    margin: 20px auto 10px auto;
+    transition: 300ms;
+}
+
+    .pnlInstructions textarea {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ccc;
+        font-family: sans-serif;
+    }
+
+        .pnlInstructions textarea.hide {
+            display: none;
+            width: 100%;
+            height: 0;
+            border: none;
+        }
+
+.recordFields {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 5px auto 0 auto;
+}
+
+#pnlFinishStep {
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    width: 965px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 10px;
+    border-top: 1px solid #999999;
+    background-color: #F0F0F0;
+}
+
+.ro_Control {
+    background-color: #F0F0F0;
+    color: DarkGray
+}
+
+.ro_TitleControl {
+    background-color: #F0F0F0;
+    color: black;
+    border: 1px solid #999999;
+    padding-left: 2px;
+}
+
+.open_CBControl {
+    background-color: #F0F0F0;
+    color: #000000;
+}
+
+.open_Control {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+/*  SELECT USERS MODAL POPUP  */
+
+#pnlSelectUser {
+    width: 700px;
+    height: 600px;
+    background-color: #F0F0F0;
+}
+
+#pnlDragHandle {
+    width: 695px;
+    height: 20px;
+    background-color: #106494;
+    padding-left: 5px;
+}
+
+#pnlModalDDL {
+    width: 680px;
+    height: 20px;
+    padding: 10px;
+}
+
+#pnlFields {
+    width: 690px;
+    height: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pnlModalSelect {
+    width: 280px;
+    height: 480px;
+    float: left;
+    text-align: center;
+    overflow: auto;
+    border: 1px solid #999999;
+    background-color: #FFFFFF;
+}
+
+.lbMSelect {
+    border-width: 0;
+}
+
+.modalTreeView {
+    width: 270px;
+    height: 480px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    overflow: auto;
+}
+
+#pnlModalButtons {
+    width: 125px;
+    height: 280px;
+    padding-top: 200px;
+    text-align: center;
+    float: left;
+}
+
+#pnlModalSelected {
+    float: left;
+    width: 278px;
+    height: 476px;
+    text-align: right;
+    background-color: #FFFFFF;
+    border: 2px inset #E0E0E0;
+}
+
+#pnlModalFooter {
+    width: 690px;
+    height: 30px;
+    padding-top: 10px;
+    text-align: right;
+}
+
+.digital-signature-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+}
+
+.digital-signature {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 1px solid #000;
+    border-radius: 5px;
+    width: 400px;
+    height: 200px;
+    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+    .digital-signature .digital-signature-title {
+        position: relative;
+        flex: 0 0 20px;
+        background-color: #fff;
+        padding: 2px;
+        font-size: .9em;
+        box-sizing: border-box;
+    }
+
+        .digital-signature .digital-signature-title img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 20px;
+        }
+
+    .digital-signature .digital-signature-body {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: row;
+    }
+
+        .digital-signature .digital-signature-body .ds-left {
+            flex: 0 0 150px;
+            background: url('../images/pwdcnf.png') no-repeat left;
+        }
+
+        .digital-signature .digital-signature-body .ds-right {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            font-size: .9em;
+        }
+
+            .digital-signature .digital-signature-body .ds-right div:nth-child(1) {
+                flex: 0 0 40px;
+                display: flex;
+                align-items: flex-end;
+            }
+
+            .digital-signature .digital-signature-body .ds-right div:nth-child(2) {
+                flex: 0 0 20px;
+            }
+
+            .digital-signature .digital-signature-body .ds-right div:nth-child(3) {
+                flex: 0 0 20px;
+                display: flex;
+                align-items: flex-end;
+            }
+
+            .digital-signature .digital-signature-body .ds-right div:nth-child(4) {
+                flex: 0 0 40px;
+            }
+
+            .digital-signature .digital-signature-body .ds-right div:nth-child(5) {
+                flex: 1 1 auto;
+                display: flex;
+                align-items: center;
+                text-align: right;
+                padding-right: 10px;
+                justify-content: flex-end;
+            }

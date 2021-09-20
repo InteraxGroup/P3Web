@@ -1,0 +1,8 @@
+﻿.modalBackground {
+	position: absolute;
+	background-color: rgba(0,0,0,0.05);
+}
+
+input[type=checkbox]{
+	margin-right: 5px;
+}

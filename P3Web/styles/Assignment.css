@@ -1,0 +1,148 @@
+﻿.assignmentTitle {
+    background: linear-gradient(to bottom, #598AD7 0%, #1849A6 80%);
+    color: #fff;
+    padding: 5px;
+    height: 30px;
+    font-size: 1.5rem;
+}
+
+.assignmentContent {
+    background-color: #F0F0F0;
+    padding: 10px 5px 0 5px;
+    height: 600px;
+    font-size: .8rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.assignmentList {
+    display: inline-block;
+    background-color: #fff;
+    border: 1px solid #000;
+    width: 400px;
+    height: 200px;
+    box-sizing: border-box;
+}
+
+.assignmentButtons {
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.dueDateLabel {
+    display: block;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+.generalField {
+    display: inline-block;
+    text-align: left;
+}
+
+.escalateContent {
+    width: 100%;
+    border: 1px solid darkgray;
+    height: 220px;
+}
+
+.escalateCheck {
+    display: inline-block;
+    width: 180px;
+}
+
+.escalateListContent {
+    display: block;
+    margin-top: 16px;
+}
+
+.escalateList {
+    display: inline-block;
+    margin-left: 5px;
+    background-color: #fff;
+    border: 1px solid black;
+    width: 395px;
+    height: 170px;
+}
+
+.escalateButtons {
+    display: inline-block;
+    width: 74px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.mainButtons {
+    width: 100%;
+    text-align: right;
+    padding-top: 10px;
+}
+
+.assignEntityPanel {
+    position: relative;
+    display: block;
+    width: 700px;
+    height: 600px;
+    background-color: #F0F0F0;
+    box-sizing: border-box;
+    font-size: .85rem;
+}
+
+.assignFields {
+    width: 690px;
+    height: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.assignSelect {
+    width: 280px;
+    height: 480px;
+    float: left;
+    text-align: center;
+    overflow: auto;
+    border: 1px solid #999999;
+    background-color: #FFFFFF;
+}
+
+.lbAssignSelect {
+    border-width: 0;
+    width: 100%;
+    height: 480px;
+}
+
+.assignTreeView {
+    width: 270px;
+    height: 480px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    overflow: auto;
+}
+
+.assignButtons {
+    width: 125px;
+    height: 280px;
+    padding-top: 200px;
+    text-align: center;
+    float: left;
+}
+
+.assignSelected {
+    float: left;
+    width: 278px;
+    height: 476px;
+    text-align: right;
+    background-color: #FFFFFF;
+    border: 2px inset #E0E0E0;
+}
+
+.assignFooter {
+    clear: both;
+    width: 680px;
+    height: 30px;
+    padding-top: 20px;
+    padding-right: 10px;
+    text-align: right;
+}

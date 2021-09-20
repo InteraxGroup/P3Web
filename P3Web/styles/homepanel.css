@@ -1,0 +1,58 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Segoe UI', 'Helvetica neue', sans-serif;
+}
+
+h1 {
+    text-align: left;
+    color: #00b4a9;
+    font-weight: 400;
+}
+
+h2 {
+    margin: 0;
+    color: #00b4a9;
+    font-weight: 400;
+}
+
+ul {
+    display: inline-block;
+}
+
+    ul li {
+        padding: 5px;
+    }
+
+.homeContent {
+    display: block;
+    width: 100%;
+    height: calc(100vh - 118px);
+}
+
+.customBanner {
+    display: block;
+    width: 100%;
+    height: 150px;
+    border-bottom: 1px solid Black;
+    overflow: hidden;
+/*    background-color: #003366;
+    background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1) 90%);*/
+}
+
+.customContent {
+    position: relative;
+    display: block;
+    display: flex;
+    flex-direction: row;
+}
+
+    .customContent div:nth-child(1) {
+        flex: 1 1 auto;
+        padding: 20px;
+    }
+
+    .customContent div:nth-child(2) {
+        flex: 0 0 33%;
+        text-align: right;
+    }

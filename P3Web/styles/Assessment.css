@@ -1,0 +1,162 @@
+﻿.assessmentBody {
+    background-color: #f0f0f0;
+    overflow: hidden;
+}
+
+.assessmentTitle {
+    background-color: #598ad7;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4));
+    color: #fff;
+    padding: 5px;
+    height: 30px;
+    font-size: 1.5rem;
+}
+
+.assessmentContent {
+    background-color: #f0f0f0;
+    padding: 0 10px;
+    height: 350px;
+    font-size: 1.35em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.assessmentOptions {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.assessmentLabel {
+    padding: 5px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    font-size: x-large;
+}
+
+    .assessmentLabel span {
+        font-size: x-large;
+    }
+
+.assessmentQuestion {
+    display: block;
+}
+
+    .assessmentQuestion input[type=radio] {
+        height: 20px;
+        width: 20px;
+    }
+
+    .assessmentQuestion input[type=checkbox] {
+        height: 20px;
+        width: 20px;
+        border-radius: 3px;
+    }
+
+    .assessmentQuestion input[type=text] {
+        padding: 5px;
+        border-radius: 3px;
+        border: 1px solid #cccccc;
+        font-size: 16px;
+        width: 400px;
+        margin: 5px;
+    }
+
+.assessmentControl {
+    display: block;
+    padding: 20px 0 30px 20px;
+}
+
+.assessmentButton, .assessmentContent input[type=submit] {
+    padding: 5px;
+    border: 1px solid darkgray;
+    font-size: large;
+    background-color: #f0f0f0;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.15));
+    color: #000;
+    border-radius: 5px;
+    min-width: 70px;
+    outline: none;
+    transition: 200ms;
+}
+
+    .assessmentButton:hover, .assessmentContent input[type=submit]:hover {
+        background-color: #fff;
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.15));
+    }
+
+.assessmentResults {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+.resultDetails {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    font-size: 28px;
+    font-weight: 700;
+    background-color: #787878;
+    color: #f0f0f0;
+    border-bottom: 1px solid #000;
+}
+
+.resultID {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+.resultNumbers {
+    display: flex;
+    padding: 5px;
+    font-size: 20px;
+    border-bottom: 1px solid #000;
+}
+
+.resultText {
+    display: block;
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    padding: 20px;
+}
+
+.resultInstruction {
+    display: block;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.resultButton {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+    .resultButton input[type=submit] {
+        padding: 5px;
+        border: 1px solid darkgray;
+        font-size: large;
+        background-color: #f0f0f0;
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.15));
+        color: #000;
+        border-radius: 5px;
+        min-width: 70px;
+        outline: none;
+        transition: 200ms;
+    }
+
+        .resultButton input[type=submit]:hover {
+            background-color: #fff;
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.15));
+        }

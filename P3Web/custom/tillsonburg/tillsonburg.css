@@ -1,0 +1,311 @@
+﻿/*  ----------------------  */
+/*  CUSTOM LAYOUT SETTINGS  */
+/*  ----------------------  */
+
+body {
+	font-family: Arial, Verdana;
+}
+
+.hyperLink {
+	color: #598ad7;
+	text-decoration: underline;
+}
+
+	.hyperLink:link {
+		color: #598ad7;
+		text-decoration: underline;
+	}
+
+	.hyperLink:visited {
+		color: #cccccc;
+		text-decoration: underline;
+	}
+	
+	.hyperLink:hover {
+		color: #ff0000;
+		text-decoration: none;
+	}
+
+	.hyperLink:active {
+		color: #ff0000;
+		text-decoration: underline;
+	}
+
+#pnlPageHomeView {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: calc(100vh - 152px);
+}
+
+	#pnlPageHomeView div:nth-child(1) {
+		order: 1;
+		flex: 1 1 auto;
+	}
+
+	#pnlPageHomeView div:nth-child(2) {
+		order: 2;
+		flex: 0 0 400px;
+	}
+
+.tillsonburg-header {
+	position: relative;
+	height: 100px;
+	margin-bottom: 5px;
+	background-color: #dbeff1;
+	border: 1px solid #598ad7;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+	.tillsonburg-header img {
+		height: 80px;
+		width: auto;
+		margin: 10px;
+	}
+
+.tillsonburg-home {
+	height: 100%;
+	border: 1px solid #598ad7;
+	box-sizing: border-box;
+}
+
+	.tillsonburg-home .tillsonburg-home-title {
+		display: block;
+		height: 70px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #f1f1f1;
+		color: #000;
+		font-size: 2em;
+		font-weight: 700;
+		box-sizing: border-box;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+
+	.tillsonburg-home .tillsonburg-home-content {
+		display: flex;
+		height: calc(100%);
+		padding: 10px;
+		box-sizing: border-box;
+		font-size: 1.25em;
+		background-color: #598ad7;
+		background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4) 90%);
+		color: #fff;
+	}
+
+		.tillsonburg-home-content a {
+			color: #dbeff1;
+			transition: color 100ms ease-in-out;
+		}
+
+			.tillsonburg-home-content a:hover {
+				color: #ff0000;
+			}
+
+			.tillsonburg-home-content a:active {
+				color: #ff0000;
+			}
+
+	.tillsonburg-home .tillsonburg-hotlink-content {
+		border-top: 1px solid #598ad7;
+		height: calc(100% - 50px);
+		overflow-x: hidden;
+		overflow-y: auto;
+		font-size: .75em;
+		background-color: #fff;
+		box-sizing: border-box;
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+	}
+
+pnlHotLinksView {
+	width: 315px;
+	height: 250px;
+	overflow: auto;
+}
+
+.pageInfoView {
+	width: 100%;
+	height: 120px;
+	text-align: left;
+	border: solid 1px #787878;
+	Padding: 0px 10px;
+	box-sizing: border-box;
+	background-color: #598ad7;
+	background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4));
+	color: #fff;
+	box-sizing: border-box;
+}
+
+.viewBottom {
+	width: 100%;
+	height: calc(100% - 200px);
+	text-align: left;
+	box-sizing: border-box;
+}
+
+.tab-container {
+	width: 100%;
+	height: calc(100% - 300px);
+}
+
+.tab-content-tab {
+	font-size: 1em;
+	color: #000;
+}
+
+.tab-content {
+	display: block;
+	width: 100%;
+	height: calc(100vh - 311px);
+	overflow-y: auto;
+	box-sizing: border-box;
+	font-size: 1.25em;
+	font-family: Arial, Verdana;
+}
+
+.treeViewPanel {
+	width: 185px;
+	height: 455px;
+	float: left;
+	border-left: 1px;
+	border-top: 1px;
+	border-right: 0px;
+	border-bottom: 1px;
+	border-color: #106494;
+	border-style: solid;
+}
+
+.listViewPanel {
+	width: 734px;
+	height: 455px;
+	float: left;
+	border: solid 1px #106494;
+}
+
+/*  LAYOUT STYLE SETTINGS FOR PPOrders.aspx  */
+
+.PPOlistViewPanel {
+	width: 952px;
+	height: 472px;
+	float: left;
+	border: solid 1px #787878;
+}
+
+.tillsonburg-menu {
+	outline: none;
+	margin-bottom: -1px;
+}
+
+	.tillsonburg-menu li {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		margin-right: 1px;
+		outline: none;
+		border: 1px solid #598ad7;
+		background-color: #aaa;
+		overflow: hidden;
+	}
+
+		.tillsonburg-menu li a {
+			padding: 5px;
+			/*border-top-left-radius: 3px;
+			border-top-right-radius: 3px;*/
+			color: #fff;
+			outline: none;
+			transition: color 100ms ease-in-out, background-color 100ms ease-in-out;
+			/*overflow: hidden;*/
+		}
+
+			.tillsonburg-menu li a:hover {
+				background-color: #ccc;
+				border-bottom: none;
+			}
+
+			.tillsonburg-menu li a:active {
+				background-color: #fff;
+				border-bottom: none;
+			}
+
+			.tillsonburg-menu li a.selected {
+				border-bottom: none;
+				background-color: #598ad7;
+				color: #fff;
+			}
+
+.tillsonburg-admin-img {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 32px;
+	height: auto;
+	outline: none;
+}
+
+.tillsonburg-pleasewait {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	background-color: rgba(255,255,255,0.8);
+}
+
+	.tillsonburg-pleasewait img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 50px;
+		height: auto;
+	}
+
+tillsonburg-folderlabel {
+	font: normal normal bold x-large Arial;
+	color: #E0E0E0;
+}
+
+.tillsonburg-gridView {
+	min-width: 100%;
+	max-width: 1510px;
+	font: normal 8pt arial, verdana;
+}
+
+.tillsonburg-gridViewHeader {
+	background-color: #f0f0f0;
+	color: #000;
+	text-decoration: none;
+	text-align: left;
+	font: bold 10pt arial, verdana;
+	height: 20px;
+	border-bottom: 1px solid black;
+}
+
+	.tillsonburg-gridViewHeader a {
+		color: #000000;
+		text-decoration: none;
+	}
+
+.tillsonburg-gridViewRow {
+	background-color: #FFFFFF;
+	color: #000000;
+	vertical-align: middle;
+	font: normal 8pt arial, verdana;
+}
+
+.tillsonburg-gridViewAltRow {
+	background-color: #F0F0F0;
+	color: #000000;
+	vertical-align: middle;
+	font: normal 8pt arial, verdana;
+}
+
+.tillsonburg-gridViewSelRow {
+	background-color: #0078D7 !important;
+	color: #fff !important;
+	vertical-align: middle;
+}

@@ -1,0 +1,1608 @@
+﻿/*  ------------------------------  */
+/*  SHARED STYLE & LAYOUT SETTINGS  */
+/*  ------------------------------  */
+
+html {
+    overflow: hidden;
+    background-color: #F0F0F0;
+}
+
+/*  ---------------------------------  */
+/*  STYLE & LAYOUT FOR P3DOCVIEW.ASPX  */
+/*  ---------------------------------  */
+
+.docBody {
+    margin: 0;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+#pnlDocToolBar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 60px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+}
+
+#pnlToolbarLeft {
+    order: 1;
+    flex: 0 0 320px;
+}
+
+#pnlToolbarRight {
+    order: 2;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+    #pnlToolbarRight div {
+        padding: 2px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #pnlToolbarRight .doc-top-row {
+        order: 1;
+        flex: 0 0 50%;
+        display: flex;
+        flex-direction: row;
+    }
+
+        #pnlToolbarRight .doc-top-row .left-column {
+            order: 1;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+
+            #pnlToolbarRight .doc-top-row .left-column > div:nth-child(1) {
+                order: 1;
+                flex: 0 0 50px;
+                box-sizing: border-box;
+            }
+
+            #pnlToolbarRight .doc-top-row .left-column > div:nth-child(2) {
+                order: 2;
+                flex: 1 1 auto;
+                min-width: 0;
+                box-sizing: border-box;
+            }
+
+        #pnlToolbarRight .doc-top-row .right-column {
+            order: 2;
+            flex: 0 0 350px;
+        }
+
+            #pnlToolbarRight .doc-top-row .right-column > div:nth-child(1) {
+                order: 1;
+                flex: 0 0 60px;
+                box-sizing: border-box;
+            }
+
+            #pnlToolbarRight .doc-top-row .right-column > div:nth-child(2) {
+                order: 2;
+                flex: 1 1 auto;
+                min-width: 0;
+                box-sizing: border-box;
+            }
+
+    #pnlToolbarRight .doc-bottom-row {
+        order: 1;
+        flex: 0 0 50%;
+        display: flex;
+        flex-direction: row;
+    }
+
+        #pnlToolbarRight .doc-bottom-row .left-column {
+            order: 1;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+
+            #pnlToolbarRight .doc-bottom-row .left-column > div:nth-child(1) {
+                order: 1;
+                flex: 0 0 50px;
+                box-sizing:border-box;
+            }
+
+            #pnlToolbarRight .doc-bottom-row .left-column > div:nth-child(2) {
+                order: 2;
+                flex: 1 1 auto;
+                min-width: 0;
+                box-sizing: border-box;
+            }
+
+        #pnlToolbarRight .doc-bottom-row .right-column {
+            order: 2;
+            flex: 0 0 350px;
+            display: flex;
+            flex-direction: row;            
+        }
+
+            #pnlToolbarRight .doc-bottom-row .right-column div:nth-child(1) {
+                order: 1;
+                flex: 0 0 60px;
+                box-sizing: border-box;
+            }
+
+            #pnlToolbarRight .doc-bottom-row .right-column div:nth-child(2) {
+                order: 2;
+                flex: 1 1 auto;
+                min-width: 0;
+                box-sizing: border-box;
+            }
+
+.truncate {
+    width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#pnlDocView {
+    display: block;
+    width: 100%;
+    height: calc(100vh - 65px);
+    background-color: #fff;
+}
+
+    #pnlDocView iframe {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border: 2px inset #fff;
+        background-color: #fff;
+    }
+
+
+/*  ----------------------------------  */
+/*  STYLE & LAYOUT FOR VIEWSTATUS.ASPX  */
+/*  ----------------------------------  */
+
+.statusBody {
+    background-color: #F0F0F0;
+    margin: 0;
+    position: relative;
+}
+
+.pnlStatusWindow {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+    .pnlStatusWindow .pnlStatusTitle {
+        flex: 0 0 30px;
+        background: linear-gradient(to bottom, #598AD7 0%, #1849A6 80%);
+        color: #F0F0F0;
+        border-bottom: 1px solid black;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        font-size: large;
+        padding: 5px;
+    }
+
+    .pnlStatusWindow .pnlStatusVersion {        
+        flex: 0 0 30px;
+        display: flex;
+        flex-direction: row;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: .9em;        
+    }
+
+        .pnlStatusWindow .pnlStatusVersion span {
+            width: 350px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+    .pnlStatusWindow .pnlStatusList {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+        .pnlStatusWindow .pnlStatusList .version-fields {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding: 7px 0 0 5px;
+        }
+
+.version-row-1,.version-row-2,.version-row-3 {
+    display: flex;
+    flex-direction: row;
+    font-size: .7em;
+    padding: 0 0 10px 0;
+}
+
+.version-text {
+    flex: 0 0 90px;
+    display: flex;
+    align-items: center;
+}
+
+.version-field {
+    flex: 1 1 auto;
+    text-align: right;
+}
+
+.version-row-4 {
+    font-size: .8em;
+}
+
+    .version-row-4 div:nth-child(1) {
+        height: 23px;
+    }
+
+        .pnlStatusWindow .pnlStatusList .version-options {
+            flex: 0 0 175px;
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+            box-sizing: border-box;
+            font-size: .8em;
+        }
+
+.version-options-list {
+    flex: 1 1 auto;
+    border: 1px solid darkgrey;
+}
+
+.version-options-separator {
+    flex: 0 0 20px;
+}
+
+    .pnlStatusWindow .pnlStatusButtons {
+        flex: 0 0 40px;
+        padding: 5px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        box-sizing: border-box;
+    }
+
+#statusMessagePanel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+    display: none;
+}
+
+#statusMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #f0f0f0;
+    color: #000;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
+
+#lblStatusMessage {
+    margin-bottom: 20px;
+}
+
+/*  --------------------------------------  */
+/*  STYLE & LAYOUT FOR VIEWACTIONITEM.ASPX  */
+/*  --------------------------------------  */
+.aiBody {
+    background-color: #F0F0F0;
+    text-align: left;
+    margin: 0;
+    font-family: Arial;
+}
+
+#pnlAIToolbar {
+    display: block;
+    width: 790px;
+    height: 64px;
+    margin: 0 auto;
+}
+
+    #pnlAIToolbar input[type=image] {
+        outline: 0;
+    }
+
+    #pnlAIToolbar input[type=image]:active {
+        outline: 0;
+    }
+
+#pnlAIInfo {
+    display: block;
+    width: 780px;
+    height: 105px;
+    text-align: center;
+    border: solid 1px #999999;
+    margin: 0 auto
+}
+
+#pnlAIDetails {
+    display: block;
+    height: 430px;
+    width: 780px;
+    font-size: 9pt;
+    margin: 10px auto 0 auto
+}
+
+.aiTitleLabel {
+    text-align: left;
+    vertical-align: middle;
+    width: 50px;
+    height: 30px;
+    padding-left: 5px;
+    font-weight: bold;
+    font-size: 9pt
+}
+
+.aiTitleField {
+    text-align: left;
+    vertical-align: middle;
+    height: 30px;
+    padding-left: 5px;
+    font-weight: bold
+}
+
+.aiLabelLeft {
+    text-align: left;
+    vertical-align: middle;
+    width: 50px;
+    height: 35px;
+    padding-left: 5px;
+    font-size: 9pt;
+    font-weight: 700;
+}
+
+.aiFieldLeft {
+    text-align: left;
+    vertical-align: middle;
+    width: 170px;
+    height: 35px;
+    padding-left: 5px
+}
+
+.aiLabelMiddle {
+    text-align: left;
+    vertical-align: middle;
+    width: 70px;
+    padding-left: 5px;
+    font-size: 9pt;
+    font-weight: 700;
+}
+
+.aiFieldMiddle {
+    text-align: left;
+    vertical-align: middle;
+    width: 120px;
+    padding-left: 5px
+}
+
+.aiLabelRight {
+    text-align: left;
+    vertical-align: middle;
+    width: 70px;
+    height: 30px;
+    padding-left: 5px;
+    font-size: 9pt;
+    font-weight: 700;
+}
+
+.aiFieldRight {
+    text-align: left;
+    vertical-align: middle;
+    height: 30px;
+    padding-left: 5px
+}
+
+.aiDetails {
+    width: 777px;
+    height: 395px;
+    border: 1px solid #999999
+}
+
+/*  PASSWORD CONFIRMATION MODAL POPUP */
+
+#pnlAIPwdConfirm {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 170px;
+    background-color: #f0f0f0;
+    /*background: url('../images/pwdcnf.png') no-repeat left;*/
+    border: 1px solid #000;
+    border-radius: 5px;
+    font: .8em Arial;
+    box-sizing: border-box;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+#pnlAIPwdCnfDrag {
+    flex: 0 0 20px;
+    position: relative;
+    display: block;
+    height: 20px;
+    width: 398px;
+    background-color: #fff;
+    color: #000;
+    text-align: left;
+    padding-top: 3px;
+    padding-left: 5px;
+    box-sizing: border-box;
+    cursor: move;
+}
+
+#pnlAIPwdCnfBody {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;    
+}
+
+.pwd-body-left {
+    flex: 0 0 150px;
+    background: url('../images/pwdcnf.png') no-repeat left;
+}
+
+.pwd-body-right {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    align-items: stretch;
+}
+
+.pwd-label {
+    flex: 0 0 40px;
+    display: flex;
+    align-items: flex-end;
+    text-align: left;
+}
+
+.pwd-field {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    padding-top: 5px;
+}
+
+.pwd-buttons {
+    flex: 0 0 30px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+/*  COMPLETE ACTION ITEM MODAL POPUP */
+#pnlAIComplete {
+    display: block;
+    width: 480px;
+    height: 325px;
+    background-color: #F0F0F0;
+    border: 2px solid Black;
+    font: .8em Arial;
+}
+
+#pnlAIDrag {
+    position: relative;
+    display: block;
+    height: 17px;
+    width: 475px;
+    background-color: #005C8F;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: left;
+    padding-top: 3px;
+    padding-left: 5px;
+}
+
+.btnClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.aiCompleteTable {
+    width: 100%;
+    padding: 0;
+}
+
+.resultLabel {
+    width: 100px;
+    height: 18px;
+    text-align: left;
+    vertical-align: middle;
+    padding-left: 9px
+}
+
+.commentsLabel {
+    height: 18px;
+    text-align: left;
+    vertical-align: bottom;
+    padding-left: 9px
+}
+
+.commentsField {
+    text-align: center;
+}
+
+.complete {
+    height: 40px;
+    text-align: right;
+    vertical-align: middle;
+    padding-right: 7px
+}
+
+/*  FORWARD ACTION ITEM MODAL POPUP */
+
+#pnlAIForward {
+    display: block;
+    width: 480px;
+    height: 325px;
+    background-color: #F0F0F0;
+    border: 2px solid Black;
+    font: .8em Arial;
+}
+
+#pnlAIFWDrag {
+    position: relative;
+    display: block;
+    height: 17px;
+    width: 475px;
+    background-color: #106494;
+    color: #FFFFFF;
+    text-align: left;
+    font-weight: bold;
+    padding-top: 3px;
+    padding-left: 5px
+}
+
+/*  SELECT USERS MODAL POPUP */
+
+#pnlSelectUser {
+    display: block;
+    width: 700px;
+    height: 580px;
+    background-color: #F0F0F0;
+    border: 2px solid Black;
+    font: .8em Arial;
+}
+
+#pnlDragHandle {
+    position: relative;
+    display: block;
+    width: 695px;
+    height: 17px;
+    background-color: #106494;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding-top: 3px;
+    padding-left: 5px;
+}
+
+#pnlModalDDL {
+    /*display: block;*/
+    width: 680px;
+    height: 20px;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+#pnlFields {
+    display: block;
+    width: 690px;
+    height: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pnlModalSelect {
+    display: block;
+    width: 275px;
+    height: 480px;
+    float: left;
+    text-align: center;
+    border: 1px solid #999999;
+    background-color: #FFFFFF;
+}
+
+.lbMSelect {
+    border-width: 0;
+}
+
+.modalTreeView {
+    width: 270px;
+    height: 480px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    overflow: auto;
+}
+
+#pnlModalButtons {
+    display: block;
+    width: 125px;
+    height: 275px;
+    padding-top: 200px;
+    text-align: center;
+    float: left;
+}
+
+#pnlModalSelected {
+    display: block;
+    float: left;
+    width: 283px;
+    height: 476px;
+    text-align: right;
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+}
+
+#pnlModalFooter {
+    display: block;
+    width: 690px;
+    height: 30px;
+    padding-top: 10px;
+    text-align: right;
+}
+
+.aiForwardTable {
+    width: 100%;
+    padding: 0;
+}
+
+.forward {
+    height: 40px;
+    text-align: right;
+    vertical-align: middle;
+    padding-right: 7px;
+}
+
+/*  REPLY ACTION ITEM MODAL POPUP  */
+
+#pnlAIReply {
+    display: block;
+    width: 480px;
+    height: 285px;
+    background-color: #F0F0F0;
+    border: 2px solid Black;
+    font: .8em Arial;
+}
+
+#pnlAIReplyDrag {
+    position: relative;
+    display: block;
+    height: 17px;
+    width: 475px;
+    background-color: #005C8F;
+    color: #FFFFFF;
+    text-align: left;
+    font-weight: bold;
+    padding-top: 3px;
+    padding-left: 5px;
+}
+
+/*  ---------------------------------------------  */
+/*  STYLE & LAYOUT FOR VIEWRELATEDACTIONITEM.ASPX  */
+/*  ---------------------------------------------  */
+
+.relatedAI {
+    margin: 0;
+    background-color: #F0F0F0;
+    font: small Arial;
+}
+
+#pnlItemVersion {
+    display: block;
+    width: 800px;
+    height: 55px;
+    padding-top: 5px;
+    margin: 0 auto;
+}
+
+#pnlAIList {
+    display: block;
+    width: 790px;
+    height: 302px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    border: 2px inset white;
+    overflow: auto;
+}
+
+#pnlButtons {
+    display: block;
+    width: 790px;
+    height: 30px;
+    padding-top: 5px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+/*  --------------------------------------  */
+/*  STYLE & LAYOUT FOR VIEWPROPERTIES.ASPX  */
+/*  --------------------------------------  */
+
+.propertiesBody {
+    background-color: #F0F0F0;
+    text-align: left;
+    margin: 0;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+#pnlPropertiesContent {
+    display: block;
+    width: 95%;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
+#pnlTitle {
+    display: block;
+    width: 95%;
+    padding-top: 10px;
+    font: 12px Arial;
+    margin: 0 auto;
+}
+
+#pnlPDetails {
+    display: block;
+    width: 98%;
+    padding: 5px;
+    font: 12px Arial;
+    margin-top: 5px 0 0 20px;
+    border: 1px solid #CCCCCC;
+}
+
+#pnlNotes {
+    display: block;
+    width: 100%;
+    font: 12px Arial;
+    margin: 10px 0 0 0;
+}
+
+.pNotesField {
+    width: 585px;
+    height: 185px;
+    font: 12px Arial;
+    border: 1px inset #CCCCCC;
+    background-color: #FFFFFF;
+    resize: none;
+}
+
+#pnlHistory {
+    width: 97%;
+    margin: 10px auto 0 auto;
+}
+
+.pHistoryField {
+    width: 99%;
+    height: 385px;
+    font: normal normal normal 12px Arial;
+    border: 1px inset #CCCCCC;
+    background-color: #FFFFFF;
+}
+
+#pnlTraining {
+    display: block;
+    width: 97%;
+    height: 350px;
+    margin: 10px auto 0 auto;
+    border: 1px solid #CCCCCC;
+}
+
+#pnlTrainingButtons {
+    display: block;
+    width: 97%;
+    height: 30px;
+    margin: 10px auto 0 auto;
+}
+
+#pnlPClose {
+    width: 95%;
+    padding-top: 5px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+.pName {
+    width: 70px;
+    font-size: 12px;
+    font-family: Arial;
+    vertical-align: middle;
+}
+
+/* Roles Tab */
+
+.roles-main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 360px;
+}
+
+.roles-left {
+    order: 1;
+    flex: 0 0 280px;
+    height: 100%;
+    border: 1px solid #000;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.roles-divider {
+    order: 2;
+    flex: 0 0 5px;
+    background-color: #fff;
+}
+
+.roles-right {
+    order: 3;
+    flex: 1 1 auto;
+    height: 100%;
+    border: 1px solid #000;
+}
+
+.roles-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+    .roles-buttons input[type=submit] {
+        width: auto;
+        padding: 2px 5px;
+        font-size: 12px;
+        min-width: 60px;
+    }
+
+.roles-buttons-left {
+    order: 1;
+    flex: 1 1 auto;
+    padding-top: 15px;
+    box-sizing: border-box;
+}
+
+.roles-buttons-right {
+    order: 2;
+    flex: 0 0 200px;
+    padding-top: 15px;
+    text-align: right;
+}
+
+/* Event Date Tab */
+
+.event-date-main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 400px;
+}
+
+.event-date-list {
+    flex: 1 1 auto;
+    border: 1px solid #000;
+    background-color: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.event-date-buttons {
+    flex: 0 0 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+    .event-date-buttons div:nth-child(odd) {
+        flex: 0 0 500px;
+    }
+
+    .event-date-buttons div:nth-child(even) {
+        flex: 1 1 auto;
+        text-align: right;
+    }
+
+.event-date-gridView {
+    width: 100%;
+    font: normal .9em arial, verdana;
+}
+
+.event-date-headerRow {
+    background-color: #f0f0f0;
+    color: #000;
+    text-decoration: none;
+    text-align: left;
+    font: bold 1em arial, verdana;
+    border-bottom: 1px solid black;
+    cursor: default;
+}
+
+.event-date-dataRow {
+    background-color: #FFFFFF;
+    color: #000000;
+    font: normal .9em arial, verdana;
+    border-bottom: 1px solid #dcdcdc;
+    cursor: pointer;
+}
+
+    .event-date-gridView tr th {        
+        padding: 5px 2px;
+        border-right: 1px solid #dcdcdc;        
+    }
+
+    .event-date-gridView tr td {
+        padding: 5px 2px;
+        border-right: 1px solid #dcdcdc;
+    }
+
+.event-date-selectedRow {
+    background-color: #0078D7 !important;
+    color: #fff !important;
+    vertical-align: middle;
+    font: normal .9em arial, verdana;
+    border-bottom: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    border-right: 1px solid #dcdcdc;
+    cursor: pointer;
+}
+
+.event-date-gridView tr.event-date-selectedRow {
+    background-color: #0078D7 !important;
+    color: #fff !important;
+    vertical-align: middle;
+    font: normal .9em arial, verdana;
+    border-bottom: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    border-right: 1px solid #dcdcdc;
+    cursor: pointer;
+}
+
+.edit-eventdate-modal {
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    height: 480px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+}
+
+    .edit-eventdate-modal .edit-eventdate-titlebar {
+        flex: 0 0 20px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+    }
+
+        .edit-eventdate-modal .edit-eventdate-titlebar span {
+            font-size: 1.25em;
+            margin-left: 5px;
+        }
+
+        .edit-eventdate-modal .edit-eventdate-titlebar input[type=image] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 20px;
+        }
+
+    .edit-eventdate-modal .edit-eventdate-spacer {
+        flex: 0 0 20px;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+        .edit-eventdate-modal .edit-eventdate-spacer div {
+            position: absolute;
+            bottom: 0;
+            left: 10px;
+        }
+
+    .edit-eventdate-modal .edit-eventdate-content {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: row;
+        padding: 0 10px 0 10px;
+        box-sizing: border-box;
+        /*overflow: hidden;*/
+    }
+
+        .edit-eventdate-modal .edit-eventdate-content .eventdate-list {
+            flex: 0 0 250px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #000;
+            background-color: #fff;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .edit-eventdate-modal .edit-eventdate-content .eventdate-divider {
+            flex: 0 0 10px;
+            height: 100%;
+        }
+
+        .edit-eventdate-modal .edit-eventdate-content .eventdate-options {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-sizing: border-box;
+            padding-bottom: 13px;
+        }
+
+            .edit-eventdate-modal .edit-eventdate-content .eventdate-options .date-settings {
+                flex: 1 1 auto;
+                box-sizing: border-box;
+                margin-bottom: 20px;
+            }
+
+            .edit-eventdate-modal .edit-eventdate-content .eventdate-options .frequency-settings {
+                flex: 0 0 80px;
+                box-sizing: border-box;
+                margin-bottom: 20px;
+            }
+
+            .edit-eventdate-modal .edit-eventdate-content .eventdate-options .actionitem-settings {
+                flex: 0 0 70px;
+                box-sizing: border-box;
+            }
+
+    .edit-eventdate-modal .edit-eventdate-buttons {
+        flex: 0 0 30px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding-right: 10px;
+        padding-top: 2px;
+        box-sizing: border-box;
+        margin-top: 5px;
+    }
+
+.gvDates {
+    width: 100px;
+    font-size: 1em;
+}
+
+.gvdates-row {
+    background-color: #fff;
+    color: #000;
+}
+
+.gvDates-selectedRow {
+    background-color: #598AD7;
+    color: #fff;
+}
+
+
+/* Categories Tab */
+
+.categories-main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 400px;
+}
+
+.categories-list {
+    flex: 1 1 auto;
+    border: 1px solid #dcdcdc;
+    background-color: #fff;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+    .categories-list ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: 330px;
+    }
+
+        .categories-list ul li {
+            flex: 0 0 24px;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: auto;
+            min-width: 200px;
+            max-width: 250px;
+            margin-right: 10px;
+        }
+
+.categories-buttons {
+    flex: 0 0 60px;
+}
+
+    .categories-buttons div {
+        line-height: 30px;
+    }
+
+/*  ------------------------------------------  */
+/*  STYLE & LAYOUT FOR VIEWPROPERTIESUSER.ASPX  */
+/*  ------------------------------------------  */
+
+.u-prop-main {
+    display: flex;
+    flex-direction: column;
+    height: 550px;    
+    box-sizing: border-box;
+    background-color: #f1f1f1;
+}
+
+.u-prop-content {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px 20px 0 20px;
+    box-sizing: border-box;
+    background-color: #f1f1f1;
+}
+
+.u-prop-controls {
+    flex: 0 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.u-prop-tabcontent {
+    display: flex;
+    flex-direction: column;
+    height: 445px;
+    border: 1px solid #dcdcdc;
+    padding: 5px 0 0 0;
+    font-size: .9em;
+    box-sizing: border-box;
+}
+
+/* General Tab */
+.u-prop-gen-row {
+    flex: 0 0 30px;
+    display: flex;
+    flex-direction: row;
+    padding: 2px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.u-prop-gen-lastrow {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.u-prop-field-label {
+    flex: 0 0 120px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.u-prop-field {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+}
+
+     .u-prop-field input {
+        width: 590px;
+        border: 1px solid #dcdcdc;
+        padding: 2px 10px;
+        font-size: 16px;
+        border-radius: 2px;    
+        font-size: 1em;
+     }
+
+        .u-prop-field input:focus {
+            outline-color: #dcdcdc;
+        }
+
+    .u-prop-field textarea {
+        border: 1px solid #dcdcdc;
+        width: 606px;
+        height: 94%;
+        resize: none;
+        font-family: Arial, Verdana, sans-serif;
+    }
+
+        .u-prop-field textarea:focus {
+            outline-color: #dcdcdc;
+        }
+
+
+/* Memberships Tab */
+.u-prop-mem-row1 {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.u-prop-mem-row2 {
+    flex: 0 0 150px;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+    .u-prop-mem-row2 .membership-label {
+        flex: 0 0 20px;
+        padding-left: 30px;
+        box-sizing: border-box;
+    }
+
+    .u-prop-mem-row2 .membership-list {
+        flex: 1 1 auto;
+        margin-left: 30px;
+        border: 1px solid #dcdcdc;
+        box-sizing: border-box;
+    }
+
+.u-prop-mem-row3{
+    flex: 0 0 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.u-mem-license-type {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.u-mem-lt-row {
+    flex: 1 1 auto;
+}
+
+.u-mem-module-access {
+    flex: 0 0 250px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.checkboxlist {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+}
+
+.checkboxlist-disabled {
+    width: 100%;
+    background-color: #f1f1f1;
+}
+
+    .u-mem-module-access img {
+        width: 16px;
+    }
+
+.disabled {
+    background-color: #dcdcdc;
+    border: 1px solid darkgray;
+}
+
+/* Options Tab */
+
+.u-opt-row {
+    flex: 0 0 36px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* Training Tab */
+
+.u-train-exportpanel {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 400px;
+    background-color: #f1f1f1;
+    border: 1px solid #000;
+    box-shadow: 0 3px 7px 0 rgba(0,0,0,0.6);
+    box-sizing: border-box;
+}
+
+.u-train-export-title {
+    flex: 0 0 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    font-size: 1.15em;
+    font-weight: 500;
+    background-color: #fff;
+}
+
+    .u-train-export-title img {
+        width: 16px;
+        margin-right: 5px;
+    }
+
+.u-train-export-label {
+    flex: 0 0 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.u-train-export-field {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    padding: 5px;
+    margin: 0 5px;
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.u-train-export-buttons {
+    flex: 0 0 40px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+    .u-train-export-buttons div:nth-child(1) {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        padding-left: 5px;
+    }
+
+    .u-train-export-buttons div:nth-child(2) {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 5px;
+    }
+
+
+/* Other Users Action Items Tab */
+
+.u-other-add-panel {
+    width: 700px;
+    height: 500px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    box-sizing: border-box;
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+}
+
+.u-other-add-title {
+    flex: 0 0 30px;    
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    font-size: 1.15em;
+    font-weight: 500;
+    background-color: #fff;
+}
+
+    .u-other-add-title img {
+        width: 16px;
+        margin-right: 5px;
+    }
+
+.u-other-add-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.u-other-add-buttons {
+    flex: 0 0 30px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.u-other-add-left, .u-other-add-right {
+    flex: 0 0 280px;
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+    overflow: auto;
+}
+
+.u-other-add-center {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.u-other-button {
+    display: block;
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.u-other-add-right {
+
+}
+
+/*  ------------------------------------  */
+/*  STYLE & LAYOUT FOR VIEWPARALINK.ASPX  */
+/*  ------------------------------------  */
+
+.paraLinkBody {
+    width: 100%;
+    margin: 0;
+    background-color: #F0F0F0;
+    font-family: Arial;
+    font-size: small;
+}
+
+
+#pnlPLContent {
+    display: block;
+    width: 930px;
+    height: 600px;
+    margin: 0 auto;
+    /*padding-top: 10px;*/
+    box-sizing: border-box;
+}
+
+.linkTo {
+    clear: left;
+    display: block;
+    width: 460px;
+    height: 20px;
+    float: left;
+    font-size: 9pt;
+}
+
+.linkFrom {
+    display: block;
+    width: 460px;
+    height: 20px;
+    float: right;
+    font-size: 9pt;
+}
+
+.linkListLeft {
+    display: block;
+    float: left;
+    width: 460px;
+    height: 385px;
+    background-color: #FFFFFF;
+    border: 1px inset #CCCCCC;
+    overflow: auto;
+}
+
+.linkListRight {
+    display: block;
+    float: right;
+    width: 460px;
+    height: 385px;
+    background-color: #FFFFFF;
+    border: 1px inset #CCCCCC;
+    overflow: auto;
+}
+
+.modal-select-type {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    height: 150px;
+    border: 1px solid #000;
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+
+    .modal-select-type div:nth-child(1) {
+        flex: 0 0 30px;
+        background-color: #0078D7;
+        color: #fff;
+        font-size: 16px;
+        padding-left: 5px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+    }
+
+    .modal-select-type div:nth-child(2) {
+        flex: 1 1 auto;
+        padding: 10px;
+        box-sizing: border-box;
+        justify-content: center;
+    }
+
+    .modal-select-type div:nth-child(3) {
+        flex: 0 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+/*  VIEWERROR.ASPX  */
+
+.errorBody {
+    background-color: #F0F0F0;
+}
+
+#pnlDetails {
+    background: linear-gradient(to bottom, #598AD7 0%, #1849A6 80%);
+    color: #F0F0F0;
+    padding: 5px 5px 10px 5px;
+}
+
+#pnlError {
+    padding: 5px;
+}
+
+/*  VIEWFIELDEDIT.ASPX  */
+
+.fieldEdit {
+    display: block;
+    width: calc(100vw - 20px);
+    margin: 0 auto 0 auto;
+    padding-top: 10px;
+    font-size: 14px;
+}
+
+    .fieldEdit textarea {
+        width: calc(100vw - 25px);
+        height: 200px;
+    }
+
+.fieldEditButtons {
+    display: block;
+    width: calc(100vw - 20px);
+    margin: 0 auto 0 auto;
+    padding-top: 10px;
+    text-align: right;
+}

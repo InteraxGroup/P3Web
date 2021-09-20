@@ -1,0 +1,31 @@
+﻿.addRecordBody {
+    margin: 0;
+    text-align: left;
+    background-color: #F0F0F0;
+    font: small Arial;
+    overflow: hidden;
+}
+
+.pnlAddRecord {
+    display: block;
+    width: 405px;
+    margin: 0px auto;
+}
+
+.fieldName {
+    padding: 0px 0px 0px 5px;
+    width: 50px;
+    height: 30px;
+    font: normal normal bold 11px Arial;
+}
+
+.fieldValue {
+    width: 310px;
+    height: 30px;
+}
+
+.formButtons {
+    height: 40px;
+    padding-right: 10px;
+    text-align: right;
+}

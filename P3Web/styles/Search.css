@@ -1,0 +1,147 @@
+﻿/*  ------------------------------  */
+/*  STYLE & LAYOUT FOR SEARCH.ASPX  */
+/*  ------------------------------  */
+
+.search {
+    padding: 0;
+    font-family: Arial;
+    background-color: #F0F0F0;
+    margin: 0;
+    overflow: hidden;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+#pnlSearch {
+    width: 100%;
+    height: 260px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#pnlSearchLeft {
+    width: 760px;
+    height: 245px;
+    float: left;
+}
+
+.tabPanel {
+    width: 760px;
+    height: 190px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tdCell {
+    display: flex;
+    align-items: flex-end;
+    float: left;
+    margin: 5px 0 0 0;
+    height: 22px;
+}
+
+.btnBrowse {
+    float: right;
+}
+
+.categoryList {
+    width: 700px;
+    border: 1px solid #999999;
+    overflow-y: auto;
+}
+
+#pnlSearchRight {
+    width: 120px;
+    height: 243px;
+    float: left;
+    text-align: center;
+    vertical-align: top;
+    padding-top: 2px;
+}
+
+.searchButton {
+    margin-top: 19px;
+}
+
+.resultsPanel {
+    width: 890px;
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.searchResultsCounter {
+    width: 886px;
+    height: 20px;
+    padding-left: 5px;
+    padding-top: 3px;
+    background-color: blue;
+    background-image: linear-gradient(to bottom, #598AD7 0%, #1849A6 80%);
+}
+
+.searchResultsList {
+    width: 100%;
+    height: calc(100vh - 290px);
+    overflow-y: auto;
+}
+
+.browsePanel {
+    width: 500px;
+    height: 230px;
+    background-color: #F0F0F0;
+    border: 2px solid #000000;
+}
+
+.browseTitleBar {
+    width: 495px;
+    height: 18px;
+    background-color: #106494;
+    color: #FFFFFF;
+    font: 14px Arial;
+    padding: 2px 0 0 5px;
+    vertical-align: middle;
+}
+
+.browseTree {
+    overflow: auto;
+    width: 490px;
+    height: 170px;
+    margin: 5px auto;
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+}
+
+.browseButton {
+    width: 496px;
+    height: 30px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.categoryList {
+    width: 700px;
+    min-height: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.searchWait {
+    width: 100%;
+    height: 600px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.pleaseWaitsearch {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 50px;
+    text-align: center;
+    background-color: #fff;
+    opacity: .5;
+}
