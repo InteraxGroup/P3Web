@@ -348,6 +348,7 @@ namespace Paradigm3
                         {
                             ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name folders/items are not allowed by Admin!" + "');window.close();", true);
                             frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            CopyNewName(Name);
                             break;
 
                         }
