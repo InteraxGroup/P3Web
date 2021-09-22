@@ -3554,7 +3554,7 @@ namespace Paradigm3
                     mnuTVContext.Items.Add(new MenuItem("Set Republish", "setrepublish"));
 				}
 
-                if (HasMovePermission)
+                if (HasMovePermission && moduleID != 1)
                 {
                     pnlMove.Visible = true;
                     mnuTVContext.Items.Add(new MenuItem("Copy To...", "copy"));
@@ -3941,7 +3941,7 @@ namespace Paradigm3
                 mnuGVContext.Items.Add(new MenuItem("Move", "move"));
             }
 
-            if (HasMovePermission)
+            if (HasMovePermission && ModuleID != 1)
             {
                 mnuGVContext.Items.Add(new MenuItem("Copy To", "copy"));
             }

@@ -241,48 +241,57 @@ namespace Paradigm3
             bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
             int DestinationID = Convert.ToInt32(p3Tree.SelectedValue);
 
+            
             DataSet dtCheck = await P3General.CheckCopyRules(Name, ModuleID, OrigID, DestinationID, UserID, IsGroup);
             if (dtCheck.Tables[0].Columns.Count != 0)
             {
                 ObjectTypeID = Convert.ToBoolean(dtCheck.Tables[0].Rows[0]["ObjTypeID"]);
                 SameNameObject = Convert.ToBoolean(dtCheck.Tables[0].Rows[0]["ItemNameRule"]);
-                GeneralFolder = Convert.ToBoolean(dtCheck.Tables[0].Rows[0]["GeneralFolder"]);
+                if (!string.IsNullOrEmpty(dtCheck.Tables[0].Rows[0]["GeneralFolder"].ToString()))
+                {
+                    GeneralFolder = Convert.ToBoolean(dtCheck.Tables[0].Rows[0]["GeneralFolder"]);
+                }
+                else
+                {
+                    GeneralFolder = false;
+                }
             }
             switch (ModuleID)
             {
                 case 3:
-                   
-                  if (SameNameObject == false)
-                        {
+
+                    if (!IsGroup && SameNameObject == true)
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please check name!" + "');", true);
+                        frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                        CopyNewName(Name);
+                        break;
+                    }
+
+                    else
+                    {                      
                             frmbtnSubmit.Attributes.Remove("disabled");
                             frmbtnSubmit.Attributes.Add("enabled", "true");
                             break;
-                        }
 
-                        else
-                        {
-                            ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please change name!" + "');", true);
-                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
-                            CopyNewName(Name);
-                            break;
-                        }             
+                    }
                        
                 case 4:            
     
                     if (GeneralFolder)
                     {
-                        if (SameNameObject == false)
-                        {
-                            frmbtnSubmit.Attributes.Remove("disabled");
-                            frmbtnSubmit.Attributes.Add("enabled", "true");
+                        if (!IsGroup && SameNameObject == true)
+                        {    
+                            ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please check name!" + "');", true);
+                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            CopyNewName(Name);
                             break;
                         }
 
                         else
                         {
-                            ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please change name!" + "');", true);
-                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
-                            CopyNewName(Name);
+                            frmbtnSubmit.Attributes.Remove("disabled");
+                            frmbtnSubmit.Attributes.Add("enabled", "true");
                             break;
 
                         }
@@ -290,18 +299,66 @@ namespace Paradigm3
 
                     else if (ObjectTypeID)
                     {
-                        if (SameNameObject == false)
-                        {
-                            frmbtnSubmit.Attributes.Remove("disabled");
-                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
+                        if (!IsGroup && SameNameObject == true)
+                        {                 
+                            ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please check name!" + "');", true);
+                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            CopyNewName(Name);
                             break;
                         }
 
                         else
                         {
-                            ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please change name!" + "');", true);
+                            frmbtnSubmit.Attributes.Remove("disabled");
+                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
+                            break;
+
+                        }
+                    }
+
+                    else
+                    {          
+                        frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                        break;
+                    }
+
+                case 6:
+       
+                    if (GeneralFolder)
+                    {
+                        if (!IsGroup && SameNameObject == true)
+                        {
+                           
+                            ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please check name!" + "');", true);
                             frmbtnSubmit.Attributes.Add("disabled", "disabled");
                             CopyNewName(Name);
+                            break;
+                        }
+
+                        else
+                        {
+                            frmbtnSubmit.Attributes.Remove("disabled");
+                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
+                            break;
+
+                        }
+                    }
+
+                    else if (ObjectTypeID)
+                    {
+                        if (!IsGroup && SameNameObject == true)
+                        {
+                          
+                            ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name folders/items are not allowed by Admin!" + "');", true);
+                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            CopyNewName(Name);
+                            break;
+                        }
+
+                        else
+                        {
+                            frmbtnSubmit.Attributes.Remove("disabled");
+                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
                             break;
 
                         }
@@ -314,22 +371,23 @@ namespace Paradigm3
                         break;
                     }
 
-                case 6:
-       
+               case 12:
+
                     if (GeneralFolder)
                     {
-                        if (SameNameObject == false)
+                        if (!IsGroup && SameNameObject == true)
                         {
-                            frmbtnSubmit.Attributes.Remove("disabled");
-                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
+
+                            ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please check name!" + "');", true);
+                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            CopyNewName(Name);
                             break;
                         }
 
                         else
                         {
-                            ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please change name!" + "');", true);
-                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
-                            CopyNewName(Name);
+                            frmbtnSubmit.Attributes.Remove("disabled");
+                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
                             break;
 
                         }
@@ -337,26 +395,26 @@ namespace Paradigm3
 
                     else if (ObjectTypeID)
                     {
-                        if (SameNameObject == false)
+                        if (!IsGroup && SameNameObject == true)
                         {
-                            frmbtnSubmit.Attributes.Remove("disabled");
-                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
+
+                            ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name folders/items are not allowed by Admin!" + "');", true);
+                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            CopyNewName(Name);
                             break;
                         }
 
                         else
                         {
-                            ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name folders/items are not allowed by Admin!" + "');window.close();", true);
-                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
-                            CopyNewName(Name);
+                            frmbtnSubmit.Attributes.Remove("disabled");
+                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
                             break;
 
                         }
                     }
 
                     else
-                    {
-                        //ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Destination folder type should be same!" + "');window.close();", true);
+                    {           
                         frmbtnSubmit.Attributes.Add("disabled", "disabled");
                         break;
                     }
@@ -450,15 +508,7 @@ namespace Paradigm3
                             string GroupName = P3General.Get_GroupName(ModuleID, Convert.ToInt32(p));
                             srcPath += GroupName + $"\\";
                         }
-                        srcPath = srcPath.TrimEnd('\\');
-
-                        //DataSet dtCheck = await P3General.CheckCopyRules(Name, ModuleID, OrigID, DestinationID, UserID, IsGroup);
-                        //if (dtCheck.Tables[0].Columns.Count != 0)
-                        //{
-                        //    ObjectTypeID = Convert.ToBoolean(dtCheck.Tables[0].Rows[0]["ObjTypeID"]);
-                        //    SameNameObject = Convert.ToBoolean(dtCheck.Tables[0].Rows[0]["ItemNameRule"]);
-                        //    GeneralFolder = Convert.ToBoolean(dtCheck.Tables[0].Rows[0]["GeneralFolder"]);
-                        //} 
+                        srcPath = srcPath.TrimEnd('\\');                
 
                         string msg = "Item copied successfully";
                         if (IsGroup)
@@ -471,8 +521,9 @@ namespace Paradigm3
                         {
                             case 1:
 
-                                await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
-                                ClientScript.RegisterStartupScript(GetType(), "complete", "userRefresh();alert('" + msg + "');window.close();", true);
+                                //await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
+                                //ClientScript.RegisterStartupScript(GetType(), "complete", "userRefresh();alert('" + msg + "');window.close();", true);
+                                ClientScript.RegisterStartupScript(GetType(), "complete", "alert('Not Supported for User Module')", true);
                                 break;
                             case 4:     
                                 
@@ -513,71 +564,171 @@ namespace Paradigm3
 
             else
             {
-
-               string version = Regex.Replace(ddl_CopyVersion.SelectedItem.Text, @"\(.*\)", "");
-                //string status = ddl_CopyVersion
-                if (!string.IsNullOrEmpty(txtFolderName.Text))
+                DataSet dtCheck = await P3General.CheckCopyRules(Name, ModuleID, OrigID, DestinationID, UserID, IsGroup);
+                if (dtCheck.Tables[0].Columns.Count != 0)
+                {               
+                    SameNameObject = Convert.ToBoolean(dtCheck.Tables[0].Rows[0]["ItemNameRule"]);             
+                }
+                if (SameNameObject == true)
                 {
-                    try
+                    int SelectedGroupID = Convert.ToInt32(p3Tree.SelectedValue);
+                    List<string> ItemName = new List<string>();
+                    DataTable dt = P3General.Get_ItemList(ModuleID, UserID, SelectedGroupID.ToString());
+                    if (dt.Rows.Count > 0)
                     {
-                        string srcPath = $"\\\\";
-                        string destPath = txtFolderName.Text;
-                        string[] valSrcPath = SourcePath.Split('/');
-                        foreach (string p in valSrcPath)
+                        foreach (DataRow dr in dt.Rows)
                         {
-                            string GroupName = P3General.Get_GroupName(ModuleID, Convert.ToInt32(p));
-                            srcPath += GroupName + $"\\";
+                            ItemName.Add(dr["Name"].ToString());
                         }
-                        srcPath = srcPath.TrimEnd('\\');
-
-                             
-                       
-                        string msg = "Item copied successfully";
-                        if (IsGroup)
-                        {
-                            msg = "Group copied successfully";
-                            ClientScript.RegisterStartupScript(GetType(), "refreshTree", "treeRefreshMove();", true);
-                        }
-
-                        switch (ModuleID)
-                        {
-                            case 1:
-                               // CreateCopyFile(OrigID, 12, 1);
-                                await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
-                                ClientScript.RegisterStartupScript(GetType(), "complete", "userRefresh();alert('" + msg + "');window.close();", true);
-                                break;
-                            case 4:
-                              
-                                await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
-                                ClientScript.RegisterStartupScript(GetType(), "complete", "recordRefresh();alert('" + msg + "');window.close();", true);
-                                    break; 
-                            case 6:
-                            case 12:
-                                await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
-                                ClientScript.RegisterStartupScript(GetType(), "complete", "recordRefresh();alert('" + msg + "');window.close();", true);
-                                break;
-                            default:
-                               
-                                await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
-                                CreateCopyFile(OrigID, 12, 3, Name);
-                                ClientScript.RegisterStartupScript(GetType(), "complete", "documentRefresh();alert('" + msg + "');window.close();", true);                     
-                                break;
-                        }
-
                     }
-                    catch (Exception ex)
+
+                    if (ItemName.Contains(Name))
                     {
-                        ClientScript.RegisterStartupScript(GetType(), "complete", "alert('" + ex.Message + "');", true);
+                        ClientScript.RegisterStartupScript(GetType(), "complete", "alert('Same name exists, change the name')", true);
+                    }
+
+                    else
+                    {
+                        string version = Regex.Replace(ddl_CopyVersion.SelectedItem.Text, @"\(.*\)", "");
+                        //string status = ddl_CopyVersion
+                        if (!string.IsNullOrEmpty(txtFolderName.Text))
+                        {
+                            try
+                            {
+                                string srcPath = $"\\\\";
+                                string destPath = txtFolderName.Text;
+                                string[] valSrcPath = SourcePath.Split('/');
+                                foreach (string p in valSrcPath)
+                                {
+                                    string GroupName = P3General.Get_GroupName(ModuleID, Convert.ToInt32(p));
+                                    srcPath += GroupName + $"\\";
+                                }
+                                srcPath = srcPath.TrimEnd('\\');
+
+
+
+                                string msg = "Item copied successfully";
+                                if (IsGroup)
+                                {
+                                    msg = "Group copied successfully";
+                                    ClientScript.RegisterStartupScript(GetType(), "refreshTree", "treeRefreshMove();", true);
+                                }
+
+                                switch (ModuleID)
+                                {
+                                    case 1:
+                                        ClientScript.RegisterStartupScript(GetType(), "complete", "alert('Not Supported for User Module')", true);
+                                        break;
+
+                                    case 3:
+                                        await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
+                                        if (CreateCopyFile(OrigID, 12, 3, Name))
+                                        {
+                                            ClientScript.RegisterStartupScript(GetType(), "complete", "documentRefresh();alert('" + msg + "');window.close();", true);
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    case 4:
+                                        await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
+                                        ClientScript.RegisterStartupScript(GetType(), "complete", "recordRefresh();alert('" + msg + "');window.close();", true);
+                                        break;
+                                    case 6:
+                                    case 12:
+                                        await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
+                                        ClientScript.RegisterStartupScript(GetType(), "complete", "recordRefresh();alert('" + msg + "');window.close();", true);
+                                        break;
+                                    default:
+                                        break;                     
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "complete", "alert('" + ex.Message + "');", true);
+                            }
+                        }
+                        else
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "complete", "alert('You must select a destination')", true);
+                        }
                     }
                 }
+
                 else
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "complete", "alert('You must select a destination')", true);
+                    string version = Regex.Replace(ddl_CopyVersion.SelectedItem.Text, @"\(.*\)", "");
+                    //string status = ddl_CopyVersion
+                    if (!string.IsNullOrEmpty(txtFolderName.Text))
+                    {
+                        try
+                        {
+                            string srcPath = $"\\\\";
+                            string destPath = txtFolderName.Text;
+                            string[] valSrcPath = SourcePath.Split('/');
+                            foreach (string p in valSrcPath)
+                            {
+                                string GroupName = P3General.Get_GroupName(ModuleID, Convert.ToInt32(p));
+                                srcPath += GroupName + $"\\";
+                            }
+                            srcPath = srcPath.TrimEnd('\\');
+
+
+
+                            string msg = "Item copied successfully";
+                            if (IsGroup)
+                            {
+                                msg = "Group copied successfully";
+                                ClientScript.RegisterStartupScript(GetType(), "refreshTree", "treeRefreshMove();", true);
+                            }
+
+                            switch (ModuleID)
+                            {
+                                case 1:
+
+                                    ClientScript.RegisterStartupScript(GetType(), "complete", "alert('Not Supported for User Module')", true);
+                                    break;
+                                case 4:
+
+                                    await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
+                                    ClientScript.RegisterStartupScript(GetType(), "complete", "recordRefresh();alert('" + msg + "');window.close();", true);
+                                    break;
+                                case 6:
+                                case 12:
+                                    await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
+                                    ClientScript.RegisterStartupScript(GetType(), "complete", "recordRefresh();alert('" + msg + "');window.close();", true);
+                                    break;
+                                default:
+
+                                    await P3General.CopyAsync(Name, ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties, null);
+                                    if (CreateCopyFile(OrigID, 12, 3, Name))
+                                    {
+                                        ClientScript.RegisterStartupScript(GetType(), "complete", "documentRefresh();alert('" + msg + "');window.close();", true);
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "complete", "alert('" + ex.Message + "');", true);
+                        }
+                    }
+                    else
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "complete", "alert('You must select a destination')", true);
+                    }
                 }
             }
         }
 
-        protected void CreateCopyFile(int SourceID, int OrigID, int ModuleID, string Name)
+        protected bool CreateCopyFile(int SourceID, int OrigID, int ModuleID, string Name)
         {
             string DocPath = WebConfigurationManager.AppSettings["DocumentPath"];
             DocPath = @"" + DocPath.Replace(@"\\", @"\");
@@ -611,28 +762,30 @@ namespace Paradigm3
 
                     if (!File.Exists(DestPath))
                     {
-                        return;
+                        ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Could not create file at location at" + DestPath+ "');", true);
                        // Page.ClientScript.RegisterStartupScript(GetType(), "close", "showStatusMessage(3, 'Could not create file at location, @" + DestPath + "', true)", true);
                         // code to delete new row from DB
-                      //  Document.Remove_DraftRow(ItemID);
+                        Document.Remove_DraftRow(ItemID);
+                        return false;
                     }
                 }
                 else
                 {
-                    return;
-                    
-                    // create new file if it doesnt exists.
-                   // File.Create(DestPath);
-                     //Page.ClientScript.RegisterStartupScript(GetType(), "close", "showStatusMessage(3, 'Source file not found', true)", true);
-                     //Document.Remove_DraftRow(ItemID);
+                    ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Source file not found!" + "');", true);
+
+                    //Page.ClientScript.RegisterStartupScript(GetType(), "close", "showStatusMessage(3, 'Source file not found', true)", true);
+                     Document.Remove_DraftRow(ItemID);
+                     return false;
                      
                 }
             }
             else
             {
                 dtDraft.Dispose();
+                return true;
             }
 
+            return true;
         }
 
         private void CopyNewName(string Name)
@@ -640,7 +793,6 @@ namespace Paradigm3
 
             if (!String.IsNullOrEmpty(Name))
             {
-               // DataTable dt = P3General.Get_ItemList(moduleID, userID, groupID.ToString());
                 txt_CopyName.Enabled = true;
                 txt_CopyName.ReadOnly = false;
                 frmbtnSubmit.Attributes.Remove("disabled");
