@@ -753,7 +753,7 @@ namespace Paradigm3
                 // Build source and destination path strings
                 string SourcePath = Path.Combine(DocPath, SourceFileName);
                 string DestPath = Path.Combine(DocPath, NewFileName);
-                //Page.ClientScript.RegisterStartupScript(GetType(), "returnPath", "alert('" + SourcePath + " -- " + DestPath + "');", true);
+               
 
                 // Copy physical source file to destination
                 if (File.Exists(SourcePath))
@@ -763,7 +763,7 @@ namespace Paradigm3
                     if (!File.Exists(DestPath))
                     {
                         ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Could not create file at location at" + DestPath+ "');", true);
-                       // Page.ClientScript.RegisterStartupScript(GetType(), "close", "showStatusMessage(3, 'Could not create file at location, @" + DestPath + "', true)", true);
+                        // Page.ClientScript.RegisterStartupScript(GetType(), "close", "showStatusMessage(3, 'Could not create file at location, @" + DestPath + "', true)", true);
                         // code to delete new row from DB
                         Document.Remove_DraftRow(ItemID);
                         return false;
@@ -771,9 +771,9 @@ namespace Paradigm3
                 }
                 else
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Source file not found!" + "');", true);
+                     ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Source file not found!" + "');", true);
 
-                    //Page.ClientScript.RegisterStartupScript(GetType(), "close", "showStatusMessage(3, 'Source file not found', true)", true);
+                     //Page.ClientScript.RegisterStartupScript(GetType(), "close", "showStatusMessage(3, 'Source file not found', true)", true);
                      Document.Remove_DraftRow(ItemID);
                      return false;
                      
