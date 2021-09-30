@@ -56,10 +56,6 @@
     <Reference Include="DocumentFormat.OpenXml, Version=2.12.3.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.12.3\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="EO.Base, Version=18.0.55.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\EO.Base.dll</HintPath>
-    </Reference>
     <Reference Include="EO.Web, Version=17.0.64.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Essential Objects\EO.Total 2018\EO.Web.dll</HintPath>
@@ -564,7 +560,7 @@
     <Content Include="public\import\Do_Not_Delete.txt" />
     <Content Include="releasenotes\releasenotes.html" />
     <Content Include="ReportDocument.aspx" />
-    <Content Include="scripts\CREATE_P3WEB_STORED_PROCEDURES_V4.11.0.0.sql" />
+    <Content Include="scripts\CREATE_P3WEB_STORED_PROCEDURES_V4.12.0.0.sql" />
     <Content Include="styles\Assessment.css" />
     <Content Include="styles\Assignment.css" />
     <Content Include="styles\Attachment.css" />
@@ -1090,7 +1086,6 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <!-- <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath> -->
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildProgramFiles32)\MSBuild\Microsoft\VisualStudio\v14.0</VSToolsPath>
-
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>p3_32.ico</ApplicationIcon>
