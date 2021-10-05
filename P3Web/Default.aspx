@@ -235,10 +235,11 @@
                     </eo:SplitterPane>
                     <eo:SplitterPane ID="ListPane" runat="server" PersistScrollPosition="true">
                         <asp:Panel ID="pnlHome" runat="server">
-							<embed id="p3embed" src="homepanel.html" />
-                            <%--<embed src="custom/Biotium/HomePage.aspx" />--%>
-                            <%--<embed src="custom/tillsonburg/HomePage.aspx" />--%>
-							<%--<embed src="custom/amtrak/HomePage.aspx" />--%>
+                            <%--<iframe id="p3embed" src="homepanel.html"></iframe>--%>
+                            <%--<iframe src="custom/Biotium/HomePage.aspx"></iframe>--%>
+                            <%--<iframe src="custom/tillsonburg/HomePage.aspx"></iframe>--%>
+                            <%--<iframe src="custom/amtrak/HomePage.aspx"></iframe>--%>
+                            <iframe src="custom/bayshore/Homepage.aspx"></iframe>
                         </asp:Panel>
                         <asp:Panel ID="pnlList" runat="server" Width="1590px" Height="100%" CssClass="listViewPanel">
                             <asp:Panel ID="pnlItemListTitle" runat="server" CssClass="pnlLinkTitle">

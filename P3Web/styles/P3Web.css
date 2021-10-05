@@ -20,6 +20,14 @@
 	    /*height: 100%;*/ 
     }
 
+    #pnlHome iframe {
+        width: 100%;
+        height: calc(100vh - 118px);
+        box-sizing: border-box;
+        border: none;
+        outline: none;
+    }
+
 
 #toolBar {
     display: block;

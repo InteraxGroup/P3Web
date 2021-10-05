@@ -165,6 +165,10 @@
     <Content Include="custom\amtrak\amtrak_logo.png" />
     <Content Include="custom\amtrak\HomePage.aspx" />
     <Content Include="custom\amtrak\safety.png" />
+    <Content Include="custom\bayshore\bayshore.css" />
+    <Content Include="custom\bayshore\bayshore.js" />
+    <Content Include="custom\bayshore\Homepage.aspx" />
+    <Content Include="custom\bayshore\images\bayshore-logo.png" />
     <Content Include="custom\Biotium\banner_logo.png" />
     <Content Include="custom\Biotium\Biotium.css" />
     <Content Include="custom\Biotium\Biotium.js" />
@@ -639,6 +643,13 @@
     <Compile Include="custom\amtrak\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="custom\bayshore\Homepage.aspx.cs">
+      <DependentUpon>Homepage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="custom\bayshore\Homepage.aspx.designer.cs">
+      <DependentUpon>Homepage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="custom\Biotium\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1053,6 +1064,9 @@
     <Content Include="Administration\lib\jquery\jquery.min.map" />
     <Content Include="Administration\lib\jquery\jquery.slim.min.map" />
     <Content Include="Administration\Web.config" />
+    <Content Include="custom\bayshore\fonts\BreeSerif-Regular.ttf" />
+    <Content Include="custom\bayshore\fonts\OpenSans-Italic-VariableFont_wdth,wght.ttf" />
+    <Content Include="custom\bayshore\fonts\OpenSans-VariableFont_wdth,wght.ttf" />
     <None Include="Properties\PublishProfiles\P3Web_v4x.pubxml" />
     <Content Include="releasenotes\4100.pdf" />
     <Content Include="releasenotes\4200.pdf" />
@@ -1081,7 +1095,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="custom\bayshore\admin\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <!-- <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath> -->

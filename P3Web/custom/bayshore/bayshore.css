@@ -1,0 +1,154 @@
+﻿@font-face {
+    font-family: 'Bree serif';
+    src: url(fonts/BreeSerif-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Open Sans Regular';
+    src: url(fonts/OpenSans-VariableFont_wdth,wght.ttf);
+}
+
+body {
+    font-family: 'Open Sans Regular';
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+h1 {
+    font-family: "Bree serif", 'Times New Roman';
+    color: #0b435b;
+}
+
+h2 {
+    font-family: "Bree serif", 'Times New Roman';
+    color: #0b435b;
+}
+
+h3 {
+    font-family: "Bree serif", 'Times New Roman';
+    color: #0b435b;
+}
+
+h4 {
+    font-family: "Bree serif", 'Times New Roman';
+    color: #0b435b;
+}
+
+h5 {
+    font-family: "Bree serif", 'Times New Roman';
+    color: #0b435b;
+}
+
+h6 {
+    font-family: "Bree serif", 'Times New Roman';
+    color: #0b435b;
+}
+
+.bayshore {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.bayshore-banner {
+    flex: 0 0 100px;
+    border-bottom: 1px solid #dcdcdc;
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.12);
+}
+
+.bayshore-content {
+    flex: 1;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.bayshore-tabs {
+    flex: 0 0 30px;
+}
+
+.bayshore-menu {
+    outline: none;
+    margin-bottom: -1px;
+}
+
+    .bayshore-menu li {
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        margin-right: 1px;
+        outline: none;
+        border: 1px solid #0b435b;
+        background-color: #aaa;
+        overflow: hidden;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+        .bayshore-menu li a {
+            padding: 5px;
+            color: #fff;
+            outline: none;
+            transition: color 100ms ease-in-out, background-color 100ms ease-in-out;
+        }
+
+            .bayshore-menu li a:hover {
+                background-color: #ccc;
+                border-bottom: none;
+            }
+
+            .bayshore-menu li a:active {
+                background-color: #fff;
+                border-bottom: none;
+            }
+
+            .bayshore-menu li a.selected {
+                border-bottom: none;
+                background-color: #0b435b;
+                color: #fff;
+            }
+
+.bayshore-pages {
+    height: calc(100vh - 170px);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border: 1px solid #0b435b;
+    overflow-y: auto;
+}
+
+.bayshore-panel {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.bayshore-panel-main {
+    flex: 1;
+}
+
+.bayshore-panel-hotlinks {
+    flex: 0 0 400px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #0b435b;
+}
+
+.hotlinks-title {
+    flex: 0 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background-color: #0b435b;
+    color: #fff;
+}
+
+.hotlinks-data {
+    flex: 1;
+}

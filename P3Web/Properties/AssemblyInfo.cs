@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Paradigm 3 Web Application")]
-[assembly: AssemblyDescription("20210831")]
+[assembly: AssemblyDescription("20211031")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Interax Group, Inc.")]
 [assembly: AssemblyProduct("P3Web")]
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("4.11.0.0")]
-[assembly: AssemblyFileVersion("4.11.0.0")]
+[assembly: AssemblyVersion("4.12.0.0")]
+[assembly: AssemblyFileVersion("4.12.0.0")]
