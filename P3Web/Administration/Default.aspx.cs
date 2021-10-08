@@ -89,6 +89,32 @@ namespace Paradigm3.Administration
 			int DefAIGroupID = Convert.ToInt32(config.AppSettings.Settings["DefAIGroupID"].Value);
 			txtDefAIGroup.Text = await FolderName(14, DefAIGroupID);
 
+			// Simple Document Search
+			bool UseSimpleDocSearch = Convert.ToBoolean(config.AppSettings.Settings["UseSimpleDocSearch"].Value);
+			ddlSimpleSearch.SelectedValue = "false";
+			if (UseSimpleDocSearch)
+            {
+				ddlSimpleSearch.SelectedValue = "true";
+            }
+			// Default Search Page
+			string DefaultSearchTab = config.AppSettings.Settings["DefaultSearchTab"].Value;
+			ddlDefaultSearchTab.SelectedValue = DefaultSearchTab;
+			if (UseSimpleDocSearch)
+            {
+				ddlDefaultSearchTab.SelectedValue = "true";
+				ddlDefaultSearchTab.Enabled = false;
+            }			
+			// Hide Search on Read Only
+			bool HideSearchOnReadOnly = Convert.ToBoolean(config.AppSettings.Settings["HideSearchOnReadOnly"].Value);
+			ddlHideSearch.SelectedValue = "false";
+			if (HideSearchOnReadOnly)
+            {
+				ddlHideSearch.SelectedValue = "true";
+            }
+			// Default Search Field
+			string DefaultSearchField = config.AppSettings.Settings["DefaultSearchType"].Value;
+			ddlDefaultSearchField.SelectedValue = DefaultSearchField;
+
 		}
 
 		protected async Task BindDirectLinks()
@@ -616,6 +642,15 @@ namespace Paradigm3.Administration
 			config.Save();
 		}
 
+		protected void ddlDefModule_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			string SelectedModule = ddlDefModule.SelectedValue;
+			//ScriptManager.RegisterStartupScript(udpDefaults, GetType(), "test", "alert(" + SelectedModule + ");", true);
+			Configuration config = WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
+			config.AppSettings.Settings["DefModuleID"].Value = SelectedModule;
+			config.Save();
+		}
+
 		#endregion
 
 		#region Style Designer Controls and Methods
@@ -650,13 +685,56 @@ namespace Paradigm3.Administration
 			ddlSDPages.Items.Add(new ListItem("", "0"));
 		}
 
-		#endregion
-
 		protected async void ddlSDModules_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			int ModuleID = Convert.ToInt32(ddlSDModules.SelectedValue);
 			ResetFields();
 			await Task.Run(() => GetStyleData(ModuleID));
 		}
+
+		#endregion
+
+		#region Default Search Controls		
+
+		protected void ddlSimpleSearch_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			string value = ddlSimpleSearch.SelectedValue;
+			Configuration config = WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
+			config.AppSettings.Settings["UseSimpleDocSearch"].Value = value;
+			config.Save();
+
+			ddlDefaultSearchTab.Enabled = true;
+			if (value == "true")
+            {
+				ddlDefaultSearchTab.Enabled = false;
+            }
+		}
+
+		protected void ddlDefaultSearchTab_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			string value = ddlDefaultSearchTab.SelectedValue;
+			Configuration config = WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
+			config.AppSettings.Settings["DefaultSearchTab"].Value = value;
+			config.Save();
+		}
+
+		protected void ddlHideSearch_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			string value = ddlHideSearch.SelectedValue;
+			Configuration config = WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
+			config.AppSettings.Settings["HideSearchOnReadOnly"].Value = value;
+			config.Save();
+		}
+
+		protected void ddlDefaultSearchField_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			string value = ddlDefaultSearchField.SelectedValue;
+			Configuration config = WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
+			config.AppSettings.Settings["DefaultSearchType"].Value = value;
+			config.Save();
+		}
+
+		#endregion
+
 	}
 }

@@ -87,6 +87,15 @@ namespace Paradigm3.custom.bayshore
         protected global::System.Web.UI.WebControls.Panel HRPanel;
 
         /// <summary>
+        /// GridViewHR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewHR;
+
+        /// <summary>
         /// HSPanel control.
         /// </summary>
         /// <remarks>
@@ -114,6 +123,15 @@ namespace Paradigm3.custom.bayshore
         protected global::System.Web.UI.WebControls.Panel CQHIPPanel;
 
         /// <summary>
+        /// GridViewCQHIP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewCQHIP;
+
+        /// <summary>
         /// FinancePanel control.
         /// </summary>
         /// <remarks>
@@ -123,6 +141,15 @@ namespace Paradigm3.custom.bayshore
         protected global::System.Web.UI.WebControls.Panel FinancePanel;
 
         /// <summary>
+        /// GridViewFinance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewFinance;
+
+        /// <summary>
         /// ISPanel control.
         /// </summary>
         /// <remarks>
@@ -130,5 +157,14 @@ namespace Paradigm3.custom.bayshore
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel ISPanel;
+
+        /// <summary>
+        /// GridViewIS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewIS;
     }
 }

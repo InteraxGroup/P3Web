@@ -25,16 +25,19 @@
                     <a class="nav-link active" id="tab00" data-toggle="tab" role="tab" aria-controls="configpaths" aria-selected="true" href="#configpaths">Path Defaults</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="tab01" data-toggle="tab" role="tab" aria-controls="configdefaults" aria-selected="true" href="#configdefaults">Module Defaults</a>
+                    <a class="nav-link" id="tab01" data-toggle="tab" role="tab" aria-controls="configdefaults" aria-selected="false" href="#configdefaults">Module Defaults</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="tab02" data-toggle="tab" role="tab" aria-controls="directlinks" aria-selected="false" href="#directlinks">Direct Links</a>
+                    <a class="nav-link" id="tab02" data-toggle="tab" role="tab" aria-controls="searchdefaults" aria-selected="false" href="#searchdefaults">Search Defaults</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="tab03" data-toggle="tab" role="tab" aria-controls="directlinks" aria-selected="false" href="#directlinks">Direct Links</a>
                 </li>
                 <li class="nav-item" style="display: none;">
-                    <a class="nav-link" id="tab03" data-toggle="tab" role="tab" aria-controls="powertools" aria-selected="false" href="#powertools">PowerTools</a>
+                    <a class="nav-link" id="tab04" data-toggle="tab" role="tab" aria-controls="powertools" aria-selected="false" href="#powertools">PowerTools</a>
                 </li>
                 <li class="nav-item" style="display: none;">
-                    <a class="nav-link" id="tab04" data-toggle="tab" role="tab" aria-controls="styledesigner" aria-selected="false" href="#styledesigner">Style Designer</a>
+                    <a class="nav-link" id="tab05" data-toggle="tab" role="tab" aria-controls="styledesigner" aria-selected="false" href="#styledesigner">Style Designer</a>
                 </li>
             </ul>            
             <div class="tab-content shadow bg-light rounded-bottom border border-top-0" style="height: 600px; overflow-x: hidden; overflow-y: auto;">
@@ -125,7 +128,7 @@
                                 <h4 class="card-title text-center p-2">Default Module</h4>
                                 <div class="card-body p-2">
                                     <div class="form-group">
-                                        <asp:DropDownList ID="ddlDefModule" runat="server" CssClass="form-control">
+                                        <asp:DropDownList ID="ddlDefModule" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDefModule_SelectedIndexChanged">
                                             <asp:ListItem Value="0" Text="Home" Selected="True" />
                                             <asp:ListItem Value="3" Text="Documents" />
                                             <asp:ListItem Value="4" Text="Records" />
@@ -241,10 +244,80 @@
                     </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
+                <div id="searchdefaults" class="tab-pane fade" role="tabpanel" aria-labelledby="searchdefaults-tab">
+                    <asp:UpdatePanel ID="udpSearchDefaults" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                    <ContentTemplate>
+                    <h2 class="bg-white shadow-sm text-center p-2">
+                        Search Defaults Management
+                    </h2>
+                    <div class="row p-2">
+                        <div class="col-4">
+                            <div class="card shadow-sm rounded h-100">
+                                <h4 class="card-title text-center p-2">Simple Document Search</h4>
+                                <div class="card-body p-2 text-center">
+                                    <div class="form-group">
+                                        <asp:DropDownList ID="ddlSimpleSearch" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSimpleSearch_SelectedIndexChanged">
+                                            <asp:ListItem Value="false" Text="Disabled"></asp:ListItem>
+                                            <asp:ListItem Value="true" Text="Enabled"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card shadow-sm rounded h-100">
+                                <h4 class="card-title text-center p-2">Default Search Page</h4>
+                                <div class="card-body p-2 text-center">
+                                    <div class="form-group">
+                                        <asp:DropDownList ID="ddlDefaultSearchTab" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDefaultSearchTab_SelectedIndexChanged">
+                                            <asp:ListItem Value="0" Text="General"></asp:ListItem>
+                                            <asp:ListItem Value="1" Text="Roles"></asp:ListItem>
+                                            <asp:ListItem Value="2" Text="Categories"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                      
+                        <div class="col-4">
+                            <div class="card shadow-sm rounded h-100">
+                                <h4 class="card-title text-center p-2">Hide Search to Read-Only</h4>
+                                <div class="card-body p-2 text-center">
+                                    <div class="form-group">
+                                        <asp:DropDownList ID="ddlHideSearch" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlHideSearch_SelectedIndexChanged">
+                                            <asp:ListItem Value="false" Text="Disabled"></asp:ListItem>
+                                            <asp:ListItem Value="true" Text="Enabled"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <div class="card shadow-sm rounded h-100">
+                                <h4 class="card-title text-center p-2">Document Search Field</h4>
+                                <div class="card-body p-2 text-center">
+                                    <div class="form-group">
+                                        <asp:DropDownList ID="ddlDefaultSearchField" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDefaultSearchField_SelectedIndexChanged">
+                                            <asp:ListItem Value="Name" Text="Document Name"></asp:ListItem>
+                                            <asp:ListItem Value="LabelName" Text="Document Label"></asp:ListItem>
+                                            <asp:ListItem Value="ItemID" Text="Document ID"></asp:ListItem>
+                                            <asp:ListItem Value="OrigID" Text="Document Original ID"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4"></div>
+                    </div>
+                    </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
                 <div id="directlinks" class="tab-pane fade" role="tabpanel" aria-labelledby="directlinks-tab">
                     <asp:UpdatePanel ID="udpDLinks" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                     <ContentTemplate>
-                    <h2 class="bg-white shadow-sm text-center p-2">
+                    <h2 class="bg-white shadow-sm text-center">
                         Direct Links Management
                     </h2>
                     <div class="container p-2">
