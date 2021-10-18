@@ -513,6 +513,7 @@ namespace Paradigm3.datalayer
         public static async Task<bool> HasAddPermissionAsync(int ModuleID, int GroupID, int UserID)
         {
             bool result = false;
+            string REdit = ConfigurationManager.AppSettings["RestrictedUser"];
             //DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
@@ -529,6 +530,7 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
                 cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
                 cmd.Parameters.Add("@GroupID", SqlDbType.Int, 4).Value = GroupID;
+                cmd.Parameters.Add("@REdit", SqlDbType.NVarChar, 50).Value = REdit;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 while (sdr.Read())
 				{

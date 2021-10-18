@@ -2458,14 +2458,6 @@ namespace Paradigm3
             {
                 TreeNode rootnode = new TreeNode(root[0]["Name"].ToString(), root[0]["GroupID"].ToString());
                 p3Tree.Nodes.Add(rootnode);
-                if (moduleID == 1)
-                {
-
-                }
-                else
-                {
-
-                }
                 PopulateNodes(dt, p3Tree.FindNode(rootID).ChildNodes, Convert.ToInt32(rootID));
             }
             else
@@ -2499,8 +2491,6 @@ namespace Paradigm3
                     }
                 }
             }
-
-            //await UpdateListViewAsync();
 
             HttpCookie sortCookie = Request.Cookies["P3WebSort"];
             string sortExp = "Name ASC";
@@ -3524,7 +3514,7 @@ namespace Paradigm3
                     pnlAdd.Visible = true;
                 }
                 else
-                {
+                {                    
                     if (HasAddPermission)
                     {
                         pnlAdd.Visible = true;
