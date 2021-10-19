@@ -16,31 +16,31 @@
     <form id="form1" runat="server">
 		<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:Panel ID="pnlAdmin" runat="server" CssClass="container position-relative">
-            <div class="jumbotron bg-dark text-white">
+            <div class="bg-dark text-white p-4 rounded shadow">
                 <h1 class="display-4">P3Web Administration</h1>
                 <asp:HyperLink ID="hlBack" runat="server" CssClass="btn btn-light position-absolute" Text="Back to P3Web" NavigateUrl="~/" style="top: 20px; right: 20px;"></asp:HyperLink>
             </div>
-            <ul id="adminmenu" class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="tab00" data-toggle="tab" role="tab" aria-controls="configpaths" aria-selected="true" href="#configpaths">Path Defaults</a>
+            <ul id="adminmenu" class="nav nav-tabs mt-3">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="tab00" data-bs-toggle="tab" data-bs-target="#configpaths" role="tab" aria-controls="configpaths" aria-selected="true" href="#configpaths">Path Defaults</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tab01" data-toggle="tab" role="tab" aria-controls="configdefaults" aria-selected="false" href="#configdefaults">Module Defaults</a>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="tab01" data-bs-toggle="tab" data-bs-target="#configdefaults" role="tab" aria-controls="configdefaults" aria-selected="false" href="#configdefaults">Module Defaults</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tab02" data-toggle="tab" role="tab" aria-controls="searchdefaults" aria-selected="false" href="#searchdefaults">Search Defaults</a>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="tab02" data-bs-toggle="tab" data-bs-target="#searchdefaults" role="tab" aria-controls="searchdefaults" aria-selected="false" href="#searchdefaults">Search Defaults</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tab03" data-toggle="tab" role="tab" aria-controls="directlinks" aria-selected="false" href="#directlinks">Direct Links</a>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="tab03" data-bs-toggle="tab" data-bs-target="#directlinks" role="tab" aria-controls="directlinks" aria-selected="false" href="#directlinks">Direct Links</a>
                 </li>
-                <li class="nav-item" style="display: none;">
+                <li class="nav-item" role="presentation" style="display: none;">
                     <a class="nav-link" id="tab04" data-toggle="tab" role="tab" aria-controls="powertools" aria-selected="false" href="#powertools">PowerTools</a>
                 </li>
-                <li class="nav-item" style="display: none;">
+                <li class="nav-item" role="presentation" style="display: none;">
                     <a class="nav-link" id="tab05" data-toggle="tab" role="tab" aria-controls="styledesigner" aria-selected="false" href="#styledesigner">Style Designer</a>
                 </li>
             </ul>            
-            <div class="tab-content shadow bg-light rounded-bottom border border-top-0" style="height: 600px; overflow-x: hidden; overflow-y: auto;">
+            <div class="tab-content shadow bg-light rounded-bottom border border-top-0 over" style="height: 600px; overflow-x: hidden; overflow-y: auto;">
                 <div id="configpaths" class="tab-pane fade show active" role="tabpanel" aria-labelledby="configpaths-tab">
                     <h2 class="bg-white shadow-sm text-center p-2">
                         Default Configuration Paths
@@ -48,33 +48,45 @@
                     <div class="row p-2">
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Domain(s)</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-white rounded-top">Domain(s)</h4>
                                 <div class="card-body p-2">
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="txtDomain" runat="server" CssClass="form-control custom-control-inline" Text="Obiwan" />
-                                        <asp:Button ID="btnUpdateDomain" runat="server" CssClass="btn btn-primary float-right" Text="Update" OnClick="btnUpdateDomain_Click" />
+                                    <div class="row p-2">
+                                        <div class="col-9 p-1">
+                                            <asp:TextBox ID="txtDomain" runat="server" CssClass="form-control" Text="Obiwan" />
+                                        </div>
+                                        <div class="col p-1 text-center">
+                                            <asp:Button ID="btnUpdateDomain" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdateDomain_Click" />
+                                        </div>                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">P3 Document Path</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-white rounded-top">P3 Document Path</h4>
                                 <div class="card-body p-2">
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="txtDocPath" runat="server" CssClass="form-control custom-control-inline" Text="D:\P3\data\docs\" />
-                                        <asp:Button ID="btnUpdateDocPath" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdateDocPath_Click" />
+                                    <div class="row p-2">
+                                        <div class="col-9 p-1">
+                                            <asp:TextBox ID="txtDocPath" runat="server" CssClass="form-control" Text="D:\P3\data\docs\" />
+                                        </div>
+                                        <div class="col p-1 text-center">
+                                            <asp:Button ID="btnUpdateDocPath" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdateDocPath_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Published Document Path</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-white rounded-top">Published Document Path</h4>
                                 <div class="card-body p-2">
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="txtPublishPath" runat="server" CssClass="form-control custom-control-inline" Text="~/docs/" />
-                                        <asp:Button ID="btnUpdatePublishPath" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdatePublishPath_Click" />
+                                    <div class="row p-2">
+                                        <div class="col-9 p-1">
+                                            <asp:TextBox ID="txtPublishPath" runat="server" CssClass="form-control" Text="~/docs/" />
+                                        </div>
+                                        <div class="col p-1 text-center">
+                                            <asp:Button ID="btnUpdatePublishPath" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdatePublishPath_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -83,33 +95,45 @@
                     <div class="row p-2">
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Public Path</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-white rounded-top">Public Path</h4>
                                 <div class="card-body p-2">
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="txtPublicPath" runat="server" CssClass="form-control custom-control-inline" Text="~/public/" />
-                                        <asp:Button ID="btnUpdatePublicPath" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdatePublicPath_Click" />
+                                    <div class="row p-2">
+                                        <div class="col-9 p-1">
+                                             <asp:TextBox ID="txtPublicPath" runat="server" CssClass="form-control custom-control-inline" Text="~/public/" />
+                                        </div>
+                                        <div class="col p-1 text-center">
+                                            <asp:Button ID="btnUpdatePublicPath" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdatePublicPath_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Indexed Search Path</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-white rounded-top">Indexed Search Path</h4>
                                 <div class="card-body p-2">
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="txtIndexSearchPath" runat="server" CssClass="form-control custom-control-inline" Text="D:/P3/data/docs/publish" />
-                                        <asp:Button ID="btnUpdateIndexSearchPath" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdateIndexSearchPath_Click" />
+                                    <div class="row p-2">
+                                        <div class="col-9 p-1">
+                                            <asp:TextBox ID="txtIndexSearchPath" runat="server" CssClass="form-control custom-control-inline" Text="D:/P3/data/docs/publish" />
+                                        </div>
+                                        <div class="col p-1 text-center">
+                                            <asp:Button ID="btnUpdateIndexSearchPath" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdateIndexSearchPath_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Attachments Path</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-white rounded-top">Attachments Path</h4>
                                 <div class="card-body p-2">
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="txtAttachPath" runat="server" CssClass="form-control custom-control-inline" Text="~/attachments/" />
-                                        <asp:Button ID="btnUpdateAttachPath" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdateAttachPath_Click" />
+                                    <div class="row p-2">
+                                        <div class="col-9 p-1">
+                                            <asp:TextBox ID="txtAttachPath" runat="server" CssClass="form-control custom-control-inline" Text="~/attachments/" />
+                                        </div>
+                                        <div class="col p-1 text-center">
+                                            <asp:Button ID="btnUpdateAttachPath" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdateAttachPath_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -586,18 +610,17 @@
             </div>
         </asp:Panel>
         <asp:Panel ID="pnlNotAuthorized" runat="server" CssClass="container" Visible="false">
-            <div class="jumbotron">
+            <div class="p-2">
                 <h1 class="display-4">P3Web Administration</h1>
             </div>
-            <h2 class="display-4">Not Authorized</h2>
+            <h2 class="display-5 p-2">Not Authorized</h2>
             <p class="p-2 m-1 text-xl-left">
-                You are not authorized to access the P3Web Administration system.
+                You are not authorized to access the P3Web Administration system. Please log in as a Paradigm 3 Administrator to proceed.
             </p>
             <a class="btn btn-primary m-2" href="../">Go Back</a>
         </asp:Panel>
     </form>
-	<script src="lib/jquery/jquery.min.js"></script>
-    <script src="lib/twitter-bootstrap/js/bootstrap.js"></script>
+	<script src="lib/twitter-bootstrap/js/bootstrap.min.js"></script>
 	<script src="lib/font-awesome/js/all.min.js"></script>
 </body>
 </html>
