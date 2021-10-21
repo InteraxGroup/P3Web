@@ -19,7 +19,7 @@ namespace Paradigm3.custom.bayshore
 			{
                 await PopulateEIHotlinks();
                 await PopulateHRHotlinks();
-                await PopulateHSHotlinks();
+                //await PopulateHSHotlinks();
                 await PopulateCQHIPHotlinks();
                 await PopulateISHotlinks();
 			}
@@ -177,8 +177,8 @@ namespace Paradigm3.custom.bayshore
                 dt.Load(sdr);
 
             }
-            GridViewHS.DataSource = null;
-            GridViewHS.DataBind();
+            //GridViewHS.DataSource = null;
+            //GridViewHS.DataBind();
 		}
 
         private async Task PopulateCQHIPHotlinks()

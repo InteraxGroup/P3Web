@@ -16,7 +16,7 @@
     <form id="form1" runat="server">
 		<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:Panel ID="pnlAdmin" runat="server" CssClass="container position-relative">
-            <div class="bg-dark text-white p-4 rounded shadow">
+            <div class="bg-dark text-white p-4 rounded shadow mt-2">
                 <h1 class="display-4">P3Web Administration</h1>
                 <asp:HyperLink ID="hlBack" runat="server" CssClass="btn btn-light position-absolute" Text="Back to P3Web" NavigateUrl="~/" style="top: 20px; right: 20px;"></asp:HyperLink>
             </div>
@@ -34,10 +34,10 @@
                     <a class="nav-link" id="tab03" data-bs-toggle="tab" data-bs-target="#directlinks" role="tab" aria-controls="directlinks" aria-selected="false" href="#directlinks">Direct Links</a>
                 </li>
                 <li class="nav-item" role="presentation" style="display: none;">
-                    <a class="nav-link" id="tab04" data-toggle="tab" role="tab" aria-controls="powertools" aria-selected="false" href="#powertools">PowerTools</a>
+                    <a class="nav-link" id="tab04" data-bs-toggle="tab" data-bs-target="#powertools" role="tab" aria-controls="powertools" aria-selected="false" href="#powertools">PowerTools</a>
                 </li>
                 <li class="nav-item" role="presentation" style="display: none;">
-                    <a class="nav-link" id="tab05" data-toggle="tab" role="tab" aria-controls="styledesigner" aria-selected="false" href="#styledesigner">Style Designer</a>
+                    <a class="nav-link" id="tab05" data-bs-toggle="tab" data-bs-target="#styledesigner" role="tab" aria-controls="styledesigner" aria-selected="false" href="#styledesigner">Style Designer</a>
                 </li>
             </ul>            
             <div class="tab-content shadow bg-light rounded-bottom border border-top-0 over" style="height: 600px; overflow-x: hidden; overflow-y: auto;">
@@ -149,7 +149,7 @@
                     <div class="row p-2">
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Default Module</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-light">Default Module</h4>
                                 <div class="card-body p-2">
                                     <div class="form-group">
                                         <asp:DropDownList ID="ddlDefModule" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDefModule_SelectedIndexChanged">
@@ -166,22 +166,30 @@
                         </div>
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Default Document Group</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-light">Default Document Group</h4>
                                 <div class="card-body p-2">
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="txtDefDocGroup" runat="server" CssClass="form-control custom-control-inline" ReadOnly="true" Text="Management System" />
-                                        <asp:Button ID="btnUpdateDefDocGroup" runat="server" CssClass="btn btn-primary" Text="Change" OnClick="btnUpdateDefDocGroup_Click" />
+                                    <div class="row p-2">
+                                        <div class="col-9 p-1">
+                                            <asp:TextBox ID="txtDefDocGroup" runat="server" CssClass="form-control" ReadOnly="true" Text="Management System" />
+                                        </div>
+                                        <div class="col p-1 text-center">
+                                            <asp:Button ID="btnUpdateDefDocGroup" runat="server" CssClass="btn btn-primary" Text="Change" OnClick="btnUpdateDefDocGroup_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Default Records Group</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-light">Default Records Group</h4>
                                 <div class="card-body p-2">
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="txtDefRecGroup" runat="server" CssClass="form-control custom-control-inline" ReadOnly="true" Text="Business Records" />
-                                        <asp:Button ID="btnUpdateDefRecGroup" runat="server" CssClass="btn btn-primary" Text="Change" OnClick="btnUpdateDefRecGroup_Click" />
+                                    <div class="row p-2">
+                                        <div class="col-9 p-1">                                            
+                                            <asp:TextBox ID="txtDefRecGroup" runat="server" CssClass="form-control" ReadOnly="true" Text="Business Records" />
+                                        </div>
+                                        <div class="col p-1 text-center">
+                                            <asp:Button ID="btnUpdateDefRecGroup" runat="server" CssClass="btn btn-primary" Text="Change" OnClick="btnUpdateDefRecGroup_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -190,33 +198,45 @@
                     <div class="row p-2">
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Default Improvements Group</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-light">Default Improvements Group</h4>
                                 <div class="card-body p-2">
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="txtDefImpGroup" runat="server" CssClass="form-control custom-control-inline" ReadOnly="true" Text="Business Improvements" />
-                                        <asp:Button ID="btnUpdateDefImpGroup" runat="server" CssClass="btn btn-primary" Text="Change" OnClick="btnUpdateDefImpGroup_Click" />
+                                    <div class="row p-2">
+                                        <div class="col-9 p-1">
+                                            <asp:TextBox ID="txtDefImpGroup" runat="server" CssClass="form-control" ReadOnly="true" Text="Business Improvements" />
+                                        </div>
+                                        <div class="col p-1 text-center">
+                                            <asp:Button ID="btnUpdateDefImpGroup" runat="server" CssClass="btn btn-primary" Text="Change" OnClick="btnUpdateDefImpGroup_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Default Training Group</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-light">Default Training Group</h4>
                                 <div class="card-body p-2">
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="txtDefTrainGroup" runat="server" CssClass="form-control custom-control-inline" ReadOnly="true" Text="Training Records" />
-                                        <asp:Button ID="btnUpdateDefTrainGroup" runat="server" CssClass="btn btn-primary" Text="Change" OnClick="btnUpdateDefTrainGroup_Click" />
+                                    <div class="row p-2">
+                                        <div class="col-9 p-1">
+                                            <asp:TextBox ID="txtDefTrainGroup" runat="server" CssClass="form-control" ReadOnly="true" Text="Training Records" />
+                                        </div>
+                                        <div class="col p-1 text-center">
+                                            <asp:Button ID="btnUpdateDefTrainGroup" runat="server" CssClass="btn btn-primary" Text="Change" OnClick="btnUpdateDefTrainGroup_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Default Action Items Group</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-light">Default Action Items Group</h4>
                                 <div class="card-body p-2">
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="txtDefAIGroup" runat="server" CssClass="form-control custom-control-inline" ReadOnly="true" Text="Action Items" />
-                                        <asp:Button ID="btnUpdateDefAIGroup" runat="server" CssClass="btn btn-primary" Text="Change" OnClick="btnUpdateDefAIGroup_Click" />
+                                    <div class="row p-2">
+                                        <div class="col-9 p-1">
+                                            <asp:TextBox ID="txtDefAIGroup" runat="server" CssClass="form-control custom-control-inline" ReadOnly="true" Text="Action Items" />
+                                        </div>
+                                        <div class="col p-1 text-center">
+                                            <asp:Button ID="btnUpdateDefAIGroup" runat="server" CssClass="btn btn-primary" Text="Change" OnClick="btnUpdateDefAIGroup_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +297,7 @@
                     <div class="row p-2">
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Simple Document Search</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-white">Simple Document Search</h4>
                                 <div class="card-body p-2 text-center">
                                     <div class="form-group">
                                         <asp:DropDownList ID="ddlSimpleSearch" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSimpleSearch_SelectedIndexChanged">
@@ -290,7 +310,7 @@
                         </div>
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Default Search Page</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-white">Default Search Page</h4>
                                 <div class="card-body p-2 text-center">
                                     <div class="form-group">
                                         <asp:DropDownList ID="ddlDefaultSearchTab" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDefaultSearchTab_SelectedIndexChanged">
@@ -304,7 +324,7 @@
                         </div>                      
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Hide Search to Read-Only</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-white">Hide Search to Read-Only</h4>
                                 <div class="card-body p-2 text-center">
                                     <div class="form-group">
                                         <asp:DropDownList ID="ddlHideSearch" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlHideSearch_SelectedIndexChanged">
@@ -320,7 +340,7 @@
                         <div class="col-4"></div>
                         <div class="col-4">
                             <div class="card shadow-sm rounded h-100">
-                                <h4 class="card-title text-center p-2">Document Search Field</h4>
+                                <h4 class="card-title text-center p-2 bg-dark text-white">Document Search Field</h4>
                                 <div class="card-body p-2 text-center">
                                     <div class="form-group">
                                         <asp:DropDownList ID="ddlDefaultSearchField" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDefaultSearchField_SelectedIndexChanged">
@@ -341,7 +361,7 @@
                 <div id="directlinks" class="tab-pane fade" role="tabpanel" aria-labelledby="directlinks-tab">
                     <asp:UpdatePanel ID="udpDLinks" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                     <ContentTemplate>
-                    <h2 class="bg-white shadow-sm text-center">
+                    <h2 class="bg-white shadow-sm text-center p-2">
                         Direct Links Management
                     </h2>
                     <div class="container p-2">
@@ -458,15 +478,15 @@
                     <h2 class="bg-white shadow-sm text-center p-2">
                         Paradigm 3 Style Designer
                     </h2>
-                    <div class="container-sm p-0">
+                    <div class="container p-0">
                         <asp:UpdatePanel ID="udpSD" runat="server" ChildrenAsTriggers="true">
                         <ContentTemplate>
-                        <div class="row p-1 pl-4 pr-4">
-                            <div class="col-4 col-4-sm">
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label-sm">Module:</label>
-                                    <div class="col-sm-10">
-                                        <asp:DropDownList ID="ddlSDModules" runat="server" CssClass="form-control form-control-sm" 
+                        <div class="row ps-1 pt-0 pe-3 pb-0">
+                            <div class="col-3">
+                                <div class="row p-1">
+                                    <label class="col-3 col-form-label-sm">Module:</label>
+                                    <div class="col-9">
+                                        <asp:DropDownList ID="ddlSDModules" runat="server" CssClass="form-control" 
                                             Enabled="false" 
                                             AutoPostBack="true" 
                                             OnSelectedIndexChanged="ddlSDModules_SelectedIndexChanged">
@@ -476,129 +496,132 @@
                                     </asp:DropDownList>
                                     </div>                                
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label-sm">Style:</label>
-                                    <div class="col-sm-10">
+                                <div class="row p-1">
+                                    <label class="col-3 col-form-label-sm">Style:</label>
+                                    <div class="col-9">
                                         <asp:DropDownList ID="ddlSDStyles" runat="server" CssClass="form-control form-control-sm" AppendDataBoundItems="true" Enabled="false">
                                             <asp:ListItem Value="0" Text="" />
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label-sm">Pages:</label>
-                                    <div class="col-sm-10">
+                                <div class="row p-1">
+                                    <label class="col-3 col-form-label-sm">Pages:</label>
+                                    <div class="col-9">
                                         <asp:DropDownList ID="ddlSDPages" runat="server" CssClass="form-control form-control-sm" AppendDataBoundItems="true" Enabled="false">
                                             <asp:ListItem Value="0" Text="" />
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label-sm">Field:</label>
-                                    <div class="col-sm-10">
+                                <div class="row p-1">
+                                    <label class="col-3 col-form-label-sm">Field:</label>
+                                    <div class="col-9">
                                         <asp:DropDownList ID="ddlSDFields" runat="server" CssClass="form-control form-control-sm" AppendDataBoundItems="true" Enabled="false">
                                             <asp:ListItem Value="0" Text="" />
                                         </asp:DropDownList>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-8 col-8-sm border rounded">
-                                <div class="row">
-                                    <div class="col-2 col-2-sm p-1">
-                                        <asp:Button ID="btnSDDownloadDB" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Download" OnClick="btnSDDownloadDB_Click" />
+                            <div class="col border rounded">
+                                <div class="row p-1">
+                                    <div class="col-2 d-grid gap-2">
+                                        <asp:Button ID="btnSDDownloadDB" runat="server" CssClass="btn btn-sm btn-outline-primary" Text="Download" OnClick="btnSDDownloadDB_Click" />
                                     </div>
                                     <div class="col-10">
-                                        <label class="text-danger font-weight-bold mt-2">
+                                        <label class="text-danger font-weight-bold p-1">
                                             Please backup the database before starting any modification
                                         </label>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-2 col-2-sm p-1">
+                                <div class="row p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDAddStyle" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Add Style" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDRenameStyle" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Rename Style" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDMoveStyle" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Move Style" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDRestoreStyle" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Restore Style" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDCopyStyle" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Copy Style" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         &nbsp;
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-2 col-2-sm p-1">
+                                <div class="row p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDAddPage" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Add Page" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDRenamePage" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Rename Page" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDReorderPage" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Re-Order" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDRestorePage" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Restore Pages" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDCopyPage" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Copy Page" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         &nbsp;
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-2 col-2-sm p-1">
+                                <div class="row p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDAddField" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Add Field" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDRenameField" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Rename Field" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDMoveField" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Move Field" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDRestoreField" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Restore Fields" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDCopyField" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Copy Fields" Enabled="false" />
                                     </div>
-                                    <div class="col-2 col-2-sm p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDAdjustGrid" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Adjust Grid" Enabled="false" />
                                     </div>
                                 </div>
-                                <div class="row p-0 pt-3">
-                                    <div class="col-3 col-3-sm p-1">
+                                <div class="row p-1">
+                                    <div class="col-2 d-grid gap-2">
                                         <asp:Button ID="btnSDFormula" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Formula Settings" Enabled="false" />
                                     </div>
-                                    <div class="col-3 col-3-sm p-1">
-                                        <p style="font-size: 11px; line-height: 12px; padding: 0; margin: 2px 0 0 0;">Select module and style and click the button to set formula</p>
+                                    <div class="col-4">
+                                        <span class="mt-2" style="font-size: .7em;">Select module and style and click the button to set formula</span>
                                     </div>
-                                    <div class="col-3 col-3-sm p-1">
-                                        <asp:Button ID="btnSDPageRelFomula" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Page Related Foemula" Enabled="false" />
+                                    <div class="col-2 d-grid gap-2">
+                                        <asp:Button ID="btnSDPageRelFomula" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Page Formulae" Enabled="false" />
                                     </div>
-                                    <div class="col-3 col-3-sm p-1">
-                                        <asp:Button ID="btnSDFieldRelFormula" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Field Related Formula" Enabled="false" />
+                                    <div class="col-2 d-grid gap-2">
+                                        <asp:Button ID="btnSDFieldRelFormula" runat="server" CssClass="btn btn-sm btn-outline-primary btn-block" Text="Field Formulae" Enabled="false" />
+                                    </div>
+                                    <div class="col-2 d-grid gap-2">
+                                        &nbsp;
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row border-bottom shadow-sm p-1 pl-4 pr-2">
-                            <div class="col-3 col-3-sm">
-                                <asp:CheckBox ID="chkSDIncludeGrid" runat="server" class="form-check-inline" Checked="true" Text="Include GRID Numbering in Design Mode" TextAlign="Right" style="font-size: .75em;" Enabled="false" />
+                        <div class="row border-bottom shadow-sm p-1">
+                            <div class="col-3">
+                                <asp:CheckBox ID="chkSDIncludeGrid" runat="server" class="form-check-inline" Checked="true" Text="Include GRID Number in Design View" TextAlign="Right" style="font-size: .75em;" Enabled="false" />
                             </div>
                             <div class="col-3">
-                                <asp:CheckBox ID="chkSDIncludeFieldID" runat="server" class="form-check-inline" Checked="true" Text="Include FieldID in Design Mode" TextAlign="Right" style="font-size: .75em;" Enabled="false" />
+                                <asp:CheckBox ID="chkSDIncludeFieldID" runat="server" class="form-check-inline" Checked="true" Text="Include FieldID in Design View" TextAlign="Right" style="font-size: .75em;" Enabled="false" />
                             </div>
                             <div class="col-3">
-                                <asp:CheckBox ID="chkSDDisplayDeleted" runat="server" class="form-check-inline" Text="Display Only Deleted Fields" TextAlign="Right" Font-Size=".75em" Enabled="false" />
+                                <asp:CheckBox ID="chkSDDisplayDeleted" runat="server" class="form-check-inline" Text="Show Deleted Fields Only" TextAlign="Right" Font-Size=".75em" Enabled="false" />
                             </div>
-                            <div class="col-3 text-right">
+                            <div class="col-3 text-end">
                                 <asp:Button ID="btnSDPreview" runat="server" CssClass="btn btn-sm btn-outline-primary" Text="Preview" Enabled="false" />
                                 <asp:Button ID="btnSDUpload" runat="server" CssClass="btn btn-sm btn-outline-primary" Text="Upload" Enabled="false" />
                             </div>

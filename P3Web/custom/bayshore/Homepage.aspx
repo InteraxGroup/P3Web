@@ -55,7 +55,7 @@
                                     <p>
                                         For help with Paradigm, please <a href="#">click here</a>.<br />
                                         To access quick training guides, <a href="#">click here</a>.<br />
-                                        If you need additional help, please contact <a href="bayshore.cqrt@bayshorehealth.ca">CQRT</a>
+                                        If you need additional help, please contact <a href="mailto:bayshore.cqrt@bayshorehealth.ca">CQRT</a>
                                     </p>
                                 </div>                                
                             </asp:Panel>
@@ -265,30 +265,50 @@
                                     </div>
                                     <div class="bayshore-panel-content">
                                         <ajax:TabContainer ID="TCHS" runat="server">
-                                            <ajax:TabPanel ID="TPClinical" runat="server" HeaderText="Clinical" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TPClinical" runat="server" HeaderText="Tab1" CssClass="pc-2">
                                                 <ContentTemplate>
-                                                    Clinical
+                                                    Under construction
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TPPrivacy" runat="server" HeaderText="Privacy" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TPPrivacy" runat="server" HeaderText="Tab2" CssClass="pc-2">
                                                 <ContentTemplate>
-                                                    Privacy
+                                                    Under construction
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TPQR" runat="server" HeaderText="Quality & Risk" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TPQR" runat="server" HeaderText="Tab3" CssClass="pc-2">
                                                 <ContentTemplate>
-                                                    Quality & Risk
+                                                    Under construction
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TPPFAC" runat="server" HeaderText="Patient, Family, & Advisory Council" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TPPFAC" runat="server" HeaderText="Tab4" CssClass="pc-2">
                                                 <ContentTemplate>
-                                                    Patient, Family, & Advisory Council
+                                                    Under construction
+                                                </ContentTemplate>
+                                            </ajax:TabPanel>
+                                            <ajax:TabPanel ID="TabPanel1" runat="server" HeaderText="Tab5" CssClass="pc-2">
+                                                <ContentTemplate>
+                                                    Under construction
+                                                </ContentTemplate>
+                                            </ajax:TabPanel>
+                                            <ajax:TabPanel ID="TabPanel2" runat="server" HeaderText="Tab6" CssClass="pc-2">
+                                                <ContentTemplate>
+                                                    Under construction
+                                                </ContentTemplate>
+                                            </ajax:TabPanel>
+                                            <ajax:TabPanel ID="TabPanel3" runat="server" HeaderText="Tab7" CssClass="pc-2">
+                                                <ContentTemplate>
+                                                    Under construction
+                                                </ContentTemplate>
+                                            </ajax:TabPanel>
+                                            <ajax:TabPanel ID="TabPanel4" runat="server" HeaderText="Tab8" CssClass="pc-2">
+                                                <ContentTemplate>
+                                                    Under construction
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
                                         </ajax:TabContainer>
                                     </div>
                                 </div>
-                                <div class="bayshore-panel-hotlinks">
+                                <%--<div class="bayshore-panel-hotlinks">
                                     <div class="hotlinks-title">Health & Safety HotLinks</div>
                                     <div class="hotlinks-data">
                                         <asp:GridView ID="GridViewHS" runat="server" GridLines="None" 
@@ -315,7 +335,7 @@
                                                 <asp:BoundField DataField="Name" />
                                             </Columns>
                                         </asp:GridView>
-                                    </div>
+                                    </div>--%>
                                 </div>
                             </asp:Panel>
                             <asp:Panel ID="CQHIPPanel" runat="server" CssClass="bayshore-panel" Visible="false">
