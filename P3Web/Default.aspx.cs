@@ -15,6 +15,7 @@ using System.Security.Principal;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using Saml;
 
 namespace Paradigm3
 {
@@ -31,69 +32,89 @@ namespace Paradigm3
                 lblVersion.Text = "Version: " + version;
                 await PopulateDLinksAsync();
 
-                // Retrieve authentication type from web.config
-                AuthenticationSection authSection = (AuthenticationSection)ConfigurationManager.GetSection("system.web/authentication");
-                string authType = authSection.Mode.ToString();
+                //SAML Settings
+                string ssoAuth = ConfigurationManager.AppSettings["UseSSO"];
+                string ssoURL = ConfigurationManager.AppSettings["SSOURL"];
+                string issuer = ConfigurationManager.AppSettings["Issuer"];
+                string ACS = ConfigurationManager.AppSettings["ACSUrl"];
 
-                if (authType == "Windows")
-                {
-                    // Get windows Domain and User Name and compare to Paradigm 3 User List.
-                    string FullUserInfo = @"" + User.Identity.Name;
-                    if (string.IsNullOrEmpty(FullUserInfo))
-                    {
-                        FullUserInfo = @"" + WindowsIdentity.GetCurrent().Name.ToString();
-                    }
-                    //ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "", "alert('" + FullUserInfo + "');", true);
-                    string[] DomainAndUser = FullUserInfo.Split('\\');
-                    //ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "", "alert('" + DomainAndUser[0] + "-" + DomainAndUser[1] + "');", true);
-                    if (DomainAndUser[0].Length > 0)
-                    {
-                        Set_CheckLogon(false);
-                        string WinDomainName = DomainAndUser[0];
-                        string WinUserName = DomainAndUser[1];
-                        //string P3Domain = string.Empty;
-                        bool IsDomain = false;
-                        if (ConfigurationManager.AppSettings["DomainName"] != null)
-                        {
+                if (Session["IsValidSAML"] == null)
+				{
+                    if (ssoAuth.ToUpper() == "TRUE")
+					{
+                        var samlEndpoint = ssoURL;
 
-                            string[] domainList = ConfigurationManager.AppSettings["DomainName"].Split(',');
-                            foreach (var d in domainList)
-                            {
-                                if (WinDomainName.ToUpper() == d.ToUpper())
-                                {
-                                    IsDomain = true;
-                                }
-                            }
-                        }
+                        var request = new AuthRequest(issuer, ACS);
 
-                        if (IsDomain && P3Security.IsWinP3User(WinUserName))
-                        {
-                            Do_WinP3Logon(WinUserName);
-                        }
-                        else
-                        {
-                            //ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "", "alert('Windows user information does not match Paradigm');", true);
-                            Set_CheckLogon(false);
-                        }
-                    }
-                    else
-                    {
-                        Set_CheckLogon(false);
-                        ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "", "alert('Unable to retrieve Windows User information');", true);
+                        //redirect the user to the SAML provider
+                        Response.Redirect(request.GetRedirectUrl(samlEndpoint), false);
                     }
                 }
                 else
-                {
-                    // Set initial button properties.
-                    if (User.Identity.IsAuthenticated)
+				{
+                    // Retrieve authentication type from web.config
+                    AuthenticationSection authSection = (AuthenticationSection)ConfigurationManager.GetSection("system.web/authentication");
+                    string authType = authSection.Mode.ToString();
+                    if (authType == "Windows")
                     {
-                        Set_CheckLogon(true);
+                        // Get windows Domain and User Name and compare to Paradigm 3 User List.
+                        string FullUserInfo = @"" + User.Identity.Name;
+                        if (string.IsNullOrEmpty(FullUserInfo))
+                        {
+                            FullUserInfo = @"" + WindowsIdentity.GetCurrent().Name.ToString();
+                        }
+                        //ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "", "alert('" + FullUserInfo + "');", true);
+                        string[] DomainAndUser = FullUserInfo.Split('\\');
+                        //ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "", "alert('" + DomainAndUser[0] + "-" + DomainAndUser[1] + "');", true);
+                        if (DomainAndUser[0].Length > 0)
+                        {
+                            Set_CheckLogon(false);
+                            string WinDomainName = DomainAndUser[0];
+                            string WinUserName = DomainAndUser[1];
+                            //string P3Domain = string.Empty;
+                            bool IsDomain = false;
+                            if (ConfigurationManager.AppSettings["DomainName"] != null)
+                            {
+
+                                string[] domainList = ConfigurationManager.AppSettings["DomainName"].Split(',');
+                                foreach (var d in domainList)
+                                {
+                                    if (WinDomainName.ToUpper() == d.ToUpper())
+                                    {
+                                        IsDomain = true;
+                                    }
+                                }
+                            }
+
+                            if (IsDomain && P3Security.IsWinP3User(WinUserName))
+                            {
+                                Do_WinP3Logon(WinUserName);
+                            }
+                            else
+                            {
+                                //ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "", "alert('Windows user information does not match Paradigm');", true);
+                                Set_CheckLogon(false);
+                            }
+                        }
+                        else
+                        {
+                            Set_CheckLogon(false);
+                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "", "alert('Unable to retrieve Windows User information');", true);
+                        }
                     }
                     else
                     {
-                        Set_CheckLogon(false);
+                        // Set initial button properties.
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            Set_CheckLogon(true);
+                        }
+                        else
+                        {
+                            Set_CheckLogon(false);
+                        }
                     }
-                }
+                }                
             }
         }
 
