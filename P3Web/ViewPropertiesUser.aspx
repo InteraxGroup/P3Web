@@ -13,6 +13,7 @@
 <body style="padding: 0; margin: 0; overflow: hidden;">
     <form id="form1" runat="server">
 		<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:Label ID="lblUserID" runat="server"></asp:Label>
         <div class="u-prop-main">
             <div class="u-prop-content">
                 <asp:TabContainer ID="tcUserDetails" runat="server" Width="100%" Height="450px">

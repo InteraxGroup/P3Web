@@ -1,5 +1,12 @@
 ﻿// P3 Web JavaScript codes - Last Updated 2021-02-18 - Chris Reyno, Interax Group, Inc.
 
+if (/Mobi/.test(navigator.userAgent)) {
+	// mobile!
+	console.log('mobile');
+} else {
+	console.log('not mobile');
+}
+
 function do_Logout() {
     document.getElementById('btnLogout').click(); return false;
 }
@@ -179,7 +186,7 @@ function openAddDocWindow(ModuleID, GroupID, AddOption, Status) {
         case 1002:
             windowWidth = 800;
             windowHeight = 550;
-            addDocPath = 'ViewPropertiesUser.aspx?UserID=0';
+            addDocPath = 'ViewPropertiesUser.aspx';
             break;
         case 3002:
             windowWidth = 700;
@@ -356,7 +363,7 @@ function openProperties(ItemID, ModuleID, IsGroup) {
     var windowWidth;
     var windowHeight;
     if (ModuleID === 1 && IsGroup === 0) {
-        proPath = "ViewPropertiesUser.aspx?UserID=" + ItemID;
+        proPath = "ViewPropertiesUser.aspx";
         windowWidth = 800;
         windowHeight = 550;
     } else {

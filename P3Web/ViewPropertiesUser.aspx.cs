@@ -25,7 +25,13 @@ namespace Paradigm3
 
 		private async Task InitializeUserProperties()
 		{
-			int UserID = Convert.ToInt32(Request.QueryString["UserID"]);
+			//int UserID = Convert.ToInt32(Request.QueryString["UserID"]);
+			int UserID = -1000;
+			if (Session["SelUserID"] != null)
+			{
+				UserID = Convert.ToInt32(Session["SelUserID"]);
+			}
+			//lblUserID.Text = UserID.ToString();
 			ViewState["FirstLoad"] = true;
 			if (UserID > 0)
 			{
@@ -137,18 +143,24 @@ namespace Paradigm3
 
 			// Options Tab
 			string[] OptionSet = dt.Rows[0]["OptionSet"].ToString().Split('_');
-			if (OptionSet[0] == "1|1") cbChangePassword.Checked = true;
-			if (OptionSet[1] == "2|1") cbDisableUser.Checked = true;
-			if (OptionSet[2] == "3|1") cbEmailSummary.Checked = true;
-			if (OptionSet[3] == "4|1") cbEmailAll.Checked = true;
-			if (OptionSet[4] == "5|1") cbEmailUrgent.Checked = true;
-			if (OptionSet[6] == "6|1") cbEmailStep.Checked = true;
-			if (OptionSet[7] == "7|1") cbSMS.Checked = true;
+			if (OptionSet.Length > 2)
+			{
+				if (OptionSet[0] == "1|1") cbChangePassword.Checked = true;
+				if (OptionSet[1] == "2|1") cbDisableUser.Checked = true;
+				if (OptionSet[2] == "3|1") cbEmailSummary.Checked = true;
+				if (OptionSet[3] == "4|1") cbEmailAll.Checked = true;
+				if (OptionSet[4] == "5|1") cbEmailUrgent.Checked = true;
+				if (OptionSet[6] == "6|1") cbEmailStep.Checked = true;
+				if (OptionSet[7] == "7|1") cbSMS.Checked = true;
+			}			
 			cbHeaderFooter.Enabled = false;
 			if (UserStatus == 1 || UserStatus == 0)
 			{
 				cbHeaderFooter.Enabled = true;
-				if (OptionSet[8] == "8|1") cbHeaderFooter.Checked = true;
+				if (OptionSet.Length > 2)
+				{
+					if (OptionSet[8] == "8|1") cbHeaderFooter.Checked = true;
+				}				
 			}
 
 			// Training Tab
@@ -1198,8 +1210,16 @@ namespace Paradigm3
 
 		protected async void btnOK_Click(object sender, EventArgs e)
 		{
-			int UserID = Convert.ToInt32(Request.QueryString["UserID"]);
-			if (UserID == 0)
+			int UserID = -1000;
+			if (Session["SelUserID"] != null)
+			{
+				UserID = Convert.ToInt32(Session["SelUserID"]);//Convert.ToInt32(Request.QueryString["UserID"]);
+			}
+			if (UserID == -1000)
+			{
+				ClientScript.RegisterStartupScript(GetType(), "nouser", "alert('This process is invalid');window.close();", true);
+			}
+			else if (UserID == 0)
 			{				
 				await AddNewUser();
 			}

@@ -196,6 +196,7 @@
     <Content Include="custom\bayshore\images\bayshore-logo-dark.png" />
     <Content Include="custom\bayshore\images\bayshore-logo.png" />
     <Content Include="custom\bayshore\images\bayshore-wave.PNG" />
+    <Content Include="custom\bayshore\images\logo.svg" />
     <Content Include="custom\bayshore\images\p3web.png" />
     <Content Include="custom\Biotium\banner_logo.png" />
     <Content Include="custom\Biotium\Biotium.css" />

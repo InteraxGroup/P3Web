@@ -33,7 +33,7 @@ namespace Paradigm3
 					}
 
                     Session["IsValidSAML"] = username;
-                    Response.Redirect("/Default.aspx");                    
+                    Response.Redirect("Default.aspx");                    
                 }
             }
 		}

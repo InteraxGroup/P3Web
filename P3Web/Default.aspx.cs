@@ -38,17 +38,14 @@ namespace Paradigm3
                 string issuer = ConfigurationManager.AppSettings["Issuer"];
                 string ACS = ConfigurationManager.AppSettings["ACSUrl"];
 
-                if (Session["IsValidSAML"] == null)
-				{
-                    if (ssoAuth.ToUpper() == "TRUE")
-					{
-                        var samlEndpoint = ssoURL;
+                if (ssoAuth.ToUpper() == "TRUE" && Session["IsValidSAML"] == null)
+                {
+                    var samlEndpoint = ssoURL;
 
-                        var request = new AuthRequest(issuer, ACS);
+                    var request = new AuthRequest(issuer, ACS);
 
-                        //redirect the user to the SAML provider
-                        Response.Redirect(request.GetRedirectUrl(samlEndpoint), false);
-                    }
+                    //redirect the user to the SAML provider
+                    Response.Redirect(request.GetRedirectUrl(samlEndpoint), false);
                 }
                 else
 				{
@@ -286,6 +283,7 @@ namespace Paradigm3
 
         protected void mnuModules_MenuItemClick(object sender, EventArgs e)
         {
+            Session["SelUserID"] = null;
             //throw new Exception("This is a test.");
             // Clear all grid views
             gvUsersList.DataSource = null;
@@ -482,6 +480,7 @@ namespace Paradigm3
             switch (ModuleID)
             {
                 case 1:
+                    Session["SelUserID"] = 0;
                     ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "AddDocumentOrGroup", "openAddDocWindow(1," + ParentGroupID + "," + AddOption + "," + Status + ");", true);
                     break;
                 case 3:
@@ -831,7 +830,8 @@ namespace Paradigm3
                             {
                                 case 1:
                                     int selUserID = Convert.ToInt32(gvUsersList.DataKeys[index].Values["UserID"]);
-                                    ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "ViewUser", "openProperties(" + selUserID + ", 1, 0);", true);
+                                    Session["SelUserID"] = selUserID;
+                                    ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "ViewUser", "openProperties(0, 1, 0);", true);
                                     break;
                                 case 4:
                                 case 6:
@@ -874,7 +874,8 @@ namespace Paradigm3
                             {
                                 OrigID = Convert.ToInt32(gvUsersList.DataKeys[gvUsersList.SelectedIndex].Values["UserID"]);
                             }
-                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "openitemproperties", "openProperties(" + OrigID + "," + ModuleID + ",0);", true);
+                            Session["SelUserID"] = OrigID;
+                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "openitemproperties", "openProperties(0," + ModuleID + ",0);", true);
                             break;
                         case "move":
                             string SourcePath = Server.UrlEncode(p3Tree.SelectedNode.ValuePath);
@@ -1212,8 +1213,9 @@ namespace Paradigm3
                             }
                             break;
                         case 1:
-                            string selUserID = gvUsersList.DataKeys[gvUsersList.SelectedIndex].Values["UserID"].ToString();
-                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "ViewUser", "openProperties(" + selUserID + ", 1, 0);", true);
+                            int selUserID = Convert.ToInt32(gvUsersList.DataKeys[gvUsersList.SelectedIndex].Values["UserID"]);
+                            Session["SelUserID"] = selUserID;
+                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "ViewUser", "openProperties(0, 1, 0);", true);
                             break;
                         case 4:
                         case 6:
@@ -1290,11 +1292,12 @@ namespace Paradigm3
                         PropertiesModuleID = dlID[0];
                     }
                     switch (PropertiesModuleID)
-                    {
+                    {                        
                         case "1":
                             if (IsGroup != 1)
                             {
-                                PropertiesItemID = gvUsersList.DataKeys[gvUsersList.SelectedIndex].Values["UserID"].ToString();
+                                PropertiesItemID = "0";
+                                Session["SelUserID"] = Convert.ToInt32(gvUsersList.DataKeys[gvUsersList.SelectedIndex].Values["UserID"]);
                             }
                             break;
                         case "3":
@@ -3021,6 +3024,7 @@ namespace Paradigm3
 
         protected async void Gv_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Session["SelUserID"] = null;
             mnuGVContext.Items.Clear();
             int ModuleID = Convert.ToInt32(Session.Contents["ModuleID"]);
             Session["IsGroup"] = 0;
