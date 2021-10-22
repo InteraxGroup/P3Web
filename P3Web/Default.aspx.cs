@@ -2072,8 +2072,9 @@ namespace Paradigm3
                 // Set Logon button display properties.
                 btnLogon.Visible = false;
                 AuthenticationSection authSection = (AuthenticationSection)ConfigurationManager.GetSection("system.web/authentication");
+                bool IsSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 string authType = authSection.Mode.ToString();
-                if (authType == "Windows")
+                if (authType == "Windows" || IsSSO)
                 {
                     btnLogout.Visible = false;
                 }
