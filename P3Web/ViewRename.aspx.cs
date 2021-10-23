@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Data;
 using Paradigm3.datalayer;
 using System.Text.RegularExpressions;
+using System.Web.Security;
+using System.Configuration;
 
 namespace Paradigm3
 {
@@ -17,24 +19,32 @@ namespace Paradigm3
 		{
 			if (!IsPostBack)
 			{
-				int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-				int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
-				bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
-
-				if (IsGroup)
+				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+				if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
 				{
-					lblTitle.Text = "Rename Group";
+					Response.Redirect("Default.aspx", false);
 				}
 				else
 				{
-					lblTitle.Text = "Rename Item";
-					if (ModuleID == 1)
-					{
-						lblTitle.Text = "Rename User";
-					}					
-				}
+					int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+					int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
+					bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
 
-				await Implement(ModuleID, OrigID, IsGroup);
+					if (IsGroup)
+					{
+						lblTitle.Text = "Rename Group";
+					}
+					else
+					{
+						lblTitle.Text = "Rename Item";
+						if (ModuleID == 1)
+						{
+							lblTitle.Text = "Rename User";
+						}
+					}
+
+					await Implement(ModuleID, OrigID, IsGroup);
+				}				
 			}
 		}
 

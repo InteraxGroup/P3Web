@@ -23,26 +23,33 @@ namespace Paradigm3
         {
             if (!IsPostBack)
             {
-                int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-                int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
-                int ReportID = Convert.ToInt32(Request.QueryString["ReportID"]);
-                try
-                {
-
-					string title = GetReportName(ReportID);
-					lblTitle.Text = title;
-					lblReportName.Text = title;
-					lblReportFolder.Text = P3General.Get_GroupName(ModuleID, GroupID);
-					
-					await gvDataBindAsync(ModuleID, GroupID, ReportID);
+				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+				if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+				{
+					Response.Redirect("Default.aspx", false);
 				}
-                catch (Exception ex)
-                {
-					string msg = ex.Message.Replace(Environment.NewLine, string.Empty);
-					msg = msg.Replace("'", string.Empty);
-					ScriptManager.RegisterStartupScript(udpMain, GetType(), "err", "alert('" + msg + "')", true);
-				}
+				else
+				{
+					int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+					int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
+					int ReportID = Convert.ToInt32(Request.QueryString["ReportID"]);
+					try
+					{
 
+						string title = GetReportName(ReportID);
+						lblTitle.Text = title;
+						lblReportName.Text = title;
+						lblReportFolder.Text = P3General.Get_GroupName(ModuleID, GroupID);
+
+						await gvDataBindAsync(ModuleID, GroupID, ReportID);
+					}
+					catch (Exception ex)
+					{
+						string msg = ex.Message.Replace(Environment.NewLine, string.Empty);
+						msg = msg.Replace("'", string.Empty);
+						ScriptManager.RegisterStartupScript(udpMain, GetType(), "err", "alert('" + msg + "')", true);
+					}
+				}
             }
         }
 

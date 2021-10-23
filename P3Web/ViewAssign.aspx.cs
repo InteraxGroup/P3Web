@@ -8,6 +8,7 @@ using System.Data;
 using Paradigm3.datalayer;
 using System.Web.Security;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Paradigm3
 {
@@ -17,11 +18,19 @@ namespace Paradigm3
         {
             if (!IsPostBack)
             {
-                Session.Remove("dtSelected");
-                P3Tree.Visible = true;
-                P3UTree.Visible = true;
-                await Fill_UserGroupTreeAsync();
-                await Fill_EntityTreeAsync();
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+				{
+                    Session.Remove("dtSelected");
+                    P3Tree.Visible = true;
+                    P3UTree.Visible = true;
+                    await Fill_UserGroupTreeAsync();
+                    await Fill_EntityTreeAsync();
+                }                
             }            
         }
 

@@ -21,11 +21,19 @@ namespace Paradigm3
         {
             if (!IsPostBack)
             {
-                int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
-                int ParentGroupID = Convert.ToInt32(Request.QueryString["ParentGroupID"]);
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+				{
+                    int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                    int ParentGroupID = Convert.ToInt32(Request.QueryString["ParentGroupID"]);
 
-                MenuTabs.Items[0].Selected = true;
-                await Initialize_Training(ItemID, ParentGroupID);
+                    MenuTabs.Items[0].Selected = true;
+                    await Initialize_Training(ItemID, ParentGroupID);
+                }                
             }
         }
 

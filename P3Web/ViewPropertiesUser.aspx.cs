@@ -19,7 +19,15 @@ namespace Paradigm3
 		{
 			if (!IsPostBack)
 			{
-				await InitializeUserProperties();
+				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+				if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+				{
+					Response.Redirect("Default.aspx", false);
+				}
+				else
+				{
+					await InitializeUserProperties();
+				}				
 			}
 		}
 

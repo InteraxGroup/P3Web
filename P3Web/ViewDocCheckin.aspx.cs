@@ -18,31 +18,39 @@ namespace Paradigm3
 		#region Initialization
 		protected async void Page_Load(object sender, EventArgs e)
 		{
-			int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
-			int DocStatus = Convert.ToInt32(Request.QueryString["Status"]);
-			bool IsServer = Convert.ToBoolean(Request.QueryString["IsServer"]);
-
-			ViewState["DocumentData"] = Document.Get_EditVersion(OrigID, DocStatus);
-
 			if (!IsPostBack)
 			{
-				lblDocStatus.Text = "Check in COLLABORATE Document";
-				if (DocStatus == 2)
+				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+				if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
 				{
-					lblDocStatus.Text = "Check in DRAFT Document";
-				}
-				if (!IsServer)
-				{
-					pnlUpload.Visible = true;
-					pnlCheckIn.Visible = false;
+					Response.Redirect("Default.aspx", false);
 				}
 				else
 				{
-					pnlUpload.Visible = false;
-					pnlCheckIn.Visible = true;
-				}
+					int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
+					int DocStatus = Convert.ToInt32(Request.QueryString["Status"]);
+					bool IsServer = Convert.ToBoolean(Request.QueryString["IsServer"]);
 
-				await InitializePage();
+					ViewState["DocumentData"] = Document.Get_EditVersion(OrigID, DocStatus);
+
+					lblDocStatus.Text = "Check in COLLABORATE Document";
+					if (DocStatus == 2)
+					{
+						lblDocStatus.Text = "Check in DRAFT Document";
+					}
+					if (!IsServer)
+					{
+						pnlUpload.Visible = true;
+						pnlCheckIn.Visible = false;
+					}
+					else
+					{
+						pnlUpload.Visible = false;
+						pnlCheckIn.Visible = true;
+					}
+
+					await InitializePage();
+				}	
 			}
 		}
 

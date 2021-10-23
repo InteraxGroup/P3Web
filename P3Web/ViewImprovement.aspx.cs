@@ -8,22 +8,32 @@ using System.Web.Security;
 using System.Threading;
 using Paradigm3.datalayer;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Paradigm3
 {
     public partial class ViewImprovement1 : SqlViewStatePage
     {
         protected async void Page_Load(object sender, EventArgs e)
-        {
-            int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
-            int ParentGroupID = Convert.ToInt32(Request.QueryString["ParentGroupID"]);
-            int ObjTypeID = Convert.ToInt32(Request.QueryString["ObjTypeID"]);
+        {            
             if (!IsPostBack)
-            {              
-                ViewState["IsUpdated"] = false;
-                MenuTabs.Items[0].Selected = true;
-                await Initialize_ImprovementAsync(ItemID, ParentGroupID, ObjTypeID);
-                EditMode(await CanEdit());
+            {
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+				{
+                    int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                    int ParentGroupID = Convert.ToInt32(Request.QueryString["ParentGroupID"]);
+                    int ObjTypeID = Convert.ToInt32(Request.QueryString["ObjTypeID"]);
+
+                    ViewState["IsUpdated"] = false;
+                    MenuTabs.Items[0].Selected = true;
+                    await Initialize_ImprovementAsync(ItemID, ParentGroupID, ObjTypeID);
+                    EditMode(await CanEdit());
+                }                
             }            
         }
 

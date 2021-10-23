@@ -18,24 +18,32 @@ namespace Paradigm3
         {
             if (!IsPostBack)
             {
-                int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
-                int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-
-                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    // Get user information from authentication cookie.
-                    string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
-                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
-                    string UserData = authTicket.UserData;
-                    string[] UserValues = UserData.Split(',');
-                    int userStatus = Convert.ToInt32(UserValues[3]);
-                    if (userStatus == 1)
-                    {
-                        pnlAddPLink.Visible = true;
-                        pnlRemovePLink.Visible = true;
-                    }
+                    Response.Redirect("Default.aspx", false);
                 }
-                await Get_PLinksAsync(OrigID, ModuleID);
+                else
+				{
+                    int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
+                    int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+
+                    if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                    {
+                        // Get user information from authentication cookie.
+                        string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                        FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                        string UserData = authTicket.UserData;
+                        string[] UserValues = UserData.Split(',');
+                        int userStatus = Convert.ToInt32(UserValues[3]);
+                        if (userStatus == 1)
+                        {
+                            pnlAddPLink.Visible = true;
+                            pnlRemovePLink.Visible = true;
+                        }
+                    }
+                    await Get_PLinksAsync(OrigID, ModuleID);
+                }                
             }
         }
 

@@ -10,6 +10,7 @@ using System.Web.Security;
 using System.Web.Configuration;
 using System.IO;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Paradigm3
 {
@@ -19,23 +20,31 @@ namespace Paradigm3
         {
             if (!IsPostBack)
             {
-                int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-                int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
-                int UserID = 0;
-                DataTable dt = await Status.GetCurrentVersionStatusAsync(ModuleID, OrigID);                
-                string CurrentStatus = dt.Rows[0]["Status"].ToString();
-                ViewState["ItemData"] = dt;
-                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    // Get user status information from authentication cookie.
-                    string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
-                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
-                    string UserData = authTicket.UserData;
-                    string[] UserValues = UserData.Split(',');
-                    UserID = Convert.ToInt32(UserValues[0]);
+                    Response.Redirect("Default.aspx", false);
                 }
-                //await Get_StatusOptions(CurrentStatus);
-                await Get_VersionOptionsAsync(ModuleID, OrigID, UserID, CurrentStatus);
+                else
+				{
+                    int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                    int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
+                    int UserID = 0;
+                    DataTable dt = await Status.GetCurrentVersionStatusAsync(ModuleID, OrigID);
+                    string CurrentStatus = dt.Rows[0]["Status"].ToString();
+                    ViewState["ItemData"] = dt;
+                    if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                    {
+                        // Get user status information from authentication cookie.
+                        string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                        FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                        string UserData = authTicket.UserData;
+                        string[] UserValues = UserData.Split(',');
+                        UserID = Convert.ToInt32(UserValues[0]);
+                    }
+                    //await Get_StatusOptions(CurrentStatus);
+                    await Get_VersionOptionsAsync(ModuleID, OrigID, UserID, CurrentStatus);
+                }                
             }
         }
 

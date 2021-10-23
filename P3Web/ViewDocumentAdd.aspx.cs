@@ -17,62 +17,56 @@ namespace Paradigm3
     {
         protected async void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {               
-                string Status = Request.QueryString["Status"];
-                switch (Status)
+            if (!IsPostBack)            
+            {
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    case "9":
-                        lblAddTitle.Text += " as CURRENT";
-                        break;
-                    case "4":
-                        lblAddTitle.Text += " as READY";
-                        break;
-                    case "5":
-                        lblAddTitle.Text += " as REVIEW";
-                        break;
-                    case "3054":
-                        lblAddTitle.Text += " as EVIDENCE";
-                        break;
-                    default:
-                        lblAddTitle.Text += " as DRAFT";
-                        break;
+                    Response.Redirect("Default.aspx", false);
                 }
-
-                int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
-                string GroupOptionSet = await P3General.Get_GroupOptionSetAsync(3, GroupID);
-                if (!string.IsNullOrEmpty(GroupOptionSet) && GroupOptionSet.Contains("1_6"))
-                {
-                    string NameFormula = await Record.Get_NameFormulaAsync(3, GroupID);
-                    string[] NameFormulaValues = NameFormula.Split('|');
-                    string NameF = NameFormulaValues[0];
-                    string LabelF = NameFormulaValues[1];
-                    if (!string.IsNullOrEmpty(NameF))
+                else
+				{
+                    string Status = Request.QueryString["Status"];
+                    switch (Status)
                     {
-                        Session["NewDocName"] = NameF;
+                        case "9":
+                            lblAddTitle.Text += " as CURRENT";
+                            break;
+                        case "4":
+                            lblAddTitle.Text += " as READY";
+                            break;
+                        case "5":
+                            lblAddTitle.Text += " as REVIEW";
+                            break;
+                        case "3054":
+                            lblAddTitle.Text += " as EVIDENCE";
+                            break;
+                        default:
+                            lblAddTitle.Text += " as DRAFT";
+                            break;
                     }
 
-                    if (!string.IsNullOrEmpty(LabelF))
+                    int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
+                    string GroupOptionSet = await P3General.Get_GroupOptionSetAsync(3, GroupID);
+                    if (!string.IsNullOrEmpty(GroupOptionSet) && GroupOptionSet.Contains("1_6"))
                     {
-                        Session["NewDocLabel"] = LabelF;
+                        string NameFormula = await Record.Get_NameFormulaAsync(3, GroupID);
+                        string[] NameFormulaValues = NameFormula.Split('|');
+                        string NameF = NameFormulaValues[0];
+                        string LabelF = NameFormulaValues[1];
+                        if (!string.IsNullOrEmpty(NameF))
+                        {
+                            Session["NewDocName"] = NameF;
+                        }
+
+                        if (!string.IsNullOrEmpty(LabelF))
+                        {
+                            Session["NewDocLabel"] = LabelF;
+                        }
                     }
-                }
+                }                
             }
         }
-
-   //     protected void AjaxFileUpload1_UploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
-   //     {
-   //         string PublicPath = @"" + Server.MapPath(ConfigurationManager.AppSettings["PublicPath"] + "import/");
-   //         try
-			//{
-   //             AjaxFileUpload1.SaveAs(PublicPath + e.FileName);
-   //             Session["UploadFilePath"] = PublicPath;
-   //         }
-   //         catch (Exception ex)
-			//{
-   //             lblTEST.Text = ex.Message + "<br />" + ex.StackTrace + "<br /><br />";
-   //         }            
-   //     }
 
         protected async void btnOK_Click(object sender, EventArgs e)
         {

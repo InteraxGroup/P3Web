@@ -5,6 +5,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using Paradigm3.datalayer;
 using System.Web.Security;
+using System.Configuration;
 
 namespace Paradigm3
 {
@@ -14,14 +15,22 @@ namespace Paradigm3
         {
             if (!IsPostBack)
             {
-                int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
-                int ObjTypeID = Convert.ToInt32(Request.QueryString["ObjTypeID"]);
-                Get_Reponsible(ItemID, ObjTypeID);                
-                Get_DueDate(ItemID, ObjTypeID);
-                if (!chkEscalate.Checked)
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    Disable_Escalate();
+                    Response.Redirect("Default.aspx", false);
                 }
+                else
+				{
+                    int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                    int ObjTypeID = Convert.ToInt32(Request.QueryString["ObjTypeID"]);
+                    Get_Reponsible(ItemID, ObjTypeID);
+                    Get_DueDate(ItemID, ObjTypeID);
+                    if (!chkEscalate.Checked)
+                    {
+                        Disable_Escalate();
+                    }
+                }                
             }
         }
 

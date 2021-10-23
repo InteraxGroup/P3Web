@@ -15,13 +15,21 @@ namespace Paradigm3
     public partial class ViewDocument : SqlViewStatePage
     {
         protected async void Page_Load(object sender, EventArgs e)
-        {
-            int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
-            bool IsItemID = Convert.ToBoolean(Request.QueryString["IsItemID"]);
-            int ItemStatus = Convert.ToInt32(Request.QueryString["ItemStatus"]);
+        {            
             if (!IsPostBack)
             {
-                await Initialize_DocumentAsync(ItemID, IsItemID, ItemStatus);
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+				{
+                    int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                    bool IsItemID = Convert.ToBoolean(Request.QueryString["IsItemID"]);
+                    int ItemStatus = Convert.ToInt32(Request.QueryString["ItemStatus"]);
+                    await Initialize_DocumentAsync(ItemID, IsItemID, ItemStatus);
+                }                
             }            
         }
 

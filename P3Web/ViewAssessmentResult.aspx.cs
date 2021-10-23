@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using Paradigm3.datalayer;
+using System.Configuration;
+using System.Web.Security;
 
 namespace Paradigm3
 {
@@ -15,13 +17,20 @@ namespace Paradigm3
         {
             if (!IsPostBack)
             {
-                int AttemptID = 0;
-                if (Request.QueryString["AttemptID"] != null)
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    AttemptID = Convert.ToInt32(Request.QueryString["AttemptID"]);
+                    Response.Redirect("Default.aspx", false);
                 }
-                Load_Result(AttemptID);
-                    
+                else
+				{
+                    int AttemptID = 0;
+                    if (Request.QueryString["AttemptID"] != null)
+                    {
+                        AttemptID = Convert.ToInt32(Request.QueryString["AttemptID"]);
+                    }
+                    Load_Result(AttemptID);
+                }   
             }
         }
 

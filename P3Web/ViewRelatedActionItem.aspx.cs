@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using Paradigm3.datalayer;
+using System.Web.Security;
+using System.Configuration;
 
 namespace Paradigm3
 {
@@ -13,17 +15,26 @@ namespace Paradigm3
     {
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
-            int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-            string ItemName = RelatedActionItem.Get_ItemName(OrigID, ModuleID);
+        {            
             if (!IsPostBack)
             {
-                Get_Versions(OrigID, ModuleID);
-                ddlVersion.SelectedIndex = 0;
-                int Version = Convert.ToInt32(ddlVersion.SelectedValue);
-                txtConfirm.Text = ItemName;
-                Get_Data(OrigID, ModuleID, Version);
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+				{
+                    int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
+                    int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                    string ItemName = RelatedActionItem.Get_ItemName(OrigID, ModuleID);
+
+                    Get_Versions(OrigID, ModuleID);
+                    ddlVersion.SelectedIndex = 0;
+                    int Version = Convert.ToInt32(ddlVersion.SelectedValue);
+                    txtConfirm.Text = ItemName;
+                    Get_Data(OrigID, ModuleID, Version);
+                }                
             }
         }
 

@@ -5,17 +5,27 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Paradigm3.datalayer;
+using System.Configuration;
+using System.Web.Security;
 
 namespace Paradigm3
 {
     public partial class ViewFieldEdit : SqlViewStatePage
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-            string FieldID = Request.QueryString["FieldID"];
+        {            
             if (!IsPostBack)
             {
-                Get_FieldName(FieldID);
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+				{
+                    string FieldID = Request.QueryString["FieldID"];
+                    Get_FieldName(FieldID);
+                }                
             }
         }
 

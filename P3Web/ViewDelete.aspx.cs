@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Data;
 using Paradigm3.datalayer;
 using System.Text;
+using System.Configuration;
+using System.Web.Security;
 
 namespace Paradigm3
 {
@@ -17,11 +19,19 @@ namespace Paradigm3
 		{
 			if (!IsPostBack)
 			{
-				int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-				int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
-				int UserID = Convert.ToInt32(Request.QueryString["UserID"]);
-				bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
-				await InitializeAsync(ModuleID, OrigID, UserID, IsGroup);
+				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+				if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+				{
+					Response.Redirect("Default.aspx", false);
+				}
+				else
+				{
+					int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+					int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
+					int UserID = Convert.ToInt32(Request.QueryString["UserID"]);
+					bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
+					await InitializeAsync(ModuleID, OrigID, UserID, IsGroup);
+				}				
 			}
 		}
 

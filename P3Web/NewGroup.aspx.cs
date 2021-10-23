@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Paradigm3.datalayer;
+using System.Configuration;
 
 namespace Paradigm3
 {
@@ -15,8 +16,16 @@ namespace Paradigm3
 		{
 			if (!IsPostBack)
 			{
-				txtFolderName.Focus();
-				Form.DefaultButton = "btnOK";
+				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+				if (UseSSO && HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+				{
+					Response.Redirect("Default.aspx");
+				}
+				else
+				{
+					txtFolderName.Focus();
+					Form.DefaultButton = "btnOK";
+				}				
 			}
 		}
 

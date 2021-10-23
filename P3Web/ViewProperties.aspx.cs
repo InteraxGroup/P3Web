@@ -9,20 +9,29 @@ using Paradigm3.datalayer;
 using System.Web.Security;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Paradigm3
 {
     public partial class ViewProperties : SqlViewStatePage
     {
         protected async void Page_Load(object sender, EventArgs e)
-        {
-            int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
-            int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-            int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
+        {            
             if (!Page.IsPostBack)
             {
-                // Initialise all other Properties details
-                await Initialize_PropertiesAsync(ItemID, ModuleID, IsGroup);
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+				{
+                    int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                    int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                    int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
+                    // Initialise all other Properties details
+                    await Initialize_PropertiesAsync(ItemID, ModuleID, IsGroup);
+                }                
             }
         }
 

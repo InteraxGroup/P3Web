@@ -15,14 +15,23 @@ namespace Paradigm3
     public partial class ViewSearch : SqlViewStatePage
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-            int ModuleID = int.Parse(Request.QueryString["ModuleID"]);
-            int ParentGroupID = int.Parse(Request.QueryString["ParentGroupID"]);
+        {            
             if (!IsPostBack)
             {
-                Init_Search(ModuleID, ParentGroupID);
-                Display_SearchField("Name");
-                txtSearch.Focus();
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+				{
+                    int ModuleID = int.Parse(Request.QueryString["ModuleID"]);
+                    int ParentGroupID = int.Parse(Request.QueryString["ParentGroupID"]);
+
+                    Init_Search(ModuleID, ParentGroupID);
+                    Display_SearchField("Name");
+                    txtSearch.Focus();
+                }                
             }
         }
 

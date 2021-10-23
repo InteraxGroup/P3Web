@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Threading.Tasks;
 using Paradigm3.datalayer;
+using System.Web.Security;
 
 namespace Paradigm3
 {
@@ -19,7 +20,15 @@ namespace Paradigm3
 			int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
 			if (!IsPostBack)
 			{
-				await Initialize(ModuleID);
+				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+				if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+				{
+					Response.Redirect("Default.aspx", false);
+				}
+				else
+				{
+					await Initialize(ModuleID);
+				}				
 			}
 		}
 

@@ -16,22 +16,30 @@ namespace Paradigm3
     {
         protected async void Page_Load(object sender, EventArgs e)
         {
-            Session["SourcePage"] = "ViewActionItem.aspx";
-            int AIID = Convert.ToInt32(Request.QueryString["AIID"]);
-            await Initialize_AI(AIID);
-            if (!Page.IsPostBack)
+            bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+            if (UseSSO && HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] == null)
             {
-                DataTable dtAI = ActionItem.Get_ActionItem(AIID);
-                if (dtAI.Rows.Count > 0)
-                {
-                    AI_GetResults(Convert.ToInt32(dtAI.Rows[0]["EventID"]));
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "noitem", "alert('There was an error returning the Action Item data.  Please contact an administrator for assistance.')", true);
-                }
-                dtAI.Dispose();
+                Response.Redirect("Default.aspx", false);
             }
+            else
+			{
+                Session["SourcePage"] = "ViewActionItem.aspx";
+                int AIID = Convert.ToInt32(Request.QueryString["AIID"]);
+                await Initialize_AI(AIID);
+                if (!Page.IsPostBack)
+                {
+                    DataTable dtAI = ActionItem.Get_ActionItem(AIID);
+                    if (dtAI.Rows.Count > 0)
+                    {
+                        AI_GetResults(Convert.ToInt32(dtAI.Rows[0]["EventID"]));
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "noitem", "alert('There was an error returning the Action Item data.  Please contact an administrator for assistance.')", true);
+                    }
+                    dtAI.Dispose();
+                }
+            }            
         }
 
         #region Initialize Action Item

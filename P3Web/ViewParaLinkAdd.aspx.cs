@@ -9,6 +9,7 @@ using Paradigm3.datalayer;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.Security;
+using System.Configuration;
 
 namespace Paradigm3
 {
@@ -19,9 +20,17 @@ namespace Paradigm3
             int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
 			if (!IsPostBack)
 			{
-
-				await GetModules();
-                await Fill_Tree(ModuleID);
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+				{
+                    await GetModules();
+                    await Fill_Tree(ModuleID);
+				}
+                
 			}
 		}
 

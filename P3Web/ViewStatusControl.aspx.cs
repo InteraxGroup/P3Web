@@ -9,6 +9,7 @@ using Paradigm3.datalayer;
 using System.Text;
 using System.Web.Security;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Paradigm3
 {
@@ -18,10 +19,18 @@ namespace Paradigm3
         {
             if (!IsPostBack)
             {
-                int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
-                int StatusFrom = Convert.ToInt32(Request.QueryString["StatusFrom"]);
-                int StatusTo = Convert.ToInt32(Request.QueryString["StatusTo"]);
-                await LoadDocumentInfo(ItemID, StatusFrom, StatusTo);
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+				{
+                    int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                    int StatusFrom = Convert.ToInt32(Request.QueryString["StatusFrom"]);
+                    int StatusTo = Convert.ToInt32(Request.QueryString["StatusTo"]);
+                    await LoadDocumentInfo(ItemID, StatusFrom, StatusTo);
+                }                
             }            
         }
 

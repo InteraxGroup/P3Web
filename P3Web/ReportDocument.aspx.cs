@@ -5,18 +5,27 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.Security;
 
 namespace Paradigm3
 {
-    public partial class ReportDocument : Page
+    public partial class ReportDocument : SqlViewStatePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                int ParentGroupID = Convert.ToInt32(Request.QueryString["ParentGroupID"]);
-                lblDate.Text = DateTime.Now.ToString();
-                InitializeAsync(ParentGroupID);
+                bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+				{
+                    int ParentGroupID = Convert.ToInt32(Request.QueryString["ParentGroupID"]);
+                    lblDate.Text = DateTime.Now.ToString();
+                    InitializeAsync(ParentGroupID);
+                }                
             }
         }        
 
