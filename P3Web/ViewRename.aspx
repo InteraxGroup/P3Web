@@ -11,7 +11,7 @@
 	<link href="styles/Modify.css" rel="stylesheet" />
     <script src="scripts/P3Web.js" type="text/javascript"></script>
 </head>
-<body onload="document.getElementById('txtName').focus();">
+<body>
     <form id="form1" runat="server">
         <div class="modify-body">
             <div class="modify-title">

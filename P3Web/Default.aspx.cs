@@ -873,17 +873,9 @@ namespace Paradigm3
                             if (ModuleID == 1)
                             {
                                 OrigID = Convert.ToInt32(gvUsersList.DataKeys[gvUsersList.SelectedIndex].Values["UserID"]);
-                                Session["SelUserID"] = OrigID;
                             }
-							else if (ModuleID == 3)
-							{
-								ItemID = Convert.ToInt32(gvItemList.DataKeys[gvItemList.SelectedIndex].Values["ItemID"]);
-							}
-                            else
-							{
-                                ItemID = Convert.ToInt32(gvRecordList.DataKeys[gvRecordList.SelectedIndex].Values["ItemID"]);
-							}
-							ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "openitemproperties", "openProperties(" + ItemID + "," + ModuleID + ",0);", true);
+                            Session["SelUserID"] = OrigID;
+                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "openitemproperties", "openProperties(0," + ModuleID + ",0);", true);
                             break;
                         case "move":
                             string SourcePath = Server.UrlEncode(p3Tree.SelectedNode.ValuePath);
@@ -2188,27 +2180,27 @@ namespace Paradigm3
                                 break;
                             case "3":
                                 imageurl = "~/images/document.png";
-                                addModule = true;
+                                if (ModuleAccess[2] == "3|1")
+                                {
+                                    addModule = true;
+                                }
                                 break;
                             case "4":
-                                if (ModAccess.Contains("4|1"))
-                                //if (ModuleAccess[3] == "4|1")
+                                if (ModuleAccess[3] == "4|1")
                                 {
                                     addModule = true;
                                 }
                                 imageurl = "~/images/record.png";
                                 break;
                             case "6":
-                                if (ModAccess.Contains("6|1"))
-                                //if (ModuleAccess[4] == "6|1")
+                                if (ModuleAccess[4] == "6|1")
                                 {
                                     addModule = true;
                                 }
                                 imageurl = "~/images/improvement.png";
                                 break;
                             case "12":
-                                if (ModAccess.Contains("12|1"))
-                                //if (ModuleAccess[5] == "12|1")
+                                if (ModuleAccess[5] == "12|1")
                                 {
                                     addModule = true;
                                 }
@@ -2247,6 +2239,11 @@ namespace Paradigm3
                     mnuModules.Items.Add(mnuUser);
                     initHeight += 32;
                 }
+                //else if (UserStatus == 0 && ModuleAccess[1] == "1|1")
+                //{
+                //    mnuModules.Items.Add(mnuUser);
+                //    initHeight += 32;
+                //}
 
                 // Add Action Item Menu Item
                 MenuItem mnuAI = new MenuItem()

@@ -506,7 +506,7 @@ function openReportWindow(ModuleID, GroupID, ReportID) {
 }
 
 //// Open Rename
-function openRenameWindow(moduleid, origid, userid, isgroup) {
+function openrenamewindow(moduleid, origid, userid, isgroup) {
     var renamepath = 'viewrename.aspx?moduleid=' + moduleid + '&origid=' + origid + '&userid=' + userid + '&isgroup=' + isgroup;
     var windowwidth = 550;
     var windowheight = 280;
