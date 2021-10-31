@@ -708,3 +708,7 @@ embed {
                 background-color: #0078d7;
                 color: #fff;
             }
+
+textarea {
+    resize: none;
+}
