@@ -28,23 +28,22 @@ namespace Paradigm3.custom.amtrak
 		{
 			List<AmtrakCategory> categories = Amtrak_Categories();
 			ViewState["Categories"] = categories;
-			Get_Styles();
-			Get_Fleets();
+
 			Get_Types();
+			Get_Fleets();
 			Get_Systems();
-			Get_DocTypes();
 			Get_Locations();
-			Get_Contractors();
+			Get_External();
 		}
 
-		private void Get_Styles()
+		private void Get_Types()
 		{
-			LBStyle.Items.Clear();
+			LBType.Items.Clear();
 			List<AmtrakCategory> styles = (List<AmtrakCategory>)ViewState["Categories"];
-			styles = styles.Where(s => s.CatCaption.Contains("1_") && !s.CatCaption.Contains("__")).OrderBy(s => s.CatCaption).ToList();
+			styles = styles.Where(s => s.CatCaption.StartsWith("1_")).OrderBy(s => s.CatCaption).ToList();
 			foreach (AmtrakCategory style in styles)
 			{
-				LBStyle.Items.Add(new ListItem(style.CatCaption.Substring(2), style.CatID.ToString()));
+				LBType.Items.Add(new ListItem(style.CatCaption.Substring(2), style.CatID.ToString()));
 			}
 		}
 
@@ -52,21 +51,10 @@ namespace Paradigm3.custom.amtrak
 		{
 			LBFleet.Items.Clear();
 			List<AmtrakCategory> styles = (List<AmtrakCategory>)ViewState["Categories"];
-			styles = styles.Where(s => s.CatCaption.Contains("2_") && !s.CatCaption.Contains("__")).OrderBy(s => s.CatCaption).ToList();
+			styles = styles.Where(s => s.CatCaption.StartsWith("2_")).OrderBy(s => s.CatCaption).ToList();
 			foreach (AmtrakCategory style in styles)
 			{
 				LBFleet.Items.Add(new ListItem(style.CatCaption.Substring(2), style.CatID.ToString()));
-			}
-		}
-
-		private void Get_Types()
-		{
-			LBType.Items.Clear();
-			List<AmtrakCategory> styles = (List<AmtrakCategory>)ViewState["Categories"];
-			styles = styles.Where(s => s.CatCaption.Contains("3_") && !s.CatCaption.Contains("__")).OrderBy(s => s.CatCaption).ToList();
-			foreach (AmtrakCategory style in styles)
-			{
-				LBType.Items.Add(new ListItem(style.CatCaption.Substring(2), style.CatID.ToString()));
 			}
 		}
 
@@ -74,21 +62,10 @@ namespace Paradigm3.custom.amtrak
 		{
 			LBSystem.Items.Clear();
 			List<AmtrakCategory> styles = (List<AmtrakCategory>)ViewState["Categories"];
-			styles = styles.Where(s => s.CatCaption.Contains("4_") && !s.CatCaption.Contains("__")).OrderBy(s => s.CatCaption).ToList();
+			styles = styles.Where(s => s.CatCaption.StartsWith("3_")).OrderBy(s => s.CatCaption).ToList();
 			foreach (AmtrakCategory style in styles)
 			{
 				LBSystem.Items.Add(new ListItem(style.CatCaption.Substring(2), style.CatID.ToString()));
-			}
-		}
-
-		private void Get_DocTypes()
-		{
-			LBDocType.Items.Clear();
-			List<AmtrakCategory> styles = (List<AmtrakCategory>)ViewState["Categories"];
-			styles = styles.Where(s => s.CatCaption.Contains("5_") && !s.CatCaption.Contains("__")).OrderBy(s => s.CatCaption).ToList();
-			foreach (AmtrakCategory style in styles)
-			{
-				LBDocType.Items.Add(new ListItem(style.CatCaption.Substring(2), style.CatID.ToString()));
 			}
 		}
 
@@ -96,21 +73,21 @@ namespace Paradigm3.custom.amtrak
 		{
 			LBLocation.Items.Clear();
 			List<AmtrakCategory> styles = (List<AmtrakCategory>)ViewState["Categories"];
-			styles = styles.Where(s => s.CatCaption.Contains("6_") && !s.CatCaption.Contains("__")).OrderBy(s => s.CatCaption).ToList();
+			styles = styles.Where(s => s.CatCaption.StartsWith("4_")).OrderBy(s => s.CatCaption).ToList();
 			foreach (AmtrakCategory style in styles)
 			{
 				LBLocation.Items.Add(new ListItem(style.CatCaption.Substring(2), style.CatID.ToString()));
 			}
-		}
+		}		
 
-		private void Get_Contractors()
+		private void Get_External()
 		{
-			LBContractor.Items.Clear();
+			LBExternal.Items.Clear();
 			List<AmtrakCategory> styles = (List<AmtrakCategory>)ViewState["Categories"];
-			styles = styles.Where(s => s.CatCaption.Contains("7_") && !s.CatCaption.Contains("__")).OrderBy(s => s.CatCaption).ToList();
+			styles = styles.Where(s => s.CatCaption.StartsWith("5_")).OrderBy(s => s.CatCaption).ToList();
 			foreach (AmtrakCategory style in styles)
 			{
-				LBContractor.Items.Add(new ListItem(style.CatCaption.Substring(2), style.CatID.ToString()));
+				LBExternal.Items.Add(new ListItem(style.CatCaption.Substring(2), style.CatID.ToString()));
 			}
 		}
 
@@ -125,26 +102,24 @@ namespace Paradigm3.custom.amtrak
 			switch (arg)
 			{
 				case "submit":
-					string styleFilter = string.Empty;
-					string fleetFilter = string.Empty;
 					string typeFilter = string.Empty;
+					string fleetFilter = string.Empty;
 					string systemFilter = string.Empty;
-					string docTypeFilter = string.Empty;
 					string locationFilter = string.Empty;
-					string contractorFilter = string.Empty;
+					string externalFilter = string.Empty;
 
-					// Set Style Filters
-					foreach(ListItem li in LBStyle.Items)
+					// Set Type Filters
+					foreach(ListItem li in LBType.Items)
 					{
 						if (li.Selected)
 						{
-							if (string.IsNullOrEmpty(styleFilter))
+							if (string.IsNullOrEmpty(typeFilter))
 							{
-								styleFilter = "[CatID] = " + li.Value + " OR";
+								typeFilter = "[CatID] = " + li.Value + " OR";
 							}
 							else
 							{
-								styleFilter = styleFilter + " [CatID] = " + li.Value + " OR";
+								typeFilter = typeFilter + " [CatID] = " + li.Value + " OR";
 							}
 						}
 					}
@@ -165,24 +140,8 @@ namespace Paradigm3.custom.amtrak
 						}
 					}
 
-					// Set Type Filters
-					foreach(ListItem li in LBType.Items)
-					{
-						if (li.Selected)
-						{
-							if (string.IsNullOrEmpty(typeFilter))
-							{
-								typeFilter = " [CatID] = " + li.Value + " OR";
-							}
-							else
-							{
-								typeFilter = typeFilter + " [CatID] = " + li.Value + " OR";
-							}
-						}
-					}
-
 					// Set System Filters
-					foreach (ListItem li in LBSystem.Items)
+					foreach(ListItem li in LBSystem.Items)
 					{
 						if (li.Selected)
 						{
@@ -197,40 +156,40 @@ namespace Paradigm3.custom.amtrak
 						}
 					}
 
-					// Set Document Type Filters
-					foreach (ListItem li in LBDocType.Items)
+					// Set Location Filters
+					foreach (ListItem li in LBLocation.Items)
 					{
 						if (li.Selected)
 						{
-							if (string.IsNullOrEmpty(docTypeFilter))
+							if (string.IsNullOrEmpty(locationFilter))
 							{
-								docTypeFilter = " [CatID] = " + li.Value + " OR";
+								locationFilter = " [CatID] = " + li.Value + " OR";
 							}
 							else
 							{
-								docTypeFilter = docTypeFilter + " [CatID] = " + li.Value + " OR";
+								locationFilter = locationFilter + " [CatID] = " + li.Value + " OR";
 							}
 						}
 					}
 
-					// Set Contractor Filters
-					foreach (ListItem li in LBContractor.Items)
+					// Set External Filters
+					foreach (ListItem li in LBExternal.Items)
 					{
 						if (li.Selected)
 						{
-							if (string.IsNullOrEmpty(contractorFilter))
+							if (string.IsNullOrEmpty(externalFilter))
 							{
-								contractorFilter = " [CatID] = " + li.Value + " OR";
+								externalFilter = " [CatID] = " + li.Value + " OR";
 							}
 							else
 							{
-								contractorFilter = contractorFilter + " [CatID] = " + li.Value + " OR";
+								externalFilter = externalFilter + " [CatID] = " + li.Value + " OR";
 							}
 						}
 					}
 
 					// Build complete Search Filter string
-					string searchFilter = styleFilter + fleetFilter + typeFilter + systemFilter + docTypeFilter + locationFilter + contractorFilter;
+					string searchFilter = typeFilter + fleetFilter + systemFilter + locationFilter + externalFilter;
 					if (!string.IsNullOrEmpty(searchFilter))
 					{
 						searchFilter = searchFilter.Substring(0, searchFilter.Length - 3);
@@ -255,7 +214,7 @@ namespace Paradigm3.custom.amtrak
 					ScriptManager.RegisterStartupScript(UpdatePanel1, GetType(), "restore", "setDisplay()", true);
 					break;
 				case "reset":
-					foreach (ListItem li in LBStyle.Items)
+					foreach (ListItem li in LBType.Items)
 					{
 						if (li.Selected)
 						{
@@ -269,21 +228,7 @@ namespace Paradigm3.custom.amtrak
 							li.Selected = false;
 						}
 					}
-					foreach (ListItem li in LBType.Items)
-					{
-						if (li.Selected)
-						{
-							li.Selected = false;
-						}
-					}
 					foreach (ListItem li in LBSystem.Items)
-					{
-						if (li.Selected)
-						{
-							li.Selected = false;
-						}
-					}
-					foreach (ListItem li in LBDocType.Items)
 					{
 						if (li.Selected)
 						{
@@ -297,13 +242,14 @@ namespace Paradigm3.custom.amtrak
 							li.Selected = false;
 						}
 					}
-					foreach (ListItem li in LBContractor.Items)
+					foreach (ListItem li in LBExternal.Items)
 					{
 						if (li.Selected)
 						{
 							li.Selected = false;
 						}
 					}
+
 					ScriptManager.RegisterStartupScript(UpdatePanel1, GetType(), "restore", "resetDisplay()", true);
 					GVResults.DataSource = null;
 					GVResults.DataBind();

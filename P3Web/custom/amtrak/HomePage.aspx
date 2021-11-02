@@ -5,7 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-	<link href="../../styles/homepanel.css" rel="stylesheet" />
 	<link href="amtrakSearch.css" rel="stylesheet" />
 </head>
 <body>
@@ -14,6 +13,10 @@
         <div class="homeContent">
 			<div class="customBanner">
 				<img id="imgLogo" runat="server" src="amtrak_logo.png" style="width: auto; height: 100px; margin: 0;" />
+				<img id="imgAcela" runat="server" src="acela.png" style="width: auto; height: 100px; margin: 0;" />
+				<span style="padding: 10px; font-size: 1.2em; color: #fff;">
+					Paradigm is the document management system used by the Mechanical Department to track, manage, and store documentation and records
+				</span>
 			</div>			
 			<asp:Panel ID="pnlActionItems" runat="server" CssClass="amtrak-ActionItems" Visible="false">
 				<img src="../../images/actionitem.png" style="height: 20px; margin-right: 10px;" />
@@ -30,25 +33,9 @@
 							<div class="homeBtn-header">Browse</div>
 							<div class="homeBtn-description">Mechanical Documents</div>
 						</div>
-						<div class="homeBtn" onclick="mechBulletinRequest()">
-							<div class="homeBtn-header">Mechanical Bulletin Request</div>
-						</div>
-						<div class="homeBtn" onclick="docChangeRequest()">
-							<div class="homeBtn-header">Document Change Request (TFBRs)</div>
-							<div class="homeBtn-description">(New and existing Mechanical Department Document Change Requests)</div>
-						</div>
-						<div class="homeBtn" onclick="docManagementGeneralRequest()">
-							<div class="homeBtn-header">Document Management General Request</div>
-							<div class="homeBtn-description">(New User request, Account changes & misc.)</div>
-						</div>
-						<div class="homeBtn" onclick="openFAQ()">
-							<div class="homeBtn-header">Document Management FAQs</div>
-						</div>
-					</div>	
-					<div class="amtrak-data">
 						<div class="grid">
 							<div class="gridHeader">
-								Recently Released Mechanical Bulletins
+								Recently Released Mechanical Bulletins (Last 60 Days)
 							</div>
 							<div class="gridBody">
 								<asp:UpdatePanel ID="udpGridView" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
@@ -80,57 +67,119 @@
 								</asp:UpdatePanel>								
 							</div>							
 						</div>
-						<div class="dcr-message">
-								Contact your local DCR for site-specific documentation
+					</div>	
+					<div class="amtrak-links">
+						<div>
+							<p style="text-decoration: underline; margin: 0; padding: 0;">Safety</p>
+							<ul style="margin: 0; padding: 10px 0 10px 15px;">
+								<li>
+									Safety Programs: Risk Management (JSAs)
+								</li>
+								<li>
+									Safety Programs: Promotion
+								</li>
+								<li>
+									Safety Walkabout
+								</li>
+								<li>
+									Report Safety Concerns
+								</li>
+								<li>
+									Safety Rule Book
+								</li>
+							</ul>
 						</div>
 						<div>
-							<hr />
-						</div>						
-						<div class="links">							
-							<div class="safety-logo">
-								<img src="safety.png" />
-							</div>
-							<div class="safety-links">
-								<ul>
-									<li>
-										<a href="https://allaboard.amtrak.com/s/article/Safety-Programs-Risk-Management" target="_blank">Safety Programs: Risk Management</a>
-									</li>
-									<li>
-										<a href="https://allaboard.amtrak.com/s/article/Safety-Programs-Promotion" target="_blank">Safety Programs: Promotion</a>
-										
-									</li>
-									<li>
-										<a href="#" onclick="addAmtrakRecord(4,0,164,237);">Generate New Safety Walkabout</a>										
-									</li>
-									<li>
-										Report all Safety-Related Concerns to <a href="mailto:systemsafety@amtrak.com">systemsafety@amtrak.com</a> or 800-331-0008
-									</li>
-								</ul>
-							</div>
+							<p style="text-decoration: underline; margin: 0; padding: 0;">Rolling Stock Engineering</p>
+							<ul style="margin: 0; padding: 10px 0 10px 15px;">
+								<li>
+									Document Discrepencies/Concerns
+								</li>
+								<li>
+									EPDM (Drawings/Schematics)
+								</li>
+								<li>
+									RESR Requests
+								</li>
+							</ul>
 						</div>
 						<div>
-							<hr />
+							<p style="text-decoration: underline; margin: 0; padding: 0;">Mechanical Department Documentation</p>
+							<ul style="margin: 0; padding: 10px 0 10px 15px;">
+								<li>
+									Mechanical Bulletin Request
+								</li>
+								<li>
+									New Document Request
+								</li>
+								<li>
+									Existing Document Change Request
+								</li>
+							</ul>
+							<span style="font-size: .75em;">
+								* Applicable to entire Mechanical Department. Contact local DCR for site-specific infomration.
+							</span>
 						</div>
-						<div class="links2">
-							<div>
-								<img src="../../images/improvement.png" />
-								<a style="text-decoration: none;" href="http://pdgmweb01p/paradigm/DOCS/D0081396.pdf" target="_blank">Document Management Contacts</a>
-							</div>
-							<div>
-								<img src="../../images/improvement.png" />
-								<a style="text-decoration: none;" href="#" onclick="showComingSoon()">RSER Requests</a>
-							</div>
+						<div>
+							<p style="text-decoration: underline; margin: 0; padding: 0;">Assistance</p>
+							<ul style="margin: 0; padding: 10px 0 10px 15px;">
+								<li>
+									Document Management FAQ
+								</li>
+								<li>
+									Definitions and Acronyms
+								</li>
+								<li>
+									WMS/Arrow Help
+								</li>
+							</ul>
+						</div>
+						<div>
+							<p style="text-decoration: underline; margin: 0; padding: 0;">Links</p>
+							<ul style="margin: 0; padding: 10px 0 10px 15px;">
+								<li>
+									All Aboard
+								</li>
+								<li>
+									NRPC Forms
+								</li>
+								<li>
+									Mechanical Department Forms
+								</li>
+								<li>
+									Service Now
+								</li>
+							</ul>
+						</div>
+						<div>
+							<p style="text-decoration: underline; margin: 0; padding: 0;">Paradigm</p>
+							<ul style="margin: 0; padding: 10px 0 10px 15px;">
+								<li>
+									Paradigm Inquiry
+								</li>
+								<li>
+									New Paradigm User Request
+								</li>
+								<li>
+									Paradigm User Assistance
+								</li>
+								<li>
+									DCR Assistance
+								</li>
+							</ul>
+						</div>
+						<div style="width: 100%;">
+							<p style="text-decoration: underline; margin: 0; padding: 0;">About this Web Application</p>
+							<ul style="margin: 0; padding: 10px 0 10px 15px;">
+								<li>
+									Document Management Contacts
+								</li>
+								<li>
+									Feedback
+								</li>
+							</ul>
 						</div>
 					</div>
-				<div id="comingsoon" class="coming-soon">
-					<div class="cs-title" style="background-color: #fff; border-bottom: 1px solid #000; position: relative;">
-						<span>Coming Soon...</span>
-						<img src="../../images/squareclose.png" onclick="hideComingSoon()" />
-					</div>
-					<div class="cs-message">
-						<h2>Coming Soon!</h2>
-					</div>					
-				</div>
 			</div>
 		</div>
     </form>

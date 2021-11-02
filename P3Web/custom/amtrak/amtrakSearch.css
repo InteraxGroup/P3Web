@@ -3,24 +3,25 @@
 	padding: 0;
 	font-family: Arial;
 	font-size: 16px;
-	background-color: #003f65;
 }
 
 #container {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
+	overflow: hidden;
 }
 
 	#container #filters {
 		order: 1;
-		flex: 0 0 300px;		
-		background-color: #f1f1f1;
+		flex: 0 0 250px;
 		box-sizing: border-box;
 		position: relative;
 		overflow-y: auto;
 		overflow-x: hidden;
+		display: flex;
+		flex-direction: column;
 	}
 
 	#container #divider {
@@ -34,20 +35,24 @@
 
 	#container #results {
 		order: 2;
-		flex-grow: 100;
+		flex: 1 1 auto;
 		background-color: #fff;
 		box-sizing: border-box;
 	}
 
 .amtrakTitleBar {
-	display: block;
 	padding: 5px 10px;
-	background-color: #598AD7;
-	background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4));
+	background-color: #00537e;
 	color: #fff;
-	font-size: 1.2em;
-	font-weight: 600;
+	font-size: 1em;
+	font-weight: 500;
 	border-bottom: 1px solid black;
+	width: 100%;
+}
+
+.search-results {
+	height: calc(100vh - 30px);
+	overflow-y: auto;
 }
 
 .homeContent {
@@ -58,21 +63,21 @@
 
 .customBanner {
 	flex: 0 0 100px;
-	background-color: #003f65;
-	background: url(acela.png) no-repeat right;
-	background-size: auto 100px;
-	border-bottom: 1px solid #000;
+	background-color: #00537e;
+	border-bottom: 1px solid #fff;
+	display: flex;
+	align-items: center;
 }
 
 .amtrak-ActionItems {
-	flex: 0 0 24px;
+	flex: 0 0 30px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background-color: #ffc709;
 	border-bottom: 1px solid #fff;
 	text-align: center;
-	color: #000;
+	color: #002436;
 	font-size: 1.25em;
 	font-weight: 600;
 	box-sizing: border-box;
@@ -80,7 +85,7 @@
 }
 
 .customContent {
-	flex: 1 1 1fr;
+	flex: 1 1 auto;
 	position: relative;
 	margin: 0;
 	padding: 0;
@@ -88,11 +93,34 @@
 	flex-direction: row;
 	height: 100%;
 	overflow: auto;
+	background-color: #fff;
 }
+
+.amtrak-buttons {
+	flex: 0 0 33%;
+	display: flex;
+	flex-direction: column;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.amtrak-links {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: row;
+	box-sizing: border-box;
+	flex-wrap: wrap;
+}
+
+	.amtrak-links div {
+		width: 350px;
+		padding: 5px 0 0 15px;
+		color: #002436;
+	}
 
 .btn {
 	display: block;
-	width: 280px;
+	width: 220px;
 	padding: 5px;
 	margin: 0 auto;
 	font-size: 1rem;
@@ -100,158 +128,54 @@
 	border-radius: 5px;
 	box-sizing: border-box;
 	cursor: pointer;
-	background-color: cornflowerblue;
+	background-color: #167fa6;
 	text-align: center;
 	text-transform: uppercase;
-	font-weight: 700;
+	font-weight: 500;
 	color: #fff;
 	transition: all 100ms ease-in-out;
 }
 
 	.btn:hover {
-		background-color: #fff;
-		border: 1px solid darkblue;
-		color: #787878;
+		background-color: #006aa3;
+		border: 1px solid #003a60;
 	}
 
-.form-group {
-	padding: 2px;
+.btn-control {
+	padding: 5px 10px;
+	margin: 0 auto;
+	font-size: 1rem;
+	border: 1px solid darkblue;
+	border-radius: 5px;
 	box-sizing: border-box;
-}
-
-.selectList {
-	font-size: .9em;
-	border: 0 solid #ccc;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	height: 0;
-	width: 100%;
-	transition: height 200ms;
-	margin-top: 5px;
-	padding-left: 5px;
-}
-
-.showList {
-	height: 80px;
-	border: 1px solid #ccc;
-}
-
-.form-submit {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	padding: 2px;
-	border-top: 1px solid #ccc;
-	box-sizing: border-box;
-}
-
-.gv {
-	width: 895px;
-	font: normal 1em arial, verdana;
-}
-
-.gvHeader {
-	background-color: #f0f0f0;
-	color: #000;
-	text-decoration: none;
-	text-align: left;
-	font: bold 10pt arial, verdana;
-	height: 20px;
-	border-bottom: 1px solid black;
-	padding: 5px;
-	box-sizing: border-box;
-}
-
-	.gvHeader a {
-		color: #000000;
-		text-decoration: none;
-		padding: 5px;
-	}
-
-.gvRow {
-	background-color: #FFFFFF;
-	color: #000000;
-	vertical-align: middle;
-	font: normal 8pt arial, verdana;
-	padding: 5px;
-}
-
-	.gv td {
-		padding: 5px 7px;
-		cursor: pointer;
-		box-sizing: border-box;
-	}
-
-.gvAltRow {
-	background-color: #f1f1f1;
-	color: #000;
-	vertical-align: middle;
-	font: normal 8pt arial, verdana;
-}
-
-.gvSelRow {
-	background-color: #0078d7;
-	color: #fff;
-	vertical-align: middle;
-	font: normal 8pt arial, verdana;
-}
-
-.gvPager td {
-	padding: 0;
-}
-
-.gvPager a, .gvPager span {
-	display: block;
-	height: 20px;
-	min-width: 20px;
-	font-weight: 700;
+	cursor: pointer;
+	background-color: #167fa6;
 	text-align: center;
-	text-decoration: none;
-	padding: 5px;
-	font-size: 1.25em;
-	border-radius: 2px;
+	text-transform: uppercase;
+	font-weight: 500;
+	color: #fff;
 	transition: all 100ms ease-in-out;
 }
 
-.gvPager a {
-	background-color: #f1f1f1;
-	color: #787878;
-	border: 1px solid #969696;
-}
-
-	.gvPager a:hover {
-		background-color: #fff;
-		border: 1px solid darkblue;
-		color: darkblue;
+	.btn-control:hover {
+		background-color: #006aa3;
+		border: 1px solid #003a60;
 	}
 
-.gvPager span {
-	background-color: cornflowerblue;
-	color: #fff;
-	border: 1px solid #000;
-}
-
-.amtrak-buttons {
-	flex: 0 0 300px;
-	display: flex;
-	flex-direction: column;
-	padding: 5px;
-	box-sizing: border-box;
-}
-
 .homeBtn {
-	flex: 1 1 auto;
+	flex: 0 0 50px;
+	width: 300px;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	padding: 0 2px;
-	background-color: #fff;
-	background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.2));
+	background-color: #167fa6;
+	/*background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.2));*/
 	border: 1px solid #fff;
 	border-radius: 5px;
-	color: #000;
+	color: #fff;
 	cursor: pointer;
 	transition: background-color 100ms ease-in-out;
 	margin-bottom: 10px;
@@ -259,7 +183,7 @@
 }
 
 	.homeBtn:hover {
-		background-color: #dcdcdc;
+		background-color: #006aa3;
 	}
 
 	.homeBtn .homeBtn-header {
@@ -268,7 +192,7 @@
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		color: #000;
+		color: #fff;
 		margin: 0;
 		padding: 0;
 		font-size: .9em;
@@ -300,29 +224,30 @@
 	flex-wrap: nowrap;
 }
 
-	.amtrak-data .grid {
-		flex: 0 0 180px;
-		background-color: #fff;
-		border: 1px solid #000;
+.grid {
+	flex: 1 1 auto;
+	background-color: #fff;
+	border: 1px solid #000;
+	box-sizing: border-box;
+}
+
+	.grid .gridHeader {
+		width: 100%;
+		box-sizing: border-box;
+		border-bottom: 1px solid #000;
+		background-color: #00537e;
+		color: #fff;
+		text-align: center;
+		font-size: .9em;
+		font-weight: 500;
+		padding: 5px;
 	}
 
-		.amtrak-data .grid .gridHeader {
-			width: 100%;
-			box-sizing: border-box;
-			border: 1px solid #fff;
-			text-align: center;
-			font-size: 1em;
-			font-weight: 600;
-			padding: 5px;
-			background-color: #003f65;
-			color: #fff;
-		}
-
-		.amtrak-data .grid .gridBody {
-			width: 100%;
-			height: 180px;
-			overflow-y: auto;
-		}
+	.grid .gridBody {
+		width: 100%;
+		height: 180px;
+		overflow-y: auto;
+	}
 
 	.amtrak-data .dcr-message {
 		flex: 0 0 30px;
@@ -424,43 +349,123 @@
 	vertical-align: middle;
 }
 
-.coming-soon {
-	display: none;
-	flex-direction: column;
-	position: absolute;
-	top: 100px;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 300px;
-	height: 100px;
-	text-align: center;
-	border: 1px solid #000;
-	border-radius: 5px;
-	background-color: #f1f1f1;
-	overflow: hidden;
-	box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+.form-group {
+	flex: 1 1 auto;
+	padding: 2px;
+	box-sizing: border-box;
 }
 
-.cs-title {
-	flex: 0 0 32px;
-	background-color: #fff;
-	border-bottom: 1px solid #000;
-	position: relative;
-	display: flex;
-	align-items: center;
-	text-align: left;
+.selectList {
+	font-size: .75em;
+	border: 0 solid #ccc;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	height: 0;
+	width: 100%;
+	transition: height 200ms;
+	margin-top: 5px;
 	padding-left: 5px;
 }
 
-	.cs-title img {
-		position: absolute;
-		top: 0;
-		right: 0;
-		cursor: pointer;
+.showList {
+	height: 80px;
+	border: 1px solid #ccc;
+}
+
+.form-submit {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 10px;
+	border-top: 1px solid #ccc;
+	box-sizing: border-box;
+	text-align: center;
+	background-color: #e6e9eb;
+}
+
+.gv {
+	width: 895px;
+	font: normal 1em arial, verdana;
+}
+
+.gvHeader {
+	background-color: #f0f0f0;
+	color: #000;
+	text-decoration: none;
+	text-align: left;
+	font: bold 10pt arial, verdana;
+	height: 20px;
+	border-bottom: 1px solid black;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+	.gvHeader a {
+		color: #000000;
+		text-decoration: none;
+		padding: 5px;
 	}
 
-.cs-message {
-	flex: 1 1 auto;
-	padding-top: 20px;
+.gvRow {
+	background-color: #FFFFFF;
+	color: #000000;
+	vertical-align: middle;
+	font: normal 8pt arial, verdana;
+	padding: 5px;
+}
+
+.gv td {
+	padding: 5px 7px;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+
+.gvAltRow {
 	background-color: #f1f1f1;
+	color: #000;
+	vertical-align: middle;
+	font: normal 8pt arial, verdana;
+}
+
+.gvSelRow {
+	background-color: #0078d7;
+	color: #fff;
+	vertical-align: middle;
+	font: normal 8pt arial, verdana;
+}
+
+.gvPager td {
+	padding: 0;
+}
+
+.gvPager a, .gvPager span {
+	display: block;
+	height: 20px;
+	min-width: 20px;
+	font-weight: 700;
+	text-align: center;
+	text-decoration: none;
+	padding: 5px;
+	font-size: 1.25em;
+	border-radius: 2px;
+	transition: all 100ms ease-in-out;
+}
+
+.gvPager a {
+	background-color: #f1f1f1;
+	color: #787878;
+	border: 1px solid #969696;
+}
+
+	.gvPager a:hover {
+		background-color: #fff;
+		border: 1px solid darkblue;
+		color: darkblue;
+	}
+
+.gvPager span {
+	background-color: cornflowerblue;
+	color: #fff;
+	border: 1px solid #000;
 }

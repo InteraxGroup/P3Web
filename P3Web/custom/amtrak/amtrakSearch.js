@@ -1,7 +1,7 @@
 ﻿function openSearch() {
 	var pth = "/custom/amtrak/AmtrakSearch.aspx";
-	var windowHeight = 800;
-	var windowWidth = 1200;
+	var windowHeight = 720;
+	var windowWidth = 1150;
 	var xPos = screen.width / 2 - windowWidth / 2;
 	window.open(pth, 'amtrakSearch', 'height=' + windowHeight + ',width=' + windowWidth + ',top=20,left=' + xPos + ',location=0,status=0,menubar=0,toolbar=0,scrollbars=0,resizable=0');
 	//window.open(pth);
