@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Paradigm 3 Web Application")]
-[assembly: AssemblyDescription("20211031")]
+[assembly: AssemblyDescription("20211102")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Interax Group, Inc.")]
 [assembly: AssemblyProduct("P3Web")]

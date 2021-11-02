@@ -824,6 +824,61 @@ namespace Paradigm3.datalayer
 			}
 		}
 
+       
+
+        public static async Task<bool> HasChangetoEvidencePemission(int OrigID, int UserID)
+        {
+            bool result = false;
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("[dbo].[v4_ListView_Get_ItemToEvidencePermission]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };           
+                cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                SqlDataReader sdr = await cmd.ExecuteReaderAsync();
+                while (sdr.Read())
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+
+        public static async Task<bool> HasChangetoItemPemission(int OrigID, int UserID)
+        {
+            bool result = false;
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("[dbo].[v4_ListView_Get_EvidenceToItemPermission]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                SqlDataReader sdr = await cmd.ExecuteReaderAsync();
+                while (sdr.Read())
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
         #endregion
 
         #region Asynchronous Functions and Methods
@@ -1134,6 +1189,30 @@ namespace Paradigm3.datalayer
            
         }
 
+        public static async Task ChangeToEvidenceAsync(int ModuleID, int OrigID, int UserID, int IsEvidence)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("[dbo].[v4_Default_ChangeEvidence]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+               
+                cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;           
+                cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;  
+                cmd.Parameters.Add("@IsEvidence", SqlDbType.Bit, 10).Value = IsEvidence;
+                await cmd.ExecuteNonQueryAsync();
+
+            }
+
+        }
         public static DataTable Get_CopyVersion(int OrigID, int Status, int ModuleID, string Name)
         {
             DataTable dt = new DataTable();

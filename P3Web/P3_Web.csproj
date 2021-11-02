@@ -626,6 +626,7 @@
     <Content Include="ViewAssign.aspx" />
     <Content Include="ViewAssignment.aspx" />
     <Content Include="ViewAttachment.aspx" />
+    <Content Include="ViewChangeEvidence.aspx" />
     <Content Include="ViewCopy.aspx" />
     <Content Include="ViewDelete.aspx" />
     <Content Include="ViewDocCheckin.aspx" />
@@ -816,6 +817,10 @@
     </Compile>
     <Compile Include="ViewAttachment.aspx.designer.cs">
       <DependentUpon>ViewAttachment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewChangeEvidence.aspx.cs">
+      <DependentUpon>ViewChangeEvidence.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewCopy.aspx.cs">
       <DependentUpon>ViewCopy.aspx</DependentUpon>

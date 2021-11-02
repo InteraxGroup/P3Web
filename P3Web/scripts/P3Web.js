@@ -506,7 +506,7 @@ function openReportWindow(ModuleID, GroupID, ReportID) {
 }
 
 //// Open Rename
-function openrenamewindow(moduleid, origid, userid, isgroup) {
+function openRenameWindow(moduleid, origid, userid, isgroup) {
     var renamepath = 'viewrename.aspx?moduleid=' + moduleid + '&origid=' + origid + '&userid=' + userid + '&isgroup=' + isgroup;
     var windowwidth = 550;
     var windowheight = 280;
@@ -539,7 +539,16 @@ function openCopyWindow(ModuleID, OrigID, UserID, SourcePath, IsGroup) {
     var windowWidth = 700;
     var windowHeight = 600;
     var xPos = screen.width / 2 - windowWidth / 2;
-    window.open(copyPath, 'deleteWindow' + OrigID, 'height=' + windowHeight + ',width=' + windowWidth + ',top=50px,left=' + xPos + '');
+    window.open(copyPath, 'copyWindow' + OrigID, 'height=' + windowHeight + ',width=' + windowWidth + ',top=50px,left=' + xPos + '');
+}
+
+// Open ChangeEvidence
+function openEvidenceWindow(ModuleID, OrigID, UserID, IsEvidenceCheck) {
+    var copyPath = 'ViewChangeEvidence.aspx?ModuleID=' + ModuleID + '&OrigID=' + OrigID + '&UserID=' + UserID + '&isEvidence=' + IsEvidenceCheck;
+    var windowWidth = 500;
+    var windowHeight = 150;
+    var xPos = screen.width / 2 - windowWidth / 2;
+    window.open(copyPath, 'evidenceWindow' + OrigID, 'height=' + windowHeight + ',width=' + windowWidth + ',top=300px,left=' + xPos + '');
 }
 
 // Status
