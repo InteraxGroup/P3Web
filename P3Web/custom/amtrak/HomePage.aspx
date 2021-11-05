@@ -13,10 +13,11 @@
         <div class="homeContent">
 			<div class="customBanner">
 				<img id="imgLogo" runat="server" src="amtrak_logo.png" style="width: auto; height: 100px; margin: 0;" />
+				
+				<div style="padding: 10px; font-size: 1.2em; color: #fff;">
+					Paradigm is the document management system used by the Amtrak Mechanical Department to track, manage, and store documentation and records.
+				</div>
 				<img id="imgAcela" runat="server" src="acela.png" style="width: auto; height: 100px; margin: 0;" />
-				<span style="padding: 10px; font-size: 1.2em; color: #fff;">
-					Paradigm is the document management system used by the Mechanical Department to track, manage, and store documentation and records
-				</span>
 			</div>			
 			<asp:Panel ID="pnlActionItems" runat="server" CssClass="amtrak-ActionItems" Visible="false">
 				<img src="../../images/actionitem.png" style="height: 20px; margin-right: 10px;" />
@@ -73,19 +74,19 @@
 							<p style="text-decoration: underline; margin: 0; padding: 0;">Safety</p>
 							<ul style="margin: 0; padding: 10px 0 10px 15px;">
 								<li>
-									Safety Programs: Risk Management (JSAs)
+									<a href="https://allaboard.amtrak.com/s/article/Safety-Programs-Risk-Management" target="_blank">Safety Programs: Risk Management (JSAs)</a>
 								</li>
 								<li>
-									Safety Programs: Promotion
+									<a href="https://allaboard.amtrak.com/s/article/Safety-Programs-Promotion" target="_blank">Safety Programs: Promotion</a>
 								</li>
 								<li>
-									Safety Walkabout
+									<a href="javascript:addAmtrakRecord(4,0,163,586);">Safety Walkabout</a>
 								</li>
 								<li>
-									Report Safety Concerns
+									<a href="javascript:alert('Report all safety-related concerns to systemsafety@amtrak.com or 800-331-0008.');">Report Safety Concerns</a>
 								</li>
 								<li>
-									Safety Rule Book
+									<a href="http://pdgmweb01p/paradigm/DOCS/D0080124.pdf" target="_blank">Safety Rule Book</a>
 								</li>
 							</ul>
 						</div>
@@ -93,13 +94,13 @@
 							<p style="text-decoration: underline; margin: 0; padding: 0;">Rolling Stock Engineering</p>
 							<ul style="margin: 0; padding: 10px 0 10px 15px;">
 								<li>
-									Document Discrepencies/Concerns
+									<a href="javascript:addAmtrakRecord(6,0,68,1326);">Document Discrepencies/Concerns</a>
 								</li>
 								<li>
-									EPDM (Drawings/Schematics)
+									<a href="javascript:alert('Send EPDM inquiries to junod@amtrak.com.');">EPDM (Drawings/Schematics)</a>
 								</li>
 								<li>
-									RESR Requests
+									<a href="javascript:alert('Coming Soon');">RSER Requests</a>
 								</li>
 							</ul>
 						</div>
@@ -107,30 +108,30 @@
 							<p style="text-decoration: underline; margin: 0; padding: 0;">Mechanical Department Documentation</p>
 							<ul style="margin: 0; padding: 10px 0 10px 15px;">
 								<li>
-									Mechanical Bulletin Request
+									<a href="https://amtrak.sharepoint.com/sites/mech/MMI_PFT/_layouts/15/listform.aspx?PageType=8&ListId=%7B69A3FF1F-519D-4B23-8E0E-58F093D107C7%7D&RootFolder=%2Fsites%2Fmech%2FMMI_PFT%2FLists%2FMechanical%20Bulletin%20Request%20Form&Source=https%3A%2F%2Famtrak.sharepoint.com%2Fsites%2Fmech%2FMMI_PFT%2FLists%2FMechanical%2520Bulletin%2520Request%2520Form%2FAllItems.aspx&ContentTypeId=0x010034DED711288FFA489441E6B17ECF73EE" target="_blank">Mechanical Bulletin Request</a>
 								</li>
 								<li>
-									New Document Request
+									<a href="javascript:addAmtrakRecord(6,0,68,1326);">New Document Request</a>
 								</li>
 								<li>
-									Existing Document Change Request
+									<a href="javascript:addAmtrakRecord(6,0,68,1326);">Existing Document Change Request</a>
 								</li>
 							</ul>
 							<span style="font-size: .75em;">
-								* Applicable to entire Mechanical Department. Contact local DCR for site-specific infomration.
+								* Applicable to entire Mechanical Department. Contact local DCR for site-specific information.
 							</span>
 						</div>
 						<div>
 							<p style="text-decoration: underline; margin: 0; padding: 0;">Assistance</p>
 							<ul style="margin: 0; padding: 10px 0 10px 15px;">
 								<li>
-									Document Management FAQ
+									<a href="http://pdgmweb01p/paradigm/DOCS/D0081397.pdf" target="_blank">Document Management FAQ</a>
 								</li>
 								<li>
-									Definitions and Acronyms
+									<a href="http://pdgmweb01p/paradigm/DOCS/D0082940.pdf" target="_blank">Definitions and Acronyms</a>
 								</li>
 								<li>
-									WMS/Arrow Help
+									<a href="../../Default.aspx?ModuleID=3&GroupID=6902" target="_parent">WMS/Arrow Help</a>
 								</li>
 							</ul>
 						</div>
@@ -138,16 +139,16 @@
 							<p style="text-decoration: underline; margin: 0; padding: 0;">Links</p>
 							<ul style="margin: 0; padding: 10px 0 10px 15px;">
 								<li>
-									All Aboard
+									<a href="https://allaboard.amtrak.com/s/" target="_blank">All Aboard</a>
 								</li>
 								<li>
-									NRPC Forms
+									<a href="http://corpapp01p/forms/" target="_blank">NRPC Forms</a>
 								</li>
 								<li>
-									Mechanical Department Forms
+									<a href="../../Default.aspx?ModuleID=3&GroupID=16463" target="_parent">Mechanical Department Forms</a>
 								</li>
 								<li>
-									Service Now
+									<a href="https://amtrak.service.now.com/sp" target="_blank">Service Now</a>
 								</li>
 							</ul>
 						</div>
@@ -155,16 +156,16 @@
 							<p style="text-decoration: underline; margin: 0; padding: 0;">Paradigm</p>
 							<ul style="margin: 0; padding: 10px 0 10px 15px;">
 								<li>
-									Paradigm Inquiry
+									<a href="mailto:DocMgmt_Mech@Amtrak.com">Paradigm Inquiry</a>
 								</li>
 								<li>
 									New Paradigm User Request
 								</li>
 								<li>
-									Paradigm User Assistance
+									<a href="../../Default.aspx?ModuleID=3&GroupID=12475" target="_parent">Paradigm User Assistance</a>
 								</li>
 								<li>
-									DCR Assistance
+									<a href="../../Default.aspx?ModuleID=3&GroupID=12475" target="_parent">DCR Assistance</a>
 								</li>
 							</ul>
 						</div>
@@ -172,10 +173,10 @@
 							<p style="text-decoration: underline; margin: 0; padding: 0;">About this Web Application</p>
 							<ul style="margin: 0; padding: 10px 0 10px 15px;">
 								<li>
-									Document Management Contacts
+									<a href="http://pdgmweb01p/paradigm/DOCS/D0081396.pdf" target="_blank">Document Management Contacts</a>
 								</li>
 								<li>
-									Feedback
+									<a href="mailto:DocMgmt_Mech@Amtrak.com">Feedback</a>
 								</li>
 							</ul>
 						</div>

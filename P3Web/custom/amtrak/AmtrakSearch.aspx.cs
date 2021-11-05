@@ -198,8 +198,8 @@ namespace Paradigm3.custom.amtrak
 					// Build Sql Command string
 					string sqlcmd = "SELECT a.[ItemID], a.[OrigID], a.[Name], a.[LabelName], a.[Version], a.[VersionDate] " +
 					"FROM[dbo].[Items3] AS a " +
-					"INNER JOIN[dbo].[CatgryValues] AS b ON a.[OrigID] = b.[OrigID] AND b.[ModuleID] = 3 AND b.[IDType] = 1 " +
-					"WHERE a.[Status] = 9 AND a.[IsDeleted] = 0 AND a.[IsWithDrawn] = 0 AND a.[TypeOfPublish] > 0 AND a.[Name] IS NOT NULL AND a.[Name] <> '' " + searchFilter +
+					"LEFT JOIN[dbo].[CatgryValues] AS b ON a.[OrigID] = b.[OrigID] AND b.[ModuleID] = 3 AND b.[IDType] = 1 " +
+					"WHERE a.[Status] = 9 AND a.[IsDeleted] = 0 AND a.[IsWithDrawn] = 0 AND a.[TypeOfPublish] > 0 AND ISNULL(a.[Name], '') <> '' " + searchFilter +
 					"GROUP BY a.[ItemID], a.[OrigID], a.[Name], a.[LabelName], a.[Version], a.[VersionDate] " +
 					"ORDER BY a.[Name]";
 
@@ -264,10 +264,9 @@ namespace Paradigm3.custom.amtrak
 		{
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
-				string itemid = GVResults.DataKeys[e.Row.RowIndex].Values["ItemID"].ToString();
-				string viewVar = itemid + ", 1";
+				string itemid = GVResults.DataKeys[e.Row.RowIndex].Values["OrigID"].ToString();
 				e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GVResults, "Select$" + e.Row.RowIndex);
-				e.Row.Attributes.Add("ondblclick", "openAmtrakDocument(" + viewVar + ");");
+				e.Row.Attributes.Add("ondblclick", "openAmtrakDocument(" + itemid + ");");
 			}
 		}
 
@@ -319,19 +318,15 @@ namespace Paradigm3.custom.amtrak
 			SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
 			using (conn)
 			{
-				if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
-					conn.Open();
-				}
-
+				await conn.OpenAsync();
 				SqlCommand cmd = new SqlCommand(sqlcmd, conn)
 				{
 					CommandType = CommandType.Text
 				};
-				SqlDataReader sdr = cmd.ExecuteReader();
+				SqlDataReader sdr = await cmd.ExecuteReaderAsync();
 				dt.Load(sdr);
 			}
-			return await Task.FromResult(dt);
+			return dt;
 		}
 
 		#endregion

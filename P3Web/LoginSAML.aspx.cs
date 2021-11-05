@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using Saml;
 using Paradigm3.datalayer;
+using System.Web.Security;
 
 namespace Paradigm3
 {
@@ -25,14 +26,20 @@ namespace Paradigm3
                 {
                     string user = samlResponse.GetNameID();
                     string[] userinfo = samlResponse.GetEmail().Split('@');
-                    string username = userinfo[0];
-
+                    string username = userinfo[0];                    
                     if (P3Security.IsWinP3User(username))
 					{
                         P3Security.Do_WinLogin(username);
-					}
+                        //ClientScript.RegisterStartupScript(GetType(), "", "alert('" + username + "');", true);
+                    }
+                    else
+					{
+                        P3Security.Do_SSONonP3Login(username);
+                        //ClientScript.RegisterStartupScript(GetType(), "", "alert('Not a user');", true);
+                    }
 
                     Session["IsValidSAML"] = username;
+                    //ClientScript.RegisterStartupScript(GetType(), "", "alert('" + Session["IsValidSAML"].ToString() + "');", true);
                     Response.Redirect("Default.aspx");                    
                 }
             }

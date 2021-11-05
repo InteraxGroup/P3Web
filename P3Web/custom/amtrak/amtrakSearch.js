@@ -67,8 +67,8 @@ function resetDisplay() {
 	document.getElementById('LBContractor').classList = document.getElementById('LB7').value;
 }
 
-function openAmtrakDocument(ItemID, OptionID) {
-	var docPath = "../../ViewDocument.aspx?ItemID=" + ItemID + "&OptionID=" + OptionID;
+function openAmtrakDocument(ItemID) {
+	var docPath = "../../ViewDocument.aspx?ItemID=" + ItemID + "&IsItemID=false&ItemStatus=9";
 	var windowWidth = screen.width - 100;
 	var windowHeight = screen.height - 120;
 	var xPos = screen.width / 2 - windowWidth / 2;

@@ -20,23 +20,6 @@ namespace Paradigm3.datalayer
 
 		#region Functions
 
-		//public static string Encrypt(string strToEncrypt, string strKey)
-		//{
-		//	using (MD5CryptoServiceProvider objHashMD5 = new MD5CryptoServiceProvider())
-		//	{
-		//		byte[] byteHash;
-		//		byte[] byteBuff;
-
-		//		byteHash = objHashMD5.ComputeHash(Encoding.ASCII.GetBytes(strKey));
-		//		TripleDESCryptoServiceProvider objDESCrypto = new TripleDESCryptoServiceProvider();
-		//		objDESCrypto.Key = byteHash;
-		//		objDESCrypto.Mode = CipherMode.ECB;
-		//		//CBC, CFB
-		//		byteBuff = Encoding.ASCII.GetBytes(strToEncrypt);
-		//		return Convert.ToBase64String(objDESCrypto.CreateEncryptor().TransformFinalBlock(byteBuff, 0, byteBuff.Length));
-		//	}
-		//}
-
         public static string Encrypt(string strToEncrypt, string strKey, bool IsFIPS)
         {
             string result = string.Empty;
@@ -518,7 +501,8 @@ namespace Paradigm3.datalayer
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
 				HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
 				{
-					HttpOnly = true
+					HttpOnly = true,
+                    SameSite = SameSiteMode.Strict
 				};
                 HttpContext.Current.Response.Cookies.Add(myCookie);
             }
@@ -543,15 +527,37 @@ namespace Paradigm3.datalayer
                 string usrLoginName = dsUser.Rows[0]["Name"].ToString();
                 string usrData = usrID + "," + usrFullName + "," + usrEmail + "," + usrStatus + "," + usrModuleAccess + "," + usrOptionSet + "," + usrLanguage + "," + usrLoginName;
                 // Create authentication cookie for user
-                FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, username, DateTime.Now, DateTime.Now.AddMinutes(60), false, usrData, FormsAuthentication.FormsCookiePath);
+                FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, username, DateTime.Now, DateTime.Now.AddMinutes(600), false, usrData, FormsAuthentication.FormsCookiePath);
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                 HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
                 {
-                    HttpOnly = true
+                    HttpOnly = true                   
                 };
                 HttpContext.Current.Response.Cookies.Add(myCookie);
             }
             dsUser.Dispose();
+        }
+
+        public static void Do_SSONonP3Login(string username)
+		{
+            // Create user property strings from Paradigm 3 for authentication cookie.
+            string usrID = "0";
+            string usrFullName = "Guest Account";
+            string usrEmail = "";
+            string usrStatus = "-1";
+            string usrModuleAccess = "";
+            string usrOptionSet = "";
+            string usrLanguage = "";
+            string usrLoginName = username;
+            string usrData = usrID + "," + usrFullName + "," + usrEmail + "," + usrStatus + "," + usrModuleAccess + "," + usrOptionSet + "," + usrLanguage + "," + usrLoginName;
+            // Create authentication cookie for user
+            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, username, DateTime.Now, DateTime.Now.AddMinutes(600), false, usrData, FormsAuthentication.FormsCookiePath);
+            string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+            HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
+            {
+                HttpOnly = true
+            };
+            HttpContext.Current.Response.Cookies.Add(myCookie);
         }
 
         public static void Do_Logout()

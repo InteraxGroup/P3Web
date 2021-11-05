@@ -2273,21 +2273,19 @@ namespace Paradigm3
                     mnuModules.Items.Add(mnuUser);
                     initHeight += 32;
                 }
-                //else if (UserStatus == 0 && ModuleAccess[1] == "1|1")
-                //{
-                //    mnuModules.Items.Add(mnuUser);
-                //    initHeight += 32;
-                //}
 
-                // Add Action Item Menu Item
-                MenuItem mnuAI = new MenuItem()
-                {
-                    Text = AIModuleName,
-                    Value = "14",
-                    ImageUrl = "~/images/actionitem.png",
-                };
-                mnuModules.Items.Add(mnuAI);
-                initHeight += 31;
+                if (UserID != 0)
+				{
+                    // Add Action Item Menu Item
+                    MenuItem mnuAI = new MenuItem()
+                    {
+                        Text = AIModuleName,
+                        Value = "14",
+                        ImageUrl = "~/images/actionitem.png",
+                    };
+                    mnuModules.Items.Add(mnuAI);
+                    initHeight += 31;
+                }                
 
                 ModulePane.InitialSize = initHeight;
                 ModulePane.MaxHeight = initHeight + 1;
