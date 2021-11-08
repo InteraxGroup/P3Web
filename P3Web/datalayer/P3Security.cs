@@ -502,7 +502,6 @@ namespace Paradigm3.datalayer
 				HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
 				{
 					HttpOnly = true,
-                    SameSite = SameSiteMode.Strict
 				};
                 HttpContext.Current.Response.Cookies.Add(myCookie);
             }
@@ -511,6 +510,13 @@ namespace Paradigm3.datalayer
 
         public static void Do_WinLogin(string username)
         {
+            int timeout = Convert.ToInt32(ConfigurationManager.AppSettings["ViewStateTimeout"]);
+            bool remember = Convert.ToBoolean(ConfigurationManager.AppSettings["Remember"]);
+            DateTime expiry = DateTime.Now.AddMinutes(timeout);
+            if (remember)
+			{
+                expiry = DateTime.Now.AddDays(365);
+			}
             // Create authentication objects and login user.
             DataTable dsUser = WinUserLogin(username);
 
@@ -527,12 +533,17 @@ namespace Paradigm3.datalayer
                 string usrLoginName = dsUser.Rows[0]["Name"].ToString();
                 string usrData = usrID + "," + usrFullName + "," + usrEmail + "," + usrStatus + "," + usrModuleAccess + "," + usrOptionSet + "," + usrLanguage + "," + usrLoginName;
                 // Create authentication cookie for user
-                FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, username, DateTime.Now, DateTime.Now.AddMinutes(600), false, usrData, FormsAuthentication.FormsCookiePath);
+                FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, username, DateTime.Now, expiry, false, usrData, FormsAuthentication.FormsCookiePath);
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                 HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
                 {
-                    HttpOnly = true                   
-                };
+                    HttpOnly = true,
+                    SameSite = SameSiteMode.Lax
+                };                
+                if (remember)
+				{
+                    myCookie.Expires = expiry;
+				}
                 HttpContext.Current.Response.Cookies.Add(myCookie);
             }
             dsUser.Dispose();
@@ -540,6 +551,8 @@ namespace Paradigm3.datalayer
 
         public static void Do_SSONonP3Login(string username)
 		{
+            int timeout = Convert.ToInt32(ConfigurationManager.AppSettings["ViewStateTimeout"]);
+            DateTime expiry = DateTime.Now.AddDays(365);
             // Create user property strings from Paradigm 3 for authentication cookie.
             string usrID = "0";
             string usrFullName = "Guest Account";
@@ -551,11 +564,13 @@ namespace Paradigm3.datalayer
             string usrLoginName = username;
             string usrData = usrID + "," + usrFullName + "," + usrEmail + "," + usrStatus + "," + usrModuleAccess + "," + usrOptionSet + "," + usrLanguage + "," + usrLoginName;
             // Create authentication cookie for user
-            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, username, DateTime.Now, DateTime.Now.AddMinutes(600), false, usrData, FormsAuthentication.FormsCookiePath);
+            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, username, DateTime.Now, expiry, false, usrData, FormsAuthentication.FormsCookiePath);
             string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
             HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
             {
-                HttpOnly = true
+                HttpOnly = true,
+                SameSite = SameSiteMode.Lax,
+                Expires = expiry
             };
             HttpContext.Current.Response.Cookies.Add(myCookie);
         }

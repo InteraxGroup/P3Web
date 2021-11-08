@@ -18,14 +18,11 @@ namespace Paradigm3
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    Response.Redirect("Default.aspx", false);
+                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
                 }
-                else
-				{
-                    int ParentGroupID = Convert.ToInt32(Request.QueryString["ParentGroupID"]);
-                    lblDate.Text = DateTime.Now.ToString();
-                    InitializeAsync(ParentGroupID);
-                }                
+                int ParentGroupID = Convert.ToInt32(Request.QueryString["ParentGroupID"]);
+                lblDate.Text = DateTime.Now.ToString();
+                InitializeAsync(ParentGroupID);
             }
         }        
 

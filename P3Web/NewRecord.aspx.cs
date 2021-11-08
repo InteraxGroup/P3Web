@@ -20,44 +20,41 @@ namespace Paradigm3
             if (!Page.IsPostBack)
             {
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
-                if (UseSSO && HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] == null)
-				{
-                    Response.Redirect("Default.aspx", false);
-				}
-                else
-				{
-                    Init_Record(ObjTypeID, ParentGroupID, ModuleID);
-                    string GroupOptionSet = await P3General.Get_GroupOptionSetAsync(ModuleID, ParentGroupID);
-                    if (ModuleID != 12)
+                if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+                }
+                Init_Record(ObjTypeID, ParentGroupID, ModuleID);
+                string GroupOptionSet = await P3General.Get_GroupOptionSetAsync(ModuleID, ParentGroupID);
+                if (ModuleID != 12)
+                {
+                    if (!string.IsNullOrEmpty(GroupOptionSet) && GroupOptionSet.Contains("1_3"))
                     {
-                        if (!string.IsNullOrEmpty(GroupOptionSet) && GroupOptionSet.Contains("1_3"))
+                        string NameFormula = await Record.Get_NameFormulaAsync(ModuleID, ParentGroupID);
+                        string[] NameFormulaValues = NameFormula.Split('|');
+                        string NameF = NameFormulaValues[0];
+                        string LabelF = NameFormulaValues[1];
+                        if (!string.IsNullOrEmpty(NameF))
                         {
-                            string NameFormula = await Record.Get_NameFormulaAsync(ModuleID, ParentGroupID);
-                            string[] NameFormulaValues = NameFormula.Split('|');
-                            string NameF = NameFormulaValues[0];
-                            string LabelF = NameFormulaValues[1];
-                            if (!string.IsNullOrEmpty(NameF))
-                            {
-                                txtName.Text = NameF;
-                                txtName.ReadOnly = true;
-                            }
-
-                            if (!string.IsNullOrEmpty(LabelF))
-                            {
-                                txtLabel.Text = LabelF;
-                                txtLabel.ReadOnly = true;
-                            }
+                            txtName.Text = NameF;
+                            txtName.ReadOnly = true;
                         }
-                        else
+
+                        if (!string.IsNullOrEmpty(LabelF))
                         {
-                            txtName.Focus();
+                            txtLabel.Text = LabelF;
+                            txtLabel.ReadOnly = true;
                         }
                     }
                     else
                     {
                         txtName.Focus();
                     }
-                }                                
+                }
+                else
+                {
+                    txtName.Focus();
+                }
             }
         }
 

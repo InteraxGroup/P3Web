@@ -16,7 +16,7 @@ namespace Paradigm3
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			if (!IsPostBack)
-			{
+			{                
                 Session["IsValidSAML"] = null;
                 string samlCertificate = ConfigurationManager.AppSettings["SAMLCert"];
                 Saml.Response samlResponse = new Response(samlCertificate, Request.Form["SAMLResponse"]);
@@ -40,7 +40,7 @@ namespace Paradigm3
 
                     Session["IsValidSAML"] = username;
                     //ClientScript.RegisterStartupScript(GetType(), "", "alert('" + Session["IsValidSAML"].ToString() + "');", true);
-                    Response.Redirect("Default.aspx");                    
+                    Response.Redirect("Default.aspx", false);
                 }
             }
 		}

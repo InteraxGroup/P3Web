@@ -26,31 +26,28 @@ namespace Paradigm3
 				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
 				if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
 				{
-					Response.Redirect("Default.aspx", false);
+					ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
 				}
-				else
+				int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+				int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
+				int ReportID = Convert.ToInt32(Request.QueryString["ReportID"]);
+				try
 				{
-					int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-					int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
-					int ReportID = Convert.ToInt32(Request.QueryString["ReportID"]);
-					try
-					{
 
-						string title = GetReportName(ReportID);
-						lblTitle.Text = title;
-						lblReportName.Text = title;
-						lblReportFolder.Text = P3General.Get_GroupName(ModuleID, GroupID);
+					string title = GetReportName(ReportID);
+					lblTitle.Text = title;
+					lblReportName.Text = title;
+					lblReportFolder.Text = P3General.Get_GroupName(ModuleID, GroupID);
 
-						await gvDataBindAsync(ModuleID, GroupID, ReportID);
-					}
-					catch (Exception ex)
-					{
-						string msg = ex.Message.Replace(Environment.NewLine, string.Empty);
-						msg = msg.Replace("'", string.Empty);
-						ScriptManager.RegisterStartupScript(udpMain, GetType(), "err", "alert('" + msg + "')", true);
-					}
+					await gvDataBindAsync(ModuleID, GroupID, ReportID);
 				}
-            }
+				catch (Exception ex)
+				{
+					string msg = ex.Message.Replace(Environment.NewLine, string.Empty);
+					msg = msg.Replace("'", string.Empty);
+					ScriptManager.RegisterStartupScript(udpMain, GetType(), "err", "alert('" + msg + "')", true);
+				}
+			}
         }
 
 		private async Task<string> Get_SqlCommandAsync(int ModuleID, int GroupID, int ReportID)

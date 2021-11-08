@@ -24,7 +24,21 @@ namespace Paradigm3
         //private bool IsEvidenceChecked;
         protected async void Page_Load(object sender, EventArgs e)
         {
-          //  Session["IsEvidenceCheck"] = IsEvidenceChecked.ToString();
+            string ssoAuth = ConfigurationManager.AppSettings["UseSSO"];
+            string ssoURL = ConfigurationManager.AppSettings["SSOURL"];
+            string issuer = ConfigurationManager.AppSettings["Issuer"];
+            string ACS = ConfigurationManager.AppSettings["ACSUrl"];
+
+            if (ssoAuth.ToUpper() == "TRUE" && Session["IsValidSAML"] == null)
+            {
+                var samlEndpoint = ssoURL;
+
+                var request = new AuthRequest(issuer, ACS);
+
+                //redirect the user to the SAML provider
+                Response.Redirect(request.GetRedirectUrl(samlEndpoint), false);
+            }
+            //  Session["IsEvidenceCheck"] = IsEvidenceChecked.ToString();
             if (!IsPostBack)
             {
                 // Set Properties session state
@@ -36,22 +50,22 @@ namespace Paradigm3
                 await PopulateDLinksAsync();
 
                 //SAML Settings
-                string ssoAuth = ConfigurationManager.AppSettings["UseSSO"];
-                string ssoURL = ConfigurationManager.AppSettings["SSOURL"];
-                string issuer = ConfigurationManager.AppSettings["Issuer"];
-                string ACS = ConfigurationManager.AppSettings["ACSUrl"];
+                //string ssoAuth = ConfigurationManager.AppSettings["UseSSO"];
+                //string ssoURL = ConfigurationManager.AppSettings["SSOURL"];
+                //string issuer = ConfigurationManager.AppSettings["Issuer"];
+                //string ACS = ConfigurationManager.AppSettings["ACSUrl"];
 
-                if (ssoAuth.ToUpper() == "TRUE" && Session["IsValidSAML"] == null)
-                {
-                    var samlEndpoint = ssoURL;
+                //if (ssoAuth.ToUpper() == "TRUE" && Session["IsValidSAML"] == null)
+                //{
+                //    var samlEndpoint = ssoURL;
 
-                    var request = new AuthRequest(issuer, ACS);
+                //    var request = new AuthRequest(issuer, ACS);
 
-                    //redirect the user to the SAML provider
-                    Response.Redirect(request.GetRedirectUrl(samlEndpoint), false);
-                }
-                else
-				{
+                //    //redirect the user to the SAML provider
+                //    Response.Redirect(request.GetRedirectUrl(samlEndpoint), false);
+                //}
+    //            else
+				//{
                     // Retrieve authentication type from web.config
                     AuthenticationSection authSection = (AuthenticationSection)ConfigurationManager.GetSection("system.web/authentication");
                     string authType = authSection.Mode.ToString();
@@ -114,7 +128,7 @@ namespace Paradigm3
                             Set_CheckLogon(false);
                         }
                     }
-                }                
+                //}                
             }
         }
 

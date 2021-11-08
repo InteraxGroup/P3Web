@@ -17,54 +17,51 @@ namespace Paradigm3
     {
         protected async void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)            
+            if (!IsPostBack)
             {
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    Response.Redirect("Default.aspx", false);
+                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
                 }
-                else
-				{
-                    string Status = Request.QueryString["Status"];
-                    switch (Status)
+                string Status = Request.QueryString["Status"];
+                switch (Status)
+                {
+                    case "9":
+                        lblAddTitle.Text += " as CURRENT";
+                        break;
+                    case "4":
+                        lblAddTitle.Text += " as READY";
+                        break;
+                    case "5":
+                        lblAddTitle.Text += " as REVIEW";
+                        break;
+                    case "3054":
+                        lblAddTitle.Text += " as EVIDENCE";
+                        break;
+                    default:
+                        lblAddTitle.Text += " as DRAFT";
+                        break;
+                }
+
+                int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
+                string GroupOptionSet = await P3General.Get_GroupOptionSetAsync(3, GroupID);
+                if (!string.IsNullOrEmpty(GroupOptionSet) && GroupOptionSet.Contains("1_6"))
+                {
+                    string NameFormula = await Record.Get_NameFormulaAsync(3, GroupID);
+                    string[] NameFormulaValues = NameFormula.Split('|');
+                    string NameF = NameFormulaValues[0];
+                    string LabelF = NameFormulaValues[1];
+                    if (!string.IsNullOrEmpty(NameF))
                     {
-                        case "9":
-                            lblAddTitle.Text += " as CURRENT";
-                            break;
-                        case "4":
-                            lblAddTitle.Text += " as READY";
-                            break;
-                        case "5":
-                            lblAddTitle.Text += " as REVIEW";
-                            break;
-                        case "3054":
-                            lblAddTitle.Text += " as EVIDENCE";
-                            break;
-                        default:
-                            lblAddTitle.Text += " as DRAFT";
-                            break;
+                        Session["NewDocName"] = NameF;
                     }
 
-                    int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
-                    string GroupOptionSet = await P3General.Get_GroupOptionSetAsync(3, GroupID);
-                    if (!string.IsNullOrEmpty(GroupOptionSet) && GroupOptionSet.Contains("1_6"))
+                    if (!string.IsNullOrEmpty(LabelF))
                     {
-                        string NameFormula = await Record.Get_NameFormulaAsync(3, GroupID);
-                        string[] NameFormulaValues = NameFormula.Split('|');
-                        string NameF = NameFormulaValues[0];
-                        string LabelF = NameFormulaValues[1];
-                        if (!string.IsNullOrEmpty(NameF))
-                        {
-                            Session["NewDocName"] = NameF;
-                        }
-
-                        if (!string.IsNullOrEmpty(LabelF))
-                        {
-                            Session["NewDocLabel"] = LabelF;
-                        }
+                        Session["NewDocLabel"] = LabelF;
                     }
-                }                
+                }
             }
         }
 

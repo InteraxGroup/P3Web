@@ -24,16 +24,13 @@ namespace Paradigm3
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    Response.Redirect("Default.aspx", false);
+                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
                 }
-                else
-				{
-                    int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
-                    int ParentGroupID = Convert.ToInt32(Request.QueryString["ParentGroupID"]);
+                int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                int ParentGroupID = Convert.ToInt32(Request.QueryString["ParentGroupID"]);
 
-                    MenuTabs.Items[0].Selected = true;
-                    await Initialize_Training(ItemID, ParentGroupID);
-                }                
+                MenuTabs.Items[0].Selected = true;
+                await Initialize_Training(ItemID, ParentGroupID);
             }
         }
 

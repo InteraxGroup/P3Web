@@ -9,6 +9,7 @@ using System.Configuration;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Office.Core;
+using Saml;
 
 namespace Paradigm3
 {
@@ -17,19 +18,16 @@ namespace Paradigm3
         protected async void Page_Load(object sender, EventArgs e)
         {            
             if (!IsPostBack)
-            {
+            {                
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    Response.Redirect("Default.aspx", false);
+                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
                 }
-                else
-				{
-                    int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
-                    bool IsItemID = Convert.ToBoolean(Request.QueryString["IsItemID"]);
-                    int ItemStatus = Convert.ToInt32(Request.QueryString["ItemStatus"]);
-                    await Initialize_DocumentAsync(ItemID, IsItemID, ItemStatus);
-                }                
+                int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                bool IsItemID = Convert.ToBoolean(Request.QueryString["IsItemID"]);
+                int ItemStatus = Convert.ToInt32(Request.QueryString["ItemStatus"]);
+                await Initialize_DocumentAsync(ItemID, IsItemID, ItemStatus);
             }            
         }
 

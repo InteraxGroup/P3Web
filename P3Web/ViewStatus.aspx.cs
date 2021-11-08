@@ -23,28 +23,25 @@ namespace Paradigm3
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    Response.Redirect("Default.aspx", false);
+                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
                 }
-                else
-				{
-                    int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-                    int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
-                    int UserID = 0;
-                    DataTable dt = await Status.GetCurrentVersionStatusAsync(ModuleID, OrigID);
-                    string CurrentStatus = dt.Rows[0]["Status"].ToString();
-                    ViewState["ItemData"] = dt;
-                    if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-                    {
-                        // Get user status information from authentication cookie.
-                        string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
-                        FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
-                        string UserData = authTicket.UserData;
-                        string[] UserValues = UserData.Split(',');
-                        UserID = Convert.ToInt32(UserValues[0]);
-                    }
-                    //await Get_StatusOptions(CurrentStatus);
-                    await Get_VersionOptionsAsync(ModuleID, OrigID, UserID, CurrentStatus);
-                }                
+                int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
+                int UserID = 0;
+                DataTable dt = await Status.GetCurrentVersionStatusAsync(ModuleID, OrigID);
+                string CurrentStatus = dt.Rows[0]["Status"].ToString();
+                ViewState["ItemData"] = dt;
+                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                {
+                    // Get user status information from authentication cookie.
+                    string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                    string UserData = authTicket.UserData;
+                    string[] UserValues = UserData.Split(',');
+                    UserID = Convert.ToInt32(UserValues[0]);
+                }
+                //await Get_StatusOptions(CurrentStatus);
+                await Get_VersionOptionsAsync(ModuleID, OrigID, UserID, CurrentStatus);
             }
         }
 

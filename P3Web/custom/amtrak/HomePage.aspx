@@ -14,8 +14,13 @@
 			<div class="customBanner">
 				<img id="imgLogo" runat="server" src="amtrak_logo.png" style="width: auto; height: 100px; margin: 0;" />
 				
-				<div style="padding: 10px; font-size: 1.2em; color: #fff;">
-					Paradigm is the document management system used by the Amtrak Mechanical Department to track, manage, and store documentation and records.
+				<div style="display: flex; flex-direction: column; padding: 10px; font-size: 1.2em; color: #fff;">
+					<div style="flex: 0 0 50px; display: flex; align-items: flex-start; font-size: 1.5em;">
+						Mechanical Department Document Management System
+					</div>
+					<div style="flex: 1; font-size: .8em;">
+						Paradigm is the document management system used by the Amtrak Mechanical Department to track, manage, and store documentation and records.
+					</div>					
 				</div>
 				<img id="imgAcela" runat="server" src="acela.png" style="width: auto; height: 100px; margin: 0;" />
 			</div>			

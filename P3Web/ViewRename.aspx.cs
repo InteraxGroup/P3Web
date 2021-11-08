@@ -22,29 +22,26 @@ namespace Paradigm3
 				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
 				if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
 				{
-					Response.Redirect("Default.aspx", false);
+					ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+				}
+				int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+				int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
+				bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
+
+				if (IsGroup)
+				{
+					lblTitle.Text = "Rename Group";
 				}
 				else
 				{
-					int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-					int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
-					bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
-
-					if (IsGroup)
+					lblTitle.Text = "Rename Item";
+					if (ModuleID == 1)
 					{
-						lblTitle.Text = "Rename Group";
+						lblTitle.Text = "Rename User";
 					}
-					else
-					{
-						lblTitle.Text = "Rename Item";
-						if (ModuleID == 1)
-						{
-							lblTitle.Text = "Rename User";
-						}
-					}
+				}
 
-					await Implement(ModuleID, OrigID, IsGroup);
-				}				
+				await Implement(ModuleID, OrigID, IsGroup);
 			}
 		}
 

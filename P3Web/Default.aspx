@@ -10,7 +10,7 @@
     <link id="favicon" runat="server" rel="shortcut icon" type="image/ico" href="p3_32.ico" />
     <link href="styles/P3Web.css" rel="stylesheet" />
     <link href="styles/Modals.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <%--<script src="https://code.jquery.com/jquery-3.5.1.js"></script>--%>
     <script src="scripts/P3Web.js"></script>
 </head>
 <%--<body onload="getCountry()">--%>

@@ -21,46 +21,43 @@ namespace Paradigm3
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    Response.Redirect("Default.aspx", false);
+                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+                }
+                int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                int IsEdit = Convert.ToInt32(Request.QueryString["IsEdit"]);
+                int ObjID = Convert.ToInt32(Request.QueryString["ObjID"]);
+
+                if (IsEdit == 1)
+                {
+                    btnAdd.Visible = true;
+                    btnDelete.Visible = true;
+                    btnUpdate.Visible = true;
+                    txtNotes.ReadOnly = false;
+                    ModalPopupExtender1.TargetControlID = "btnAdd";
                 }
                 else
-				{
-                    int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
-                    int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-                    int IsEdit = Convert.ToInt32(Request.QueryString["IsEdit"]);
-                    int ObjID = Convert.ToInt32(Request.QueryString["ObjID"]);
+                {
+                    btnAdd.Visible = false;
+                    btnDelete.Visible = false;
+                    btnUpdate.Visible = false;
+                    txtNotes.ReadOnly = true;
+                    ModalPopupExtender1.TargetControlID = "btnHidden";
+                }
 
-                    if (IsEdit == 1)
+                Get_TabList(ItemID, ModuleID);
+                if (DDLTabs.Items.Count > 0)
+                {
+                    foreach (ListItem li in DDLTabs.Items)
                     {
-                        btnAdd.Visible = true;
-                        btnDelete.Visible = true;
-                        btnUpdate.Visible = true;
-                        txtNotes.ReadOnly = false;
-                        ModalPopupExtender1.TargetControlID = "btnAdd";
-                    }
-                    else
-                    {
-                        btnAdd.Visible = false;
-                        btnDelete.Visible = false;
-                        btnUpdate.Visible = false;
-                        txtNotes.ReadOnly = true;
-                        ModalPopupExtender1.TargetControlID = "btnHidden";
-                    }
-
-                    Get_TabList(ItemID, ModuleID);
-                    if (DDLTabs.Items.Count > 0)
-                    {
-                        foreach (ListItem li in DDLTabs.Items)
+                        if (li.Value == ObjID.ToString())
                         {
-                            if (li.Value == ObjID.ToString())
-                            {
-                                li.Selected = true;
-                            }
+                            li.Selected = true;
                         }
-                        gvAttach.DataSource = Attachment.Get_Attachments(ItemID, ObjID, ModuleID);
-                        gvAttach.DataBind();
                     }
-                }            
+                    gvAttach.DataSource = Attachment.Get_Attachments(ItemID, ObjID, ModuleID);
+                    gvAttach.DataBind();
+                }
             }
         }
 

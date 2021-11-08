@@ -5,14 +5,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
+using System.Configuration;
 
 namespace Paradigm3
 {
-    public partial class ViewChangeEvidence : System.Web.UI.Page
+    public partial class ViewChangeEvidence : SqlViewStatePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+            if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+            }
         }
         protected async void btnSubmit_Click(object sender, EventArgs e)
         {

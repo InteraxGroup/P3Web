@@ -22,69 +22,67 @@ namespace Paradigm3
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    Response.Redirect("Default.aspx", false);
+                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
                 }
-				else
-				{
-                    if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+
+                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                {
+                    string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                    string UserData = authTicket.UserData;
+                    string[] UserValues = UserData.Split(',');
+                    int UserID = Convert.ToInt32(UserValues[0]);
+
+                    int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
+                    string GroupOptionSet = await P3General.Get_GroupOptionSetAsync(3, GroupID);
+                    if (!string.IsNullOrEmpty(GroupOptionSet) && GroupOptionSet.Contains("1_6"))
                     {
-                        string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
-                        FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
-                        string UserData = authTicket.UserData;
-                        string[] UserValues = UserData.Split(',');
-                        int UserID = Convert.ToInt32(UserValues[0]);
-
-                        int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
-                        string GroupOptionSet = await P3General.Get_GroupOptionSetAsync(3, GroupID);
-                        if (!string.IsNullOrEmpty(GroupOptionSet) && GroupOptionSet.Contains("1_6"))
+                        string NameFormula = await Record.Get_NameFormulaAsync(3, GroupID);
+                        string[] NameFormulaValues = NameFormula.Split('|');
+                        string NameF = NameFormulaValues[0];
+                        string LabelF = NameFormulaValues[1];
+                        if (!string.IsNullOrEmpty(NameF))
                         {
-                            string NameFormula = await Record.Get_NameFormulaAsync(3, GroupID);
-                            string[] NameFormulaValues = NameFormula.Split('|');
-                            string NameF = NameFormulaValues[0];
-                            string LabelF = NameFormulaValues[1];
-                            if (!string.IsNullOrEmpty(NameF))
-                            {
-                                Session["NewDocName"] = NameF;
-                                txtName.Text = NameF;
-                                txtName.ReadOnly = true;
-                            }
-
-                            if (!string.IsNullOrEmpty(LabelF))
-                            {
-                                Session["NewDocLabel"] = LabelF;
-                                txtLabel.Text = LabelF;
-                                txtLabel.ReadOnly = true;
-                            }
+                            Session["NewDocName"] = NameF;
+                            txtName.Text = NameF;
+                            txtName.ReadOnly = true;
                         }
-                        bool HasTemplate = false;
-                        if (!string.IsNullOrEmpty(GroupOptionSet))
+
+                        if (!string.IsNullOrEmpty(LabelF))
                         {
-                            string[] templateoptions = GroupOptionSet.Split('|');
-                            foreach (string option in templateoptions)
+                            Session["NewDocLabel"] = LabelF;
+                            txtLabel.Text = LabelF;
+                            txtLabel.ReadOnly = true;
+                        }
+                    }
+                    bool HasTemplate = false;
+                    if (!string.IsNullOrEmpty(GroupOptionSet))
+                    {
+                        string[] templateoptions = GroupOptionSet.Split('|');
+                        foreach (string option in templateoptions)
+                        {
+                            if (option.Contains("_4"))
                             {
-                                if (option.Contains("_4"))
+                                string[] optionsettings = option.Split('_');
+                                if (optionsettings[0] != "0")
                                 {
-                                    string[] optionsettings = option.Split('_');
-                                    if (optionsettings[0] != "0")
-                                    {
-                                        Session["TemplateID"] = optionsettings[0];
-                                        HasTemplate = true;
-                                    }
+                                    Session["TemplateID"] = optionsettings[0];
+                                    HasTemplate = true;
                                 }
                             }
                         }
-                        if (HasTemplate)
-                        {
-                            ModalPopupExtender1.Show();
-                            btnAddFromTemplate.Enabled = true;
-                            btnCancelAdd.OnClientClick = "window.close();";
-                        }
-                        else
-                        {
-                            await Fill_Tree(UserID);
-                        }
                     }
-                }                
+                    if (HasTemplate)
+                    {
+                        ModalPopupExtender1.Show();
+                        btnAddFromTemplate.Enabled = true;
+                        btnCancelAdd.OnClientClick = "window.close();";
+                    }
+                    else
+                    {
+                        await Fill_Tree(UserID);
+                    }
+                }
             }
 		}
 
