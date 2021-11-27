@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BayshoreLogo" xml:space="preserve">
+    <value>images/logo.svg</value>
+  </data>
+  <data name="BayShoreMenuResource1.ScrollDownText" xml:space="preserve">
+    <value>Scroll down</value>
+  </data>
+  <data name="BayShoreMenuResource1.ScrollUpText" xml:space="preserve">
+    <value>Scroll up</value>
+  </data>
+  <data name="BayShoreMenuResource1.SkipLinkText" xml:space="preserve">
+    <value>Skip Navigation Links</value>
+  </data>
+  <data name="BayShoreMenuResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource1.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource2.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource3.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource4.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Clinical" xml:space="preserve">
+    <value>Clinical</value>
+  </data>
+  <data name="CQHIPPanelResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CQHIPPanelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CQHIPPnlheaderlbl1" xml:space="preserve">
+    <value>Welcome to Bayshore CQ HIP</value>
+  </data>
+  <data name="CQHIPPnlheaderlbl2" xml:space="preserve">
+    <value>This page is under construction</value>
+  </data>
+  <data name="CQHIPpnlHotlinktemplate" xml:space="preserve">
+    <value>There is currently no data available</value>
+  </data>
+  <data name="CQHIPpnlHotlnktitle" xml:space="preserve">
+    <value>CQ HIP HotLinks</value>
+  </data>
+  <data name="EmployeePanelResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EmployeePanelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EmpPnlheaderlbl1" xml:space="preserve">
+    <value>Benefits Important Links</value>
+  </data>
+  <data name="EmpPnlheaderlbl2" xml:space="preserve">
+    <value>Payroll Important Links</value>
+  </data>
+  <data name="EmppnlHotlinktemplate" xml:space="preserve">
+    <value>There is currently no data available</value>
+  </data>
+  <data name="EmppnlHotlnktitle" xml:space="preserve">
+    <value>Employee Information HotLinks</value>
+  </data>
+  <data name="Emppnltxt1" xml:space="preserve">
+    <value>Welcome to Bayshore Employee Information</value>
+  </data>
+  <data name="Emppnltxt2" xml:space="preserve">
+    <value>As a staff member, you can access the external links from each of the tabs listed below.</value>
+  </data>
+  <data name="GridViewCQHIPResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCQHIPResource1.EmptyDataText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCQHIPResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewEIResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewEIResource1.EmptyDataText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewEIResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewHRResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewHRResource1.EmptyDataText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewHRResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewISResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewISResource1.EmptyDataText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewISResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HomePanelResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HomePanelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Homepnlpara1" xml:space="preserve">
+    <value>Please note that although you are able to print documents from within this web site, a printed copy of the document may not reflect the current, electronic version. Any copies appearing in paper form should always be checked against the electronic version prior to use</value>
+  </data>
+  <data name="Homepnlpara2" xml:space="preserve">
+    <value>For help with Paradigm, please</value>
+  </data>
+  <data name="Homepnlpara3" xml:space="preserve">
+    <value>To access quick training guides,</value>
+  </data>
+  <data name="Homepnlpara4" xml:space="preserve">
+    <value>If you need additional help, please contact</value>
+  </data>
+  <data name="Homepnltxt1" xml:space="preserve">
+    <value>Select a tab above to view infromation related to specific BayShore departments.</value>
+  </data>
+  <data name="Homepnltxt2" xml:space="preserve">
+    <value>Click a link in the main menu to the left to access commonly used file groups and direct links</value>
+  </data>
+  <data name="Homepnltxt3" xml:space="preserve">
+    <value>Use the search engine in the toolbar above to locate file by name, number, or content</value>
+  </data>
+  <data name="HRPanelResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HRPanelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HRPnlheaderlbl1" xml:space="preserve">
+    <value>Welcome to Bayshore Human Resources</value>
+  </data>
+  <data name="HRPnlheaderlbl2" xml:space="preserve">
+    <value>This page is under construction</value>
+  </data>
+  <data name="HRpnlHotlinktemplate" xml:space="preserve">
+    <value>There is currently no data available</value>
+  </data>
+  <data name="HRpnlHotlnktitle" xml:space="preserve">
+    <value>Human Resource HotLinks</value>
+  </data>
+  <data name="HSPanelResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HSPanelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HSPnlheaderlbl1" xml:space="preserve">
+    <value>Welcome to Bayshore Health &amp; Safety</value>
+  </data>
+  <data name="HSPnlheaderlbl2" xml:space="preserve">
+    <value>Browse through each topic to learn more about Occupational Health &amp; Safety at Bayshore.</value>
+  </data>
+  <data name="HSPnlpara1" xml:space="preserve">
+    <value>The Occupational Health &amp; Safety department ensures legislative compliance, accident prevention and investigation, medical surveillances, health &amp; safety training, wellness and critical incident counselling.</value>
+  </data>
+  <data name="ISPanelResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ISPanelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ISPnlheaderlbl1" xml:space="preserve">
+    <value>Welcome to Bayshore Information Services</value>
+  </data>
+  <data name="ISPnlheaderlbl2" xml:space="preserve">
+    <value>This page is under construction</value>
+  </data>
+  <data name="ISpnlHotlnktitle" xml:space="preserve">
+    <value>Information Services HotLinks</value>
+  </data>
+  <data name="ISPpnlHotlinktemplate" xml:space="preserve">
+    <value>There is currently no data available</value>
+  </data>
+  <data name="ItemIconResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ItemIconResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ItemIconResource2.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ItemIconResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ItemIconResource3.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ItemIconResource3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ItemIconResource4.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ItemIconResource4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblclick" xml:space="preserve">
+    <value>click here</value>
+  </data>
+  <data name="lblHeadertxt" xml:space="preserve">
+    <value>Welcome to Bayshore Paradigm!</value>
+  </data>
+  <data name="lblHeadertxt2" xml:space="preserve">
+    <value>How to Use:</value>
+  </data>
+  <data name="MenuItemResource1.Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="MenuItemResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemResource1.Value" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="MenuItemResource2.Text" xml:space="preserve">
+    <value>Employee Information</value>
+  </data>
+  <data name="MenuItemResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemResource2.Value" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="MenuItemResource3.Text" xml:space="preserve">
+    <value>Human Resources</value>
+  </data>
+  <data name="MenuItemResource3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemResource3.Value" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="MenuItemResource4.Text" xml:space="preserve">
+    <value>Health &amp; Safety</value>
+  </data>
+  <data name="MenuItemResource4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemResource4.Value" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="MenuItemResource5.Text" xml:space="preserve">
+    <value>CQ HIP</value>
+  </data>
+  <data name="MenuItemResource5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemResource5.Value" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="MenuItemResource6.Text" xml:space="preserve">
+    <value>Information Services</value>
+  </data>
+  <data name="MenuItemResource6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemResource6.Value" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="QualityAndRisk" xml:space="preserve">
+    <value>Quality &amp; Risk</value>
+  </data>
+  <data name="TabPanel1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabPanel2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabPanel3Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabPanel4Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TBD" xml:space="preserve">
+    <value>To be determined</value>
+  </data>
+  <data name="TCCQHIPResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TCEmployeeInfoResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TCHSResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource2.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource2.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource2.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource3.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource3.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource3.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource4.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource4.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource4.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TPBenefitsResource1.HeaderText" xml:space="preserve">
+    <value>Benefits</value>
+  </data>
+  <data name="TPBenefitsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TPClinical2Resource1.HeaderText" xml:space="preserve">
+    <value>Clinical</value>
+  </data>
+  <data name="TPClinical2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TPClinicalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TPPayrollResource1.HeaderText" xml:space="preserve">
+    <value>Payroll</value>
+  </data>
+  <data name="TPPayrollResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TPPFACResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TPPrivacy2Resource1.HeaderText" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="TPPrivacy2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TPPrivacyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TPQR2Resource1.HeaderText" xml:space="preserve">
+    <value>Quality &amp; Risk</value>
+  </data>
+  <data name="TPQR2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TPQRResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TPTBDResource1.HeaderText" xml:space="preserve">
+    <value>TBD</value>
+  </data>
+  <data name="TPTBDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnderConstruction" xml:space="preserve">
+    <value>Under Construction</value>
+  </data>
+</root>

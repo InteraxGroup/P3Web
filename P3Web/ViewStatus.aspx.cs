@@ -23,7 +23,8 @@ namespace Paradigm3
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+                    string Message = GetLocalResourceObject("SessionTimeout").ToString();
+                    ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
                 }
                 int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
                 int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
@@ -70,7 +71,7 @@ namespace Paradigm3
                             {
                                 VersionLabel = "COMPLETE (" + CurrentVersion + ")";
                                 lblVersion.ForeColor = System.Drawing.Color.Black;
-                                rbStatus.Items.Add(new ListItem("Create OPEN Item from COMPLETE", "2"));
+                                rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CreateOpenFromComplete").ToString(), "2"));
                             }
                             else
                             {
@@ -82,7 +83,7 @@ namespace Paradigm3
                         {
                             VersionLabel = "COMPLETE (" + CurrentVersion + ")";
                             lblVersion.ForeColor = System.Drawing.Color.Black;
-                            rbStatus.Items.Add(new ListItem("Create OPEN Item from COMPLETE", "2"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CreateOpenFromComplete").ToString(), "2"));
                         }
                         break;
                     case "2": // Draft/Open
@@ -92,63 +93,63 @@ namespace Paradigm3
                             {
                                 VersionLabel = "OPEN (" + CurrentVersion + ")";
                                 lblVersion.ForeColor = System.Drawing.Color.Red;
-                                rbStatus.Items.Add(new ListItem("COMPLETE item from OPEN", "0"));
+                                rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CompleteItemFromOpen").ToString(), "2"));
                             }
                             else
                             {
                                 VersionLabel = "DRAFT (" + CurrentVersion + ")";
                                 lblVersion.ForeColor = System.Drawing.Color.Red;
-                                rbStatus.Items.Add(new ListItem("Convert to CURRENT from DRAFT", "9"));
-                                rbStatus.Items.Add(new ListItem("Convert to REVIEW from DRAFT", "5"));
-                                rbStatus.Items.Add(new ListItem("Convert to READY from DRAFT", "6"));
-                                rbStatus.Items.Add(new ListItem("Convert to COLLABORATE from DRAFT", "3"));
-                                rbStatus.Items.Add(new ListItem("Convert to PENDING from DRAFT", "7"));
+                                rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CurrentFromDraft").ToString(), "9"));
+                                rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReviewFromDraft").ToString(), "5"));
+                                rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReadyFromDraft").ToString(), "6"));
+                                rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CollaborateFromDraft").ToString(), "3"));
+                                rbStatus.Items.Add(new ListItem(GetLocalResourceObject("PendingFromDraft").ToString(), "7"));
                             }
                         }
                         else
                         {
                             VersionLabel = "OPEN (" + CurrentVersion + ")";
                             lblVersion.ForeColor = System.Drawing.Color.Red;
-                            rbStatus.Items.Add(new ListItem("COMPLETE item from OPEN", "0"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CompleteItemFromOpen").ToString(), "0"));
                         }
                         break;
                     case "3": // Collaborate
                         VersionLabel = "COLLABORATE (" + CurrentVersion + ")";
                         lblVersion.ForeColor = System.Drawing.Color.DarkRed;
-                        rbStatus.Items.Add(new ListItem("Convert to DRAFT from COLLABORATE", "2"));
-                        rbStatus.Items.Add(new ListItem("Convert to CURRENT from COLLABORATE", "9"));
-                        rbStatus.Items.Add(new ListItem("Convert to REVIEW from COLLABORATE", "5"));
-                        rbStatus.Items.Add(new ListItem("Convert to READY from COLLABORATE", "6"));
-                        rbStatus.Items.Add(new ListItem("Convert to PENDING from COLLABORATE", "7"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("DraftFromCollaborate").ToString(), "2"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CurrentFromCollaborate").ToString(), "9"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReviewFromCollaborate").ToString(), "5"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReadyFromCollaborate").ToString(), "6"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("PendingFromCollaborate").ToString(), "7"));
                         break;
                     case "5": // Review
                         VersionLabel = "REVIEW (" + CurrentVersion + ")";
                         lblVersion.ForeColor = System.Drawing.Color.Blue;
-                        rbStatus.Items.Add(new ListItem("Convert to CURRENT from REVIEW", "9"));
-                        rbStatus.Items.Add(new ListItem("Convert to READY from REVIEW", "6"));
-                        rbStatus.Items.Add(new ListItem("Convert to PENDING from REVIEW", "7"));
-                        rbStatus.Items.Add(new ListItem("Convert to DRAFT from REVIEW", "2"));
-                        rbStatus.Items.Add(new ListItem("Convert to COLLABORATE from REVIEW", "3"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CurrentFromReview").ToString(), "9"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReadyFromReview").ToString(), "6"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("PendingFromReview").ToString(), "7"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("DraftFromReview").ToString(), "2"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CollaborateFromReview").ToString(), "3"));
                         break;
                     case "6": // Ready
                         VersionLabel = "READY (" + CurrentVersion + ")";
                         lblVersion.ForeColor = System.Drawing.Color.DarkViolet;
-                        rbStatus.Items.Add(new ListItem("Convert to CURRENT from READY", "9"));
-                        rbStatus.Items.Add(new ListItem("Convert to PENDING from READY", "7"));
-                        rbStatus.Items.Add(new ListItem("Convert to REVIEW from READY", "5"));
-                        rbStatus.Items.Add(new ListItem("Convert to DRAFT from READY", "2"));
-                        rbStatus.Items.Add(new ListItem("Convert to COLLABORATE from READY", "3"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CurrentFromReady").ToString(), "9"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("PendingFromReady").ToString(), "7"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReviewFromReady").ToString(), "5"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("DraftFromReady").ToString(), "2"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CollaborateFromReady").ToString(), "3"));
                         break;
                     case "7": // Pending
                         VersionLabel = "PENDING (" + CurrentVersion + ")";
                         lblVersion.ForeColor = System.Drawing.Color.DarkGoldenrod;
-                        rbStatus.Items.Add(new ListItem("Convert to CURRENT from PENDING", "9"));
-                        rbStatus.Items.Add(new ListItem("Create DRAFT from PENDING", "2"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CurrentFromPending").ToString(), "9"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("DraftFromPending").ToString(), "2"));
                         break;
                     case "9": // Current
                         VersionLabel = "CURRENT (" + CurrentVersion + ")";
                         lblVersion.ForeColor = System.Drawing.Color.Black;
-                        rbStatus.Items.Add(new ListItem("Create DRAFT from CURRENT", "2"));
+                        rbStatus.Items.Add(new ListItem(GetLocalResourceObject("DraftFromCurrent").ToString(), "2"));
                         break;
                 }
                 rbStatus.SelectedIndex = 0;

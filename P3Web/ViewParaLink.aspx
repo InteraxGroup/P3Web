@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewParaLink.aspx.cs" Inherits="Paradigm3.ViewParaLink" EnableEventValidation="false" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewParaLink.aspx.cs" Inherits="Paradigm3.ViewParaLink" EnableEventValidation="false" Async="true" meta:resourcekey="PageResource1" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
@@ -16,30 +16,30 @@
     <form id="form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <div id="toolbar">
-            <asp:Panel ID="pnlShowMe" runat="server" CssClass="toolbarButton" Visible="false">
-                <asp:ImageButton ID="btnShowMe" runat="server" ImageUrl="~/images/showme.png" OnClick="ImageButton_Click" CommandArgument="ShowMe" />
+            <asp:Panel ID="pnlShowMe" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlShowMeResource1">
+                <asp:ImageButton ID="btnShowMe" runat="server" ImageUrl="~/images/showme.png" OnClick="ImageButton_Click" CommandArgument="ShowMe" meta:resourcekey="btnShowMeResource1" />
                 <br />
-                <asp:Label ID="lblShowMe" runat="server" Text="Show Me" />
+                <asp:Label ID="lblShowMe" runat="server" Text="Show Me" meta:resourcekey="lblShowMeResource1" />
             </asp:Panel>
-            <asp:Panel ID="pnlGoThere" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999999;" Visible="false">
-                <asp:ImageButton ID="btnGoThere" runat="server" ImageUrl="~/images/gothere.png" OnClick="ImageButton_Click" CommandArgument="GoThere" />
+            <asp:Panel ID="pnlGoThere" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999999;" Visible="False" meta:resourcekey="pnlGoThereResource1">
+                <asp:ImageButton ID="btnGoThere" runat="server" ImageUrl="~/images/gothere.png" OnClick="ImageButton_Click" CommandArgument="GoThere" meta:resourcekey="btnGoThereResource1" />
                 <br />
-                <asp:Label ID="lblGoThere" runat="server" Text="Go There" />
+                <asp:Label ID="lblGoThere" runat="server" Text="Go There" meta:resourcekey="lblGoThereResource1" />
             </asp:Panel>
-            <asp:Panel ID="pnlAddPLink" runat="server" CssClass="toolbarButton" Visible="false">
-                <asp:ImageButton ID="btnAddPLink" runat="server" ImageUrl="~/images/addplink.png" />
+            <asp:Panel ID="pnlAddPLink" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlAddPLinkResource1">
+                <asp:ImageButton ID="btnAddPLink" runat="server" ImageUrl="~/images/addplink.png" meta:resourcekey="btnAddPLinkResource1" />
                 <br />
-                <asp:Label ID="lblAddPLink" runat="server" Text="Add" />
+                <asp:Label ID="lblAddPLink" runat="server" Text="Add" meta:resourcekey="lblAddPLinkResource1" />
             </asp:Panel>
-            <asp:Panel ID="pnlRemovePLink" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999999;" Visible="false">
-                <asp:ImageButton ID="btnRemovePLink" runat="server" ImageUrl="~/images/removeplink.png" OnClick="ImageButton_Click" CommandArgument="RemovePLink" />
+            <asp:Panel ID="pnlRemovePLink" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999999;" Visible="False" meta:resourcekey="pnlRemovePLinkResource1">
+                <asp:ImageButton ID="btnRemovePLink" runat="server" ImageUrl="~/images/removeplink.png" OnClick="ImageButton_Click" CommandArgument="RemovePLink" meta:resourcekey="btnRemovePLinkResource1" />
                 <br />
-                <asp:Label ID="lblRemovePLink" runat="server" Text="Remove" />
+                <asp:Label ID="lblRemovePLink" runat="server" Text="Remove" meta:resourcekey="lblRemovePLinkResource1" />
             </asp:Panel>
-            <asp:Panel ID="pnlClose" runat="server" CssClass="toolbarButton">
-                <asp:ImageButton ID="btnClose" runat="server" ImageUrl="~/images/exit.png" OnClick="ImageButton_Click" CommandArgument="Close" />
+            <asp:Panel ID="pnlClose" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlCloseResource1">
+                <asp:ImageButton ID="btnClose" runat="server" ImageUrl="~/images/exit.png" OnClick="ImageButton_Click" CommandArgument="Close" meta:resourcekey="btnCloseResource1" />
                 <br />
-                <asp:Label ID="lblClose" runat="server" Text="Close" />
+                <asp:Label ID="lblClose" runat="server" Text="Close" meta:resourcekey="lblCloseResource1" />
             </asp:Panel>
         </div>
         
@@ -53,31 +53,31 @@
             <div class="linkListLeft">
                 <asp:GridView ID="gvLinkTo" runat="server" 
                     Width="100%" 
-                    AutoGenerateColumns="false" 
+                    AutoGenerateColumns="False" 
                     GridLines="None" 
                     OnRowDataBound="GridView_RowDataBound" 
                     DataKeyNames="PLinkID,ItemID,OrigID,ParentGroupID,ObjTypeID,FileExtension,TypeOfPublish,MyType,LinkedType,LinkedOrigID,LinkedModuleID,ModuleID" 
-                    OnSelectedIndexChanged="GridView_SelectedIndexChanged">
+                    OnSelectedIndexChanged="GridView_SelectedIndexChanged" meta:resourcekey="gvLinkToResource1">
                     <HeaderStyle  BackColor="#F0F0F0" Font-Bold="false" Font-Size="Small" Height="20px" BorderColor="#000000" BorderStyle="Solid" BorderWidth="1px" />
                     <RowStyle BackColor="#FFFFFF" ForeColor="#000000" />
                     <SelectedRowStyle BackColor="#0078D7" ForeColor="#FFFFFF" />
                     <Columns>
-                        <asp:TemplateField HeaderText="">
+                        <asp:TemplateField HeaderText="" meta:resourcekey="TemplateFieldResource1">
                             <HeaderStyle Width="24px" BackColor="#F0F0F0" />
                             <ItemStyle Width="24px" />
                             <ItemTemplate>
-                                <asp:Image ID="ItemIcon" runat="server" Width="20px" Height="20px"/>
+                                <asp:Image ID="ItemIcon" runat="server" Width="20px" Height="20px" meta:resourcekey="ItemIconResource1"/>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="Name" HeaderText="Name">
+                        <asp:BoundField DataField="Name" HeaderText="Name" meta:resourcekey="BoundFieldResource1">
                             <HeaderStyle ForeColor="#000000" Height="30px" HorizontalAlign="Left" />
                             <ItemStyle Height="20px" Font-Size=".8em" Font-Underline="false" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="LabelName" HeaderText="Label">
+                        <asp:BoundField DataField="LabelName" HeaderText="Label" meta:resourcekey="BoundFieldResource2">
                             <HeaderStyle ForeColor="#000000" Height="30px" Width="150px" HorizontalAlign="Left" />
                             <ItemStyle Height="20px" Width="150px" Font-Size=".8em" Font-Underline="false" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="LinkedModuleID" HeaderText="Module">
+                        <asp:BoundField DataField="LinkedModuleID" HeaderText="Module" meta:resourcekey="BoundFieldResource3">
                             <HeaderStyle ForeColor="#000000" Height="30px" Width="80px" HorizontalAlign="Left" />
                             <ItemStyle Height="20px" Width="70px" HorizontalAlign="Left" Font-Size=".8em" Font-Underline="false" />
                         </asp:BoundField>
@@ -87,31 +87,31 @@
             <div class="linkListRight">
                 <asp:GridView ID="gvLinkFrom" runat="server" 
                     Width="100%" 
-                    AutoGenerateColumns="false" 
+                    AutoGenerateColumns="False" 
                     GridLines="None" 
                     OnRowDataBound="GridView_RowDataBound" 
                     DataKeyNames="PLinkID,ItemID,OrigID,ParentGroupID,ObjTypeID,FileExtension,TypeOfPublish,MyType,LinkedType,LinkedOrigID,LinkedModuleID,ModuleID" 
-                    OnSelectedIndexChanged="GridView_SelectedIndexChanged">
+                    OnSelectedIndexChanged="GridView_SelectedIndexChanged" meta:resourcekey="gvLinkFromResource1">
                     <HeaderStyle  BackColor="#F0F0F0" Font-Bold="false" Font-Size="Small" Height="20px" BorderColor="#000000" BorderStyle="Solid" BorderWidth="1px" />
                     <RowStyle BackColor="#FFFFFF" ForeColor="#000000" />
                     <SelectedRowStyle BackColor="#0078D7" ForeColor="#FFFFFF" />
                     <Columns>
-                        <asp:TemplateField HeaderText="">
+                        <asp:TemplateField HeaderText="" meta:resourcekey="TemplateFieldResource2">
                             <HeaderStyle Width="24px" BackColor="#F0F0F0" />
                             <ItemStyle Width="24px" />
                             <ItemTemplate>
-                                <asp:Image ID="ItemIcon" runat="server" Width="20px" Height="20px"/>
+                                <asp:Image ID="ItemIcon" runat="server" Width="20px" Height="20px" meta:resourcekey="ItemIconResource2"/>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="Name" HeaderText="Name">
+                        <asp:BoundField DataField="Name" HeaderText="Name" meta:resourcekey="BoundFieldResource4">
                             <HeaderStyle ForeColor="#000000" Height="30px" HorizontalAlign="Left" />
                             <ItemStyle Height="20px" Font-Size=".8em" Font-Underline="false" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="LabelName" HeaderText="Label">
+                        <asp:BoundField DataField="LabelName" HeaderText="Label" meta:resourcekey="BoundFieldResource5">
                             <HeaderStyle ForeColor="#000000" Height="30px" Width="150px" HorizontalAlign="Left" />
                             <ItemStyle Height="20px" Width="150px" Font-Size=".8em" Font-Underline="false" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="ModuleID" HeaderText="Module">
+                        <asp:BoundField DataField="ModuleID" HeaderText="Module" meta:resourcekey="BoundFieldResource6">
                             <HeaderStyle ForeColor="#000000" Height="30px" Width="80px" HorizontalAlign="Left" />
                             <ItemStyle Height="20px" Width="70px" HorizontalAlign="Left" Font-Size=".8em" Font-Underline="false" />
                         </asp:BoundField>
@@ -119,28 +119,28 @@
                 </asp:GridView>
             </div>
         </div>
-        <asp:Panel ID="pnlLinkTypeSelect" runat="server" CssClass="modal-select-type">
+        <asp:Panel ID="pnlLinkTypeSelect" runat="server" CssClass="modal-select-type" meta:resourcekey="pnlLinkTypeSelectResource1">
             <div>
-                Select New Para-Link Type
+                <asp:Label ID="SelectTypeLabel" runat="server" Text="Select New Para-Link Type" meta:resourcekey="SelectTypeLabel"></asp:Label>
             </div>
             <div>
-                <asp:RadioButtonList ID="rblLinkType" runat="server" Font-Size="Large" Width="100%">
-                    <asp:ListItem Text="Add Item Para-Link" Value="0" Selected="True"></asp:ListItem>
-                    <asp:ListItem Text="Add Folder Para-Link" Value="1"></asp:ListItem>
+                <asp:RadioButtonList ID="rblLinkType" runat="server" Font-Size="Large" Width="100%" meta:resourcekey="rblLinkTypeResource1">
+                    <asp:ListItem Text="Add Item Para-Link" Value="0" Selected="True" meta:resourcekey="ListItemResource1"></asp:ListItem>
+                    <asp:ListItem Text="Add Folder Para-Link" Value="1" meta:resourcekey="ListItemResource2"></asp:ListItem>
                 </asp:RadioButtonList>
             </div>
             <div>
-                <asp:Button ID="btnCommit" runat="server" Text="OK" Width="70px" OnClick="Button_Click" CommandArgument="AddPLink" />
+                <asp:Button ID="btnCommit" runat="server" Text="OK" Width="70px" OnClick="Button_Click" CommandArgument="AddPLink" meta:resourcekey="btnCommitResource1" />
                 &nbsp;
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" />
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" meta:resourcekey="btnCancelResource1" />
             </div>
         </asp:Panel>
 		<asp:ModalPopupExtender ID="ModalPopupExtender1" runat="server" 
             TargetControlID="btnAddPLink" 
             CancelControlID="btnCancel" 
-            PopupControlID="pnlLinkTypeSelect" BackgroundCssClass="modalBackground">
+            PopupControlID="pnlLinkTypeSelect" BackgroundCssClass="modalBackground" BehaviorID="ModalPopupExtender1" DynamicServicePath="">
 		</asp:ModalPopupExtender>
-        <asp:Button ID="btnRefreshPLinks" runat="server" OnClick="Button_Click" CommandArgument="RefreshLinks" style="display: none;" />
+        <asp:Button ID="btnRefreshPLinks" runat="server" OnClick="Button_Click" CommandArgument="RefreshLinks" style="display: none;" meta:resourcekey="btnRefreshPLinksResource1" />
     </form>
 </body>
 </html>

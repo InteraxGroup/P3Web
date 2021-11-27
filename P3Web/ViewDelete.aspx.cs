@@ -22,8 +22,10 @@ namespace Paradigm3
 				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
 				if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
 				{
-					ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+					string Message = GetLocalResourceObject("SessionTimeout").ToString();
+					ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
 				}
+
 				int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
 				int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
 				int UserID = Convert.ToInt32(Request.QueryString["UserID"]);
@@ -33,11 +35,11 @@ namespace Paradigm3
 		}
 
 		protected async Task InitializeAsync(int ModuleID, int OrigID, int UserID, bool IsGroup)
-		{
+		{	
 			if (IsGroup)
 			{
 				DataTable dtGroup = await P3General.Get_Item_Group_DetailsAsync(ModuleID, OrigID, IsGroup);
-				lblTitle.Text = "Delete Folder";
+				lblTitle.Text = GetLocalResourceObject("lblTitleFlder").ToString();
 				pnlDeleteFolder.Visible = true;
 				lblMessage.Text = "The folder '<b>" + dtGroup.Rows[0]["Name"].ToString() + "</b>' and all sub-folders/items will be deleted<br /><br />" +
 					"Do you want to continue with this operation?";
@@ -51,7 +53,7 @@ namespace Paradigm3
 				if (ModuleID == 1)
 				{
 					DataTable dtUser = await P3General.Get_Item_Group_DetailsAsync(ModuleID, OrigID, false);
-					lblTitle.Text = "Delete User";
+					lblTitle.Text = GetLocalResourceObject("lblTitleUsr").ToString();
 					cblVersion.Visible = false;
 					lblUserDetail.Visible = true;
 					StringBuilder sb = new StringBuilder();
@@ -66,11 +68,10 @@ namespace Paradigm3
 				else
 				{
 					DataTable dtItem = await P3General.Get_Item_Version_DetailsAsync(ModuleID, OrigID);
-					lblTitle.Text = "Delete Item";
+					lblTitle.Text = GetLocalResourceObject("lblTitleItem").ToString();
 					cblVersion.Visible = true;
 					lblUserDetail.Visible = false;
-					lblMessage.Text = "The selected item version(s) will be deleted\n" +
-					"Do you want to continue with this operation?";
+					lblMessage.Text = GetLocalResourceObject("lblDeleteItemCnfrm").ToString();
 
 					foreach (DataRow dr in dtItem.Rows)
 					{

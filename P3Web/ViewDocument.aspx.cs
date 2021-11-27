@@ -9,7 +9,6 @@ using System.Configuration;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Office.Core;
-using Saml;
 
 namespace Paradigm3
 {
@@ -18,12 +17,14 @@ namespace Paradigm3
         protected async void Page_Load(object sender, EventArgs e)
         {            
             if (!IsPostBack)
-            {                
+            {
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+                    string Message = GetLocalResourceObject("SessionTimeout").ToString();
+                    ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
                 }
+
                 int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
                 bool IsItemID = Convert.ToBoolean(Request.QueryString["IsItemID"]);
                 int ItemStatus = Convert.ToInt32(Request.QueryString["ItemStatus"]);

@@ -17,30 +17,32 @@ namespace Paradigm3
     {
         protected async void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!IsPostBack)            
             {
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+                    string Message = GetLocalResourceObject("SessionTimeout2").ToString();
+                    ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
                 }
+
                 string Status = Request.QueryString["Status"];
                 switch (Status)
                 {
                     case "9":
-                        lblAddTitle.Text += " as CURRENT";
+                        lblAddTitle.Text += " " + GetLocalResourceObject("AsCurrent").ToString();
                         break;
                     case "4":
-                        lblAddTitle.Text += " as READY";
+                        lblAddTitle.Text += " " + GetLocalResourceObject("AdReady").ToString();
                         break;
                     case "5":
-                        lblAddTitle.Text += " as REVIEW";
+                        lblAddTitle.Text += " " + GetLocalResourceObject("AsReview").ToString();
                         break;
                     case "3054":
-                        lblAddTitle.Text += " as EVIDENCE";
+                        lblAddTitle.Text += " " + GetLocalResourceObject("AsEvidence").ToString();
                         break;
                     default:
-                        lblAddTitle.Text += " as DRAFT";
+                        lblAddTitle.Text += " " + GetLocalResourceObject("AsDraft").ToString();
                         break;
                 }
 
@@ -96,11 +98,11 @@ namespace Paradigm3
 					await Task.WhenAll(tasks);
 					if (FileUpload1.PostedFiles.Count > 1)
 					{
-						ClientScript.RegisterStartupScript(GetType(), "finishup", "showStatusMessage(3, '" + FileUpload1.PostedFiles.Count.ToString() + " Documents successfully imported!', false);", true);
+						ClientScript.RegisterStartupScript(GetType(), "finishup", "showStatusMessage(3, '" + FileUpload1.PostedFiles.Count.ToString() + " " + GetLocalResourceObject("ImportSuccess2").ToString() + "', false);", true);
 					}
 					else
 					{
-						ClientScript.RegisterStartupScript(GetType(), "finishup", "showStatusMessage(3, 'Document successfully imported!', false);", true);
+						ClientScript.RegisterStartupScript(GetType(), "finishup", "showStatusMessage(3, '" + GetLocalResourceObject("ImportSuccess1").ToString() + "', false);", true);
 					}
 
 				}
@@ -114,61 +116,9 @@ namespace Paradigm3
             }
             else
 			{
-                ClientScript.RegisterStartupScript(GetType(), "needlogin", "showStatusMessage(3, 'Your session has timed out.  Please log in and try again.', true);", true);
+                ClientScript.RegisterStartupScript(GetType(), "needlogin", "showStatusMessage(3, '" + GetLocalResourceObject("SessionTimeout1").ToString() + "', true);", true);
             }
-
-
-
-
-
-				//if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-				//{
-				//	string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
-				//	FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
-				//	string UserData = authTicket.UserData;
-				//	string[] UserValues = UserData.Split(',');
-				//	int UserID = Convert.ToInt32(UserValues[0]);
-				//	string UserName = UserValues[1];
-				//	try
-				//	{
-				//		List<Task> tasks = new List<Task>();
-				//		DirectoryInfo PublicPath = new DirectoryInfo(Server.MapPath(ConfigurationManager.AppSettings["PublicPath"] + "import/"));
-				//		FileInfo[] files = PublicPath.GetFiles();
-				//		foreach (FileInfo file in files)
-				//		{
-				//			string FileName = file.Name;
-				//			string FileExtension = file.Extension;
-				//			string LabelName = string.Empty;
-				//			if (Session["NewDocName"] != null)
-				//			{
-				//				FileName = Session["NewDocName"].ToString();
-				//			}
-
-				//			if (Session["NewDocLabel"] != null)
-				//			{
-				//				LabelName = Session["NewDocLabel"].ToString();
-				//			}
-
-				//			FileName = FileName.Substring(0, FileName.Length - FileExtension.Length);
-				//			FileExtension = FileExtension.Substring(1);
-				//			tasks.Add(ImportFile(FileName, LabelName, FileExtension, UserID, UserName));
-				//		}
-				//		await Task.WhenAll(tasks);
-				//		ClientScript.RegisterStartupScript(GetType(), "finishup", "showStatusMessage(3, 'Document successfully imported!', false);", true);
-				//	}
-				//	catch (Exception ex)
-				//	{
-				//		string msg = ex.Message.Replace(Environment.NewLine, string.Empty);
-				//		msg = msg.Replace("'", string.Empty);
-				//		msg = msg.Replace(",", string.Empty);
-				//		ClientScript.RegisterStartupScript(GetType(), "docerror", "showStatusMessage(3, '" + msg + "', true);", true);
-				//	}
-				//}
-				//else
-				//{
-				//	ClientScript.RegisterStartupScript(GetType(), "needlogin", "showStatusMessage(3, 'Your session has timed out.  Please log in and try again.', true);", true);
-				//}
-			}
+		}
 
         private async Task ImportFile(string FileName, string LabelName, string FileExtension, int UserID, string UserName)
         {
@@ -238,12 +188,6 @@ namespace Paradigm3
             {
                 throw new Exception("Document import failed.");
             }
-
-
-            //if (!FileName.Contains("Do_Not_Delete"))
-            //{
-
-            //}
         }
     }
 }

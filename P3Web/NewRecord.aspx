@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewRecord.aspx.cs" Inherits="Paradigm3.NewRecord" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewRecord.aspx.cs" Inherits="Paradigm3.NewRecord" Async="true" meta:resourcekey="PageResource1" %>
 
 <!DOCTYPE html>
 
@@ -19,14 +19,14 @@
                     Name:
                 </td>
                 <td class="fieldValue">
-                    <asp:TextBox ID="txtName" runat="server" Width="325px" ValidationGroup="GenAdd" />                    
+                    <asp:TextBox ID="txtName" runat="server" Width="325px" ValidationGroup="GenAdd" meta:resourcekey="txtNameResource1" />                    
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="You must enter a name."
-                        ControlToValidate="txtName" Display="None" SetFocusOnError="true" ValidationGroup="AddRecord" />
-                    <asp:DropDownList ID="ddlName" runat="server" Width="330px" AppendDataBoundItems="true">
-                        <asp:ListItem Text="Select Training Definition" Value="0" Selected="true" />
+                        ControlToValidate="txtName" Display="None" SetFocusOnError="True" ValidationGroup="AddRecord" meta:resourcekey="RequiredFieldValidator1Resource1" />
+                    <asp:DropDownList ID="ddlName" runat="server" Width="330px" AppendDataBoundItems="True" meta:resourcekey="ddlNameResource1">
+                        <asp:ListItem Text="Select Training Definition" Value="0" Selected="true" meta:resourcekey="ListItemResource1" />
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" InitialValue="0" runat="server" ErrorMessage="You must select a name."
-                        ControlToValidate="ddlName" Display="None" SetFocusOnError="true" ValidationGroup="AddTraining" />
+                        ControlToValidate="ddlName" Display="None" SetFocusOnError="True" ValidationGroup="AddTraining" meta:resourcekey="RequiredFieldValidator2Resource1" />
                 </td>
             </tr>
             <tr>
@@ -34,7 +34,7 @@
                     Label:
                 </td>
                 <td class="fieldValue">
-                    <asp:TextBox ID="txtLabel" runat="server" Width="325px" />
+                    <asp:TextBox ID="txtLabel" runat="server" Width="325px" meta:resourcekey="txtLabelResource1" />
                 </td>
             </tr>
             <tr>
@@ -42,30 +42,30 @@
                     Folder:
                 </td>
                 <td class="fieldValue">
-                    <asp:DropDownList ID="ddlFolders" runat="server" Width="330px" AppendDataBoundItems="true" OnSelectedIndexChanged="DDLFolders_SelectedIndexChanged">
-                        <asp:ListItem Text="Raise to Selected Folder" Value="0" Selected="True" />
+                    <asp:DropDownList ID="ddlFolders" runat="server" Width="330px" AppendDataBoundItems="True" OnSelectedIndexChanged="DDLFolders_SelectedIndexChanged" meta:resourcekey="ddlFoldersResource1">
+                        <asp:ListItem Text="Raise to Selected Folder" Value="0" Selected="True" meta:resourcekey="ListItemResource2" />
                     </asp:DropDownList>
                 </td>                
             </tr>
             <tr>
                 <td class="fieldName" style="vertical-align: top;">
-                    <asp:Label ID="lblTrainee" runat="server" Text="Users:" />
+                    <asp:Label ID="lblTrainee" runat="server" Text="Users:" meta:resourcekey="lblTraineeResource1" />
                 </td>
                 <td class="fieldValue">
-                    <asp:ListBox ID="lbTrainee" runat="server" Width="330px" SelectionMode="Multiple">
+                    <asp:ListBox ID="lbTrainee" runat="server" Width="330px" SelectionMode="Multiple" meta:resourcekey="lbTraineeResource1">
                     </asp:ListBox>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" class="formButtons">
-                    <asp:Button ID="btnSubmitRecord" runat="server" Text="OK" Width="60px" OnClick="Button_Click" CommandArgument="SubmitRecord" ValidationGroup="AddRecord" />
-                    <asp:Button ID="btnSubmitTraining" runat="server" Text="OK" Width="60px" OnClick="Button_Click" CommandArgument="SubmitTraining" ValidationGroup="AddTraining" />
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="60px" OnClick="Button_Click" CommandArgument="Cancel" />
+                    <asp:Button ID="btnSubmitRecord" runat="server" Text="OK" Width="60px" OnClick="Button_Click" CommandArgument="SubmitRecord" ValidationGroup="AddRecord" meta:resourcekey="btnSubmitRecordResource1" />
+                    <asp:Button ID="btnSubmitTraining" runat="server" Text="OK" Width="60px" OnClick="Button_Click" CommandArgument="SubmitTraining" ValidationGroup="AddTraining" meta:resourcekey="btnSubmitTrainingResource1" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="60px" OnClick="Button_Click" CommandArgument="Cancel" meta:resourcekey="btnCancelResource1" />
                 </td> 
             </tr>
         </table>
-        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="true" DisplayMode="BulletList" ValidationGroup="AddRecord" ShowSummary="false" />
-        <asp:ValidationSummary ID="ValidationSummary2" runat="server" ShowMessageBox="true" DisplayMode="BulletList" ValidationGroup="AddTraining" ShowSummary="false" />
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ValidationGroup="AddRecord" ShowSummary="False" meta:resourcekey="ValidationSummary1Resource1" />
+        <asp:ValidationSummary ID="ValidationSummary2" runat="server" ShowMessageBox="True" ValidationGroup="AddTraining" ShowSummary="False" meta:resourcekey="ValidationSummary2Resource1" />
     </div>
     </form>
 </body>

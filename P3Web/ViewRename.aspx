@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewRename.aspx.cs" Inherits="Paradigm3.ViewRename" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewRename.aspx.cs" Inherits="Paradigm3.ViewRename" Async="true" meta:resourcekey="PageResource1" %>
 
 <!DOCTYPE html>
 
@@ -13,42 +13,45 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="modify-body">
             <div class="modify-title">
-                <asp:Label ID="lblTitle" runat="server" />
+                <asp:Label ID="lblTitle" runat="server" meta:resourcekey="lblTitleResource1" />
             </div>
             <div class="modify-content">
                 <div class="label">
-                     <label>Name:</label>
+                     <label><asp:Label ID="NameLabel" runat="server" Text="Name:" meta:resourcekey="NameLabel"></asp:Label></label>
                 </div>
                 <div class="field">
-                    <asp:TextBox ID="txtName" runat="server" Width="100%" Height="30px" style="font-size: 1.25em;" />
+                    <asp:TextBox ID="txtName" runat="server" Width="100%" Height="30px" style="font-size: 1.25em;" meta:resourcekey="txtNameResource1" />
                 </div>
-                <asp:Panel ID="pnlLabel" runat="server" CssClass="label" Visible="false">
-                    <label>Label:</label>
+                <asp:Panel ID="pnlLabel" runat="server" CssClass="label" Visible="False" meta:resourcekey="pnlLabelResource1">
+                    <label><asp:Label ID="LabelLabel" runat="server" Text="Label:" meta:resourcekey="LabelLabel"></asp:Label></label>
                 </asp:Panel>
-                <asp:Panel ID="pnlField" runat="server" CssClass="field" Visible="false">
-                    <asp:TextBox ID="txtLabel" runat="server" Width="100%" Height="30px" style="font-size: 1.25em;" />
+                <asp:Panel ID="pnlField" runat="server" CssClass="field" Visible="False" meta:resourcekey="pnlFieldResource1">
+                    <asp:TextBox ID="txtLabel" runat="server" Width="100%" Height="30px" style="font-size: 1.25em;" meta:resourcekey="txtLabelResource1" />
                 </asp:Panel>                
             </div>
-            <div class="modify-buttons">
-                <button type="button" onclick="javascript:document.getElementById('msg').style.display='block';">Submit</button>
+            <div class="modify-buttons">               
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit" meta:resourcekey="btnSubmitResource1" />
                 &nbsp;
-                <button type="button" onclick="javascript:window.close();">Close</button>
+                <asp:Button ID="btnClose" runat="server" Text="Close" OnClientClick="javascript:window.close();" meta:resourcekey="btnCloseResource1" />
             </div>
         </div>
-        <div id="msg" class="modify-modal-background">
-            <div class="modify-modal-body">
+        <asp:Panel ID="pnlConfirm" runat="server" CssClass="modify-modal-body">
                 <div class="modify-modal-message">
-                    <asp:Label ID="lblMessage" runat="server"></asp:Label>
+                    <asp:Label ID="lblMessage" runat="server" meta:resourcekey="lblMessageResource1"></asp:Label>
                 </div>
                 <div class="modify-modal-buttons">
-                    <asp:Button ID="btnSubmit" runat="server" Text="Yes" Width="70px" OnClick="btnSubmit_Click" />
+                    <asp:Button ID="btnYes" runat="server" Text="Yes" Width="70px" OnClick="btnSubmit_Click" meta:resourcekey="btnYesResource1" />
                     &nbsp;
-                    <button type="button" style="width: 70px;" onclick="javascript:document.getElementById('msg').style.display = 'none';">No</button>
+                    <asp:Button ID="btnNo" runat="server" Text="No" Width="70px" OnClientClick="javascript:document.getElementById('msg').style.display = 'none';" meta:resourcekey="btnNoResource1"></asp:Button>
                 </div>
-            </div>
-        </div>
+            </asp:Panel>
+
+        <ajax:ModalPopupExtender ID="mpeCofirm" runat="server" TargetControlID="btnSubmit" CancelControlID="btnNo" PopupControlID="pnlConfirm">
+
+        </ajax:ModalPopupExtender>
     </form>
 </body>
 </html>

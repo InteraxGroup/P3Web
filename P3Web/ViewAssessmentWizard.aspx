@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewAssessmentWizard.aspx.cs" Inherits="Paradigm3.ViewAssessmentWizard" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewAssessmentWizard.aspx.cs" Inherits="Paradigm3.ViewAssessmentWizard" meta:resourcekey="PageResource1" %>
 
 <!DOCTYPE html>
 
@@ -18,7 +18,7 @@
             <div class="assessmentTitle">
                 Training Assessment
             </div>
-            <asp:Panel ID="pnlWizard" runat="server" CssClass="assessmentContent" EnableViewState="false">
+            <asp:Panel ID="pnlWizard" runat="server" CssClass="assessmentContent" EnableViewState="False" meta:resourcekey="pnlWizardResource1">
             </asp:Panel>          
         </div>
     </form>

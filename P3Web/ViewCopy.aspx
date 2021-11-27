@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewCopy.aspx.cs" Inherits="Paradigm3.ViewCopy"  Async="true"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewCopy.aspx.cs" Inherits="Paradigm3.ViewCopy"  Async="true" meta:resourcekey="PageResource1"%>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Paradigm 3 -- Copy</title>
+    <title id="hdrtitle" runat="server"/>
     <link id="favicon" runat="server" rel="shortcut icon" type="image/ico" href="p3_32.ico" />
     <link href="styles/P3Web.css" rel="stylesheet" />
     <link href="styles/Pages.css" rel="stylesheet" />
@@ -13,6 +13,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="modify-body">
             <div class="modify-title">
                 <asp:Label ID="lblTitle" runat="server"/>
@@ -21,19 +22,17 @@
            <div style="display:flex; flex-direction:row;">
                 
                 <div style="padding-left:10px" >    
-                   <label class="formLabel">Copy Name:  </label>
+                   <asp:label class="formLabel" id="lblCopyName" runat="server"/>
                     <asp:TextBox ID="txt_CopyName" style="font-weight:bold" runat="server" ReadOnly="true" Enabled="false"/>
                 </div>
                 <div id="dv_copyFrom"  runat="server" style="padding-left:10px">
-                    <label class="formLabel">Copy from:  </label>
+                    <asp:label class="formLabel" ID="lblCopyfrm" runat="server"/>
                      <asp:DropDownList runat="server" ID="ddl_CopyVersion" CssClass="form-control"></asp:DropDownList>
                     
                 </div>
                 <div  id="dv_copyAs"  runat="server" style="padding-left:10px">
-                   <label  class="formLabel">Copy as:  </label>
-                        <asp:DropDownList runat="server" ID="ddl_CopyType" CssClass="form-control">
-                         <%--   <asp:ListItem Value="1">Draft</asp:ListItem>
-                            <asp:ListItem Value="2">Collaborate</asp:ListItem>--%>
+                   <asp:label  class="formLabel" ID="lblCopyAs" runat="server"/>
+                        <asp:DropDownList runat="server" ID="ddl_CopyType" CssClass="form-control">                
                         </asp:DropDownList>
                 </div>
                     </div>
@@ -53,13 +52,27 @@
                 </div>
            
             <div class="modify-buttons">
-                <div class="chkBox"><asp:CheckBox ID="chkProperties" runat="server" Text="Retain Properties settings of copied item(s)" TextAlign="Right" /></div>
-                <button id="frmbtnSubmit" runat="server" type="button" onclick="javascript:document.getElementById('msg').style.display='block';">Submit</button>
+                <div class="chkBox"><asp:CheckBox ID="chkProperties" runat="server" TextAlign="Right" /></div>
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit" meta:Resourcekey="btnSubmit" />
                 &nbsp;
-                <button type="button" onclick="javascript:window.close();">Close</button>
+                <asp:Button ID="btnClose" runat="server" Text="Close" OnClientClick="javascript:window.close();" meta:resourcekey="btnClose" />
             </div>
         </div>
-        <div id="msg" class="modify-modal-background">
+        <asp:Panel ID="pnlConfirm" runat="server" CssClass="modify-modal-body">
+                <div class="modify-modal-message">
+                    <asp:Label ID="lblMessage" runat="server" meta:resourcekey="lblMessageResource1"></asp:Label>
+                </div>
+                <div class="modify-modal-buttons">
+                    <asp:Button ID="btnYes" runat="server" Text="Yes" Width="70px" OnClick="btnSubmit_Click" meta:resourcekey="btnYesResource1" />
+                    &nbsp;
+                    <asp:Button ID="btnNo" runat="server" Text="No" Width="70px" OnClientClick="javascript:document.getElementById('msg').style.display = 'none';" meta:resourcekey="btnNoResource1" />
+                </div>
+            </asp:Panel>
+
+        <ajax:ModalPopupExtender ID="mpeCofirm" runat="server" TargetControlID="btnSubmit" CancelControlID="btnNo" PopupControlID="pnlConfirm">
+
+        </ajax:ModalPopupExtender>
+        <%--<div id="msg" class="modify-modal-background">
             <div class="modify-modal-body">
                 <div class="modify-modal-message">
                     <asp:Label ID="lblMessage" runat="server"></asp:Label>
@@ -67,9 +80,9 @@
                 <div class="modify-modal-buttons">
                     <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Yes" Width="70px" />
                     &nbsp;
-                    <button type="button" style="width: 70px;" onclick="javascript:document.getElementById('msg').style.display='none';">No</button>
+                    <button id="btnNo" runat="server" style="width: 70px;" onclick="javascript:document.getElementById('msg').style.display='none';">No</button>
                 </div>
-            </div>
+            </div>--%>
         </div>
     </form>
 </body>

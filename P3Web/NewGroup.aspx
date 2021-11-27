@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewGroup.aspx.cs" Inherits="Paradigm3.NewGroup1" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewGroup.aspx.cs" Inherits="Paradigm3.NewGroup1" Async="true" meta:resourcekey="PageResource1" %>
 
 <!DOCTYPE html>
 
@@ -22,18 +22,18 @@
                     Folder Name:
                 </div>
                 <div>
-                    <asp:TextBox ID="txtFolderName" runat="server" style="height: 20px; width: 100%;"></asp:TextBox>
+                    <asp:TextBox ID="txtFolderName" runat="server" style="height: 20px; width: 100%;" meta:resourcekey="txtFolderNameResource1"></asp:TextBox>
                 </div>                
             </div>
             <div class="folder-add-buttons" style="border-top: 1px solid #dcdcdc;">
-                <asp:Button ID="btnOK" runat="server" Text="OK" Width="70px" OnClick="btnOK_Click" />
+                <asp:Button ID="btnOK" runat="server" Text="OK" Width="70px" OnClick="btnOK_Click" meta:resourcekey="btnOKResource1" />
                 &nbsp;
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClientClick="window.close()" />
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClientClick="window.close()" meta:resourcekey="btnCancelResource1" />
             </div>
         </div>
         <div id="statusMessagePanel">
             <div id="statusMessage">
-                <asp:Label ID="lblStatusMessage" runat="server"></asp:Label>
+                <asp:Label ID="lblStatusMessage" runat="server" meta:resourcekey="lblStatusMessageResource1"></asp:Label>
                 <button id="closeRefreshDoc" onclick="hideStatusMessage();" style="width: 70px; margin: 20px auto 0 auto;">OK</button>
                 <button id="closeRefreshRecord" onclick="hideStatusMessage();" style="width: 70px; margin: 20px auto 0 auto;">OK</button>
             </div>

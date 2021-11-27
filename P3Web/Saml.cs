@@ -133,7 +133,7 @@ namespace Saml
 			return true;
 		}
 
-		public bool IsExpired()
+		private bool IsExpired()
 		{
 			DateTime expirationDate = DateTime.MaxValue;
 			XmlNode node = _xmlDoc.SelectSingleNode("/samlp:Response/saml:Assertion[1]/saml:Subject/saml:SubjectConfirmation/saml:SubjectConfirmationData", _xmlNameSpaceManager);

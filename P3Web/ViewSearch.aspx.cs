@@ -21,8 +21,10 @@ namespace Paradigm3
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+                    string Message = GetLocalResourceObject("SessionTimeout").ToString();
+                    ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
                 }
+
                 int ModuleID = int.Parse(Request.QueryString["ModuleID"]);
                 int ParentGroupID = int.Parse(Request.QueryString["ParentGroupID"]);
 
@@ -163,10 +165,10 @@ namespace Paradigm3
                     // Populate ddlField with applicable values
                     if (UseSimpleSearch)
                     {
-                        DDLField.Items.Add(new ListItem("Document Name", "Name"));
-                        DDLField.Items.Add(new ListItem("Document Label", "LabelName"));
-                        DDLField.Items.Add(new ListItem("Document Original ID", "OrigID"));
-                        DDLField.Items.Add(new ListItem("Document Containing Text", "DocText"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentName").ToString(), "Name"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentLabel").ToString(), "LabelName"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentOrigID").ToString(), "OrigID"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentContainingText").ToString(), "DocText"));
 
                         TabRoles.Visible = false;
                         TabCategory.Visible = false;
@@ -175,16 +177,16 @@ namespace Paradigm3
                     }
                     else
                     {
-                        DDLField.Items.Add(new ListItem("Document Name", "Name"));
-                        DDLField.Items.Add(new ListItem("Document Label", "LabelName"));
-                        DDLField.Items.Add(new ListItem("Document ID", "ItemID"));
-                        DDLField.Items.Add(new ListItem("Document Original ID", "OrigID"));
-                        DDLField.Items.Add(new ListItem("Last Modified Date", "LastModified"));
-                        DDLField.Items.Add(new ListItem("Converted Date", "VersionDate"));
-                        DDLField.Items.Add(new ListItem("Status", "Status"));
-                        DDLField.Items.Add(new ListItem("Item Notes", "Notes"));
-                        DDLField.Items.Add(new ListItem("History", "MemoData"));
-                        DDLField.Items.Add(new ListItem("Document Containing Text", "DocText"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentName").ToString(), "Name"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentLabel").ToString(), "LabelName"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentID").ToString(), "ItemID"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentOrigID").ToString(), "OrigID"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("LastModifiedDate").ToString(), "LastModified"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("ConvertedDate").ToString(), "VersionDate"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("Status").ToString(), "Status"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("ItemNotes").ToString(), "Notes"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("History").ToString(), "MemoData"));
+                        DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentContainingText").ToString(), "DocText"));
 
                         TabRoles.Visible = true;
                         TabCategory.Visible = true;
@@ -204,27 +206,27 @@ namespace Paradigm3
                 case 4:
                 case 6:
                 case 12:
-                    DDLField.Items.Add(new ListItem("Item Name", "Name"));
-                    DDLField.Items.Add(new ListItem("Item Label", "LabelName"));
-                    DDLField.Items.Add(new ListItem("Item ID", "ItemID"));
-                    DDLField.Items.Add(new ListItem("Item Original ID", "OrigID"));
-                    DDLField.Items.Add(new ListItem("Last Modified Date", "LastModified"));
-                    DDLField.Items.Add(new ListItem("Converted Date", "VersionDate"));
-                    DDLField.Items.Add(new ListItem("Status", "Status"));
-                    DDLField.Items.Add(new ListItem("Item Notes", "Notes"));
-                    DDLField.Items.Add(new ListItem("History", "History"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentName").ToString(), "Name"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentLabel").ToString(), "LabelName"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentID").ToString(), "ItemID"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("DocumentOrigID").ToString(), "OrigID"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("LastModifiedDate").ToString(), "LastModified"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("ConvertedDate").ToString(), "VersionDate"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("Status").ToString(), "Status"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("ItemNotes").ToString(), "Notes"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("History").ToString(), "History"));
 
                     TabRoles.Visible = true;
                     TabCategory.Visible = true;
                     TabStyle.Visible = true;
                     break;
                 case 14:
-                    DDLField.Items.Add(new ListItem("Title", "Name"));
-                    DDLField.Items.Add(new ListItem("Status", "Status"));
-                    DDLField.Items.Add(new ListItem("Due Date", "DueDate"));
-                    DDLField.Items.Add(new ListItem("Details", "Details"));
-                    DDLField.Items.Add(new ListItem("Sent Date", "SentDate"));
-                    DDLField.Items.Add(new ListItem("Recipient", "Recipient"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("AITitle").ToString(), "Name"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("Status").ToString(), "Status"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("AIDueDate").ToString(), "DueDate"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("AIDetails").ToString(), "Details"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("AISentDate").ToString(), "SentDate"));
+                    DDLField.Items.Add(new ListItem(GetLocalResourceObject("AIRecipient").ToString(), "Recipient"));
 
                     TabRoles.Visible = false;
                     TabCategory.Visible = true;
@@ -246,22 +248,22 @@ namespace Paradigm3
                 switch (ModuleID)
                 {
                     case 3:
-                        DDLSearch.Items.Add(new ListItem("Current", "1"));
-                        DDLSearch.Items.Add(new ListItem("Pending", "2"));
-                        DDLSearch.Items.Add(new ListItem("Ready", "3"));
-                        DDLSearch.Items.Add(new ListItem("Review", "4"));
-                        DDLSearch.Items.Add(new ListItem("Collaborate", "5"));
-                        DDLSearch.Items.Add(new ListItem("Draft", "6"));
-                        DDLSearch.Items.Add(new ListItem("Open", "7"));
-                        DDLSearch.Items.Add(new ListItem("Obsolete", "8"));
-                        DDLSearch.Items.Add(new ListItem("Complete", "9"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Current").ToString(), "1"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Pending").ToString(), "2"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Ready").ToString(), "3"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Review").ToString(), "4"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Collaborate").ToString(), "5"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Draft").ToString(), "6"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Open").ToString(), "7"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Obsolete").ToString(), "8"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Complete").ToString(), "9"));
                         break;
                     case 4:
                     case 6:
                     case 12:
                     case 14:
-                        DDLSearch.Items.Add(new ListItem("Open", "2"));
-                        DDLSearch.Items.Add(new ListItem("Complete", "3"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Open").ToString(), "2"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Complete").ToString(), "3"));
                         break;
                 }
             }
@@ -519,7 +521,7 @@ namespace Paradigm3
 						btnGo.Visible = false;
 						btnClear.Enabled = true;
 						btnClear.Visible = true;
-						ScriptManager.RegisterStartupScript(udpSearch, udpSearch.GetType(), "noresult", "alert('There are no items that match your search')", true);
+						ScriptManager.RegisterStartupScript(udpSearch, udpSearch.GetType(), "noresult", "alert('" + GetLocalResourceObject("NoItemsMatch").ToString() + "')", true);
 					}
 					else
 					{
@@ -556,7 +558,7 @@ namespace Paradigm3
                         case 3:
                             if (gvSearchResults.SelectedIndex < 0)
                             {
-                                ScriptManager.RegisterStartupScript(udpSearch, GetType(), "must select", "alert('You must select a result item to see it.')", true);
+                                ScriptManager.RegisterStartupScript(udpSearch, GetType(), "must select", "alert('" + GetLocalResourceObject("MustSelectItem").ToString() + "')", true);
                             }
                             else
                             {
@@ -577,7 +579,7 @@ namespace Paradigm3
                         case 12:
                             if (gvSearchResults.SelectedIndex < 0)
                             {
-                                ScriptManager.RegisterStartupScript(udpSearch, GetType(), "must select", "alert('You must select a result item to see it.')", true);
+                                ScriptManager.RegisterStartupScript(udpSearch, GetType(), "must select", "alert('" + GetLocalResourceObject("MustSelectItem").ToString() + "')", true);
                             }
                             else
                             {
@@ -590,7 +592,7 @@ namespace Paradigm3
                         case 14:
                             if (gvAISearchResults.SelectedIndex < 0)
                             {
-                                ScriptManager.RegisterStartupScript(udpSearch, GetType(), "must select", "alert('You must select a result item to see it.')", true);
+                                ScriptManager.RegisterStartupScript(udpSearch, GetType(), "must select", "alert('" + GetLocalResourceObject("MustSelectItem").ToString() + "')", true);
                             }
                             else
                             {
@@ -604,7 +606,7 @@ namespace Paradigm3
                 case "GoThere":
                     if (gvSearchResults.SelectedIndex < 0)
                     {
-                        ScriptManager.RegisterStartupScript(udpSearch, GetType(), "must select", "alert('You must select a result item to go to it.')", true);
+                        ScriptManager.RegisterStartupScript(udpSearch, GetType(), "must select", "alert('" + GetLocalResourceObject("MustSelectItemGoThere").ToString() + "')", true);
                     }
                     else
                     {

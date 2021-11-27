@@ -2,10 +2,10 @@
 /*  STYLE & LAYOUT FOR SEARCH.ASPX  */
 /*  ------------------------------  */
 
-.search {
+.searchbody {
     padding: 0;
-    font-family: Arial;
-    background-color: #F0F0F0;
+    font-family: sans-serif;
+    background-color: #f1f1f1;
     margin: 0;
     overflow: hidden;
     text-align: left;
@@ -13,23 +13,26 @@
 }
 
 #pnlSearch {
-    width: 100%;
-    height: 260px;
-    padding: 10px;
+    display: flex;
     box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+   /* border-bottom: 1px solid black;
+    background-color: red;*/
 }
 
 #pnlSearchLeft {
-    width: 760px;
-    height: 245px;
-    float: left;
+    flex: 1 1 auto;
+    box-sizing: border-box;
 }
 
 .tabPanel {
-    width: 760px;
-    height: 190px;
+    width: 100%;
+    height: 200px;
     margin-left: auto;
     margin-right: auto;
+    box-sizing: border-box;
 }
 
 .tdCell {
@@ -42,21 +45,21 @@
 
 .btnBrowse {
     float: right;
+    box-sizing: border-box;
 }
 
 .categoryList {
-    width: 700px;
-    border: 1px solid #999999;
+    width: 100%;
+    /*border: 1px solid #999;*/
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 #pnlSearchRight {
-    width: 120px;
-    height: 243px;
-    float: left;
-    text-align: center;
-    vertical-align: top;
+    flex: 0 0 120px;
+    text-align: right;
     padding-top: 2px;
+    box-sizing: border-box;
 }
 
 .searchButton {
@@ -64,26 +67,29 @@
 }
 
 .resultsPanel {
-    width: 890px;
-    background-color: #FFFFFF;
-    border: 1px solid #999999;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #999;
     margin-left: auto;
     margin-right: auto;
+    box-sizing: border-box;
 }
 
 .searchResultsCounter {
-    width: 886px;
-    height: 20px;
+    width: 100%;
+    height: 30px;
     padding-left: 5px;
-    padding-top: 3px;
+    padding-top: 5px;
     background-color: blue;
     background-image: linear-gradient(to bottom, #598AD7 0%, #1849A6 80%);
+    box-sizing: border-box;
 }
 
 .searchResultsList {
     width: 100%;
     height: calc(100vh - 290px);
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .browsePanel {
@@ -91,6 +97,7 @@
     height: 230px;
     background-color: #F0F0F0;
     border: 2px solid #000000;
+    box-sizing: border-box;
 }
 
 .browseTitleBar {
@@ -101,6 +108,7 @@
     font: 14px Arial;
     padding: 2px 0 0 5px;
     vertical-align: middle;
+    box-sizing: border-box;
 }
 
 .browseTree {
@@ -110,6 +118,7 @@
     margin: 5px auto;
     background-color: #FFFFFF;
     border: 1px solid #999999;
+    box-sizing: border-box;
 }
 
 .browseButton {
@@ -132,6 +141,7 @@
     height: 600px;
     text-align: center;
     padding-top: 50px;
+    box-sizing: border-box;
 }
 
 .pleaseWaitsearch {
@@ -144,4 +154,5 @@
     text-align: center;
     background-color: #fff;
     opacity: .5;
+    box-sizing: border-box;
 }

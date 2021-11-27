@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewChangeEvidence.aspx.cs" Inherits="Paradigm3.ViewChangeEvidence"  Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewChangeEvidence.aspx.cs" Inherits="Paradigm3.ViewChangeEvidence"  Async="true" meta:resourcekey="PageResource2" %>
 
 <!DOCTYPE html>
 
@@ -15,13 +15,15 @@
     <form id="form1" runat="server">
         <div class="modify-body">
             <div class="modify-title">             
-               <asp:Label ID="lblTitle" runat="server"  style="display:flex; flex-direction:row;  margin-left:20%">Do you want to proceed?</asp:Label>               
+               <asp:Label ID="lblTitle" runat="server"  style="display:flex; flex-direction:row;  margin-left:20%" meta:resourcekey="lblTitleResource2">Do you want to proceed?</asp:Label>
+               
             </div>           
-           <div style="flex: 1 1 auto; display:flex; flex-direction:row; align-items: center; justify-content: center;">
-               <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Yes" Width="70px" />&nbsp;
-               <asp:Button ID="btn_No" runat="server" OnClientClick="window.close(); return false;" Text="No" Width="70px" />
-           </div>
+           <div style="padding: 20px; box-sizing: border-box; text-align:center;">
+                <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Yes" Width="70px" meta:resourcekey="btnSubmitResource2" />
+                <asp:Button ID="btn_No" runat="server" OnClientClick="window.close(); return false;" Text="No" Width="70px" meta:resourcekey="btn_NoResource2" />
+            </div>
         </div>
+     
     </form>
 </body>
 </html>

@@ -14,6 +14,10 @@ using DocumentFormat.OpenXml.EMMA;
 using System.Text.RegularExpressions;
 using System.Web.Configuration;
 using System.IO;
+using System.Resources;
+using System.Globalization; 
+using System.Threading;   
+using System.Reflection;
 
 namespace Paradigm3
 {
@@ -21,7 +25,8 @@ namespace Paradigm3
     {
         bool ObjectTypeID = false;
         bool SameNameObject = false;
-        bool GeneralFolder = false;
+        bool GeneralFolder = false;  
+
         protected async void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -29,8 +34,10 @@ namespace Paradigm3
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+                    string Message = GetLocalResourceObject("SessionTimeout").ToString();
+                    ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
                 }
+
                 await Initialize();
             }
         }
@@ -41,19 +48,28 @@ namespace Paradigm3
             int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
             int UserID = Convert.ToInt32(Request.QueryString["UserID"]);
             bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
-          
+
             if (IsGroup)
             {
-                lblTitle.Text = "Copy Group";
+                lblTitle.Text = GetLocalResourceObject("lblHeadertxtgrp").ToString();
                 dv_copyFrom.Attributes.CssStyle.Add("display", "none;");
                 dv_copyAs.Attributes.CssStyle.Add("display", "none;");
             }
             else
             {
-                lblTitle.Text = "Copy Item";
+                lblTitle.Text = GetLocalResourceObject("lblHeadertxtitem").ToString();
                 dv_copyFrom.Attributes.CssStyle.Add("display", "block;");
                 dv_copyAs.Attributes.CssStyle.Add("display", "block;");
             }
+            hdrtitle.Text = GetLocalResourceObject("frmCopyheader").ToString();
+            lblCopyName.Text = GetLocalResourceObject("lblCopynametext").ToString();
+            lblCopyfrm.Text = GetLocalResourceObject("lblCopyfrmtext").ToString();
+            lblCopyAs.Text = GetLocalResourceObject("lblCopyastext").ToString();
+            btnSubmit.Text = GetLocalResourceObject("btnSubmittext").ToString();
+            btnNo.Attributes.Add("Title", GetLocalResourceObject("btnNotext").ToString());
+            //btnSubmit.Attributes.Add("Title", GetLocalResourceObject("frmbtnSubmit").ToString());
+            //btnClose.Attributes.Add("Title", GetLocalResourceObject("frmbtnClose").ToString());
+            chkProperties.Text = GetLocalResourceObject("chkPropertiesText").ToString();
 
             int DefaultGroupID = 1;
             string RootNodeImage = "~/images/documentroot.png";
@@ -119,7 +135,7 @@ namespace Paradigm3
                 ddl_CopyVersion.Items.Add(new ListItem(dr["Version"].ToString() + " (" + dr["Status"].ToString() + ")", dr["ItemID"].ToString()));
             }
             
-            lblMessage.Text = "The following item will be copied.  Are you sure you want to continue with the operation?<br /><br />"
+            lblMessage.Text =  GetLocalResourceObject("lblMessageWarn").ToString()  + "<br /><br />"
                 + "<strong>" + ItemName + "</strong>";
         }
 
@@ -268,15 +284,15 @@ namespace Paradigm3
                     if (!IsGroup && SameNameObject == true)
                     {
                         ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please check name!" + "');", true);
-                        frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                        btnSubmit.Attributes.Add("disabled", "disabled");
                         CopyNewName(Name);
                         break;
                     }
 
                     else
                     {                      
-                            frmbtnSubmit.Attributes.Remove("disabled");
-                            frmbtnSubmit.Attributes.Add("enabled", "true");
+                            btnSubmit.Attributes.Remove("disabled");
+                            btnSubmit.Attributes.Add("enabled", "true");
                             break;
 
                     }
@@ -288,15 +304,15 @@ namespace Paradigm3
                         if (!IsGroup && SameNameObject == true)
                         {    
                             ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please check name!" + "');", true);
-                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            btnSubmit.Attributes.Add("disabled", "disabled");
                             CopyNewName(Name);
                             break;
                         }
 
                         else
                         {
-                            frmbtnSubmit.Attributes.Remove("disabled");
-                            frmbtnSubmit.Attributes.Add("enabled", "true");
+                            btnSubmit.Attributes.Remove("disabled");
+                            btnSubmit.Attributes.Add("enabled", "true");
                             break;
 
                         }
@@ -307,15 +323,15 @@ namespace Paradigm3
                         if (!IsGroup && SameNameObject == true)
                         {                 
                             ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please check name!" + "');", true);
-                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            btnSubmit.Attributes.Add("disabled", "disabled");
                             CopyNewName(Name);
                             break;
                         }
 
                         else
                         {
-                            frmbtnSubmit.Attributes.Remove("disabled");
-                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
+                            btnSubmit.Attributes.Remove("disabled");
+                            btnSubmit.Attributes.Add("enabled", "enabled");
                             break;
 
                         }
@@ -323,7 +339,7 @@ namespace Paradigm3
 
                     else
                     {          
-                        frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                        btnSubmit.Attributes.Add("disabled", "disabled");
                         break;
                     }
 
@@ -335,15 +351,15 @@ namespace Paradigm3
                         {
                            
                             ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please check name!" + "');", true);
-                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            btnSubmit.Attributes.Add("disabled", "disabled");
                             CopyNewName(Name);
                             break;
                         }
 
                         else
                         {
-                            frmbtnSubmit.Attributes.Remove("disabled");
-                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
+                            btnSubmit.Attributes.Remove("disabled");
+                            btnSubmit.Attributes.Add("enabled", "enabled");
                             break;
 
                         }
@@ -355,15 +371,15 @@ namespace Paradigm3
                         {
                           
                             ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name folders/items are not allowed by Admin!" + "');", true);
-                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            btnSubmit.Attributes.Add("disabled", "disabled");
                             CopyNewName(Name);
                             break;
                         }
 
                         else
                         {
-                            frmbtnSubmit.Attributes.Remove("disabled");
-                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
+                            btnSubmit.Attributes.Remove("disabled");
+                            btnSubmit.Attributes.Add("enabled", "enabled");
                             break;
 
                         }
@@ -372,7 +388,7 @@ namespace Paradigm3
                     else
                     {
                         //ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Destination folder type should be same!" + "');window.close();", true);
-                        frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                        btnSubmit.Attributes.Add("disabled", "disabled");
                         break;
                     }
 
@@ -384,15 +400,15 @@ namespace Paradigm3
                         {
 
                             ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name items are not allowed by Admin. Please check name!" + "');", true);
-                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            btnSubmit.Attributes.Add("disabled", "disabled");
                             CopyNewName(Name);
                             break;
                         }
 
                         else
                         {
-                            frmbtnSubmit.Attributes.Remove("disabled");
-                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
+                            btnSubmit.Attributes.Remove("disabled");
+                            btnSubmit.Attributes.Add("enabled", "enabled");
                             break;
 
                         }
@@ -404,15 +420,15 @@ namespace Paradigm3
                         {
 
                             ClientScript.RegisterStartupScript(GetType(), "alert", "userRefresh();alert('" + "Same name folders/items are not allowed by Admin!" + "');", true);
-                            frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                            btnSubmit.Attributes.Add("disabled", "disabled");
                             CopyNewName(Name);
                             break;
                         }
 
                         else
                         {
-                            frmbtnSubmit.Attributes.Remove("disabled");
-                            frmbtnSubmit.Attributes.Add("enabled", "enabled");
+                            btnSubmit.Attributes.Remove("disabled");
+                            btnSubmit.Attributes.Add("enabled", "enabled");
                             break;
 
                         }
@@ -420,7 +436,7 @@ namespace Paradigm3
 
                     else
                     {           
-                        frmbtnSubmit.Attributes.Add("disabled", "disabled");
+                        btnSubmit.Attributes.Add("disabled", "disabled");
                         break;
                     }
             }
@@ -515,7 +531,7 @@ namespace Paradigm3
                         }
                         srcPath = srcPath.TrimEnd('\\');                
 
-                        string msg = "Item copied successfully";
+                        string msg = GetLocalResourceObject("lblMsgSuccess").ToString();
                         if (IsGroup)
                         {
                             msg = "Group copied successfully";
@@ -612,7 +628,7 @@ namespace Paradigm3
 
 
 
-                                string msg = "Item copied successfully";
+                                string msg = GetLocalResourceObject("lblMsgSuccess").ToString() ;
                                 if (IsGroup)
                                 {
                                     msg = "Group copied successfully";
@@ -682,7 +698,7 @@ namespace Paradigm3
 
 
 
-                            string msg = "Item copied successfully";
+                            string msg = GetLocalResourceObject("lblMsgSuccess").ToString();
                             if (IsGroup)
                             {
                                 msg = "Group copied successfully";
@@ -800,8 +816,8 @@ namespace Paradigm3
             {
                 txt_CopyName.Enabled = true;
                 txt_CopyName.ReadOnly = false;
-                frmbtnSubmit.Attributes.Remove("disabled");
-                frmbtnSubmit.Attributes.Add("enabled", "enabled");
+                btnSubmit.Attributes.Remove("disabled");
+                btnSubmit.Attributes.Add("enabled", "enabled");
             }
         }
 

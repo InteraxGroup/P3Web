@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Homepage.aspx.cs" Inherits="Paradigm3.custom.bayshore.Homepage" Async="true" EnableEventValidation="false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Homepage.aspx.cs" Inherits="Paradigm3.custom.bayshore.Homepage" Async="true" EnableEventValidation="false" meta:resourcekey="PageResource1" %>
 
 <!DOCTYPE html>
 
@@ -12,9 +12,9 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="bayshore">
             <div class="bayshore-banner">
-                <img src="images/logo.svg" style="position: absolute; top: 20px; left: 10px; height: 60px; width: auto;" />
+                <img src='<%= GetLocalResourceObject("BayshoreLogo") %>' style="position: absolute; top: 20px; left: 10px; height: 60px; width: auto;" />
             </div>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <div class="bayshore-content">
                         <div class="bayshore-tabs">
@@ -22,55 +22,56 @@
                                 Orientation="Horizontal" 
                                 CssClass="bayshore-menu" 
                                 StaticItemFormatString="&nbsp;&nbsp;{0}&nbsp;&nbsp;" 
-                                OnMenuItemClick="BayShoreMenu_MenuItemClick">
+                                OnMenuItemClick="BayShoreMenu_MenuItemClick" meta:resourcekey="BayShoreMenuResource1">
                                 <Items>
-                                    <asp:MenuItem Text="Home" Value="0" Selected="true"></asp:MenuItem>
-                                    <asp:MenuItem Text="Employee Information" Value="1"></asp:MenuItem>
-                                    <asp:MenuItem Text="Human Resources" Value="2"></asp:MenuItem>
-                                    <asp:MenuItem Text="Health & Safety" Value="3"></asp:MenuItem>
-                                    <asp:MenuItem Text="CQ HIP" Value="4"></asp:MenuItem>
-                                    <asp:MenuItem Text="Information Services" Value="6"></asp:MenuItem>
+                                    <asp:MenuItem Text="Home" Value="0" Selected="True" meta:resourcekey="MenuItemResource1"></asp:MenuItem>
+                                    <asp:MenuItem Text="Employee Information" Value="1" meta:resourcekey="MenuItemResource2"></asp:MenuItem>
+                                    <asp:MenuItem Text="Human Resources" Value="2" meta:resourcekey="MenuItemResource3"></asp:MenuItem>
+                                    <asp:MenuItem Text="Health & Safety" Value="3" meta:resourcekey="MenuItemResource4"></asp:MenuItem>
+                                    <asp:MenuItem Text="CQ HIP" Value="4" meta:resourcekey="MenuItemResource5"></asp:MenuItem>
+                                    <asp:MenuItem Text="Information Services" Value="6" meta:resourcekey="MenuItemResource6"></asp:MenuItem>
                                 </Items>                        
                             </asp:Menu>
                         </div>
                         <div class="bayshore-pages">
-                            <asp:Panel ID="HomePanel" runat="server" CssClass="bayshore-panel" Visible="true">
-                                <div class="bayshore-panel-main">
-                                    <h1>Welcome to BayShore Paradigm!</h1>
-                                    <h2>How to Use:</h2>
+                            <asp:Panel ID="HomePanel" runat="server" CssClass="bayshore-panel" meta:resourcekey="HomePanelResource1">
+                                <div class="bayshore-panel-main">       
+                                     <h1><%=GetLocalResourceObject("lblHeadertxt") %></h1>
+                                 
+                                    <h2><%=GetLocalResourceObject("lblHeadertxt2") %></h2>
                                     <ul class="bullet-list">
                                         <li>
-                                            Select a tab above to view infromation related to specific BayShore departments.
+                                           <%=GetLocalResourceObject("Homepnltxt1") %> 
                                         </li>
 					                    <li>
-						                    Click a link in the main menu to the left to access commonly used file groups and direct links
+						                     <%=GetLocalResourceObject("Homepnltxt2") %> 
 					                    </li>
 					                    <li>
-						                    Use the search engine in the toolbar above to locate file by name, number, or content
+						                  <%=GetLocalResourceObject("Homepnltxt1") %>   
 					                    </li>
 				                    </ul>
                                     <p>
-					                    <strong>Please note that although you are able to print documents from within this web site, a printed copy of the document may not reflect the current, electronic version. Any copies appearing in paper form should always be checked against the electronic version prior to use</strong>
+                                        <strong>   <%=GetLocalResourceObject("Homepnlpara1") %>   </strong>
 				                    </p>
                                     <p>
-                                        For help with Paradigm, please <a href="#">click here</a>.<br />
-                                        To access quick training guides, <a href="#">click here</a>.<br />
-                                        If you need additional help, please contact <a href="mailto:bayshore.cqrt@bayshorehealth.ca">CQRT</a>
+                                         <%=GetLocalResourceObject("Homepnlpara2") %>    <a href="#"><%=GetLocalResourceObject("lblclick") %></a>.<br />
+                                         <%=GetLocalResourceObject("Homepnlpara3") %>    <a href="#"><%=GetLocalResourceObject("lblclick") %></a>.<br />
+                                         <%=GetLocalResourceObject("Homepnlpara4") %>    <a href="mailto:bayshore.cqrt@bayshorehealth.ca">CQRT</a>
                                     </p>
                                 </div>                                
                             </asp:Panel>
-                            <asp:Panel ID="EmployeePanel" runat="server" CssClass="bayshore-panel" Visible="false">
+                            <asp:Panel ID="EmployeePanel" runat="server" CssClass="bayshore-panel" Visible="False" meta:resourcekey="EmployeePanelResource1">
                                 <div class="bayshore-panel-main">
                                     <div>
-                                        <h1>Welcome to BayShore Employee Information</h1>
-                                        <h3>As a staff member, you can access the external links from each of the tabs listed below</h3>
+                                        <h1>  <%=GetLocalResourceObject("Emppnltxt1") %></h1>
+                                        <h3> <%=GetLocalResourceObject("Emppnltxt2") %></h3>
                                     </div>
                                     <div class="bayshore-panel-content">
-                                        <ajax:TabContainer ID="TCEmployeeInfo" runat="server">
-                                            <ajax:TabPanel ID="TPBenefits" runat="server" HeaderText="Benefits" CssClass="pc-1">
+                                        <ajax:TabContainer ID="TCEmployeeInfo" runat="server" meta:resourcekey="TCEmployeeInfoResource1">
+                                            <ajax:TabPanel ID="TPBenefits" runat="server"  CssClass="pc-1" meta:resourcekey="TPBenefitsResource1">
                                                 <ContentTemplate>
                                                     <div style="height: 100%">
-                                                        <h2>Benefits Important Links</h2>
+                                                        <h2> <%=GetLocalResourceObject("EmpPnlheaderlbl1") %></h2>
                                                         <ul class="bullet-list">
                                                             <li>
                                                                 <a href="https://www.ontario.ca/page/learn-about-ohip-plus" target="_blank" title="Learn about OHIP+">2018 OHIP +: Children and Youth Pharmacare</a>
@@ -82,10 +83,10 @@
                                                     </div>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TPPayroll" runat="server" HeaderText="Payroll" CssClass="pc-1">
+                                            <ajax:TabPanel ID="TPPayroll" runat="server"  CssClass="pc-1" meta:resourcekey="TPPayrollResource1">
                                                 <ContentTemplate>
                                                     <div style="height: 100%;">
-                                                        <h2>Payroll Important Links</h2>
+                                                        <h2> <%=GetLocalResourceObject("EmpPnlheaderlbl2") %></h2>
                                                         <ul class="bullet-list">
                                                             <li>
                                                                 <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-229-other-employment-expenses/work-space-home-expenses/what-changes.html" target="_blank" title="Additional guidelines on home office expenses due to COVID-19 pandemic">
@@ -185,250 +186,218 @@
                                     </div>                                    
                                 </div>
                                 <div class="bayshore-panel-hotlinks">
-                                    <div class="hotlinks-title">Employee Information HotLinks</div>
+                                    <div class="hotlinks-title"> <%=GetLocalResourceObject("EmppnlHotlnktitle") %> </div>
                                     <div class="hotlinks-data">
                                         <asp:GridView ID="GridViewEI" runat="server" GridLines="None" 
-                                            AutoGenerateColumns="false" 
-                                            ShowHeader="false" 
-                                            ShowFooter="false" 
+                                            AutoGenerateColumns="False" 
+                                            ShowHeader="False" 
                                             CssClass="bayshore-hotlinklist" 
                                             OnRowDataBound="GridView_RowDataBound" 
                                             OnSelectedIndexChanged="GridView_SelectedIndexChanged" 
-                                            DataKeyNames="ItemID,OrigID,Status,LabelName,FileExtension,TypeOfPublish">
+                                            DataKeyNames="ItemID,OrigID,Status,LabelName,FileExtension,TypeOfPublish" meta:resourcekey="GridViewEIResource1">
                                             <RowStyle CssClass="gridview-row" />
                                             <AlternatingRowStyle CssClass="gridview-alt-row" />
                                             <SelectedRowStyle CssClass="gridview-sel-row" />
                                             <EmptyDataTemplate>
                                                 <div class="bayshore-emptydata">
-                                                    There is currently no data available
+                                                    <%=GetLocalResourceObject("EmppnlHotlinktemplate") %> 
                                                 </div>                                                
                                             </EmptyDataTemplate>
                                             <Columns>
-                                                <asp:TemplateField>
+                                                <asp:TemplateField meta:resourcekey="TemplateFieldResource1">
                                                     <ItemTemplate>
-                                                        <asp:Image ID="ItemIcon" runat="server" Width="24px" Height="24px" ImageUrl="~/images/docx.png" />
+                                                        <asp:Image ID="ItemIcon" runat="server" Width="24px" Height="24px" ImageUrl="~/images/docx.png" meta:resourcekey="ItemIconResource1" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField DataField="Name" />
+                                                <asp:BoundField DataField="Name" meta:resourcekey="BoundFieldResource1" />
                                             </Columns>
                                         </asp:GridView>
                                     </div>
                                 </div>                                
                             </asp:Panel>
-                            <asp:Panel ID="HRPanel" runat="server" CssClass="bayshore-panel" Visible="false">
+                            <asp:Panel ID="HRPanel" runat="server" CssClass="bayshore-panel" Visible="False" meta:resourcekey="HRPanelResource1">
                                 <div class="bayshore-panel-main">
-                                    <h1>Welcome to BayShore Human Resources</h1>
-                                    <h3>This page is under construction</h3>
+                                    <h1> <%=GetLocalResourceObject("HRPnlheaderlbl1") %></h1>
+                                    <h3> <%=GetLocalResourceObject("HRPnlheaderlbl2") %></h3>
                                 </div>
                                 <div class="bayshore-panel-hotlinks">
-                                    <div class="hotlinks-title">Human Resources HotLinks</div>
+                                    <div class="hotlinks-title"><%=GetLocalResourceObject("HRpnlHotlnktitle") %> </div>
                                     <div class="hotlinks-data">
                                         <asp:GridView ID="GridViewHR" runat="server" GridLines="None" 
-                                            AutoGenerateColumns="false" 
-                                            ShowHeader="false" 
-                                            ShowFooter="false" 
+                                            AutoGenerateColumns="False" 
+                                            ShowHeader="False" 
                                             CssClass="bayshore-hotlinklist" 
                                             OnRowDataBound="GridView_RowDataBound" 
                                             OnSelectedIndexChanged="GridView_SelectedIndexChanged" 
-                                            DataKeyNames="ItemID,OrigID,Status,LabelName,FileExtension,TypeOfPublish">
+                                            DataKeyNames="ItemID,OrigID,Status,LabelName,FileExtension,TypeOfPublish" meta:resourcekey="GridViewHRResource1">
                                             <RowStyle CssClass="gridview-row" />
                                             <AlternatingRowStyle CssClass="gridview-alt-row" />
                                             <SelectedRowStyle CssClass="gridview-sel-row" />
                                             <EmptyDataTemplate>
                                                 <div class="bayshore-emptydata">
-                                                    There is currently no data available
+                                                    <%=GetLocalResourceObject("HRpnlHotlinktemplate") %> 
                                                 </div>                                                
                                             </EmptyDataTemplate>
                                             <Columns>
-                                                <asp:TemplateField>
+                                                <asp:TemplateField meta:resourcekey="TemplateFieldResource2">
                                                     <ItemTemplate>
-                                                        <asp:Image ID="ItemIcon" runat="server" Width="24px" Height="24px" ImageUrl="~/images/docx.png" />
+                                                        <asp:Image ID="ItemIcon" runat="server" Width="24px" Height="24px" ImageUrl="~/images/docx.png" meta:resourcekey="ItemIconResource2" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField DataField="Name" />
+                                                <asp:BoundField DataField="Name" meta:resourcekey="BoundFieldResource2" />
                                             </Columns>
                                         </asp:GridView>
                                     </div>
                                 </div>    
                             </asp:Panel>
-                            <asp:Panel ID="HSPanel" runat="server" CssClass="bayshore-panel" Visible="false">
+                            <asp:Panel ID="HSPanel" runat="server" CssClass="bayshore-panel" Visible="False" meta:resourcekey="HSPanelResource1">
                                 <div class="bayshore-panel-main">
                                     <div>
-                                        <h1>Welcome to BayShore Health & Safety</h1>
+                                        <h1> <%=GetLocalResourceObject("HSPnlheaderlbl1") %></h1>
                                     <h3>
-                                        Browse through each topic to learn more about Occupational Health & Safety at BayShore.
+                                        <%=GetLocalResourceObject("HSPnlheaderlbl2") %> 
                                     </h3>
                                     <p>
-                                        The Occupational Health & Safety department ensures legislative compliance, accident prevention and investigation, medical surveillances, 
-                                        health & safety training, wellness and critical incident counselling.
+                                         <%=GetLocalResourceObject("HSPnlpara1") %>
+                                       
                                     </p>
                                     </div>
                                     <div class="bayshore-panel-content">
-                                        <ajax:TabContainer ID="TCHS" runat="server">
-                                            <ajax:TabPanel ID="TPClinical" runat="server" HeaderText="Tab1" CssClass="pc-2">
+                                        <ajax:TabContainer ID="TCHS" runat="server" meta:resourcekey="TCHSResource1">
+                                            <ajax:TabPanel ID="TPClinical" runat="server" HeaderText="Tab1" CssClass="pc-2" meta:resourcekey="TPClinicalResource1">
                                                 <ContentTemplate>
-                                                    Under construction
+                                                    <%=GetLocalResourceObject("UnderConstruction") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TPPrivacy" runat="server" HeaderText="Tab2" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TPPrivacy" runat="server" HeaderText="Tab2" CssClass="pc-2" meta:resourcekey="TPPrivacyResource1">
                                                 <ContentTemplate>
-                                                    Under construction
+                                                    <%=GetLocalResourceObject("UnderConstruction") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TPQR" runat="server" HeaderText="Tab3" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TPQR" runat="server" HeaderText="Tab3" CssClass="pc-2" meta:resourcekey="TPQRResource1">
                                                 <ContentTemplate>
-                                                    Under construction
+                                                    <%=GetLocalResourceObject("UnderConstruction") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TPPFAC" runat="server" HeaderText="Tab4" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TPPFAC" runat="server" HeaderText="Tab4" CssClass="pc-2" meta:resourcekey="TPPFACResource1">
                                                 <ContentTemplate>
-                                                    Under construction
+                                                    <%=GetLocalResourceObject("UnderConstruction") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TabPanel1" runat="server" HeaderText="Tab5" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TabPanel1" runat="server" HeaderText="Tab5" CssClass="pc-2" meta:resourcekey="TabPanel1Resource1">
                                                 <ContentTemplate>
-                                                    Under construction
+                                                    <%=GetLocalResourceObject("UnderConstruction") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TabPanel2" runat="server" HeaderText="Tab6" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TabPanel2" runat="server" HeaderText="Tab6" CssClass="pc-2" meta:resourcekey="TabPanel2Resource1">
                                                 <ContentTemplate>
-                                                    Under construction
+                                                    <%=GetLocalResourceObject("UnderConstruction") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TabPanel3" runat="server" HeaderText="Tab7" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TabPanel3" runat="server" HeaderText="Tab7" CssClass="pc-2" meta:resourcekey="TabPanel3Resource1">
                                                 <ContentTemplate>
-                                                    Under construction
+                                                    <%=GetLocalResourceObject("UnderConstruction") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TabPanel4" runat="server" HeaderText="Tab8" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TabPanel4" runat="server" HeaderText="Tab8" CssClass="pc-2" meta:resourcekey="TabPanel4Resource1">
                                                 <ContentTemplate>
-                                                    Under construction
+                                                    <%=GetLocalResourceObject("UnderConstruction") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
                                         </ajax:TabContainer>
                                     </div>
                                 </div>
-                                <%--<div class="bayshore-panel-hotlinks">
-                                    <div class="hotlinks-title">Health & Safety HotLinks</div>
-                                    <div class="hotlinks-data">
-                                        <asp:GridView ID="GridViewHS" runat="server" GridLines="None" 
-                                            AutoGenerateColumns="false" 
-                                            ShowHeader="false" 
-                                            ShowFooter="false" 
-                                            CssClass="bayshore-hotlinklist" 
-                                            OnRowDataBound="GridView_RowDataBound" 
-                                            OnSelectedIndexChanged="GridView_SelectedIndexChanged" DataKeyNames="ItemID,OrigID,Status,LabelName,FileExtension,TypeOfPublish">
-                                            <RowStyle CssClass="gridview-row" />
-                                            <AlternatingRowStyle CssClass="gridview-alt-row" />
-                                            <SelectedRowStyle CssClass="gridview-sel-row" />
-                                            <EmptyDataTemplate>
-                                                <div class="bayshore-emptydata">
-                                                    There is currently no data available
-                                                </div>                                                
-                                            </EmptyDataTemplate>
-                                            <Columns>
-                                                <asp:TemplateField>
-                                                    <ItemTemplate>
-                                                        <asp:Image ID="ItemIcon" runat="server" Width="24px" Height="24px" ImageUrl="~/images/docx.png" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:BoundField DataField="Name" />
-                                            </Columns>
-                                        </asp:GridView>
-                                    </div>--%>
                                 </div>
-                            </asp:Panel>
-                            <asp:Panel ID="CQHIPPanel" runat="server" CssClass="bayshore-panel" Visible="false">
+                           </asp:Panel>
+                            <asp:Panel ID="CQHIPPanel" runat="server" CssClass="bayshore-panel" Visible="False" meta:resourcekey="CQHIPPanelResource1">
                                 <div class="bayshore-panel-main">
                                     <div>
-                                        <h1>Welcome to BayShore CQ HIP</h1>
-                                        <h3>This page is under construction</h3>
+                                        <h1> <%=GetLocalResourceObject("CQHIPPnlheaderlbl1") %></h1>
+                                        <h3> <%=GetLocalResourceObject("CQHIPPnlheaderlbl2") %></h3>
                                     </div>
                                     <div class="bayshore-panel-content">
-                                        <ajax:TabContainer ID="TCCQHIP" runat="server">
-                                            <ajax:TabPanel ID="TPClinical2" runat="server" HeaderText="Clinical" CssClass="pc-1">
+                                        <ajax:TabContainer ID="TCCQHIP" runat="server" meta:resourcekey="TCCQHIPResource1">
+                                            <ajax:TabPanel ID="TPClinical2" runat="server" CssClass="pc-1" meta:resourcekey="TPClinical2Resource1">
                                                 <ContentTemplate>
-                                                    Clinical
+                                                    <%=GetLocalResourceObject("Clinical") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TPPrivacy2" runat="server" HeaderText="Privacy" CssClass="pc-1">
+                                            <ajax:TabPanel ID="TPPrivacy2" runat="server" CssClass="pc-1" meta:resourcekey="TPPrivacy2Resource1">
                                                 <ContentTemplate>
-                                                    Privacy
+                                                    <%=GetLocalResourceObject("Privacy") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TPQR2" runat="server" HeaderText="Quality & Risk" CssClass="pc-1">
+                                            <ajax:TabPanel ID="TPQR2" runat="server"  CssClass="pc-1" meta:resourcekey="TPQR2Resource1">
                                                 <ContentTemplate>
-                                                    Quality & Risk
+                                                    <%=GetLocalResourceObject("QualityAndRisk") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
-                                            <ajax:TabPanel ID="TPTBD" runat="server" HeaderText="TBD" CssClass="pc-2">
+                                            <ajax:TabPanel ID="TPTBD" runat="server" CssClass="pc-2" meta:resourcekey="TPTBDResource1">
                                                 <ContentTemplate>
-                                                    To be determined
+                                                    <%=GetLocalResourceObject("TBD") %>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
                                         </ajax:TabContainer>
                                     </div>
                                 </div>
                                 <div class="bayshore-panel-hotlinks">
-                                    <div class="hotlinks-title">CQ HIP HotLinks</div>
+                                    <div class="hotlinks-title"><%=GetLocalResourceObject("CQHIPpnlHotlnktitle") %> </div>
                                     <div class="hotlinks-data">
                                         <asp:GridView ID="GridViewCQHIP" runat="server" GridLines="None" 
-                                            AutoGenerateColumns="false" 
-                                            ShowHeader="false" 
-                                            ShowFooter="false" 
+                                            AutoGenerateColumns="False" 
+                                            ShowHeader="False" 
                                             CssClass="bayshore-hotlinklist" 
                                             OnRowDataBound="GridView_RowDataBound" 
-                                            OnSelectedIndexChanged="GridView_SelectedIndexChanged" DataKeyNames="ItemID,OrigID,Status,LabelName,FileExtension,TypeOfPublish">
+                                            OnSelectedIndexChanged="GridView_SelectedIndexChanged" DataKeyNames="ItemID,OrigID,Status,LabelName,FileExtension,TypeOfPublish" meta:resourcekey="GridViewCQHIPResource1">
                                             <RowStyle CssClass="gridview-row" />
                                             <AlternatingRowStyle CssClass="gridview-alt-row" />
                                             <SelectedRowStyle CssClass="gridview-sel-row" />
                                             <EmptyDataTemplate>
                                                 <div class="bayshore-emptydata">
-                                                    There is currently no data available
+                                                      <%=GetLocalResourceObject("CQHIPpnlHotlinktemplate") %>
                                                 </div>                                                
                                             </EmptyDataTemplate>
                                             <Columns>
-                                                <asp:TemplateField>
+                                                <asp:TemplateField meta:resourcekey="TemplateFieldResource3">
                                                     <ItemTemplate>
-                                                        <asp:Image ID="ItemIcon" runat="server" Width="24px" Height="24px" ImageUrl="~/images/docx.png" />
+                                                        <asp:Image ID="ItemIcon" runat="server" Width="24px" Height="24px" ImageUrl="~/images/docx.png" meta:resourcekey="ItemIconResource3" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField DataField="Name" />
+                                                <asp:BoundField DataField="Name" meta:resourcekey="BoundFieldResource3" />
                                             </Columns>
                                         </asp:GridView>
                                     </div>
                                 </div>
                             </asp:Panel>
-                            <asp:Panel ID="ISPanel" runat="server" CssClass="bayshore-panel" Visible="false">
+                            <asp:Panel ID="ISPanel" runat="server" CssClass="bayshore-panel" Visible="False" meta:resourcekey="ISPanelResource1">
                                 <div class="bayshore-panel-main">
-                                    <h1>Welcome to BayShore Information Services</h1>
-                                    <h3>This page is under construction</h3>
+                                    <h1><%=GetLocalResourceObject("ISPnlheaderlbl1") %></h1>
+                                    <h3><%=GetLocalResourceObject("ISPnlheaderlbl2") %></h3>
                                 </div>
                                 <div class="bayshore-panel-hotlinks">
-                                    <div class="hotlinks-title">Information Services HotLinks</div>
+                                    <div class="hotlinks-title"><%=GetLocalResourceObject("ISpnlHotlnktitle") %></div>
                                     <div class="hotlinks-data">
                                         <asp:GridView ID="GridViewIS" runat="server" GridLines="None" 
-                                            AutoGenerateColumns="false" 
-                                            ShowHeader="false" 
-                                            ShowFooter="false" 
+                                            AutoGenerateColumns="False" 
+                                            ShowHeader="False" 
                                             CssClass="bayshore-hotlinklist" 
                                             OnRowDataBound="GridView_RowDataBound" 
-                                            OnSelectedIndexChanged="GridView_SelectedIndexChanged" DataKeyNames="ItemID,OrigID,Status,LabelName,FileExtension,TypeOfPublish">
+                                            OnSelectedIndexChanged="GridView_SelectedIndexChanged" DataKeyNames="ItemID,OrigID,Status,LabelName,FileExtension,TypeOfPublish" meta:resourcekey="GridViewISResource1">
                                             <RowStyle CssClass="gridview-row" />
                                             <AlternatingRowStyle CssClass="gridview-alt-row" />
                                             <SelectedRowStyle CssClass="gridview-sel-row" />
                                             <EmptyDataTemplate>
                                                 <div class="bayshore-emptydata">
-                                                    There is currently no data available
+                                                     <%=GetLocalResourceObject("ISPpnlHotlinktemplate") %> 
                                                 </div>                                                
                                             </EmptyDataTemplate>
                                             <Columns>
-                                                <asp:TemplateField>
+                                                <asp:TemplateField meta:resourcekey="TemplateFieldResource4">
                                                     <ItemTemplate>
-                                                        <asp:Image ID="ItemIcon" runat="server" Width="24px" Height="24px" ImageUrl="~/images/docx.png" />
+                                                        <asp:Image ID="ItemIcon" runat="server" Width="24px" Height="24px" ImageUrl="~/images/docx.png" meta:resourcekey="ItemIconResource4" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField DataField="Name" />
+                                                <asp:BoundField DataField="Name" meta:resourcekey="BoundFieldResource4" />
                                             </Columns>
                                         </asp:GridView>
                                     </div>

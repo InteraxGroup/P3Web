@@ -21,8 +21,10 @@ namespace Paradigm3
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+                    string Message = GetLocalResourceObject("SessionTimeout").ToString();
+                    ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
                 }
+
                 int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
                 int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
                 string ItemName = RelatedActionItem.Get_ItemName(OrigID, ModuleID);

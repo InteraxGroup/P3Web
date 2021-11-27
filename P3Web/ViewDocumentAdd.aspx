@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewDocumentAdd.aspx.cs" Inherits="Paradigm3.ViewDocumentAdd" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewDocumentAdd.aspx.cs" Inherits="Paradigm3.ViewDocumentAdd" Async="true" meta:resourcekey="PageResource1" %>
 
 <%@ Register Assembly="EO.Web" Namespace="EO.Web" TagPrefix="eo" %>
 
@@ -18,7 +18,7 @@
 		<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="add-document" style="overflow: hidden;">            
             <div class="add-document-header" style="border-bottom: 1px solid #dcdcdc; padding-bottom: 5px; font-size: 20px;">
-                <asp:Label ID="lblAddTitle" runat="server" Text="Import New File(s)"></asp:Label>
+                <asp:Label ID="lblAddTitle" runat="server" Text="Import New File(s)" meta:resourcekey="lblAddTitleResource1"></asp:Label>
             </div>            
             <div class="add-document-browse" style="display: block; overflow-y: auto; padding: 20px;">
 				<%--<ajax:AjaxFileUpload ID="AjaxFileUpload1" runat="server" 
@@ -26,20 +26,20 @@
                     AllowedFileTypes="xls,xlsx,doc,docx,ppt,pptx,rtf,txt,csv,sql,vsd,dwg,msg,jpg,png,bmp,gif"
                     OnUploadComplete="AjaxFileUpload1_UploadComplete"
                     OnClientUploadError="uploadError" />--%>
-                <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true" />
+                <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="True" meta:resourcekey="FileUpload1Resource1" />
                 <p>
-                    <asp:Label ID="lblTEST" runat="server"></asp:Label>
+                    <asp:Label ID="lblTEST" runat="server" meta:resourcekey="lblTESTResource1"></asp:Label>
                 </p>                
             </div>			
             <div class="add-document-buttons" style="border-top: 1px solid #dcdcdc;">
-                <asp:Button ID="btnOK" runat="server" Text="OK" Width="70px" OnClick="btnOK_Click" />
+                <asp:Button ID="btnOK" runat="server" Text="OK" Width="70px" OnClick="btnOK_Click" meta:resourcekey="btnOKResource1" />
                 &nbsp;
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClientClick="window.close()" />
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClientClick="window.close()" meta:resourcekey="btnCancelResource1" />
             </div>
         </div>
         <div id="statusMessagePanel">
             <div id="statusMessage">
-                <asp:Label ID="lblStatusMessage" runat="server"></asp:Label>
+                <asp:Label ID="lblStatusMessage" runat="server" meta:resourcekey="lblStatusMessageResource1"></asp:Label>
                 <button id="closeRefreshDoc" onclick="hideStatusMessage();docRefresh();window.close();" style="width: 70px; margin: 20px auto 0 auto;">OK</button>
                 <button id="closeRefreshRecord" onclick="hideStatusMessage();recordRefresh();window.close();" style="width: 70px; margin: 20px auto 0 auto;">OK</button>
             </div>

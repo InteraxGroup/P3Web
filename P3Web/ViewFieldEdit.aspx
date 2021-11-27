@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewFieldEdit.aspx.cs" Inherits="Paradigm3.ViewFieldEdit" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewFieldEdit.aspx.cs" Inherits="Paradigm3.ViewFieldEdit" meta:resourcekey="PageResource1" %>
 
 <!DOCTYPE html>
 
@@ -13,12 +13,12 @@
     <form id="form1" runat="server">
         
         <div class="fieldEdit">
-            <asp:Label ID="lblFieldName" runat="server" Text="Edit Field Contents" />
-            <asp:TextBox ID="txtFieldContents" runat="server" TextMode="MultiLine" />
+            <asp:Label ID="lblFieldName" runat="server" Text="Edit Field Contents" meta:resourcekey="lblFieldNameResource1" />
+            <asp:TextBox ID="txtFieldContents" runat="server" TextMode="MultiLine" meta:resourcekey="txtFieldContentsResource1" />
         </div>
         <div class="fieldEditButtons">
-            <asp:Button ID="btnSubmit" runat="server" OnClick="Button_Click" CommandArgument="submit" Text="Submit" />
-            <asp:Button ID="btnCancel" runat="server" OnClick="Button_Click" CommandArgument="cancel" Text="Cancel" />
+            <asp:Button ID="btnSubmit" runat="server" OnClick="Button_Click" CommandArgument="submit" Text="Submit" meta:resourcekey="btnSubmitResource1" />
+            <asp:Button ID="btnCancel" runat="server" OnClick="Button_Click" CommandArgument="cancel" Text="Cancel" meta:resourcekey="btnCancelResource1" />
         </div>        
     </form>
 </body>

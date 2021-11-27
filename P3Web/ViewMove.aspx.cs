@@ -23,8 +23,10 @@ namespace Paradigm3
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+                    string Message = GetLocalResourceObject("SessionTimeout").ToString();
+                    ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
                 }
+
                 await Initialize();
             }
 		}
@@ -38,11 +40,11 @@ namespace Paradigm3
 
 			if (IsGroup)
 			{
-				lblTitle.Text = "Move Group";
+				lblTitle.Text = GetLocalResourceObject("lblTitlegrp").ToString();
 			}
 			else
 			{
-				lblTitle.Text = "Move Item";
+				lblTitle.Text = GetLocalResourceObject("lblTitleitem").ToString();
 			}
 
             int DefaultGroupID = 1;
@@ -97,7 +99,7 @@ namespace Paradigm3
             DataTable dt = await P3General.Get_Item_Group_DetailsAsync(ModuleID, OrigID, IsGroup);
             string ItemName = dt.Rows[0]["Name"].ToString();
 
-            lblMessage.Text = "The following item will be moved.  Are you sure you want to continue with the operation?<br /><br />"
+            lblMessage.Text = GetLocalResourceObject("lblMsg").ToString() + "<br> </br>"
                 + "<strong>" + ItemName + "</strong>";
 		}
 
@@ -302,10 +304,10 @@ namespace Paradigm3
 
                     await P3General.MoveAsync(ModuleID, OrigID, DestinationID, srcPath, destPath, UserID, IsGroup, KeepProperties);
 
-                    string msg = "Item moved successfully";
+                    string msg = GetLocalResourceObject("lblSuccessMsgitem").ToString(); 
                     if (IsGroup)
                     {
-                        msg = "Group moved successfully";
+                        msg = GetLocalResourceObject("lblSuccessMsggrp").ToString();
                         ClientScript.RegisterStartupScript(GetType(), "refreshTree", "treeRefreshMove();", true);
                     }
 

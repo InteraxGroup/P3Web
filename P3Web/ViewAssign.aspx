@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewAssign.aspx.cs" Inherits="Paradigm3.ViewAssign" EnableEventValidation="false" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewAssign.aspx.cs" Inherits="Paradigm3.ViewAssign" EnableEventValidation="false" Async="true" meta:resourcekey="PageResource1" %>
 
 <!DOCTYPE html>
 
@@ -16,13 +16,13 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="assignEntityPanel">
             <div class="assignmentTitle">
-                Assign User/Entity
+                <asp:Label ID="lblAssignTitle" runat="server" Text="Assign User/Entity" meta:resourcekey="lblAssignTitle"></asp:Label>
             </div>                   
             <div class="assignFields" style="padding-top: 5px;">
-                <asp:UpdatePanel ID="udpSelect" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                <asp:UpdatePanel ID="udpSelect" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                 <div class="assignSelect">
-                    <asp:ListBox ID="lbSelect" runat="server" SelectionMode="Multiple" CssClass="lbAssignSelect" Visible="false" />
+                    <asp:ListBox ID="lbSelect" runat="server" SelectionMode="Multiple" CssClass="lbAssignSelect" Visible="False" meta:resourcekey="lbSelectResource1" />
                     <asp:TreeView ID="P3UTree" runat="server"
                         ShowLines="True" 
                         BackColor="White" 
@@ -30,11 +30,10 @@
                         ExpandDepth="1" 
                         OnTreeNodePopulate="P3UTree_TreeNodePopulate" 
                         OnSelectedNodeChanged="P3UTree_SelectedNodeChanged" 
-                        Visible="false">
+                        Visible="False" meta:resourcekey="P3UTreeResource1">
                         <RootNodeStyle ImageUrl="~/images/users_sm.png" Height="20px"  />
-                        <NodeStyle ImageUrl="~/images/users2.png"  ForeColor="#000000" Font-Bold="false" Font-Names="Arial" Font-Size="8pt" Font-Underline="False" NodeSpacing="0px" VerticalPadding="0px" />
-                        <%--<LeafNodeStyle ImageUrl="~/images/user.png"  ForeColor="#000000" Font-Bold="false" Font-Names="Arial" Font-Size="8pt" Font-Underline="False" NodeSpacing="0px" VerticalPadding="0px" />--%>
-                        <SelectedNodeStyle BackColor="#0078D7" ForeColor="#FFFFFF" HorizontalPadding="2px" VerticalPadding="0px" />
+                        <NodeStyle ImageUrl="~/images/users2.png"  ForeColor="Black" Font-Bold="False" Font-Names="Arial" Font-Size="8pt" Font-Underline="False" NodeSpacing="0px" VerticalPadding="0px" />
+                        <SelectedNodeStyle BackColor="#0078D7" ForeColor="White" HorizontalPadding="2px" VerticalPadding="0px" />
                     </asp:TreeView>
                     <asp:TreeView ID="P3Tree" runat="server" 
                         ShowLines="True" 
@@ -43,37 +42,37 @@
                         ExpandDepth="1" 
                         OnTreeNodePopulate="P3Tree_TreeNodePopulate" 
                         OnSelectedNodeChanged="P3Tree_SelectedNodeChanged" 
-                        Visible="false">
+                        Visible="False" meta:resourcekey="P3TreeResource1">
                         <RootNodeStyle ImageUrl="~/images/entity.png" />
-                        <NodeStyle ImageUrl="~/images/entity.png"  ForeColor="#000000" Font-Bold="false" Font-Names="Arial" Font-Size="8pt" Font-Underline="False" NodeSpacing="0px" VerticalPadding="0px" />
-                        <SelectedNodeStyle BackColor="#0078D7" ForeColor="#FFFFFF" HorizontalPadding="2px" VerticalPadding="0px" />
+                        <NodeStyle ImageUrl="~/images/entity.png"  ForeColor="Black" Font-Bold="False" Font-Names="Arial" Font-Size="8pt" Font-Underline="False" NodeSpacing="0px" VerticalPadding="0px" />
+                        <SelectedNodeStyle BackColor="#0078D7" ForeColor="White" HorizontalPadding="2px" VerticalPadding="0px" />
                     </asp:TreeView>
                 </div>
                 <div class="assignButtons">
                     <p>
-                        <asp:Button ID="btnAddEntity" runat="server" Text="Add >" Width="90px" OnClick="Button_Click" CommandArgument="addentity" />
+                        <asp:Button ID="btnAddEntity" runat="server" Text="Add >" Width="90px" OnClick="Button_Click" CommandArgument="addentity" meta:resourcekey="btnAddEntityResource1" />
                     </p>
                     <p>
-                        <asp:Button ID="btnRemoveEntity" runat="server" Text="< Remove" Width="90px" OnClick="Button_Click" CommandArgument="removeentity" />
+                        <asp:Button ID="btnRemoveEntity" runat="server" Text="< Remove" Width="90px" OnClick="Button_Click" CommandArgument="removeentity" meta:resourcekey="btnRemoveEntityResource1" />
                     </p>
                 </div>                
                 <div class="assignSelected">
-                    <asp:GridView ID="gvSelected" runat="server" BackColor="#FFFFFF" AutoGenerateColumns="false" DataKeyNames="NumData, TextData, Type" GridLines="None" Width="100%" OnRowDataBound="GVSelected_RowDataBound">
-                        <HeaderStyle BackColor="#F0F0F0" BorderStyle="Solid" BorderWidth="1px" BorderColor="#000000" HorizontalAlign="Left" />
-                        <AlternatingRowStyle BackColor="#F0F0F0" ForeColor="#000000" />
-                        <SelectedRowStyle BackColor="#0078D7" ForeColor="#FFFFFF" />
+                    <asp:GridView ID="gvSelected" runat="server" BackColor="White" AutoGenerateColumns="False" DataKeyNames="NumData,TextData,Type" GridLines="None" Width="100%" OnRowDataBound="GVSelected_RowDataBound" meta:resourcekey="gvSelectedResource1">
+                        <HeaderStyle BackColor="#F0F0F0" BorderStyle="Solid" BorderWidth="1px" BorderColor="Black" HorizontalAlign="Left" />
+                        <AlternatingRowStyle BackColor="#F0F0F0" ForeColor="Black" />
+                        <SelectedRowStyle BackColor="#0078D7" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="NumData" HeaderText="ID">
-                                <HeaderStyle Width="35px" HorizontalAlign="Left" Font-Bold="false" />
-                                <ItemStyle Width="35px" HorizontalAlign="Left" ForeColor="#000000" Font-Bold="false" />
+                            <asp:BoundField DataField="NumData" HeaderText="ID" meta:resourcekey="BoundFieldResource1">
+                                <HeaderStyle Width="35px" HorizontalAlign="Left" Font-Bold="False" />
+                                <ItemStyle Width="35px" HorizontalAlign="Left" ForeColor="Black" Font-Bold="False" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="TextData" HeaderText="Name">
-                                <HeaderStyle HorizontalAlign="Left" Font-Bold="false" />
-                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" ForeColor="#000000" Font-Bold="false" />
+                            <asp:BoundField DataField="TextData" HeaderText="Name" meta:resourcekey="BoundFieldResource2">
+                                <HeaderStyle HorizontalAlign="Left" Font-Bold="False" />
+                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" ForeColor="Black" Font-Bold="False" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Type" HeaderText="Type">
-                                <HeaderStyle Width="60px" HorizontalAlign="Left" Font-Bold="false" />
-                                <ItemStyle Width="60px" HorizontalAlign="Left" VerticalAlign="Top" ForeColor="#000000" Font-Bold="false" />
+                            <asp:BoundField DataField="Type" HeaderText="Type" meta:resourcekey="BoundFieldResource3">
+                                <HeaderStyle Width="60px" HorizontalAlign="Left" Font-Bold="False" />
+                                <ItemStyle Width="60px" HorizontalAlign="Left" VerticalAlign="Top" ForeColor="Black" Font-Bold="False" />
                             </asp:BoundField>
                         </Columns>                        
                     </asp:GridView> 
@@ -81,8 +80,8 @@
                 </ContentTemplate>
                 </asp:UpdatePanel>
                 <div class="assignFooter">
-                    <asp:Button ID="btnSubmit" runat="server" Text="OK" Width="60px" OnClick="Button_Click" CommandArgument="submit" />
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="60px" OnClick="Button_Click" CommandArgument="cancel" />
+                    <asp:Button ID="btnSubmit" runat="server" Text="OK" Width="60px" OnClick="Button_Click" CommandArgument="submit" meta:resourcekey="btnSubmitResource1" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="60px" OnClick="Button_Click" CommandArgument="cancel" meta:resourcekey="btnCancelResource1" />
                 </div>
             </div>
         </div>

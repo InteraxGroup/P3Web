@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Paradigm3</RootNamespace>
-    <AssemblyName>Paradigm3Web</AssemblyName>
+    <RootNamespace>P3Web</RootNamespace>
+    <AssemblyName>P3Web</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -56,9 +56,12 @@
     <Reference Include="DocumentFormat.OpenXml, Version=2.13.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.13.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
+    <Reference Include="EO.Base">
+      <HintPath>C:\Program Files (x86)\Essential Objects\EO.Total 2018\EO.Base.dll</HintPath>
+    </Reference>
     <Reference Include="EO.Web, Version=17.0.64.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Essential Objects\EO.Total 2018\EO.Web.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\P3WebLocal\P3Web\bin\EO.Web.dll</HintPath>
     </Reference>
     <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
@@ -193,6 +196,7 @@
     <Content Include="custom\bayshore\bayshore.css" />
     <Content Include="custom\bayshore\bayshore.js" />
     <Content Include="custom\bayshore\Homepage.aspx" />
+    <Content Include="custom\bayshore\images\logo-FR.png" />
     <Content Include="custom\bayshore\images\bayshore-logo-dark.png" />
     <Content Include="custom\bayshore\images\bayshore-logo.png" />
     <Content Include="custom\bayshore\images\bayshore-wave.PNG" />
@@ -663,6 +667,16 @@
     <Compile Include="Administration\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_LocalResources\ViewStatus.aspx.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewStatus.aspx.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\ViewStatus.aspx.fr-CA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewStatus.aspx.fr-CA.resx</DependentUpon>
+    </Compile>
     <Compile Include="custom\amtrak\AmtrakSearch.aspx.cs">
       <DependentUpon>AmtrakSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -747,6 +761,11 @@
       <DependentUpon>NewRecord.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ReportDocument.aspx.cs">
       <DependentUpon>ReportDocument.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -821,6 +840,9 @@
     <Compile Include="ViewChangeEvidence.aspx.cs">
       <DependentUpon>ViewChangeEvidence.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewChangeEvidence.aspx.designer.cs">
+      <DependentUpon>ViewChangeEvidence.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewCopy.aspx.cs">
       <DependentUpon>ViewCopy.aspx</DependentUpon>
@@ -1150,6 +1172,96 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="custom\bayshore\admin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\Default.aspx.fr-CA.resx" />
+    <EmbeddedResource Include="App_LocalResources\Default.aspx.resx" />
+    <Content Include="App_LocalResources\ViewChangeEvidence.aspx.resx" />
+    <Content Include="App_LocalResources\ViewActionItem.aspx.resx" />
+    <Content Include="App_LocalResources\ViewActionItemOtherUser.aspx.resx" />
+    <Content Include="App_LocalResources\ViewAssessment.aspx.resx" />
+    <Content Include="App_LocalResources\LoginSAML.aspx.resx" />
+    <Content Include="App_LocalResources\NewGroup.aspx.resx" />
+    <Content Include="App_LocalResources\NewRecord.aspx.resx" />
+    <Content Include="App_LocalResources\ReportDocument.aspx.resx" />
+    <Content Include="App_LocalResources\ViewAssessmentResult.aspx.resx" />
+    <Content Include="App_LocalResources\ViewAssessmentWizard.aspx.resx" />
+    <Content Include="App_LocalResources\ViewAssign.aspx.resx" />
+    <Content Include="App_LocalResources\ViewAssignment.aspx.resx" />
+    <Content Include="App_LocalResources\ViewAttachment.aspx.resx" />
+    <Content Include="App_LocalResources\ViewDelete.aspx.resx" />
+    <Content Include="App_LocalResources\ViewDocCheckin.aspx.resx" />
+    <Content Include="App_LocalResources\ViewDocument.aspx.resx" />
+    <Content Include="App_LocalResources\ViewDocumentAdd.aspx.resx" />
+    <Content Include="App_LocalResources\ViewDocumentAddFromTemplate.aspx.resx" />
+    <Content Include="App_LocalResources\ViewError.aspx.resx" />
+    <Content Include="App_LocalResources\ViewFieldEdit.aspx.resx" />
+    <Content Include="App_LocalResources\ViewImprovement.aspx.resx" />
+    <Content Include="App_LocalResources\ViewMove.aspx.resx" />
+    <Content Include="App_LocalResources\ViewParaLink.aspx.resx" />
+    <Content Include="App_LocalResources\ViewParaLinkAdd.aspx.resx" />
+    <Content Include="App_LocalResources\ViewParaLinkAddGroup.aspx.resx" />
+    <Content Include="App_LocalResources\ViewPrintRecord.aspx.resx" />
+    <Content Include="App_LocalResources\ViewProperties.aspx.resx" />
+    <Content Include="App_LocalResources\ViewPropertiesUser.aspx.resx" />
+    <Content Include="App_LocalResources\ViewRecord.aspx.resx" />
+    <Content Include="App_LocalResources\ViewRelatedActionItem.aspx.resx" />
+    <Content Include="App_LocalResources\ViewRename.aspx.resx" />
+    <Content Include="App_LocalResources\ViewReport.aspx.resx" />
+    <Content Include="App_LocalResources\ViewSearch.aspx.resx" />
+    <Content Include="App_LocalResources\ViewStatus.aspx.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ViewStatus.aspx.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_LocalResources\ViewStatusControl.aspx.resx" />
+    <Content Include="App_LocalResources\ViewTraining.aspx.resx" />
+    <Content Include="App_LocalResources\LoginSAML.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\NewGroup.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\NewRecord.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ReportDocument.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewActionItem.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewActionItemOtherUser.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewAssessment.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewAssessmentResult.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewAssessmentWizard.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewAssign.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewAssignment.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewAttachment.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewChangeEvidence.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewDelete.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewDocCheckin.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewDocument.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewDocumentAdd.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewDocumentAddFromTemplate.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewError.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewFieldEdit.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewImprovement.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewMove.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewParaLink.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewParaLinkAdd.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewParaLinkAddGroup.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewPrintRecord.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewProperties.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewPropertiesUser.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewRecord.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewRelatedActionItem.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewRename.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewReport.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewSearch.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewStatus.aspx.fr-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ViewStatus.aspx.fr-CA.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_LocalResources\ViewStatusControl.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewTraining.aspx.fr-CA.resx" />
+    <Content Include="custom\bayshore\App_LocalResources\Homepage.aspx.resx" />
+    <Content Include="custom\bayshore\App_LocalResources\Homepage.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewCopy.aspx.resx" />
+    <Content Include="App_LocalResources\ViewCopy.aspx.fr-CA.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

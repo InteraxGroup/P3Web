@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewDocument.aspx.cs" Inherits="Paradigm3.ViewDocument" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewDocument.aspx.cs" Inherits="Paradigm3.ViewDocument" Async="true" meta:resourcekey="PageResource1" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
@@ -18,55 +18,55 @@
 <body class="docBody">
     <form id="form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
-        <asp:UpdatePanel ID="udpDocData" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+        <asp:UpdatePanel ID="udpDocData" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
         <div id="pnlDocToolBar">
             <div id="pnlToolbarLeft">
                 <div class="toolbarButton">
-                    <asp:ImageButton ID="btnProperties" runat="server" ImageUrl="~/images/properties.png" ToolTip="Show Properties" />
+                    <asp:ImageButton ID="btnProperties" runat="server" ImageUrl="~/images/properties.png" ToolTip="Show Properties" meta:resourcekey="btnPropertiesResource1" />
                     <br />
-                    <asp:Label ID="lblProperties" runat="server" Text="Properties" Font-Size="8pt" Font-Names="Arial" />
+                    <asp:Label ID="lblProperties" runat="server" Text="Properties" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblPropertiesResource1" />
                 </div>
-                <asp:Panel ID="pnlParaLink" runat="server" CssClass="toolbarButton" Visible="false">
-                    <asp:ImageButton ID="btnParaLink" runat="server" ImageUrl="~/images/paralink.png" ToolTip="View Para-Links&reg;" />
+                <asp:Panel ID="pnlParaLink" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlParaLinkResource1">
+                    <asp:ImageButton ID="btnParaLink" runat="server" ImageUrl="~/images/paralink.png" ToolTip="View Para-Links&reg;" meta:resourcekey="btnParaLinkResource1" />
                     <br />
-                    <asp:Label ID="lblParaLink" runat="server" Text="Para-Link&reg;" Font-Size="8pt" Font-Names="Arial" />
+                    <asp:Label ID="lblParaLink" runat="server" Text="Para-Link&reg;" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblParaLinkResource1" />
                 </asp:Panel>
-                <asp:Panel ID="pnlRelatedAI" runat="server" CssClass="toolbarButton" Visible="false">
-                    <asp:ImageButton ID="btnRelatedAI" runat="server" ImageUrl="~/images/actionitem.png" ToolTip="View Related Action Items" />
+                <asp:Panel ID="pnlRelatedAI" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlRelatedAIResource1">
+                    <asp:ImageButton ID="btnRelatedAI" runat="server" ImageUrl="~/images/actionitem.png" ToolTip="View Related Action Items" meta:resourcekey="btnRelatedAIResource1" />
                     <br />
-                    <asp:Label ID="lblRelatedAI" runat="server" Text="Related AI" Font-Size="8pt" Font-Names="Arial" />
+                    <asp:Label ID="lblRelatedAI" runat="server" Text="Related AI" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblRelatedAIResource1" />
                 </asp:Panel>
                 <div class="toolbarButton">
-                    <asp:ImageButton ID="btnClose" runat="server" ImageUrl="~/images/exit.png" ToolTip="Close Document" OnClick="btnCloseDoc_Click" />
+                    <asp:ImageButton ID="btnClose" runat="server" ImageUrl="~/images/exit.png" ToolTip="Close Document" OnClick="btnCloseDoc_Click" meta:resourcekey="btnCloseResource1" />
                     <br />
-                    <asp:Label ID="lblClose" runat="server" Text="Close" Font-Size="8pt" Font-Names="Arial" />
+                    <asp:Label ID="lblClose" runat="server" Text="Close" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblCloseResource1" />
                 </div>
             </div>            
             <div id="pnlToolbarRight">
                 <div class="doc-top-row">
                     <div class="left-column">
-                        <div>Name:</div>
-                        <div><asp:Label ID="lblNameData" CssClass="truncate" runat="server" /></div>
+                        <div><asp:Label ID="NameLabel" runat="server" Text="Name:" meta:resourcekey="NameLabel"></asp:Label></div>
+                        <div><asp:Label ID="lblNameData" CssClass="truncate" runat="server" meta:resourcekey="lblNameDataResource1" /></div>
                     </div>
                     <div class="right-column">
-                        <div>Released:</div>
+                        <div><asp:Label ID="ReleasedLabel" runat="server" Text="Released:" meta:resourcekey="ReleasedLabel"></asp:Label></div>
                         <div>
-                            <asp:Label ID="lblReleasedData" runat="server" Font-Size="9pt" />&nbsp;
-                            <asp:Label ID="lblReleasedByData" runat="server" Font-Size="9pt" />
+                            <asp:Label ID="lblReleasedData" runat="server" Font-Size="9pt" meta:resourcekey="lblReleasedDataResource1" />&nbsp;
+                            <asp:Label ID="lblReleasedByData" runat="server" Font-Size="9pt" meta:resourcekey="lblReleasedByDataResource1" />
                         </div>
                     </div>
                 </div>
                 <div class="doc-bottom-row">
                     <div class="left-column">
-                        <div>Label:</div>
-                        <div><asp:Label ID="lblLabelData" CssClass="truncate" runat="server" /></div>
+                        <div><asp:Label ID="LabelLabel" runat="server" Text="Label:" meta:resourcekey="LabelLabel"></asp:Label></div>
+                        <div><asp:Label ID="lblLabelData" CssClass="truncate" runat="server" meta:resourcekey="lblLabelDataResource1" /></div>
                     </div>
                     <div class="right-column">
-                        <div>Version:</div>
+                        <div><asp:Label ID="VersionLabel" runat="server" Text="Version:" meta:resourcekey="VersionLabel"></asp:Label></div>
                         <div>
-                            <asp:Label ID="lblVersionData" runat="server" Font-Size="9pt" />&nbsp;
-                            <asp:Label ID="lblStatusData" runat="server" Font-Size="9pt" />
+                            <asp:Label ID="lblVersionData" runat="server" Font-Size="9pt" meta:resourcekey="lblVersionDataResource1" />&nbsp;
+                            <asp:Label ID="lblStatusData" runat="server" Font-Size="9pt" meta:resourcekey="lblStatusDataResource1" />
                         </div>
                     </div>
                 </div>
@@ -74,15 +74,15 @@
         </div>
         </ContentTemplate>
         </asp:UpdatePanel>
-        <asp:UpdatePanel ID="udpDocument" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+        <asp:UpdatePanel ID="udpDocument" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <asp:Panel ID="pnlDocView" runat="server">
+            <asp:Panel ID="pnlDocView" runat="server" meta:resourcekey="pnlDocViewResource1">
                 <iframe id="DocViewer" runat="server" class="docFrame"></iframe>
             </asp:Panel>
         </ContentTemplate>
         </asp:UpdatePanel>
-        <asp:Button ID="btnGoThere" runat="server" OnClick="BtnGoThere_Click" style="display: none;" CommandArgument="GoThere" />
-		<asp:Button ID="btnCloseDoc" runat="server" OnClick="btnCloseDoc_Click" style="display: none;" />
+        <asp:Button ID="btnGoThere" runat="server" OnClick="BtnGoThere_Click" style="display: none;" CommandArgument="GoThere" meta:resourcekey="btnGoThereResource1" />
+		<asp:Button ID="btnCloseDoc" runat="server" OnClick="btnCloseDoc_Click" style="display: none;" meta:resourcekey="btnCloseDocResource1" />
     </form>
 </body>
 </html>

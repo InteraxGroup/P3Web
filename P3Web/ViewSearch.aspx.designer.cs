@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Paradigm3 {
-    
-    
-    public partial class ViewSearch {
-        
+namespace Paradigm3
+{
+
+
+    public partial class ViewSearch
+    {
+
         /// <summary>
         /// favicon control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlLink favicon;
-        
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// ScriptManager1 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// scrollPos control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField scrollPos;
-        
+
         /// <summary>
         /// udpSearch control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpSearch;
-        
+
         /// <summary>
         /// TabContainer1 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabContainer TabContainer1;
-        
+
         /// <summary>
         /// TabGeneral control.
         /// </summary>
@@ -74,7 +76,16 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel TabGeneral;
-        
+
+        /// <summary>
+        /// InModuleLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label InModuleLabel;
+
         /// <summary>
         /// DDLModule control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDLModule;
-        
+
         /// <summary>
         /// CHKGroupOrigID control.
         /// </summary>
@@ -92,7 +103,16 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox CHKGroupOrigID;
-        
+
+        /// <summary>
+        /// InFolderLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label InFolderLabel;
+
         /// <summary>
         /// txtFolder control.
         /// </summary>
@@ -101,7 +121,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFolder;
-        
+
         /// <summary>
         /// chkSubGroup control.
         /// </summary>
@@ -110,7 +130,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkSubGroup;
-        
+
         /// <summary>
         /// chkWithdrawn control.
         /// </summary>
@@ -119,7 +139,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkWithdrawn;
-        
+
         /// <summary>
         /// btnBrowse control.
         /// </summary>
@@ -128,7 +148,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBrowse;
-        
+
         /// <summary>
         /// BrowsePopUp control.
         /// </summary>
@@ -137,7 +157,16 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender BrowsePopUp;
-        
+
+        /// <summary>
+        /// InFieldLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label InFieldLabel;
+
         /// <summary>
         /// DDLField control.
         /// </summary>
@@ -146,7 +175,16 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDLField;
-        
+
+        /// <summary>
+        /// SearchLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SearchLabel;
+
         /// <summary>
         /// txtSearch control.
         /// </summary>
@@ -155,7 +193,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
-        
+
         /// <summary>
         /// DDLSearch control.
         /// </summary>
@@ -164,7 +202,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDLSearch;
-        
+
         /// <summary>
         /// txtStartDate control.
         /// </summary>
@@ -173,7 +211,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStartDate;
-        
+
         /// <summary>
         /// CalendarExtender1 control.
         /// </summary>
@@ -182,7 +220,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
-        
+
         /// <summary>
         /// lblTo control.
         /// </summary>
@@ -191,7 +229,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTo;
-        
+
         /// <summary>
         /// txtEndDate control.
         /// </summary>
@@ -200,7 +238,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
-        
+
         /// <summary>
         /// CalendarExtender2 control.
         /// </summary>
@@ -209,7 +247,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
-        
+
         /// <summary>
         /// lblConvertedBy control.
         /// </summary>
@@ -218,7 +256,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblConvertedBy;
-        
+
         /// <summary>
         /// DDLConvertedBy control.
         /// </summary>
@@ -227,7 +265,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDLConvertedBy;
-        
+
         /// <summary>
         /// TabRoles control.
         /// </summary>
@@ -236,7 +274,16 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel TabRoles;
-        
+
+        /// <summary>
+        /// RolesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RolesLabel;
+
         /// <summary>
         /// DDLRoles control.
         /// </summary>
@@ -245,7 +292,16 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDLRoles;
-        
+
+        /// <summary>
+        /// RoleMembersLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RoleMembersLabel;
+
         /// <summary>
         /// DDLRoleAssigned control.
         /// </summary>
@@ -254,7 +310,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDLRoleAssigned;
-        
+
         /// <summary>
         /// TabCategory control.
         /// </summary>
@@ -263,7 +319,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel TabCategory;
-        
+
         /// <summary>
         /// cblCategory control.
         /// </summary>
@@ -272,7 +328,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList cblCategory;
-        
+
         /// <summary>
         /// TabStyle control.
         /// </summary>
@@ -281,7 +337,16 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel TabStyle;
-        
+
+        /// <summary>
+        /// StylesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label StylesLabel;
+
         /// <summary>
         /// ddlStyles control.
         /// </summary>
@@ -290,7 +355,16 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlStyles;
-        
+
+        /// <summary>
+        /// SelectFieldLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SelectFieldLabel;
+
         /// <summary>
         /// ddlObjField control.
         /// </summary>
@@ -299,7 +373,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlObjField;
-        
+
         /// <summary>
         /// ddlModify control.
         /// </summary>
@@ -308,7 +382,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlModify;
-        
+
         /// <summary>
         /// txtSearchString control.
         /// </summary>
@@ -317,7 +391,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSearchString;
-        
+
         /// <summary>
         /// ddlMod control.
         /// </summary>
@@ -326,7 +400,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMod;
-        
+
         /// <summary>
         /// txtDateStart control.
         /// </summary>
@@ -335,7 +409,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDateStart;
-        
+
         /// <summary>
         /// ceDateStart control.
         /// </summary>
@@ -344,7 +418,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender ceDateStart;
-        
+
         /// <summary>
         /// txtNumStart control.
         /// </summary>
@@ -353,7 +427,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNumStart;
-        
+
         /// <summary>
         /// lblModTo control.
         /// </summary>
@@ -362,7 +436,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblModTo;
-        
+
         /// <summary>
         /// txtDateEnd control.
         /// </summary>
@@ -371,7 +445,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDateEnd;
-        
+
         /// <summary>
         /// ceDateEnd control.
         /// </summary>
@@ -380,7 +454,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender ceDateEnd;
-        
+
         /// <summary>
         /// txtNumEnd control.
         /// </summary>
@@ -389,7 +463,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNumEnd;
-        
+
         /// <summary>
         /// btnSearch control.
         /// </summary>
@@ -398,7 +472,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
-        
+
         /// <summary>
         /// btnClear control.
         /// </summary>
@@ -407,7 +481,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClear;
-        
+
         /// <summary>
         /// btnShowMe control.
         /// </summary>
@@ -416,7 +490,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnShowMe;
-        
+
         /// <summary>
         /// btnGo control.
         /// </summary>
@@ -425,7 +499,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGo;
-        
+
         /// <summary>
         /// btnCancel control.
         /// </summary>
@@ -434,7 +508,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
-        
+
         /// <summary>
         /// udpResults control.
         /// </summary>
@@ -443,7 +517,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpResults;
-        
+
         /// <summary>
         /// pnlResults control.
         /// </summary>
@@ -452,7 +526,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlResults;
-        
+
         /// <summary>
         /// lblResultCount control.
         /// </summary>
@@ -461,7 +535,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblResultCount;
-        
+
         /// <summary>
         /// gvSearchResults control.
         /// </summary>
@@ -470,7 +544,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvSearchResults;
-        
+
         /// <summary>
         /// gvAISearchResults control.
         /// </summary>
@@ -479,7 +553,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvAISearchResults;
-        
+
         /// <summary>
         /// UpdateProgress1 control.
         /// </summary>
@@ -488,7 +562,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress UpdateProgress1;
-        
+
         /// <summary>
         /// udpTreeView control.
         /// </summary>
@@ -497,7 +571,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpTreeView;
-        
+
         /// <summary>
         /// pnlBrowse control.
         /// </summary>
@@ -506,7 +580,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlBrowse;
-        
+
         /// <summary>
         /// pnlBrowseDrag control.
         /// </summary>
@@ -515,7 +589,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlBrowseDrag;
-        
+
         /// <summary>
         /// udpBrowseTree control.
         /// </summary>
@@ -524,7 +598,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpBrowseTree;
-        
+
         /// <summary>
         /// browseTreeView control.
         /// </summary>
@@ -533,7 +607,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel browseTreeView;
-        
+
         /// <summary>
         /// tvBrowse control.
         /// </summary>
@@ -542,7 +616,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TreeView tvBrowse;
-        
+
         /// <summary>
         /// browseButtons control.
         /// </summary>
@@ -551,7 +625,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel browseButtons;
-        
+
         /// <summary>
         /// btnBrowseOK control.
         /// </summary>
@@ -560,7 +634,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBrowseOK;
-        
+
         /// <summary>
         /// btnBrowseCancel control.
         /// </summary>

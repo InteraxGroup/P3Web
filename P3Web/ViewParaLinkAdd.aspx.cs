@@ -23,8 +23,10 @@ namespace Paradigm3
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+                    string Message = GetLocalResourceObject("SessionTimeout").ToString();
+                    ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
                 }
+
                 await GetModules();
                 await Fill_Tree(ModuleID);
             }
@@ -533,7 +535,7 @@ namespace Paradigm3
                                 try
                                 {
                                     ParaLink.Add_Paralinks(OrigID, ModID, dt, UserName, UserID, 1);
-                                    ScriptManager.RegisterStartupScript(udpAddPLink, GetType(), "ok", "alert('ParaLink(s) successfully added');pLinkRefresh();window.close()", true);
+                                    ScriptManager.RegisterStartupScript(udpAddPLink, GetType(), "ok", "alert('" + GetLocalResourceObject("SuccessMessage").ToString() + "');pLinkRefresh();window.close()", true);
                                 }
                                 catch (SqlException ex)
                                 {
@@ -548,17 +550,17 @@ namespace Paradigm3
                             }
                             else
                             {
-                                ScriptManager.RegisterStartupScript(udpAddPLink, GetType(), "ok", "alert('You must select an item to link')", true);
+                                ScriptManager.RegisterStartupScript(udpAddPLink, GetType(), "ok", "alert('" + GetLocalResourceObject("MissingItemMessage").ToString() + "')", true);
                             }
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(udpAddPLink, GetType(), "ok", "alert('You must select an item to link')", true);
+                            ScriptManager.RegisterStartupScript(udpAddPLink, GetType(), "ok", "alert('" + GetLocalResourceObject("MissingItemMessage").ToString() + "')", true);
                         }
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(udpAddPLink, GetType(), "cancel", "alert('Your session has timed out. Please login and try again.');window.close()", true);
+                        ScriptManager.RegisterStartupScript(udpAddPLink, GetType(), "cancel", "alert('" + GetLocalResourceObject("SessionTimeoutMessage").ToString() + "');window.close()", true);
                     }
                     break;
                 case "Cancel":

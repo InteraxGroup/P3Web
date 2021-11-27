@@ -16,31 +16,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using Saml;
+using System.Threading;
+using System.Globalization;
+using System.Resources;
 
 namespace Paradigm3
 {
     public partial class Default : SqlViewStatePage
-    {
-        //private bool IsEvidenceChecked;
+    {   
         protected async void Page_Load(object sender, EventArgs e)
         {
-            string ssoAuth = ConfigurationManager.AppSettings["UseSSO"];
-            string ssoURL = ConfigurationManager.AppSettings["SSOURL"];
-            string issuer = ConfigurationManager.AppSettings["Issuer"];
-            string ACS = ConfigurationManager.AppSettings["ACSUrl"];
-
-            if (ssoAuth.ToUpper() == "TRUE" && Session["IsValidSAML"] == null)
-            {
-                var samlEndpoint = ssoURL;
-
-                var request = new AuthRequest(issuer, ACS);
-
-                //redirect the user to the SAML provider
-                Response.Redirect(request.GetRedirectUrl(samlEndpoint), false);
-            }
-            //  Session["IsEvidenceCheck"] = IsEvidenceChecked.ToString();
+         
             if (!IsPostBack)
-            {
+            {           
                 // Set Properties session state
                 Session["IsGroup"] = 1;
              
@@ -50,22 +38,22 @@ namespace Paradigm3
                 await PopulateDLinksAsync();
 
                 //SAML Settings
-                //string ssoAuth = ConfigurationManager.AppSettings["UseSSO"];
-                //string ssoURL = ConfigurationManager.AppSettings["SSOURL"];
-                //string issuer = ConfigurationManager.AppSettings["Issuer"];
-                //string ACS = ConfigurationManager.AppSettings["ACSUrl"];
+                string ssoAuth = ConfigurationManager.AppSettings["UseSSO"];
+                string ssoURL = ConfigurationManager.AppSettings["SSOURL"];
+                string issuer = ConfigurationManager.AppSettings["Issuer"];
+                string ACS = ConfigurationManager.AppSettings["ACSUrl"];
 
-                //if (ssoAuth.ToUpper() == "TRUE" && Session["IsValidSAML"] == null)
-                //{
-                //    var samlEndpoint = ssoURL;
+                if (ssoAuth.ToUpper() == "TRUE" && Session["IsValidSAML"] == null)
+                {
+                    var samlEndpoint = ssoURL;
 
-                //    var request = new AuthRequest(issuer, ACS);
+                    var request = new AuthRequest(issuer, ACS);
 
-                //    //redirect the user to the SAML provider
-                //    Response.Redirect(request.GetRedirectUrl(samlEndpoint), false);
-                //}
-    //            else
-				//{
+                    //redirect the user to the SAML provider
+                    Response.Redirect(request.GetRedirectUrl(samlEndpoint), false);
+                }
+                else
+				{
                     // Retrieve authentication type from web.config
                     AuthenticationSection authSection = (AuthenticationSection)ConfigurationManager.GetSection("system.web/authentication");
                     string authType = authSection.Mode.ToString();
@@ -128,7 +116,7 @@ namespace Paradigm3
                             Set_CheckLogon(false);
                         }
                     }
-                //}                
+                }                
             }
         }
 
@@ -136,6 +124,24 @@ namespace Paradigm3
         {
             Session["SourcePage"] = "Default.aspx";
         }
+        protected override void InitializeCulture()
+        {
+            GlobalizationSection configSection = (GlobalizationSection)ConfigurationManager.GetSection("system.web/globalization");
+
+            string language = configSection.Culture;
+
+            //Detect User's Language.
+            if (Request.UserLanguages != null)
+            {
+                //Set the Language.
+                language = Request.UserLanguages[0];
+            }
+
+            //Set the Culture.
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+        }
+
 
         protected void GoTo_Folder(int ModuleID, int GroupID)
         {
@@ -2033,11 +2039,11 @@ namespace Paradigm3
             // Verify if P3 User.
             if (UserName.Length == 0)
             {
-                lblLogonError.Text = "You must enter a username.";
+                lblLogonError.Text = GetLocalResourceObject("lblLogonErrorUsrname").ToString();
             }
             else if (Password.Length == 0)
             {
-                lblLogonError.Text = "You must enter a password.";
+                lblLogonError.Text = GetLocalResourceObject("lblLogonErrorPasswrd").ToString();
             }
             else
             {
@@ -2074,7 +2080,7 @@ namespace Paradigm3
                     Set_CheckLogon(false);
                     pnlHome.Visible = false;
                     pnlLogon.Visible = true;
-                    lblLogonError.Text = "Logon not successful.  Please try again.";
+                    lblLogonError.Text = GetLocalResourceObject("lblLogonError").ToString();               
                     txtPassword.Focus();
                 }
             }
@@ -2090,15 +2096,16 @@ namespace Paradigm3
         protected void Set_CheckLogon(bool isLoggedon)
         {
             // Set greeting.
-            string timeGreet = "Good evening";
-            if (DateTime.Now.Hour < 12)
-            {
-                timeGreet = "Good morning";
-            }
-            else
-            {
-                timeGreet = "Good afternoon";
-            }
+               string  timeGreet = GetLocalResourceObject("timeGreetEvening").ToString();
+
+                if (DateTime.Now.Hour < 12)
+                {
+                    timeGreet = GetLocalResourceObject("timeGreetMorning").ToString();
+                }
+                else
+                {
+                    timeGreet = GetLocalResourceObject("timeGreetNoon").ToString();
+                }      
 
             if (isLoggedon)
             {
@@ -2161,135 +2168,135 @@ namespace Paradigm3
                 mnuModules.Items.Clear();
                 MenuItem mnuHome = new MenuItem()
                 {
-                    Text = "Home",
+                    Text = GetLocalResourceObject("HomeModule").ToString(),
                     Value = "0",
                     ImageUrl = "~/images/home.png",
                 };
                 mnuModules.Items.Add(mnuHome);
 
-                // Add all permitted Menu Items
-                DataTable dt = P3General.Get_Modules();
-                string UserModuleName = string.Empty;
-                string AIModuleName = string.Empty;
-                foreach (DataRow dr in dt.Rows)
+                if (UserID != 0)
                 {
-                    string imageurl = string.Empty;
-                    bool addModule = false;
-
-                    if (UserStatus == 1)
-                    {        
-                        addModule = true;
-                        switch (dr["ModuleID"].ToString())
-                        {
-                            case "1":
-                                UserModuleName = dr["Name"].ToString();
-                                addModule = false;
-                                break;
-                            case "3":
-                                imageurl = "~/images/document.png";
-                                break;
-                            case "4":                                
-                                imageurl = "~/images/record.png";
-                                break;
-                            case "6":                                
-                                imageurl = "~/images/improvement.png";
-                                break;
-                            case "12":
-                                imageurl = "~/images/training.png";
-                                break;
-                            case "14":
-                                AIModuleName = dr["Name"].ToString();
-                                addModule = false;
-                                break;
-                        }
-                    }
-                    else
-					{
-
-                        switch (dr["ModuleID"].ToString())
-                        {
-                            case "1":
-                                UserModuleName = dr["Name"].ToString();
-                                addModule = false;
-                                break;
-                            case "3":
-                                imageurl = "~/images/document.png";
-
-                                if (ModuleAccess.Length > 1)
-                                {
-                                    if (ModuleAccess[2] == "3|1")
-                                    {
-                                        addModule = true;
-                                    }
-                                }
-                               
-                                break;
-                            case "4":
-                                if (ModuleAccess.Length > 2)
-                                {
-                                    if (ModuleAccess[3] == "4|1")
-                                    {
-                                        addModule = true;
-                                    }
-                                }
-                                imageurl = "~/images/record.png";
-                                break;
-                            case "6":
-                                if (ModuleAccess.Length > 3)
-                                {
-                                    if (ModuleAccess[4] == "6|1")
-                                    {
-                                        addModule = true;
-                                    }
-                                }
-                                imageurl = "~/images/improvement.png";
-                                break;
-                            case "12":
-                                if (ModuleAccess.Length > 4)
-                                {
-                                    if (ModuleAccess[5] == "12|1")
-                                    {
-                                        addModule = true;
-                                    }
-                                }
-                                imageurl = "~/images/training.png";
-                                break;
-                            case "14":
-                                AIModuleName = dr["Name"].ToString();
-                                addModule = false;
-                                break;
-                        }
-                    }
-
-                    if (addModule)
+                    // Add all permitted Menu Items
+                    DataTable dt = P3General.Get_Modules();
+                    string UserModuleName = string.Empty;
+                    string AIModuleName = string.Empty;
+                    foreach (DataRow dr in dt.Rows)
                     {
-                        MenuItem mnu = new MenuItem()
+                        string imageurl = string.Empty;
+                        bool addModule = false;
+
+                        if (UserStatus == 1)
                         {
-                            Text = dr["Name"].ToString(),
-                            Value = dr["ModuleID"].ToString(),
-                            ImageUrl = imageurl
-                        };
-                        mnuModules.Items.Add(mnu);
+                            addModule = true;
+                            switch (dr["ModuleID"].ToString())
+                            {
+                                case "1":
+                                    UserModuleName = dr["Name"].ToString();
+                                    addModule = false;
+                                    break;
+                                case "3":
+                                    imageurl = "~/images/document.png";
+                                    break;
+                                case "4":
+                                    imageurl = "~/images/record.png";
+                                    break;
+                                case "6":
+                                    imageurl = "~/images/improvement.png";
+                                    break;
+                                case "12":
+                                    imageurl = "~/images/training.png";
+                                    break;
+                                case "14":
+                                    AIModuleName = dr["Name"].ToString();
+                                    addModule = false;
+                                    break;
+                            }
+                        }
+                        else
+                        {
+
+                            switch (dr["ModuleID"].ToString())
+                            {
+                                case "1":
+                                    UserModuleName = dr["Name"].ToString();
+                                    addModule = false;
+                                    break;
+                                case "3":
+                                    imageurl = "~/images/document.png";
+
+                                    if (ModuleAccess.Length > 1)
+                                    {
+                                        if (ModuleAccess[2] == "3|1")
+                                        {
+                                            addModule = true;
+                                        }
+                                    }
+
+                                    break;
+                                case "4":
+                                    if (ModuleAccess.Length > 2)
+                                    {
+                                        if (ModuleAccess[3] == "4|1")
+                                        {
+                                            addModule = true;
+                                        }
+                                    }
+                                    imageurl = "~/images/record.png";
+                                    break;
+                                case "6":
+                                    if (ModuleAccess.Length > 3)
+                                    {
+                                        if (ModuleAccess[4] == "6|1")
+                                        {
+                                            addModule = true;
+                                        }
+                                    }
+                                    imageurl = "~/images/improvement.png";
+                                    break;
+                                case "12":
+                                    if (ModuleAccess.Length > 4)
+                                    {
+                                        if (ModuleAccess[5] == "12|1")
+                                        {
+                                            addModule = true;
+                                        }
+                                    }
+                                    imageurl = "~/images/training.png";
+                                    break;
+                                case "14":
+                                    AIModuleName = dr["Name"].ToString();
+                                    addModule = false;
+                                    break;
+                            }
+                        }
+
+                        if (addModule)
+                        {
+                            MenuItem mnu = new MenuItem()
+                            {
+                                Text = dr["Name"].ToString(),
+                                Value = dr["ModuleID"].ToString(),
+                                ImageUrl = imageurl
+                            };
+                            mnuModules.Items.Add(mnu);
+                            initHeight += 32;
+                        }
+                    }
+
+                    // Add Users Menu Item if permitted
+                    MenuItem mnuUser = new MenuItem()
+                    {
+                        Text = UserModuleName,
+                        Value = "1",
+                        ImageUrl = "~/images/users.png"
+                    };
+
+                    if (UserStatus == 1 || (UserStatus == 0 && ModuleAccess[1] == "1|1"))
+                    {
+                        mnuModules.Items.Add(mnuUser);
                         initHeight += 32;
                     }
-                }
 
-                // Add Users Menu Item if permitted
-                MenuItem mnuUser = new MenuItem()
-                {
-                    Text = UserModuleName,
-                    Value = "1",
-                    ImageUrl = "~/images/users.png"
-                };
-
-                if (UserStatus == 1 || (UserStatus == 0 && ModuleAccess[1] == "1|1"))
-                {
-                    mnuModules.Items.Add(mnuUser);
-                    initHeight += 32;
-                }
-
-                if (UserID != 0)
-				{
                     // Add Action Item Menu Item
                     MenuItem mnuAI = new MenuItem()
                     {
@@ -2299,7 +2306,9 @@ namespace Paradigm3
                     };
                     mnuModules.Items.Add(mnuAI);
                     initHeight += 31;
-                }                
+                }
+
+                
 
                 ModulePane.InitialSize = initHeight;
                 ModulePane.MaxHeight = initHeight + 1;
@@ -2384,7 +2393,7 @@ namespace Paradigm3
                 btnLogon.ImageUrl = "~/images/logon.png";
                 btnLogon.Attributes.Add("onmouseover", "javascript:this.src='images/logonmo.png'");
                 btnLogon.Attributes.Add("onmouseout", "javascript:this.src='images/logon.png'");
-                lblLogon.Text = timeGreet + ". You are not logged in.";
+                lblLogon.Text = timeGreet + ',' + GetLocalResourceObject("lblLogonStatus").ToString();
 
                 pnlDirectLink.Visible = true;
                 pnlTreeView.Visible = false;
@@ -3600,30 +3609,30 @@ namespace Paradigm3
                 if (HasRenamePermission)
                 {
                     pnlRename.Visible = true;
-                    mnuTVContext.Items.Add(new MenuItem("Rename", "rename"));
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRename").ToString(), "rename"));
                 }
 
                 if (HasMovePermission)
                 {
                     pnlMove.Visible = true;
-                    mnuTVContext.Items.Add(new MenuItem("Move", "move"));
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionMove").ToString(), "move"));
                 }
 
                 if (HasDeletePermission)
                 {
                     pnlDelete.Visible = true;
-                    mnuTVContext.Items.Add(new MenuItem("Delete", "delete"));
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionDel").ToString(), "delete"));
                 }
 
                 if (moduleID == 3 && HasSetRepublishPermission)
 			    {
-                    mnuTVContext.Items.Add(new MenuItem("Set Republish", "setrepublish"));
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRepub").ToString(), "setrepublish"));
 				}
 
                 if (HasMovePermission && moduleID != 1)
                 {
                     pnlMove.Visible = true;
-                    mnuTVContext.Items.Add(new MenuItem("Copy To...", "copy"));
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionCopy").ToString(), "copy"));
                 }
             }
 
@@ -3998,42 +4007,42 @@ namespace Paradigm3
             bool HasChangetoEvidencePemission = await P3General.HasChangetoEvidencePemission(OrigID, UserID);
             bool HasChangetoItemPemission = await P3General.HasChangetoItemPemission(OrigID, UserID);
 
-            mnuGVContext.Items.Add(new MenuItem("View", "view"));
+            mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionView").ToString(), "view"));
             if (HasRenamePermission)
             {
-                mnuGVContext.Items.Add(new MenuItem("Rename", "rename"));
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRename").ToString(), "rename"));
             }
             if (HasMovePermission)
             {
-                mnuGVContext.Items.Add(new MenuItem("Move", "move"));
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionMove").ToString(), "move"));
             }
 
             if (HasMovePermission && ModuleID != 1)
             {
-                mnuGVContext.Items.Add(new MenuItem("Copy To...", "copy"));
+                mnuGVContext.Items.Add(new MenuItem( GetLocalResourceObject("mnuOptionCopy").ToString()  , "copy"));
             }
             if (HasChangetoEvidencePemission && Session["IsEvidenceCheck"].ToString()=="False")
             {
-                mnuGVContext.Items.Add(new MenuItem("Change to Evidence", "evidence"));
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionEvid").ToString(), "evidence"));
             }
 
             if (HasChangetoItemPemission && Session["IsEvidenceCheck"].ToString() == "True")
             {
-                mnuGVContext.Items.Add(new MenuItem("Change to Item", "item"));
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionItem").ToString(), "item"));
             }
             if (HasDeletePermission)
 			{
-                mnuGVContext.Items.Add(new MenuItem("Delete", "delete"));
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionDel").ToString(), "delete"));
 			}
             if (HasStatusPermission)
 			{
-                mnuGVContext.Items.Add(new MenuItem("Status", "status"));
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionStatus").ToString(), "status"));
             }
             if (ModuleID == 3 && HasSetRepublishPermission)
 			{
-               mnuGVContext.Items.Add(new MenuItem("Set Republish", "setrepublish"));
+               mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRepub").ToString(), "setrepublish"));
 			}
-            mnuGVContext.Items.Add(new MenuItem("Properties", "properties"));
+            mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionProp").ToString(), "properties"));
         }
 	}
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginSAML.aspx.cs" Inherits="Paradigm3.LoginSAML" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginSAML.aspx.cs" Inherits="Paradigm3.LoginSAML" meta:resourcekey="PageResource1" %>
 
 <!DOCTYPE html>
 

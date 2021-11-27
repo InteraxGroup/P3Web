@@ -18,7 +18,7 @@ function closeP3Window() {
 //  Search
 function openSearchWindow(ModuleID, ParentGroupID) {
     var UPath = "ViewSearch.aspx?ModuleID=" + ModuleID + "&ParentGroupID=" + ParentGroupID;
-    var windowWidth = 900;
+    var windowWidth = 1000;
     var windowHeight = 255;
     if (navigator.userAgent.indexOf("MSIE") !== -1) {
         windowHeight = 250;
@@ -29,20 +29,20 @@ function openSearchWindow(ModuleID, ParentGroupID) {
 
 function enlargeSearchWindow() {
     if (navigator.userAgent.indexOf("MSIE") != 1) {
-        window.resizeTo(920, 625);
+        window.resizeTo(1015, 625);
     }
     else {
-        window.resizeTo(920, 650);
+        window.resizeTo(1015, 650);
     }
 
 }
 
 function reduceSearchWindow() {
     if (navigator.userAgent.indexOf("MSIE") != 1) {
-        window.resizeTo(920, 293);
+        window.resizeTo(1015, 325);
     }
     else {
-        window.resizeTo(900, 255);
+        window.resizeTo(1015, 325);
     }
 }
 

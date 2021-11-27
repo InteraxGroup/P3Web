@@ -22,22 +22,24 @@ namespace Paradigm3
 				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
 				if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
 				{
-					ClientScript.RegisterStartupScript(GetType(), "sessionexpired", "alert('Your Paradigm 3 user session has expired. Please restart your browser and try again');window.close();", true);
+					string Message = GetLocalResourceObject("SessionTimeout").ToString();
+					ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
 				}
+
 				int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
 				int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
 				bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
 
 				if (IsGroup)
 				{
-					lblTitle.Text = "Rename Group";
+					lblTitle.Text = GetLocalResourceObject("RenameGroup").ToString();
 				}
 				else
 				{
-					lblTitle.Text = "Rename Item";
+					lblTitle.Text = GetLocalResourceObject("RenameItem").ToString();
 					if (ModuleID == 1)
 					{
-						lblTitle.Text = "Rename User";
+						lblTitle.Text = GetLocalResourceObject("RenameUser").ToString();
 					}
 				}
 
@@ -57,7 +59,7 @@ namespace Paradigm3
 				pnlLabel.Visible = true;
 				pnlField.Visible = true;				
 			}
-			lblMessage.Text = $"Are you sure you want to continue with this operation?\n";
+			lblMessage.Text = GetLocalResourceObject("ConfirmMessage").ToString();
 		}
 
 		protected async void btnSubmit_Click(object sender, EventArgs e)
@@ -80,7 +82,7 @@ namespace Paradigm3
 					ViewState["UserExsists"] = UserExists;
 					if (UserExists)
 					{
-						ClientScript.RegisterStartupScript(GetType(), "errmsg", "alert('This username already exists');", true);
+						ClientScript.RegisterStartupScript(GetType(), "errmsg", "alert('" + GetLocalResourceObject("AlertUserExists").ToString() + "');", true);
 						txtName.Text = OldName;
 					}
 					else
@@ -121,7 +123,7 @@ namespace Paradigm3
 			}
 			else
 			{
-				ClientScript.RegisterStartupScript(GetType(), "invalid", "alert('The value contains one or more invalid characters.  Please try again');", true);
+				ClientScript.RegisterStartupScript(GetType(), "invalid", "alert('" + GetLocalResourceObject("AlertInvalid").ToString() + "');", true);
 			}			
 		}
 	}
