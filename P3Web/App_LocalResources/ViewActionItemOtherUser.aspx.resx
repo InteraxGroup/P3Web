@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AIForUsersLabel" xml:space="preserve">
+    <value>Action Items for user(s):</value>
+  </data>
   <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
   </data>
@@ -151,7 +154,7 @@
     <value />
   </data>
   <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
-    <value>ActionItem</value>
+    <value>Action Item</value>
   </data>
   <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -216,6 +219,12 @@
   <data name="BoundFieldResource9.HeaderText" xml:space="preserve">
     <value>ID</value>
   </data>
+  <data name="btnCloseWindowResource1.Text" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="btnCloseWindowResource1.ToolTip" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="btnOpenResource1.Text" xml:space="preserve">
     <value>Open</value>
   </data>
@@ -263,6 +272,9 @@
   </data>
   <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
     <value />
+  </data>
+  <data name="TotalItemsLabel" xml:space="preserve">
+    <value>Total Items:</value>
   </data>
   <data name="txtUsersResource1.Text" xml:space="preserve">
     <value />

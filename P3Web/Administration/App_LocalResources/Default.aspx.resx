@@ -1,0 +1,876 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AttachPathLabel" xml:space="preserve">
+    <value>Attachments Path</value>
+  </data>
+  <data name="btnAddDLinkResource1.Text" xml:space="preserve">
+    <value>Add New Direct Link</value>
+  </data>
+  <data name="btnAddDLinkResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnCancelNewDLinkResource1.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnCancelNewDLinkResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnCancelResource1.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnCancelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnCancelUpdateDefaultFolderResource1.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnCancelUpdateDefaultFolderResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnDeleteResource1.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="btnDeleteResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnEditResource1.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="btnEditResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSaveResource1.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="btnSaveResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDAddFieldResource1.Text" xml:space="preserve">
+    <value>Add Field</value>
+  </data>
+  <data name="btnSDAddFieldResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDAddPageResource1.Text" xml:space="preserve">
+    <value>Add Page</value>
+  </data>
+  <data name="btnSDAddPageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDAddStyleResource1.Text" xml:space="preserve">
+    <value>Add Style</value>
+  </data>
+  <data name="btnSDAddStyleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDAdjustGridResource1.Text" xml:space="preserve">
+    <value>Adjust Grid</value>
+  </data>
+  <data name="btnSDAdjustGridResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDCopyFieldResource1.Text" xml:space="preserve">
+    <value>Copy Fields</value>
+  </data>
+  <data name="btnSDCopyFieldResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDCopyPageResource1.Text" xml:space="preserve">
+    <value>Copy Page</value>
+  </data>
+  <data name="btnSDCopyPageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDCopyStyleResource1.Text" xml:space="preserve">
+    <value>Copy Style</value>
+  </data>
+  <data name="btnSDCopyStyleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDDownloadDBResource1.Text" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="btnSDDownloadDBResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDFieldRelFormulaResource1.Text" xml:space="preserve">
+    <value>Field Formulae</value>
+  </data>
+  <data name="btnSDFieldRelFormulaResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDFormulaResource1.Text" xml:space="preserve">
+    <value>Formula Settings</value>
+  </data>
+  <data name="btnSDFormulaResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDMoveFieldResource1.Text" xml:space="preserve">
+    <value>Move Field</value>
+  </data>
+  <data name="btnSDMoveFieldResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDMoveStyleResource1.Text" xml:space="preserve">
+    <value>Move Style</value>
+  </data>
+  <data name="btnSDMoveStyleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDPageRelFomulaResource1.Text" xml:space="preserve">
+    <value>Page Formulae</value>
+  </data>
+  <data name="btnSDPageRelFomulaResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDPreviewResource1.Text" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="btnSDPreviewResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDRenameFieldResource1.Text" xml:space="preserve">
+    <value>Rename Field</value>
+  </data>
+  <data name="btnSDRenameFieldResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDRenamePageResource1.Text" xml:space="preserve">
+    <value>Rename Page</value>
+  </data>
+  <data name="btnSDRenamePageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDRenameStyleResource1.Text" xml:space="preserve">
+    <value>Rename Style</value>
+  </data>
+  <data name="btnSDRenameStyleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDReorderPageResource1.Text" xml:space="preserve">
+    <value>Re-Order</value>
+  </data>
+  <data name="btnSDReorderPageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDRestoreFieldResource1.Text" xml:space="preserve">
+    <value>Restore Fields</value>
+  </data>
+  <data name="btnSDRestoreFieldResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDRestorePageResource1.Text" xml:space="preserve">
+    <value>Restore Pages</value>
+  </data>
+  <data name="btnSDRestorePageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDRestoreStyleResource1.Text" xml:space="preserve">
+    <value>Restore Style</value>
+  </data>
+  <data name="btnSDRestoreStyleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSDUploadResource1.Text" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="btnSDUploadResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSubmitNewDLinkResource1.Text" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="btnSubmitNewDLinkResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSubmitUpdateDefFolderResource1.Text" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="btnSubmitUpdateDefFolderResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUpdateAttachPathResource1.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="btnUpdateAttachPathResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUpdateDefAIGroupResource1.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnUpdateDefAIGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUpdateDefDocGroupResource1.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnUpdateDefDocGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUpdateDefImpGroupResource1.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnUpdateDefImpGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUpdateDefRecGroupResource1.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnUpdateDefRecGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUpdateDefTrainGroupResource1.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnUpdateDefTrainGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUpdateDocPathResource1.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="btnUpdateDocPathResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUpdateDomainResource1.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="btnUpdateDomainResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUpdateIndexSearchPathResource1.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="btnUpdateIndexSearchPathResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUpdatePublicPathResource1.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="btnUpdatePublicPathResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUpdatePublishPathResource1.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="btnUpdatePublishPathResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkSDDisplayDeletedResource1.Text" xml:space="preserve">
+    <value>Show Deleted Fields Only</value>
+  </data>
+  <data name="chkSDDisplayDeletedResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkSDIncludeFieldIDResource1.Text" xml:space="preserve">
+    <value>Include FieldID in Design View</value>
+  </data>
+  <data name="chkSDIncludeFieldIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkSDIncludeGridResource1.Text" xml:space="preserve">
+    <value>Include GRID Number in Design View</value>
+  </data>
+  <data name="chkSDIncludeGridResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlDefaultSearchFieldResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlDefaultSearchTabResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlDefGroupModuleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlDefModuleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlDLinkModuleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlHideSearchResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlSDFieldsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlSDModulesResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlSDPagesResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlSDStylesResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlSimpleSearchResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DefaultAIGroupLabel" xml:space="preserve">
+    <value>Default Action Items Group</value>
+  </data>
+  <data name="DefaultDocGroupLabel" xml:space="preserve">
+    <value>Default Document Group</value>
+  </data>
+  <data name="DefaultImpGroupLabel" xml:space="preserve">
+    <value>Default Improvements Group</value>
+  </data>
+  <data name="DefaultModuleLabel" xml:space="preserve">
+    <value>Default Module</value>
+  </data>
+  <data name="DefaultRecGroupLabel" xml:space="preserve">
+    <value>Default Records Group</value>
+  </data>
+  <data name="DefaultSearchPageLabel" xml:space="preserve">
+    <value>Default Search Page</value>
+  </data>
+  <data name="DefaultTrainGroupLabel" xml:space="preserve">
+    <value>Default Training Group</value>
+  </data>
+  <data name="dgTreeResource1.CollapseImageToolTip" xml:space="preserve">
+    <value>Collapse {0}</value>
+  </data>
+  <data name="dgTreeResource1.ExpandImageToolTip" xml:space="preserve">
+    <value>Expand {0}</value>
+  </data>
+  <data name="dgTreeResource1.SkipLinkText" xml:space="preserve">
+    <value>Skip Navigation Links.</value>
+  </data>
+  <data name="dgTreeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DirectLinksLabel" xml:space="preserve">
+    <value>DIrect Links</value>
+  </data>
+  <data name="DirectLinksTitle" xml:space="preserve">
+    <value>DirectLinksManagement</value>
+  </data>
+  <data name="dlTreeResource1.CollapseImageToolTip" xml:space="preserve">
+    <value>Collapse {0}</value>
+  </data>
+  <data name="dlTreeResource1.ExpandImageToolTip" xml:space="preserve">
+    <value>Expand {0}</value>
+  </data>
+  <data name="dlTreeResource1.SkipLinkText" xml:space="preserve">
+    <value>Skip Navigation Links.</value>
+  </data>
+  <data name="dlTreeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DocPathLabel" xml:space="preserve">
+    <value>Document Path</value>
+  </data>
+  <data name="DocSearchFieldLabel" xml:space="preserve">
+    <value>Default Document Search Field</value>
+  </data>
+  <data name="DomainsLabel" xml:space="preserve">
+    <value>Domain(s)</value>
+  </data>
+  <data name="gvDirectLinksResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="gvDirectLinksResource1.EmptyDataText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="gvDirectLinksResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HideSearchLabel" xml:space="preserve">
+    <value>Hide Search from Read-Only</value>
+  </data>
+  <data name="hlBackResource1.Text" xml:space="preserve">
+    <value>Back to P3Web</value>
+  </data>
+  <data name="hlBackResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IndexedPathLabel" xml:space="preserve">
+    <value>Indexed Search Path</value>
+  </data>
+  <data name="lblModuleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblModuleResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblNameResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblSiteIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ListItemResource1.Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="ListItemResource1.Value" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ListItemResource10.Text" xml:space="preserve">
+    <value>Training</value>
+  </data>
+  <data name="ListItemResource10.Value" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="ListItemResource11.Text" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="ListItemResource11.Value" xml:space="preserve">
+    <value>false</value>
+  </data>
+  <data name="ListItemResource12.Text" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="ListItemResource12.Value" xml:space="preserve">
+    <value>true</value>
+  </data>
+  <data name="ListItemResource13.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="ListItemResource13.Value" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ListItemResource14.Text" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="ListItemResource14.Value" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ListItemResource15.Text" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="ListItemResource15.Value" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ListItemResource16.Text" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="ListItemResource16.Value" xml:space="preserve">
+    <value>false</value>
+  </data>
+  <data name="ListItemResource17.Text" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="ListItemResource17.Value" xml:space="preserve">
+    <value>true</value>
+  </data>
+  <data name="ListItemResource18.Text" xml:space="preserve">
+    <value>Document Name</value>
+  </data>
+  <data name="ListItemResource18.Value" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ListItemResource19.Text" xml:space="preserve">
+    <value>Document Label</value>
+  </data>
+  <data name="ListItemResource19.Value" xml:space="preserve">
+    <value>LabelName</value>
+  </data>
+  <data name="ListItemResource2.Text" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="ListItemResource2.Value" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ListItemResource20.Text" xml:space="preserve">
+    <value>Document ID</value>
+  </data>
+  <data name="ListItemResource20.Value" xml:space="preserve">
+    <value>ItemID</value>
+  </data>
+  <data name="ListItemResource21.Text" xml:space="preserve">
+    <value>Document Original ID</value>
+  </data>
+  <data name="ListItemResource21.Value" xml:space="preserve">
+    <value>OrigID</value>
+  </data>
+  <data name="ListItemResource22.Text" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="ListItemResource22.Value" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ListItemResource23.Text" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="ListItemResource23.Value" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="ListItemResource24.Text" xml:space="preserve">
+    <value>Improvements</value>
+  </data>
+  <data name="ListItemResource24.Value" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="ListItemResource25.Text" xml:space="preserve">
+    <value>Training</value>
+  </data>
+  <data name="ListItemResource25.Value" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="ListItemResource26.Text" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="ListItemResource26.Value" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="ListItemResource27.Text" xml:space="preserve">
+    <value>Improvements</value>
+  </data>
+  <data name="ListItemResource27.Value" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="ListItemResource28.Text" xml:space="preserve">
+    <value>Training</value>
+  </data>
+  <data name="ListItemResource28.Value" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="ListItemResource29.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ListItemResource29.Value" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ListItemResource3.Text" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="ListItemResource3.Value" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="ListItemResource30.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ListItemResource30.Value" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ListItemResource31.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ListItemResource31.Value" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ListItemResource4.Text" xml:space="preserve">
+    <value>Improvements</value>
+  </data>
+  <data name="ListItemResource4.Value" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="ListItemResource5.Text" xml:space="preserve">
+    <value>Training</value>
+  </data>
+  <data name="ListItemResource5.Value" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="ListItemResource6.Text" xml:space="preserve">
+    <value>Action Items</value>
+  </data>
+  <data name="ListItemResource6.Value" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="ListItemResource7.Text" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="ListItemResource7.Value" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ListItemResource8.Text" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="ListItemResource8.Value" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="ListItemResource9.Text" xml:space="preserve">
+    <value>Improvements</value>
+  </data>
+  <data name="ListItemResource9.Value" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="ModuleDefaultsLabel" xml:space="preserve">
+    <value>Module Defaults</value>
+  </data>
+  <data name="ModuleDefaultsTitle" xml:space="preserve">
+    <value>Default Module Settings</value>
+  </data>
+  <data name="P3WebAdminLabel" xml:space="preserve">
+    <value>P3Web Administration</value>
+  </data>
+  <data name="PageResource2.Title" xml:space="preserve">
+    <value>P3Web - Administration</value>
+  </data>
+  <data name="PathDefaultsLabel" xml:space="preserve">
+    <value>Path Defaults</value>
+  </data>
+  <data name="PathDefaultsTitle" xml:space="preserve">
+    <value>Default Configuration Paths</value>
+  </data>
+  <data name="pnlAddDLinkResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlAddDLinkResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlAdminResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlAdminResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlNotAuthorizedResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlNotAuthorizedResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlUpdateDefaultsResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlUpdateDefaultsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PublicPathLabel" xml:space="preserve">
+    <value>Public Path</value>
+  </data>
+  <data name="PublishedPathLabel" xml:space="preserve">
+    <value>Published Document Path</value>
+  </data>
+  <data name="SearchDefaultsLabel" xml:space="preserve">
+    <value>Search Defaults</value>
+  </data>
+  <data name="SearchDefaultsTitle" xml:space="preserve">
+    <value>Search Defaults Management</value>
+  </data>
+  <data name="SimpleDocSearchLabel" xml:space="preserve">
+    <value>Simple Document Search</value>
+  </data>
+  <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="TemplateFieldResource2.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource2.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource2.HeaderText" xml:space="preserve">
+    <value>Module</value>
+  </data>
+  <data name="TemplateFieldResource3.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource3.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource3.HeaderText" xml:space="preserve">
+    <value>Site ID</value>
+  </data>
+  <data name="TemplateFieldResource4.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource4.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource4.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtAttachPathResource1.Text" xml:space="preserve">
+    <value>~/attachments/</value>
+  </data>
+  <data name="txtAttachPathResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDefAIGroupResource1.Text" xml:space="preserve">
+    <value>Action Items</value>
+  </data>
+  <data name="txtDefAIGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDefDocGroupResource1.Text" xml:space="preserve">
+    <value>Management System</value>
+  </data>
+  <data name="txtDefDocGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDefImpGroupResource1.Text" xml:space="preserve">
+    <value>Business Improvements</value>
+  </data>
+  <data name="txtDefImpGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDefRecGroupResource1.Text" xml:space="preserve">
+    <value>Business Records</value>
+  </data>
+  <data name="txtDefRecGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDefTrainGroupResource1.Text" xml:space="preserve">
+    <value>Training Records</value>
+  </data>
+  <data name="txtDefTrainGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDLinkSiteIDResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDLinkSiteIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDocPathResource1.Text" xml:space="preserve">
+    <value>D:\P3\data\docs\</value>
+  </data>
+  <data name="txtDocPathResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDomainResource1.Text" xml:space="preserve">
+    <value>Obiwan</value>
+  </data>
+  <data name="txtDomainResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtIndexSearchPathResource1.Text" xml:space="preserve">
+    <value>D:/P3/data/docs/publish</value>
+  </data>
+  <data name="txtIndexSearchPathResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPublicPathResource1.Text" xml:space="preserve">
+    <value>~/public/</value>
+  </data>
+  <data name="txtPublicPathResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPublishPathResource1.Text" xml:space="preserve">
+    <value>~/docs/</value>
+  </data>
+  <data name="txtPublishPathResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtSiteIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+</root>

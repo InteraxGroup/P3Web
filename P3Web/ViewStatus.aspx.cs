@@ -184,7 +184,7 @@ namespace Paradigm3
                             {
                                 if (dr["LevelID"].Equals(3104))
                                 {
-                                    rbStatus.Items.Add(new ListItem("Create OPEN Item from COMPLETE", "2"));
+                                    rbStatus.Items.Add(new ListItem(GetLocalResourceObject("OpenFromComplete").ToString(), "2"));
                                 }
                             }
                         }
@@ -202,7 +202,7 @@ namespace Paradigm3
 						{
                             if (dr["LevelID"].Equals(3104))
 							{
-                                rbStatus.Items.Add(new ListItem("Create OPEN Item from COMPLETE", "2"));
+                                rbStatus.Items.Add(new ListItem(GetLocalResourceObject("OpenFromComplete").ToString(), "2"));
                             }
 						}                        
                     }
@@ -230,23 +230,23 @@ namespace Paradigm3
 							{
                                 if (dr["LevelID"].Equals(3105))
 								{
-                                    rbStatus.Items.Add(new ListItem("Convert to CURRENT from DRAFT", "9"));
+                                    rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CurrentFromDraft").ToString(), "9"));
                                 }
                                 if (dr["LevelID"].Equals(3103))
 								{
-                                    rbStatus.Items.Add(new ListItem("Convert to REVIEW from DRAFT", "5"));
+                                    rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReviewFromDraft").ToString(), "5"));
                                 }
                                 if (dr["LevelID"].Equals(3106))
 								{
-                                    rbStatus.Items.Add(new ListItem("Convert to READY from DRAFT", "6"));
+                                    rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReadyFromDraft").ToString(), "6"));
                                 }
                                 if (dr["LevelID"].Equals(3108))
 								{
-                                    rbStatus.Items.Add(new ListItem("Convert to COLLABORATE from DRAFT", "3"));
+                                    rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CollaborateFromDraft").ToString(), "3"));
                                 }
                                 if (dr["LevelID"].Equals(3107))
 								{
-                                    rbStatus.Items.Add(new ListItem("Convert to PENDING from DRAFT", "7"));
+                                    rbStatus.Items.Add(new ListItem(GetLocalResourceObject("PendingFromDraft").ToString(), "7"));
                                 }
 							} 
                         }
@@ -265,23 +265,23 @@ namespace Paradigm3
 					{
                         if (dr["LevelID"].Equals(3104))
 						{
-                            rbStatus.Items.Add(new ListItem("Convert to DRAFT from COLLABORATE", "2"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("DraftFromCollaborate").ToString(), "2"));
                         }
                         if (dr["LevelID"].Equals(3105))
 						{
-                            rbStatus.Items.Add(new ListItem("Convert to CURRENT from COLLABORATE", "9"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CurrentFromCollaborate").ToString(), "9"));
                         }
                         if (dr["LevelID"].Equals(3103))
 						{
-                            rbStatus.Items.Add(new ListItem("Convert to REVIEW from COLLABORATE", "5"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReviewFromCollaborate").ToString(), "5"));
                         }
                         if (dr["LevelID"].Equals(3106))
 						{
-                            rbStatus.Items.Add(new ListItem("Convert to READY from COLLABORATE", "6"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReadyFromCollaborate").ToString(), "6"));
                         }
                         if (dr["LevelID"].Equals(3107))
 						{
-                            rbStatus.Items.Add(new ListItem("Convert to PENDING from COLLABORATE", "7"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("PendingFromCollaborate").ToString(), "7"));
                         }
 					}
                     break;
@@ -292,23 +292,23 @@ namespace Paradigm3
                     {
                         if (dr["LevelID"].Equals(3104))
                         {
-                            rbStatus.Items.Add(new ListItem("Convert to DRAFT from REVIEW", "2"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("DraftFromReview").ToString(), "2"));
                         }
                         if (dr["LevelID"].Equals(3105))
                         {
-                            rbStatus.Items.Add(new ListItem("Convert to CURRENT from REVIEW", "9"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CurrentFromReview").ToString(), "9"));
                         }
                         if (dr["LevelID"].Equals(3108))
                         {
-                            rbStatus.Items.Add(new ListItem("Convert to COLLABORATE from REVIEW", "7"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CollaborateFromReview").ToString(), "7"));
                         }
                         if (dr["LevelID"].Equals(3106))
                         {
-                            rbStatus.Items.Add(new ListItem("Convert to READY from REVIEW", "6"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReadyFromReview").ToString(), "6"));
                         }
                         if (dr["LevelID"].Equals(3107))
                         {
-                            rbStatus.Items.Add(new ListItem("Convert to PENDING from REVIEW", "7"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("PendingFromReview").ToString(), "7"));
                         }
                     }
                     break;
@@ -319,23 +319,23 @@ namespace Paradigm3
                     {
                         if (dr["LevelID"].Equals(3104))
                         {
-                            rbStatus.Items.Add(new ListItem("Convert to DRAFT from READY", "2"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("DraftFromReady").ToString(), "2"));
                         }
                         if (dr["LevelID"].Equals(3105))
                         {
-                            rbStatus.Items.Add(new ListItem("Convert to CURRENT from READY", "9"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CurrentFromReady").ToString(), "9"));
                         }
                         if (dr["LevelID"].Equals(3108))
                         {
-                            rbStatus.Items.Add(new ListItem("Convert to COLLABORATE from READY", "3"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CollaborateFromReady").ToString(), "3"));
                         }
                         if (dr["LevelID"].Equals(3103))
                         {
-                            rbStatus.Items.Add(new ListItem("Convert to REVIEW from READY", "5"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("ReviewFromReady").ToString(), "5"));
                         }
                         if (dr["LevelID"].Equals(3107))
                         {
-                            rbStatus.Items.Add(new ListItem("Convert to PENDING from READY", "7"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("PendingFromReady").ToString(), "7"));
                         }
                     }
                     break;
@@ -346,11 +346,11 @@ namespace Paradigm3
 					{
                         if (dr["LevelID"].Equals(3105))
 						{
-                            rbStatus.Items.Add(new ListItem("Convert to CURRENT from PENDING", "9"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("CurrentFromPending").ToString(), "9"));
                         }
                         if (dr["LevelID"].Equals(3104))
 						{
-                            rbStatus.Items.Add(new ListItem("Create DRAFT from PENDING", "2"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("DraftFromPending").ToString(), "2"));
                         }
 					}
                     break;
@@ -361,7 +361,7 @@ namespace Paradigm3
 					{
                         if (dr["LevelID"].Equals(3104))
 						{
-                            rbStatus.Items.Add(new ListItem("Create DRAFT from CURRENT", "2"));
+                            rbStatus.Items.Add(new ListItem(GetLocalResourceObject("DraftFromCurrent").ToString(), "2"));
                         }
 					}                    
                     break;

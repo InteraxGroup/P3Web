@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AIForUsersLabel" xml:space="preserve">
+    <value>Éléments d'action pour les utilisateurs:</value>
+  </data>
   <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
   </data>
@@ -124,7 +127,7 @@
     <value />
   </data>
   <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
-    <value>Recipient</value>
+    <value>Bénéficiaire</value>
   </data>
   <data name="BoundFieldResource10.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -133,7 +136,7 @@
     <value />
   </data>
   <data name="BoundFieldResource10.HeaderText" xml:space="preserve">
-    <value>Priority</value>
+    <value>Priorité</value>
   </data>
   <data name="BoundFieldResource11.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -142,7 +145,7 @@
     <value />
   </data>
   <data name="BoundFieldResource11.HeaderText" xml:space="preserve">
-    <value>Completed Date</value>
+    <value>Complété</value>
   </data>
   <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -151,7 +154,7 @@
     <value />
   </data>
   <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
-    <value>ActionItem</value>
+    <value>Élément d'Action</value>
   </data>
   <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -160,7 +163,7 @@
     <value />
   </data>
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
-    <value>Status</value>
+    <value>Statut</value>
   </data>
   <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -169,7 +172,7 @@
     <value />
   </data>
   <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
-    <value>Related Module</value>
+    <value>Module Connexe</value>
   </data>
   <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -178,7 +181,7 @@
     <value />
   </data>
   <data name="BoundFieldResource5.HeaderText" xml:space="preserve">
-    <value>Related ID</value>
+    <value>ID Associé</value>
   </data>
   <data name="BoundFieldResource6.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -187,7 +190,7 @@
     <value />
   </data>
   <data name="BoundFieldResource6.HeaderText" xml:space="preserve">
-    <value>Due Date</value>
+    <value>Date d'échéance</value>
   </data>
   <data name="BoundFieldResource7.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -196,7 +199,7 @@
     <value />
   </data>
   <data name="BoundFieldResource7.HeaderText" xml:space="preserve">
-    <value>Sent By</value>
+    <value>Envoyée Par</value>
   </data>
   <data name="BoundFieldResource8.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -205,7 +208,7 @@
     <value />
   </data>
   <data name="BoundFieldResource8.HeaderText" xml:space="preserve">
-    <value>Sent Date</value>
+    <value>Date Envoyée</value>
   </data>
   <data name="BoundFieldResource9.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -216,8 +219,14 @@
   <data name="BoundFieldResource9.HeaderText" xml:space="preserve">
     <value>ID</value>
   </data>
+  <data name="btnCloseWindowResource1.Text" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="btnCloseWindowResource1.ToolTip" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
   <data name="btnOpenResource1.Text" xml:space="preserve">
-    <value>Open</value>
+    <value>Ouvert</value>
   </data>
   <data name="btnOpenResource1.ToolTip" xml:space="preserve">
     <value />
@@ -250,7 +259,7 @@
     <value />
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>Paradigm 3 -- Other Users Action Items</value>
+    <value>Paradigm 3 -- Éléments d'action des autres utilisateurs</value>
   </data>
   <data name="SessisonTimeout" xml:space="preserve">
     <value>Votre session SSO a expiré. Veuillez redémarrer votre navigateur pour restaurer l'accès à votre application.</value>
@@ -263,6 +272,9 @@
   </data>
   <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
     <value />
+  </data>
+  <data name="TotalItemsLabel" xml:space="preserve">
+    <value>Articles au Total:</value>
   </data>
   <data name="txtUsersResource1.Text" xml:space="preserve">
     <value />

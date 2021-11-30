@@ -168,8 +168,8 @@
   <data name="btnCloseReplyResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="btnCloseResource1.AlternateText" xml:space="preserve">
-    <value />
+  <data name="btnCloseResource1.Text" xml:space="preserve">
+    <value>Fermer</value>
   </data>
   <data name="btnCloseResource1.ToolTip" xml:space="preserve">
     <value />
@@ -187,7 +187,7 @@
     <value>Terminer l'élément d'action</value>
   </data>
   <data name="btnExitResource1.AlternateText" xml:space="preserve">
-    <value />
+    <value>Fermer l'élément d'action</value>
   </data>
   <data name="btnExitResource1.ToolTip" xml:space="preserve">
     <value>Fermer l'élément d'action</value>
@@ -205,7 +205,7 @@
     <value />
   </data>
   <data name="btnFWOKResource1.Text" xml:space="preserve">
-    <value>D'accord</value>
+    <value>d'Accord</value>
   </data>
   <data name="btnFWOKResource1.ToolTip" xml:space="preserve">
     <value />
@@ -217,7 +217,7 @@
     <value />
   </data>
   <data name="btnFWSelectOKResource1.Text" xml:space="preserve">
-    <value>D'accord</value>
+    <value>d'Accord</value>
   </data>
   <data name="btnFWSelectOKResource1.ToolTip" xml:space="preserve">
     <value />
@@ -250,10 +250,10 @@
     <value />
   </data>
   <data name="btnNextResource1.ToolTip" xml:space="preserve">
-    <value>Next</value>
+    <value>Prochain</value>
   </data>
   <data name="btnOKResource1.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>d'Accord</value>
   </data>
   <data name="btnOKResource1.ToolTip" xml:space="preserve">
     <value />
@@ -262,16 +262,16 @@
     <value />
   </data>
   <data name="btnPreviousResource1.ToolTip" xml:space="preserve">
-    <value>Previous</value>
+    <value>Précédent:</value>
   </data>
   <data name="btnReplyCancelResource1.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
   </data>
   <data name="btnReplyCancelResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnReplyOKResource1.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>d'Accord</value>
   </data>
   <data name="btnReplyOKResource1.ToolTip" xml:space="preserve">
     <value />
@@ -289,16 +289,34 @@
     <value />
   </data>
   <data name="btnSubmitPwdResource1.Text" xml:space="preserve">
-    <value>Submit</value>
+    <value>Soumettre</value>
   </data>
   <data name="btnSubmitPwdResource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="CategoryLabel" xml:space="preserve">
+    <value>Catégorie:</value>
+  </data>
+  <data name="CommentsLabel" xml:space="preserve">
+    <value>Commentaires:</value>
+  </data>
+  <data name="CommentsTitleLabel" xml:space="preserve">
+    <value>Commentaires</value>
+  </data>
+  <data name="ConfirmPasswordLabel" xml:space="preserve">
+    <value>Confirmez le Mot de Passe:</value>
+  </data>
+  <data name="DateSentLabel" xml:space="preserve">
+    <value>Date d'Envoi:</value>
   </data>
   <data name="ddlModalResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="ddlResultsResource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="DetailsLabel:" xml:space="preserve">
+    <value>Les Détails</value>
   </data>
   <data name="gvModalSelectedResource1.Caption" xml:space="preserve">
     <value />
@@ -328,13 +346,13 @@
     <value />
   </data>
   <data name="lblCompleteAIPwdResource1.Text" xml:space="preserve">
-    <value>Complete</value>
+    <value>Compléter</value>
   </data>
   <data name="lblCompleteAIPwdResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblCompleteAIResource1.Text" xml:space="preserve">
-    <value>Complete</value>
+    <value>Compléter</value>
   </data>
   <data name="lblCompleteAIResource1.ToolTip" xml:space="preserve">
     <value />
@@ -358,43 +376,43 @@
     <value />
   </data>
   <data name="lblExitAIResource1.Text" xml:space="preserve">
-    <value>Close</value>
+    <value>Fermer</value>
   </data>
   <data name="lblExitAIResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblForwardResource1.Text" xml:space="preserve">
-    <value>Forward</value>
+    <value>Transférer</value>
   </data>
   <data name="lblForwardResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblGoThereResource1.Text" xml:space="preserve">
-    <value>Go There</value>
+    <value>Va là-bas</value>
   </data>
   <data name="lblGoThereResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblModalDDLResource1.Text" xml:space="preserve">
-    <value>Select Type:</value>
+    <value>Sélectionner le Genre:</value>
   </data>
   <data name="lblModalDDLResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblModalDragHandleResource1.Text" xml:space="preserve">
-    <value>Select User/Entity</value>
+    <value>Sélectionnez l'utilisateur/l'Entité</value>
   </data>
   <data name="lblModalDragHandleResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblNextResource1.Text" xml:space="preserve">
-    <value>Next</value>
+    <value>Prochaine</value>
   </data>
   <data name="lblNextResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblPreviousResource1.Text" xml:space="preserve">
-    <value>Previous</value>
+    <value>Précédente</value>
   </data>
   <data name="lblPreviousResource1.ToolTip" xml:space="preserve">
     <value />
@@ -406,13 +424,13 @@
     <value />
   </data>
   <data name="lblReplyResource1.Text" xml:space="preserve">
-    <value>Reply</value>
+    <value>Répondre</value>
   </data>
   <data name="lblReplyResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblSelectResultResource1.Text" xml:space="preserve">
-    <value>Result:</value>
+    <value>Résultat:</value>
   </data>
   <data name="lblSelectResultResource1.ToolTip" xml:space="preserve">
     <value />
@@ -430,7 +448,7 @@
     <value />
   </data>
   <data name="lblShowMeAIResource1.Text" xml:space="preserve">
-    <value>Show Me</value>
+    <value>Montre Moi:</value>
   </data>
   <data name="lblShowMeAIResource1.ToolTip" xml:space="preserve">
     <value />
@@ -451,43 +469,46 @@
     <value />
   </data>
   <data name="ListItemResource1.Text" xml:space="preserve">
-    <value>-- Select Result --</value>
+    <value>-- Sélectionnez le Résultat --</value>
   </data>
   <data name="ListItemResource1.Value" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="ListItemResource2.Text" xml:space="preserve">
-    <value>(Select)</value>
+    <value>(Sélectionner)</value>
   </data>
   <data name="ListItemResource2.Value" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="ListItemResource3.Text" xml:space="preserve">
-    <value>Users</value>
+    <value>Utilisateurs</value>
   </data>
   <data name="ListItemResource3.Value" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="ListItemResource4.Text" xml:space="preserve">
-    <value>Organization</value>
+    <value>Organisation</value>
   </data>
   <data name="ListItemResource4.Value" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="P3TreeResource1.CollapseImageToolTip" xml:space="preserve">
-    <value>Collapse {0}</value>
+    <value>Réduire {0}</value>
   </data>
   <data name="P3TreeResource1.ExpandImageToolTip" xml:space="preserve">
-    <value>Expand {0}</value>
+    <value>Développer {0}</value>
   </data>
   <data name="P3TreeResource1.SkipLinkText" xml:space="preserve">
-    <value>Skip Navigation Links.</value>
+    <value>Liens de Navigation de la Fiche.</value>
   </data>
   <data name="P3TreeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>Paradigm 3 -- Action Item</value>
+    <value>Paradigm 3 -- Objet d'Action</value>
+  </data>
+  <data name="PasswordConfirmationLabel" xml:space="preserve">
+    <value>Confirmation Mot de Passe</value>
   </data>
   <data name="pnlAICompleteResource1.GroupingText" xml:space="preserve">
     <value />
@@ -573,8 +594,11 @@
   <data name="pnlShowMeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="PriorityLabel" xml:space="preserve">
+    <value>Priorité:</value>
+  </data>
   <data name="RequiredFieldValidator1Resource1.ErrorMessage" xml:space="preserve">
-    <value>You must select a result.</value>
+    <value>Vous devez sélectionner un résultat.</value>
   </data>
   <data name="RequiredFieldValidator1Resource1.Text" xml:space="preserve">
     <value>*</value>
@@ -582,8 +606,17 @@
   <data name="RequiredFieldValidator1Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="SenderLabel" xml:space="preserve">
+    <value>Expéditeur:</value>
+  </data>
   <data name="SessionTimeout" xml:space="preserve">
     <value>Votre session SSO a expiré. Veuillez redémarrer votre navigateur pour restaurer l'accès à votre application.</value>
+  </data>
+  <data name="StatusLabel" xml:space="preserve">
+    <value>Statut:</value>
+  </data>
+  <data name="TitleLabel" xml:space="preserve">
+    <value>Le Titre:</value>
   </data>
   <data name="txtCommentsResource1.Text" xml:space="preserve">
     <value />

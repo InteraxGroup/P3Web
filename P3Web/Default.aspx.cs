@@ -2121,9 +2121,9 @@ namespace Paradigm3
                 else
                 {
                     btnLogout.Visible = true;
-                    btnLogout.ImageUrl = "~/images/logout.png";
-                    btnLogout.Attributes.Add("onmouseover", "javascript:this.src='images/logoutmo.png'");
-                    btnLogout.Attributes.Add("onmouseout", "javascript:this.src='images/logout.png'");
+                    btnLogout.ImageUrl = "~/images/" + GetLocalResourceObject("LogoutImage").ToString();
+                    btnLogout.Attributes.Add("onmouseover", "javascript:this.src='images/" + GetLocalResourceObject("LogoutImageHover").ToString() + "'");
+                    btnLogout.Attributes.Add("onmouseout", "javascript:this.src='images/" + GetLocalResourceObject("LogoutImage").ToString() + "'");
                 }
 
                 // Get user information from authentication cookie.
@@ -2390,9 +2390,9 @@ namespace Paradigm3
                 // Set display properties.
                 btnLogon.Visible = true;
                 btnLogout.Visible = false;
-                btnLogon.ImageUrl = "~/images/logon.png";
-                btnLogon.Attributes.Add("onmouseover", "javascript:this.src='images/logonmo.png'");
-                btnLogon.Attributes.Add("onmouseout", "javascript:this.src='images/logon.png'");
+                btnLogon.ImageUrl = "~/images/" + GetLocalResourceObject("LoginImage").ToString();
+                btnLogon.Attributes.Add("onmouseover", "javascript:this.src='images/" + GetLocalResourceObject("LoginImageHover").ToString() + "'");
+                btnLogon.Attributes.Add("onmouseout", "javascript:this.src='images/" + GetLocalResourceObject("LoginImage").ToString() + "'");
                 lblLogon.Text = timeGreet + ',' + GetLocalResourceObject("lblLogonStatus").ToString();
 
                 pnlDirectLink.Visible = true;

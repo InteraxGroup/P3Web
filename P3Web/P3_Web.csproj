@@ -234,6 +234,10 @@
     <Content Include="images\edit_small.png" />
     <Content Include="images\evd.png" />
     <Content Include="images\eventdate.png" />
+    <Content Include="images\logon-fr.png" />
+    <Content Include="images\logonmo-fr.png" />
+    <Content Include="images\logout-fr.png" />
+    <Content Include="images\logoutmo-fr.png" />
     <Content Include="images\move.png" />
     <Content Include="images\next.png" />
     <Content Include="images\pptx.png" />
@@ -1174,6 +1178,8 @@
     <Folder Include="custom\bayshore\admin\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Administration\App_LocalResources\Default.aspx.resx" />
+    <Content Include="Administration\App_LocalResources\Default.aspx.fr-CA.resx" />
     <EmbeddedResource Include="App_LocalResources\Default.aspx.fr-CA.resx" />
     <EmbeddedResource Include="App_LocalResources\Default.aspx.resx" />
     <Content Include="App_LocalResources\ViewChangeEvidence.aspx.resx" />
@@ -1254,10 +1260,10 @@
     </Content>
     <Content Include="App_LocalResources\ViewStatusControl.aspx.fr-CA.resx" />
     <Content Include="App_LocalResources\ViewTraining.aspx.fr-CA.resx" />
-    <Content Include="custom\bayshore\App_LocalResources\Homepage.aspx.resx" />
-    <Content Include="custom\bayshore\App_LocalResources\Homepage.aspx.fr-CA.resx" />
     <Content Include="App_LocalResources\ViewCopy.aspx.resx" />
     <Content Include="App_LocalResources\ViewCopy.aspx.fr-CA.resx" />
+    <Content Include="custom\bayshore\App_LocalResources\Homepage.aspx.fr-CA.resx" />
+    <Content Include="custom\bayshore\App_LocalResources\Homepage.aspx.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

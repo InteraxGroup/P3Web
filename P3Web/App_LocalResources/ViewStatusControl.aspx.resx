@@ -129,6 +129,15 @@
   <data name="btnSubmitResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="CurrentVersionLabel" xml:space="preserve">
+    <value>Current Version:</value>
+  </data>
+  <data name="DetailsForHistoryLabel" xml:space="preserve">
+    <value>Details for History</value>
+  </data>
+  <data name="EffectiveDateLabel" xml:space="preserve">
+    <value>Effective Date:</value>
+  </data>
   <data name="lblDocNameResource1.Text" xml:space="preserve">
     <value />
   </data>
@@ -171,6 +180,9 @@
   <data name="ListItemResource6.Value" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="NewVersionLabel" xml:space="preserve">
+    <value>New Version:</value>
+  </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Paradigm 3 -- Status Control</value>
   </data>
@@ -179,6 +191,12 @@
   </data>
   <data name="rblRevisionTypeResource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="RevisionMethodLabel" xml:space="preserve">
+    <value>Revision Method</value>
+  </data>
+  <data name="RevisionTypeLabel" xml:space="preserve">
+    <value>Revision Type</value>
   </data>
   <data name="SessionTimeout" xml:space="preserve">
     <value>Your SSO session has timed out. Please restart your browser have your application access restored.</value>

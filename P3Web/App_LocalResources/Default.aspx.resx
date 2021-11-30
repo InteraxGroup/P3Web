@@ -514,16 +514,16 @@
     <value />
   </data>
   <data name="btnLogonResource1.AlternateText" xml:space="preserve">
-    <value />
+    <value>Login</value>
   </data>
   <data name="btnLogonResource1.ToolTip" xml:space="preserve">
-    <value />
+    <value>Login</value>
   </data>
   <data name="btnLogoutResource1.AlternateText" xml:space="preserve">
-    <value />
+    <value>Logout</value>
   </data>
   <data name="btnLogoutResource1.ToolTip" xml:space="preserve">
-    <value />
+    <value>Logout</value>
   </data>
   <data name="btnMoveResource1.AlternateText" xml:space="preserve">
     <value />
@@ -911,6 +911,18 @@
   </data>
   <data name="lnkVersionResource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="LoginImage" xml:space="preserve">
+    <value>logon.png</value>
+  </data>
+  <data name="LoginImageHover" xml:space="preserve">
+    <value>logonmo.pmg</value>
+  </data>
+  <data name="LogoutImage" xml:space="preserve">
+    <value>logout.png</value>
+  </data>
+  <data name="LogoutImageHover" xml:space="preserve">
+    <value>logoutmo.png</value>
   </data>
   <data name="Menu1Resource1.ScrollDownText" xml:space="preserve">
     <value>Scroll down</value>

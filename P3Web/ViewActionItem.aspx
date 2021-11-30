@@ -68,7 +68,7 @@
         <table class="aiTable">
             <tr>
                 <td class="aiTitleLabel">
-                    Title:
+                    <%= GetLocalResourceObject("TitleLabel") %>
                 </td>           
                 <td colspan="5" class="aiTitleField">
                     <asp:Label ID="lblTitle" runat="server" Font-Size="9pt" Font-Bold="True" meta:resourcekey="lblTitleResource1" />
@@ -76,13 +76,13 @@
             </tr>
             <tr>
                 <td class="aiLabelLeft">
-                    Priority:
+                    <%= GetLocalResourceObject("PriorityLabel") %>
                 </td>
                 <td class="aiFieldLeft">
                     <asp:Label ID="lblPriority" runat="server" Font-Size="9pt" meta:resourcekey="lblPriorityResource1" />
                 </td>
                 <td class="aiLabelMiddle">
-                    Status:
+                    <%= GetLocalResourceObject("StatusLabel") %>
                 </td>
                 <td class="aiFieldMiddle">
                     <asp:Label ID="lblStatus" runat="server" Font-Size="9pt" meta:resourcekey="lblStatusResource1" />
@@ -96,19 +96,19 @@
             </tr>
             <tr>
                 <td class="aiLabelLeft">
-                    Sender:
+                    <%= GetLocalResourceObject("SenderLabel") %>
                 </td>
                 <td class="aiFieldLeft">
                     <asp:Label ID="lblSender" runat="server" Font-Size="9pt" meta:resourcekey="lblSenderResource1" />
                 </td>
                 <td class="aiLabelMiddle">
-                    Date Sent:
+                    <%= GetLocalResourceObject("DateSentLabel") %>
                 </td>
                 <td class="aiFieldMiddle">
                     <asp:Label ID="lblSent" runat="server" Font-Size="9pt" meta:resourcekey="lblSentResource1" />
                 </td>
                 <td class="aiLabelRight">
-                    Category:
+                    <%= GetLocalResourceObject("CategoryLabel") %>
                 </td>
                 <td class="aiFieldRight">
                     <asp:Label ID="lblCategory" runat="server" Font-Size="9pt" meta:resourcekey="lblCategoryResource1" />
@@ -117,7 +117,7 @@
         </table>
     </div>
     <div id="pnlAIDetails">
-        Details:
+        <%= GetLocalResourceObject("DetailsLabel") %>
         <br />
         <asp:TextBox ID="txtDetails" runat="server" CssClass="aiDetails" ReadOnly="True" TextMode="MultiLine" Font-Names="Arial" meta:resourcekey="txtDetailsResource1" />
     </div>
@@ -138,14 +138,14 @@
 
     <asp:Panel ID="pnlAIPwdConfirm" runat="server" style="display: none;" DefaultButton="btnSubmitPwd" meta:resourcekey="pnlAIPwdConfirmResource1">
         <asp:Panel ID="pnlAIPwdCnfDrag" runat="server" meta:resourcekey="pnlAIPwdCnfDragResource1">
-            Password Confirmation
+            <%= GetLocalResourceObject("PasswordConfirmationLabel") %>
             <asp:ImageButton ID="imgClosePwd" runat="server" ImageUrl="~/images/squareclose.png" Height="20px" Width="20px" CausesValidation="False" CssClass="btnClose" meta:resourcekey="imgClosePwdResource1" />
         </asp:Panel>
         <div id="pnlAIPwdCnfBody">
             <div class="pwd-body-left">&nbsp;</div>
             <div class="pwd-body-right">
                 <div class="pwd-label">
-                    <span>Confirm password:</span>
+                    <span><%= GetLocalResourceObject("ConfirmPasswordLabel") %></span>
                 </div>
                 <div class="pwd-field">
                     <asp:TextBox ID="txtPwdCnf" runat="server" TextMode="Password" Width="200px" meta:resourcekey="txtPwdCnfResource1"></asp:TextBox>
@@ -160,7 +160,7 @@
 
     <asp:Panel ID="pnlAIComplete" runat="server" style="display: none" DefaultButton="btnOK" meta:resourcekey="pnlAICompleteResource1">
         <asp:Panel ID="pnlAIDrag" runat="server" meta:resourcekey="pnlAIDragResource1">
-            Comments
+            <%= GetLocalResourceObject("CommentsTitleLabel") %>
             <asp:ImageButton ID="imgClose" runat="server" ImageUrl="~/images/squareclose.png" Height="20px" Width="20px" CausesValidation="False" CssClass="btnClose" meta:resourcekey="imgCloseResource1" />
         </asp:Panel>
         <table class="aiCompleteTable">
@@ -182,7 +182,7 @@
             </tr>            
             <tr>
                 <td colspan="2" class="commentsLabel">
-                    Comments:
+                    <%= GetLocalResourceObject("CommentsLabel") %>
                 </td>
             </tr>
             <tr>
@@ -266,14 +266,14 @@
         
         <asp:Panel ID="pnlAIForward" runat="server" style="display: none" meta:resourcekey="pnlAIForwardResource1">
             <asp:Panel ID="pnlAIFWDrag" runat="server" meta:resourcekey="pnlAIFWDragResource1">
-                Comments
+                <%= GetLocalResourceObject("CommentsTitleLabel") %>
                 <asp:ImageButton ID="btnCloseFW" runat="server" ImageUrl="~/images/squareclose.png" CssClass="btnClose"
                     Height="20px" Width="20px" meta:resourcekey="btnCloseFWResource1" />
             </asp:Panel>
             <table class="aiForwardTable">           
             <tr>
                 <td colspan="2" class="commentsLabel">
-                    Comments:
+                    <%= GetLocalResourceObject("CommentsLabel") %>
                 </td>
             </tr>
             <tr>
@@ -293,13 +293,13 @@
 
     <asp:Panel ID="pnlAIReply" runat="server" Height="295px" style="display: none" meta:resourcekey="pnlAIReplyResource1">
         <asp:Panel ID="pnlAIReplyDrag" runat="server" meta:resourcekey="pnlAIReplyDragResource1">
-            Comments
+            <%= GetLocalResourceObject("CommentsTitleLabel") %>
             <asp:ImageButton ID="btnCloseReply" runat="server" ImageUrl="~/images/squareclose.png" CssClass="btnClose" Height="20px" Width="20px" meta:resourcekey="btnCloseReplyResource1" />
         </asp:Panel>
         <table class="aiForwardTable">           
             <tr>
                 <td colspan="2" class="commentsLabel">
-                    Comments:
+                    <%= GetLocalResourceObject("CommentsLabel") %>
                 </td>
             </tr>
             <tr>

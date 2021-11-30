@@ -585,7 +585,7 @@ namespace Paradigm3.datalayer
                 using (conn)
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("[dbo].[v4_Login_SetLastLogin]", conn)
+                    SqlCommand cmd = new SqlCommand("[dbo].[v4_Login_SetLastLogon]", conn)
                     {
                         CommandType = CommandType.StoredProcedure,
                         CommandTimeout = 120

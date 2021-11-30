@@ -15,7 +15,7 @@
 		<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <input type="hidden" id="scrollPos" runat="server" />
         <div style="height: 50px; padding: 10px; box-sizing: border-box;">
-            <span style="font-size: .75em;">Action Items for user(s):</span><br />
+            <span style="font-size: .75em;"><%= GetLocalResourceObject("AIForUsersLabel") %></span><br />
             <asp:TextBox ID="txtUsers" runat="server" Width="99%" ReadOnly="true" style="background-color: #f0f0f0;"></asp:TextBox>
         </div>
         <asp:UpdatePanel ID="udpAIList" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
@@ -37,37 +37,37 @@
                                 <asp:Image ID="ItemIcon" runat="server" Width="20px" Height="20px" ImageUrl="~/images/actionitem.png" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="UserName" HeaderText="Recipient" SortExpression="UserName">
+                        <asp:BoundField DataField="UserName" HeaderText="Recipient" SortExpression="UserName" meta:resourcekey="BoundFieldResource1">
                             <HeaderStyle CssClass="gridViewHeader" Width="200px" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Name" HeaderText="ActionItem" SortExpression="Name">
+                        <asp:BoundField DataField="Name" HeaderText="ActionItem" SortExpression="Name"  meta:resourcekey="BoundFieldResource2">
                             <HeaderStyle CssClass="gridViewHeader" Width="450px" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status">
+                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status"  meta:resourcekey="BoundFieldResource3">
                             <HeaderStyle CssClass="gridViewHeader" Width="120px" />                        
                         </asp:BoundField>
-                        <asp:BoundField DataField="ShowModuleID" HeaderText="Related Module" SortExpression="ShowModuleID">
+                        <asp:BoundField DataField="ShowModuleID" HeaderText="Related Module" SortExpression="ShowModuleID"  meta:resourcekey="BoundFieldResource4">
                             <HeaderStyle CssClass="gridViewHeader" Width="120px" />                        
                         </asp:BoundField>
-                        <asp:BoundField DataField="ShowID" HeaderText="Related ID" SortExpression="ShowID">
+                        <asp:BoundField DataField="ShowID" HeaderText="Related ID" SortExpression="ShowID" meta:resourcekey="BoundFieldResource5">
                             <HeaderStyle CssClass="gridViewHeader" Width="100px" /> 
                         </asp:BoundField>
-                        <asp:BoundField DataField="DateDue" HeaderText="Due Date" SortExpression="DateDue">
+                        <asp:BoundField DataField="DateDue" HeaderText="Due Date" SortExpression="DateDue" meta:resourcekey="BoundFieldResource6">
                             <HeaderStyle CssClass="gridViewHeader" Width="150px" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="SenderName" HeaderText="Sent By" SortExpression="SenderName">
+                        <asp:BoundField DataField="SenderName" HeaderText="Sent By" SortExpression="SenderName" meta:resourcekey="BoundFieldResource7">
                             <HeaderStyle CssClass="gridViewHeader" Width="150px" />                              
                         </asp:BoundField>
-                        <asp:BoundField DataField="SendDate" HeaderText="Sent Date" SortExpression="SendDate">
+                        <asp:BoundField DataField="SendDate" HeaderText="Sent Date" SortExpression="SendDate" meta:resourcekey="BoundFieldResource8">
                             <HeaderStyle CssClass="gridViewHeader" Width="150px" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="AIID" HeaderText="ID" SortExpression="AIID">
+                        <asp:BoundField DataField="AIID" HeaderText="ID" SortExpression="AIID" meta:resourcekey="BoundFieldResource9">
                             <HeaderStyle CssClass="gridViewHeader" Width="80px" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority">
+                        <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority" meta:resourcekey="BoundFieldResource10">
                             <HeaderStyle CssClass="gridViewHeader" Width="80px" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="CompleteDate" HeaderText="Completed Date" SortExpression="CompleteDate">
+                        <asp:BoundField DataField="CompleteDate" HeaderText="Completed Date" SortExpression="CompleteDate" meta:resourcekey="BoundFieldResource11">
                             <HeaderStyle CssClass="gridViewHeader" Width="150px" />
                         </asp:BoundField>
                     </Columns>
@@ -79,11 +79,11 @@
         <asp:UpdatePanel ID="udpButtons" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div style="height: 40px; padding: 10px; box-sizing: border-box; text-align: right;">
-                    <asp:Button ID="btnOpen" runat="server" Text="Open" Width="70px" OnClick="Button_Click" />
-                    <button type="button" name="close" onclick="window.close()" style="width: 70px;">Close</button>
+                    <asp:Button ID="btnOpen" runat="server" Text="Open" Width="70px" OnClick="Button_Click" meta:resourcekey="btnOpenResource1" />
+                    <asp:Button ID="btnCloseWindow" runat="server" OnClientClick="window.close();" Width="70px" meta:resourcekey="btnCloseWindowResource1" />
                 </div>
                 <div style="height: 10px; padding: 2px 5px; box-sizing:border-box; font-size: .75em; border-top: 1px solid #dcdcdc;">
-            Total Items: <asp:Label ID="lblTotalAI" runat="server"></asp:Label>
+                    <%= GetLocalResourceObject("TotalItemsLabel") %> <asp:Label ID="lblTotalAI" runat="server"></asp:Label>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
