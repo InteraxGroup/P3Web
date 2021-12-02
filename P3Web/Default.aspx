@@ -231,7 +231,7 @@
                     </eo:SplitterPane>
                     <eo:SplitterPane ID="ListPane" runat="server" PersistScrollPosition="True" meta:resourcekey="ListPaneResource1">
                         <asp:Panel ID="pnlHome" runat="server" meta:resourcekey="pnlHomeResource1">
-                            <iframe src="custom/bayshore/Homepage.aspx"></iframe>
+                            <iframe src="homepanel.html"></iframe>
                         </asp:Panel>
                         <asp:Panel ID="pnlList" runat="server" Width="1590px" Height="100%" CssClass="listViewPanel" meta:resourcekey="pnlListResource1">
                             <asp:Panel ID="pnlItemListTitle" runat="server" CssClass="pnlLinkTitle" meta:resourcekey="pnlItemListTitleResource1">
@@ -522,13 +522,16 @@
             </div>
             <div id="footer">
 				<asp:LinkButton ID="lnkVersion" runat="server" OnClick="lnkVersion_Click" CssClass="lblVersion" meta:resourcekey="lnkVersionResource1"><asp:Label ID="lblVersion" runat="server" meta:resourcekey="lblVersionResource1" />
-</asp:LinkButton></div><asp:Button ID="btnRefreshDoc" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshDoc" meta:resourcekey="btnRefreshDocResource1" /><asp:Button ID="btnRefreshRec" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshRec" meta:resourcekey="btnRefreshRecResource1" /><asp:Button ID="btnRefreshUser" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshUser" meta:resourcekey="btnRefreshUserResource1" /><asp:Button ID="btnRefreshAI" runat="server" OnClick="BtnRefreshAI_Click" style="display: none;" CommandArgument="RefreshAI" meta:resourcekey="btnRefreshAIResource1" /><asp:Button ID="btnRefreshTree" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshTree" meta:resourcekey="btnRefreshTreeResource1" /><asp:Button ID="btnRefreshTreeDelete" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshTreeDelete" meta:resourcekey="btnRefreshTreeDeleteResource1" /><asp:Button ID="btnRefreshTreeMove" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshTreeMove" meta:resourcekey="btnRefreshTreeMoveResource1" /><asp:Button ID="btnRefeshEdit" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshDoc" meta:resourcekey="btnRefeshEditResource1" /><asp:Button ID="btnGoThere" runat="server" OnClick="BtnGoThere_Click" style="display: none;" CommandArgument="GoThere" meta:resourcekey="btnGoThereResource1" /><asp:Button ID="btnCloseDoc" runat="server" OnClick="btnCloseDoc_Click" style="display: none;" meta:resourcekey="btnCloseDocResource1" /><asp:Button ID="btnAddTreeNode" runat="server" OnClick="btnAddTreeNode_Click" style="display: none;" meta:resourcekey="btnAddTreeNodeResource1" /><asp:HiddenField ID="hdnNewSelectedNodePath" runat="server" />
+                </asp:LinkButton>
+            </div>
+            <asp:Button ID="btnRefreshDoc" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshDoc" meta:resourcekey="btnRefreshDocResource1" /><asp:Button ID="btnRefreshRec" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshRec" meta:resourcekey="btnRefreshRecResource1" /><asp:Button ID="btnRefreshUser" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshUser" meta:resourcekey="btnRefreshUserResource1" /><asp:Button ID="btnRefreshAI" runat="server" OnClick="BtnRefreshAI_Click" style="display: none;" CommandArgument="RefreshAI" meta:resourcekey="btnRefreshAIResource1" /><asp:Button ID="btnRefreshTree" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshTree" meta:resourcekey="btnRefreshTreeResource1" /><asp:Button ID="btnRefreshTreeDelete" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshTreeDelete" meta:resourcekey="btnRefreshTreeDeleteResource1" /><asp:Button ID="btnRefreshTreeMove" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshTreeMove" meta:resourcekey="btnRefreshTreeMoveResource1" /><asp:Button ID="btnRefeshEdit" runat="server" OnClick="BtnRefresh_Click" style="display: none;" CommandArgument="RefreshDoc" meta:resourcekey="btnRefeshEditResource1" /><asp:Button ID="btnGoThere" runat="server" OnClick="BtnGoThere_Click" style="display: none;" CommandArgument="GoThere" meta:resourcekey="btnGoThereResource1" /><asp:Button ID="btnCloseDoc" runat="server" OnClick="btnCloseDoc_Click" style="display: none;" meta:resourcekey="btnCloseDocResource1" /><asp:Button ID="btnAddTreeNode" runat="server" OnClick="btnAddTreeNode_Click" style="display: none;" meta:resourcekey="btnAddTreeNodeResource1" /><asp:HiddenField ID="hdnNewSelectedNodePath" runat="server" />
             <asp:HiddenField ID="hdnNewSelectedNodeID" runat="server" />
         </div>        
         <asp:UpdateProgress ID="UpdateProgress1" runat="server">
         <ProgressTemplate>
             <div id="IMGDIV" runat="server" class="pleaseWait">
-                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/pleasewait.gif" meta:resourcekey="Image1Resource1" /></div>
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/pleasewait.gif" meta:resourcekey="Image1Resource1" />
+            </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
     </form>

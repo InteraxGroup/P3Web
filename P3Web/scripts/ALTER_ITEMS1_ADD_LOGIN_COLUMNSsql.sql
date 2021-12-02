@@ -1,0 +1,8 @@
+USE P3
+GO
+
+ALTER TABLE dbo.Items1
+ADD LastLogOnTime NUMERIC(20,10),
+	LogOnHistory NVARCHAR(255),
+	MstRcntMdlAndFldr NVARCHAR(255),
+	PwdChngDate DATETIME2(0)

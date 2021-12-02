@@ -763,7 +763,7 @@
     <value />
   </data>
   <data name="lblGuideResource1.Text" xml:space="preserve">
-    <value>Guider</value>
+    <value>Aide</value>
   </data>
   <data name="lblGuideResource1.ToolTip" xml:space="preserve">
     <value />
@@ -775,7 +775,7 @@
     <value />
   </data>
   <data name="lblLinkTitleResource1.Text" xml:space="preserve">
-    <value>Liens Directs</value>
+    <value>Raccourcis</value>
   </data>
   <data name="lblLinkTitleResource1.ToolTip" xml:space="preserve">
     <value />
@@ -871,7 +871,7 @@
     <value />
   </data>
   <data name="lblSearchResource1.Text" xml:space="preserve">
-    <value>Chercher</value>
+    <value>Rechercher</value>
   </data>
   <data name="lblSearchResource1.ToolTip" xml:space="preserve">
     <value />
@@ -1357,13 +1357,13 @@
     <value />
   </data>
   <data name="timeGreetEvening" xml:space="preserve">
-    <value>Bonne soirée</value>
+    <value>Bonjour</value>
   </data>
   <data name="timeGreetMorning" xml:space="preserve">
     <value>Bonjour</value>
   </data>
   <data name="timeGreetNoon" xml:space="preserve">
-    <value>Bonne après-midi</value>
+    <value>Bonjour</value>
   </data>
   <data name="TreePaneResource1.ToolTip" xml:space="preserve">
     <value />

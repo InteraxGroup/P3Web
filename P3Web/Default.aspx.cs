@@ -1987,7 +1987,7 @@ namespace Paradigm3
         }
 
         protected async void btnShowGVMenu_Click(object sender, EventArgs e)
-        {
+        {            
             mnuGVContext.Items.Clear();
             if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
             {
@@ -2021,11 +2021,14 @@ namespace Paradigm3
                         break;
                 }
 
-                gv.SelectedIndex = ItemIndex;
-                int ItemID = Convert.ToInt32(gv.DataKeys[ItemIndex].Values["ItemID"]);
-                int OrigID = Convert.ToInt32(gv.DataKeys[ItemIndex].Values["OrigID"]);
-                await PopulateGridViewMenu(ModuleID, GroupID, OrigID, UserID);
-                ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "showGVMenu", "createMenu('gridviewrow', " + ItemID + ");", true);
+                if (ModuleID != 1)
+                {
+                    gv.SelectedIndex = ItemIndex;
+                    int ItemID = ItemID = Convert.ToInt32(gv.DataKeys[ItemIndex].Values["ItemID"]);
+                    int OrigID = Convert.ToInt32(gv.DataKeys[ItemIndex].Values["OrigID"]);
+                    await PopulateGridViewMenu(ModuleID, GroupID, OrigID, UserID);
+                    ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "showGVMenu", "createMenu('gridviewrow', " + ItemID + ");", true);
+                }                
             }
         }
 
@@ -2417,7 +2420,7 @@ namespace Paradigm3
                 mnuModules.Items.Clear();
                 MenuItem mnuHome = new MenuItem()
                 {
-                    Text = "Home",
+                    Text = GetLocalResourceObject("HomeModule").ToString(),
                     Value = "0",
                     ImageUrl = "~/images/home.png",
                 };
@@ -3068,11 +3071,12 @@ namespace Paradigm3
                         // Set User image
                         Image UserIcon = (Image)e.Row.Cells[0].FindControl("ItemIcon");
                         UserIcon.ImageUrl = "images/user.png";
-                        int UserID = Convert.ToInt32(gv.DataKeys[e.Row.RowIndex].Values["UserID"]);
+                        //int UserID = Convert.ToInt32(gv.DataKeys[e.Row.RowIndex].Values["UserID"]);
                         e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gv, "Select$" + e.Row.RowIndex);
-                        e.Row.Attributes.Add("ondblclick", "openProperties(" + UserID + ",1,0);");
+                        //e.Row.Attributes.Add("ondblclick", "openProperties(0,1,0);");
+                        //e.Row.Attributes.Add("ondblclick", "alert('Please use the << View >> button on the P3Web Toolbar to open/edit this user account');");
                         e.Row.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
-                        e.Row.Attributes.Add("onmouseout", "this.style.cursor='cursor'");
+                        e.Row.Attributes.Add("onmouseout", "this.style.cursor='cursor'");                        
                         break;
                 }
             }
@@ -3105,57 +3109,66 @@ namespace Paradigm3
                         }
                         else
                         {
-                            string itemStatus = row.Cells[3].Text.Substring(0, 4);
-                            switch (itemStatus)
+                            if (ModuleID != 1)
                             {
-                                case "Draf": // Draft
-                                case "Open":
-                                    row.Cells[3].ForeColor = System.Drawing.Color.Red;
-                                    break;
-                                case "Coll": // Collaborate
-                                    row.Cells[3].ForeColor = System.Drawing.Color.DarkRed;
-                                    break;
-                                case "Revi": // Review
-                                    row.Cells[3].ForeColor = System.Drawing.Color.Blue;
-                                    break;
-                                case "Read": // Ready
-                                    row.Cells[3].ForeColor = System.Drawing.Color.DarkViolet;
-                                    break;
-                                case "Pend": // Pending
-                                    row.Cells[3].ForeColor = System.Drawing.Color.DarkGoldenrod;
-                                    break;
-                                case "Evid": // Evidence
-                                    row.Cells[3].ForeColor = System.Drawing.Color.Green;
-                                    break;
-                                default: // Current                                    
-                                    row.Cells[3].ForeColor = System.Drawing.Color.Black;
-                                    break;
-                            }
-                            if (ModuleID == 3)
-                            {
-                                string processingStatus = row.Cells[6].Text.Substring(0, 4);
-                                switch (processingStatus)
+                                string itemStatus = row.Cells[3].Text.Substring(0, 4);
+                                switch (itemStatus)
                                 {
                                     case "Draf": // Draft
-                                    case "Open": // Open
-                                        row.Cells[6].ForeColor = System.Drawing.Color.Red;
+                                    case "Open":
+                                        row.Cells[3].ForeColor = System.Drawing.Color.Red;
                                         break;
                                     case "Coll": // Collaborate
-                                        row.Cells[6].ForeColor = System.Drawing.Color.DarkRed;
+                                        row.Cells[3].ForeColor = System.Drawing.Color.DarkRed;
                                         break;
                                     case "Revi": // Review
-                                        row.Cells[6].ForeColor = System.Drawing.Color.Blue;
+                                        row.Cells[3].ForeColor = System.Drawing.Color.Blue;
                                         break;
                                     case "Read": // Ready
-                                        row.Cells[6].ForeColor = System.Drawing.Color.DarkViolet;
+                                        row.Cells[3].ForeColor = System.Drawing.Color.DarkViolet;
                                         break;
                                     case "Pend": // Pending
-                                        row.Cells[6].ForeColor = System.Drawing.Color.DarkGoldenrod;
+                                        row.Cells[3].ForeColor = System.Drawing.Color.DarkGoldenrod;
+                                        break;
+                                    case "Evid": // Evidence
+                                        row.Cells[3].ForeColor = System.Drawing.Color.Green;
                                         break;
                                     default: // Current                                    
-                                        row.Cells[6].ForeColor = System.Drawing.Color.Black;
+                                        row.Cells[3].ForeColor = System.Drawing.Color.Black;
                                         break;
                                 }
+                                if (ModuleID == 3)
+                                {
+                                    string processingStatus = row.Cells[6].Text.Substring(0, 4);
+                                    switch (processingStatus)
+                                    {
+                                        case "Draf": // Draft
+                                        case "Open": // Open
+                                            row.Cells[6].ForeColor = System.Drawing.Color.Red;
+                                            break;
+                                        case "Coll": // Collaborate
+                                            row.Cells[6].ForeColor = System.Drawing.Color.DarkRed;
+                                            break;
+                                        case "Revi": // Review
+                                            row.Cells[6].ForeColor = System.Drawing.Color.Blue;
+                                            break;
+                                        case "Read": // Ready
+                                            row.Cells[6].ForeColor = System.Drawing.Color.DarkViolet;
+                                            break;
+                                        case "Pend": // Pending
+                                            row.Cells[6].ForeColor = System.Drawing.Color.DarkGoldenrod;
+                                            break;
+                                        default: // Current                                    
+                                            row.Cells[6].ForeColor = System.Drawing.Color.Black;
+                                            break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                int selUserID = Convert.ToInt32(gvUsersList.DataKeys[gvUsersList.SelectedIndex].Values["UserID"]);
+                                Session["SelUserID"] = selUserID;
+                                //ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "ViewUser", "openProperties(0, 1, 0);", true);
                             }
                         }
                     }

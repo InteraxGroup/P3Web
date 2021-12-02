@@ -316,7 +316,7 @@
     <value />
   </data>
   <data name="btnSearchResource1.Text" xml:space="preserve">
-    <value>Chercher</value>
+    <value>Rechercher</value>
   </data>
   <data name="btnSearchResource1.ToolTip" xml:space="preserve">
     <value />
@@ -331,7 +331,7 @@
     <value />
   </data>
   <data name="CHKGroupOrigIDResource1.Text" xml:space="preserve">
-    <value>Par Dossier OrigiD</value>
+    <value>Regrouper par OrigiD</value>
   </data>
   <data name="CHKGroupOrigIDResource1.ToolTip" xml:space="preserve">
     <value />
@@ -439,13 +439,13 @@
     <value />
   </data>
   <data name="InFieldLabel.Text" xml:space="preserve">
-    <value>Dans le Champ:</value>
+    <value>Champ de recherche:</value>
   </data>
   <data name="InFolderLabel.Text" xml:space="preserve">
-    <value>Dans le Dossier:</value>
+    <value>Dans le dossier:</value>
   </data>
   <data name="InModuleLabel.Text" xml:space="preserve">
-    <value>Dans le Module:</value>
+    <value>Dans la section:</value>
   </data>
   <data name="ItemIconResource1.AlternateText" xml:space="preserve">
     <value />
@@ -541,13 +541,13 @@
     <value>À l'étude</value>
   </data>
   <data name="RoleMembersLabel.Text" xml:space="preserve">
-    <value>Membres du Rôle:</value>
+    <value>Nom:</value>
   </data>
   <data name="RolesLabel.Text" xml:space="preserve">
-    <value>Rôles:</value>
+    <value>Rôle:</value>
   </data>
   <data name="SearchLabel.Text" xml:space="preserve">
-    <value>Chercher:</value>
+    <value>Rechercher:</value>
   </data>
   <data name="SelectFieldLabel.Text" xml:space="preserve">
     <value>Sélectionnez le Champ:</value>
@@ -568,7 +568,7 @@
     <value />
   </data>
   <data name="TabGeneralResource1.HeaderText" xml:space="preserve">
-    <value>Générale</value>
+    <value>Général</value>
   </data>
   <data name="TabRolesResource1.HeaderText" xml:space="preserve">
     <value>Rôles</value>

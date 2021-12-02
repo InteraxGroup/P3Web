@@ -178,16 +178,16 @@
     <value />
   </data>
   <data name="CQHIPPnlheaderlbl1" xml:space="preserve">
-    <value>Bienvenue à Bayshore CQ HIP</value>
+    <value>Bienvenue dans la section qualit, pratique, clinique, technologie de la sant &amp; confidentialit</value>
   </data>
   <data name="CQHIPPnlheaderlbl2" xml:space="preserve">
-    <value>Cette page est en cours de construction</value>
+    <value>Cette page est en construction</value>
   </data>
   <data name="CQHIPpnlHotlinktemplate" xml:space="preserve">
     <value>Il n'y a actuellement aucune donnée disponible</value>
   </data>
   <data name="CQHIPpnlHotlnktitle" xml:space="preserve">
-    <value>Liens chauds CQ HIP</value>
+    <value>Liens utils</value>
   </data>
   <data name="EmployeePanelResource1.GroupingText" xml:space="preserve">
     <value />
@@ -205,13 +205,13 @@
     <value>Il n'y a actuellement aucune donnée disponible</value>
   </data>
   <data name="EmppnlHotlnktitle" xml:space="preserve">
-    <value>Liens d'information sur les employés</value>
+    <value>Liens utiles</value>
   </data>
   <data name="Emppnltxt1" xml:space="preserve">
-    <value>Bienvenue aux informations sur les employés de Bayshore</value>
+    <value>Bienvenue dans la section des informations destines aux employs de Bayshore</value>
   </data>
   <data name="Emppnltxt2" xml:space="preserve">
-    <value>En tant que membre du personnel, vous pouvez accéder aux liens externes à partir de chacun des onglets répertoriés ci-dessous.</value>
+    <value>En tant que membre du personnel, vous pouvez accéder des informations externes à partir de chacun des liens répertoriés dans les onglets ci-dessous.</value>
   </data>
   <data name="GridViewCQHIPResource1.Caption" xml:space="preserve">
     <value />
@@ -259,16 +259,16 @@
     <value>Remarque : les documents accessibles sur ce site peuvent être imprimés néanmoins les versions imprimées peuvent être désuètes. Par conséquent, toute version papier doit être comparée à la version électronique avant usage</value>
   </data>
   <data name="Homepnlpara2" xml:space="preserve">
-    <value>Pour obtenir de l'aide avec Paradigm,</value>
+    <value>Pour obtenir de l'aide avec au sujet Paradigm,</value>
   </data>
   <data name="Homepnlpara3" xml:space="preserve">
     <value>Pour consulter le guide pratique de formation,</value>
   </data>
   <data name="Homepnlpara4" xml:space="preserve">
-    <value>Si vous avez besoin d’assistance supplémentaire, veuillez contact</value>
+    <value>Si vous avez besoin d’assistance supplémentaire, veuillez contacter</value>
   </data>
   <data name="Homepnltxt1" xml:space="preserve">
-    <value>Sélectionnez un onglet ci-dessus pour visualiser les informations spécifiques de chaque département de Bayshore.</value>
+    <value>Utilisez la fonction recherche dans la barre d'out ils pour localiser  le fichier par nom, numero de reference ou contenu.</value>
   </data>
   <data name="Homepnltxt2" xml:space="preserve">
     <value>Cliquez sur le lien dans le menu principal à gauche pour accéder aux fichiers couramment utilisés et/ou aux raccourcis.</value>
@@ -283,16 +283,16 @@
     <value />
   </data>
   <data name="HRPnlheaderlbl1" xml:space="preserve">
-    <value>Bienvenue aux ressources humaines de Bayshore</value>
+    <value>Bienvenue dans la section die aux ressources humaines de Bayshore</value>
   </data>
   <data name="HRPnlheaderlbl2" xml:space="preserve">
-    <value>Cette page est en cours de construction</value>
+    <value>Cette page est en construction</value>
   </data>
   <data name="HRpnlHotlinktemplate" xml:space="preserve">
     <value>Il n'y a actuellement aucune donnée disponible</value>
   </data>
   <data name="HRpnlHotlnktitle" xml:space="preserve">
-    <value>Liens utiles pour les ressources humaines</value>
+    <value>Liens utiles</value>
   </data>
   <data name="HSPanelResource1.GroupingText" xml:space="preserve">
     <value />
@@ -301,13 +301,13 @@
     <value />
   </data>
   <data name="HSPnlheaderlbl1" xml:space="preserve">
-    <value>Bienvenue à Bayshore Santé et sécurité</value>
+    <value>Bienvenue dans la section die la sant et la securit au travail chex Bayshore</value>
   </data>
   <data name="HSPnlheaderlbl2" xml:space="preserve">
-    <value>Parcourez chaque sujet pour en savoir plus sur la santé et la sécurité au travail chez BayShore.</value>
+    <value>Cette section vous permet d'en savoir plus sur la santé et la sécurité au travail chez BayShore.</value>
   </data>
   <data name="HSPnlpara1" xml:space="preserve">
-    <value>Le service Santé &amp; Sécurité au Travail assure la conformité législative, la prévention et les enquêtes sur les accidents, les surveillances médicales, formation en santé et sécurité, bien-être et conseils en cas d'incident critique.</value>
+    <value>Le department Santé &amp; Sécurité au Travail assure la conformité législative, la prévention et les enquêtes sur les accidents, les surveillances médicales, formation en santé et sécurité, bien-être et conseils en cas d'incident.</value>
   </data>
   <data name="ISPanelResource1.GroupingText" xml:space="preserve">
     <value />
@@ -316,13 +316,13 @@
     <value />
   </data>
   <data name="ISPnlheaderlbl1" xml:space="preserve">
-    <value>Bienvenue aux services d'information de Bayshore</value>
+    <value>Bienvenue dans la section des technologies de l'information et de la communication de Bayshore</value>
   </data>
   <data name="ISPnlheaderlbl2" xml:space="preserve">
-    <value>Cette page est en cours de construction</value>
+    <value>Cette page est en construction</value>
   </data>
   <data name="ISpnlHotlnktitle" xml:space="preserve">
-    <value>Liens rapides des services d'information</value>
+    <value>Liens utiles</value>
   </data>
   <data name="ISPpnlHotlinktemplate" xml:space="preserve">
     <value>Il n'y a actuellement aucune donnée disponible</value>
@@ -370,7 +370,7 @@
     <value>0</value>
   </data>
   <data name="MenuItemResource2.Text" xml:space="preserve">
-    <value>Informations sur l'employé</value>
+    <value>Informations destines au personnel</value>
   </data>
   <data name="MenuItemResource2.ToolTip" xml:space="preserve">
     <value />
@@ -379,7 +379,7 @@
     <value>1</value>
   </data>
   <data name="MenuItemResource3.Text" xml:space="preserve">
-    <value>Ressources humaines</value>
+    <value>Resources humaines</value>
   </data>
   <data name="MenuItemResource3.ToolTip" xml:space="preserve">
     <value />
@@ -406,7 +406,7 @@
     <value>4</value>
   </data>
   <data name="MenuItemResource6.Text" xml:space="preserve">
-    <value>Services d'information</value>
+    <value>Technologies de l'information</value>
   </data>
   <data name="MenuItemResource6.ToolTip" xml:space="preserve">
     <value />
@@ -418,7 +418,7 @@
     <value />
   </data>
   <data name="Privacy" xml:space="preserve">
-    <value>Le Secret</value>
+    <value>Confidantialit</value>
   </data>
   <data name="QualityAndRisk" xml:space="preserve">
     <value>Qualité &amp; Risque</value>
@@ -436,7 +436,7 @@
     <value />
   </data>
   <data name="TBD" xml:space="preserve">
-    <value>Être Déterminé</value>
+    <value>En construction</value>
   </data>
   <data name="TCCQHIPResource1.ToolTip" xml:space="preserve">
     <value />

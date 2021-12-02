@@ -606,6 +606,7 @@
     <Content Include="public\import\Do_Not_Delete.txt" />
     <Content Include="releasenotes\releasenotes.html" />
     <Content Include="ReportDocument.aspx" />
+    <Content Include="scripts\ALTER_ITEMS1_ADD_LOGIN_COLUMNSsql.sql" />
     <Content Include="scripts\CREATE_P3WEB_STORED_PROCEDURES_V4.12.0.0.sql" />
     <Content Include="styles\Assessment.css" />
     <Content Include="styles\Assignment.css" />
@@ -1180,8 +1181,8 @@
   <ItemGroup>
     <Content Include="Administration\App_LocalResources\Default.aspx.resx" />
     <Content Include="Administration\App_LocalResources\Default.aspx.fr-CA.resx" />
-    <EmbeddedResource Include="App_LocalResources\Default.aspx.fr-CA.resx" />
-    <EmbeddedResource Include="App_LocalResources\Default.aspx.resx" />
+    <Content Include="App_LocalResources\Default.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\Default.aspx.resx" />
     <Content Include="App_LocalResources\ViewChangeEvidence.aspx.resx" />
     <Content Include="App_LocalResources\ViewActionItem.aspx.resx" />
     <Content Include="App_LocalResources\ViewActionItemOtherUser.aspx.resx" />

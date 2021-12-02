@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccessibleModulesLabel" xml:space="preserve">
+    <value>Modules accessibles pour cet utilisateur</value>
+  </data>
+  <data name="AccessLevelLabel" xml:space="preserve">
+    <value>Quel niveau d'accès voulez-vous accorder à cet utilisateur</value>
+  </data>
+  <data name="AdminDescriptionLabel" xml:space="preserve">
+    <value>Les administrateurs ont un accès complet à tous les modules et peuvent apporter les modifications souhaitées aux paramètres</value>
+  </data>
   <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
   </data>
@@ -133,7 +142,7 @@
     <value />
   </data>
   <data name="BoundFieldResource10.HeaderText" xml:space="preserve">
-    <value>Type</value>
+    <value>Taper</value>
   </data>
   <data name="BoundFieldResource11.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -142,7 +151,7 @@
     <value />
   </data>
   <data name="BoundFieldResource11.HeaderText" xml:space="preserve">
-    <value>Name</value>
+    <value>Nom</value>
   </data>
   <data name="BoundFieldResource12.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -151,7 +160,7 @@
     <value />
   </data>
   <data name="BoundFieldResource12.HeaderText" xml:space="preserve">
-    <value>Type</value>
+    <value>Taper</value>
   </data>
   <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -160,7 +169,7 @@
     <value />
   </data>
   <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
-    <value>Name</value>
+    <value>Nom</value>
   </data>
   <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -169,7 +178,7 @@
     <value />
   </data>
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
-    <value>Type</value>
+    <value>Taper</value>
   </data>
   <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -178,7 +187,7 @@
     <value />
   </data>
   <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
-    <value>Name</value>
+    <value>Nom</value>
   </data>
   <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -187,7 +196,7 @@
     <value />
   </data>
   <data name="BoundFieldResource5.HeaderText" xml:space="preserve">
-    <value>Label</value>
+    <value>Étiqueter</value>
   </data>
   <data name="BoundFieldResource6.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -196,7 +205,7 @@
     <value />
   </data>
   <data name="BoundFieldResource6.HeaderText" xml:space="preserve">
-    <value>Status</value>
+    <value>Statut</value>
   </data>
   <data name="BoundFieldResource7.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -214,7 +223,7 @@
     <value />
   </data>
   <data name="BoundFieldResource8.HeaderText" xml:space="preserve">
-    <value>Version Date</value>
+    <value>Date de la Version</value>
   </data>
   <data name="BoundFieldResource9.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -223,76 +232,76 @@
     <value />
   </data>
   <data name="BoundFieldResource9.HeaderText" xml:space="preserve">
-    <value>Name</value>
+    <value>Nom</value>
   </data>
   <data name="btnAddMemberResource1.Text" xml:space="preserve">
-    <value>Add &gt;</value>
+    <value>Ajouter &gt;</value>
   </data>
   <data name="btnAddMemberResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnAddMembershipResource1.Text" xml:space="preserve">
-    <value>Add</value>
+    <value>Ajouter</value>
   </data>
   <data name="btnAddMembershipResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnAddToListResource1.Text" xml:space="preserve">
-    <value>Add &gt;</value>
+    <value>Ajouter &gt;</value>
   </data>
   <data name="btnAddToListResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnAddUserAIResource1.Text" xml:space="preserve">
-    <value>Add</value>
+    <value>Ajouter</value>
   </data>
   <data name="btnAddUserAIResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnCancelAddMemberResource1.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
   </data>
   <data name="btnCancelAddMemberResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnCancelExportTrainingResource1.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
   </data>
   <data name="btnCancelExportTrainingResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnCancelOtherUserChangeResource1.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
   </data>
   <data name="btnCancelOtherUserChangeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnCancelResource1.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
   </data>
   <data name="btnCancelResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnCheckAllTrainColumnsResource1.Text" xml:space="preserve">
-    <value>Check All</value>
+    <value>Vérifie Tout</value>
   </data>
   <data name="btnCheckAllTrainColumnsResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnCommitAddMembersResource1.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>d'Accord</value>
   </data>
   <data name="btnCommitAddMembersResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnExportTrainingResource1.Text" xml:space="preserve">
-    <value>Export List</value>
+    <value>Exporter Liste</value>
   </data>
   <data name="btnExportTrainingResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnGoThereTrainingResource1.Text" xml:space="preserve">
-    <value>Go There</value>
+    <value>Va là-bas</value>
   </data>
   <data name="btnGoThereTrainingResource1.ToolTip" xml:space="preserve">
     <value />
@@ -310,37 +319,37 @@
     <value />
   </data>
   <data name="btnRemoveFromListResource1.Text" xml:space="preserve">
-    <value>&lt; Remove</value>
+    <value>&lt; Supprimer</value>
   </data>
   <data name="btnRemoveFromListResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnRemoveMemberResource1.Text" xml:space="preserve">
-    <value>&lt; Remove</value>
+    <value>&lt; Supprimer</value>
   </data>
   <data name="btnRemoveMemberResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnRemoveMembershipResource1.Text" xml:space="preserve">
-    <value>Remove</value>
+    <value>Supprimer</value>
   </data>
   <data name="btnRemoveMembershipResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnRemoveUserAIResource1.Text" xml:space="preserve">
-    <value>Remove</value>
+    <value>Supprimer</value>
   </data>
   <data name="btnRemoveUserAIResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnShowMeTrainingResource1.Text" xml:space="preserve">
-    <value>Show Me</value>
+    <value>Montre Moi</value>
   </data>
   <data name="btnShowMeTrainingResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnSubmitExportTrainingResource1.Text" xml:space="preserve">
-    <value>Export</value>
+    <value>Exportation</value>
   </data>
   <data name="btnSubmitExportTrainingResource1.ToolTip" xml:space="preserve">
     <value />
@@ -352,49 +361,49 @@
     <value />
   </data>
   <data name="btnUncheckAllTrainColumnsResource1.Text" xml:space="preserve">
-    <value>Uncheck All</value>
+    <value>Décocher Tout</value>
   </data>
   <data name="btnUncheckAllTrainColumnsResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="cbChangePasswordResource1.Text" xml:space="preserve">
-    <value>Prompt the user to change password at next login</value>
+    <value>Inviter l'utilisateur à changer de mot de passe lors de la prochaine connexion</value>
   </data>
   <data name="cbChangePasswordResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="cbDisableUserResource1.Text" xml:space="preserve">
-    <value>Disable user's account</value>
+    <value>Désactiver le compte de l'utilisateur</value>
   </data>
   <data name="cbDisableUserResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="cbEmailAllResource1.Text" xml:space="preserve">
-    <value>Email all Event Action Item</value>
+    <value>E-mail à tous les éléments d'action de l'événement</value>
   </data>
   <data name="cbEmailAllResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="cbEmailStepResource1.Text" xml:space="preserve">
-    <value>Email notification of step, send, reply, and forward Action Item</value>
+    <value>E-mail de l'étape, de l'envoi, de la réponse et du transfert de l'élément d'action</value>
   </data>
   <data name="cbEmailStepResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="cbEmailSummaryResource1.Text" xml:space="preserve">
-    <value>Email summary of all open Action Items</value>
+    <value>Récapitulatif e-mail de tous les éléments d'action ouverts</value>
   </data>
   <data name="cbEmailSummaryResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="cbEmailUrgentResource1.Text" xml:space="preserve">
-    <value>Email urgent Action Item ONLY</value>
+    <value>E-mail à l'action urgente SEULEMENT</value>
   </data>
   <data name="cbEmailUrgentResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="cbHeaderFooterResource1.Text" xml:space="preserve">
-    <value>User can apply Header/Footer</value>
+    <value>L'utilisateur peut appliquer l'en-tête/le pied</value>
   </data>
   <data name="cbHeaderFooterResource1.ToolTip" xml:space="preserve">
     <value />
@@ -406,31 +415,49 @@
     <value />
   </data>
   <data name="cbSMSResource1.Text" xml:space="preserve">
-    <value>SMS notification of step, send, reply, and forward Action Items</value>
+    <value>Notification par SMS de l'étape, de l'envoi, de la réponse et du transfert des éléments d'action</value>
   </data>
   <data name="cbSMSResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="chkDefReqResource1.Text" xml:space="preserve">
-    <value>Can set definitions and requirements and manage assessments</value>
+    <value>Définit les définitions et les exigences et gère les évaluations</value>
   </data>
   <data name="chkDefReqResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="chkTrainingAnalysisResource1.Text" xml:space="preserve">
-    <value>Can do Training Analysis</value>
+    <value>Faire une analyse de formation</value>
   </data>
   <data name="chkTrainingAnalysisResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="chkViewOtherAssessmentResource1.Text" xml:space="preserve">
-    <value>View Other's Assessment</value>
+    <value>Voir l'évaluation des autres</value>
   </data>
   <data name="chkViewOtherAssessmentResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="ConfirmPasswordLabel" xml:space="preserve">
+    <value>Confirmez le Mot de Passe:</value>
+  </data>
   <data name="ddlLanguageResource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="DescriptionLabel" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>E-mail:</value>
+  </data>
+  <data name="EMailNotificationLabel" xml:space="preserve">
+    <value>Notification par courrier électronique de l'élément d'action</value>
+  </data>
+  <data name="ExternalDescriptionLabel" xml:space="preserve">
+    <value>Les utilisateurs de compte externe NE PEUVENT PAS accéder à aucun module</value>
+  </data>
+  <data name="FirstNameLabel" xml:space="preserve">
+    <value>Prénom:</value>
   </data>
   <data name="gvAddedResource1.Caption" xml:space="preserve">
     <value />
@@ -501,6 +528,9 @@
   <data name="imgTypeIconResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="LastNameLabel" xml:space="preserve">
+    <value>Nom de Famille:</value>
+  </data>
   <data name="lblUserIDResource1.Text" xml:space="preserve">
     <value />
   </data>
@@ -514,19 +544,19 @@
     <value>1</value>
   </data>
   <data name="ListItemResource10.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Nom</value>
   </data>
   <data name="ListItemResource10.Value" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="ListItemResource11.Text" xml:space="preserve">
-    <value>Label</value>
+    <value>Le label</value>
   </data>
   <data name="ListItemResource11.Value" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="ListItemResource12.Text" xml:space="preserve">
-    <value>Status</value>
+    <value>Statut</value>
   </data>
   <data name="ListItemResource12.Value" xml:space="preserve">
     <value>3</value>
@@ -538,7 +568,7 @@
     <value>4</value>
   </data>
   <data name="ListItemResource14.Text" xml:space="preserve">
-    <value>VersionDate</value>
+    <value>Date de la Version</value>
   </data>
   <data name="ListItemResource14.Value" xml:space="preserve">
     <value>5</value>
@@ -591,6 +621,21 @@
   <data name="ListItemResource9.Value" xml:space="preserve">
     <value>es-es</value>
   </data>
+  <data name="LoginNameLabel" xml:space="preserve">
+    <value>Identifiant:</value>
+  </data>
+  <data name="MemberOfLabel" xml:space="preserve">
+    <value>Membre de:</value>
+  </data>
+  <data name="MobileNumberLabel" xml:space="preserve">
+    <value>Numéro de Portable:</value>
+  </data>
+  <data name="NormalDescriptionLabel" xml:space="preserve">
+    <value>Les utilisateurs de compte standard peuvent utiliser les modules sélectionnés pour un fonctionnement normal</value>
+  </data>
+  <data name="OtherUserAILabel" xml:space="preserve">
+    <value>Cet utilisateur peut afficher les éléments d'action des utilisateurs/entités suivants:</value>
+  </data>
   <data name="p3Tree2Resource1.CollapseImageToolTip" xml:space="preserve">
     <value>Collapse {0}</value>
   </data>
@@ -616,7 +661,10 @@
     <value />
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>P3Web - User Properties</value>
+    <value>P3Web - Propriétés de l'Utilisateur</value>
+  </data>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Mot de passe:</value>
   </data>
   <data name="pnlAddMembershipsResource1.GroupingText" xml:space="preserve">
     <value />
@@ -637,13 +685,13 @@
     <value />
   </data>
   <data name="rbAdministratorResource1.Text" xml:space="preserve">
-    <value>Adminstrator</value>
+    <value>Administrateur</value>
   </data>
   <data name="rbAdministratorResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="rbExtenalUserResource1.Text" xml:space="preserve">
-    <value>External User</value>
+    <value>Utilisateur Externe</value>
   </data>
   <data name="rbExtenalUserResource1.ToolTip" xml:space="preserve">
     <value />
@@ -655,13 +703,28 @@
     <value />
   </data>
   <data name="rbRestrictedResource1.Text" xml:space="preserve">
-    <value>Restricted</value>
+    <value>Limité</value>
   </data>
   <data name="rbRestrictedResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="RestrictedDescriptionLabel" xml:space="preserve">
+    <value>Les utilisateurs de compte restreint ne peuvent utiliser que certaines fonctions fixes des modules sélectionnés</value>
+  </data>
   <data name="SessionTimeout" xml:space="preserve">
     <value>Votre session SSO a expiré. Veuillez redémarrer votre navigateur pour restaurer l'accès à votre application.</value>
+  </data>
+  <data name="SpareField1Label" xml:space="preserve">
+    <value>Champ de Réserve 1:</value>
+  </data>
+  <data name="SpareField2Label" xml:space="preserve">
+    <value>Champ de Réserve 2:</value>
+  </data>
+  <data name="SpareField3Label" xml:space="preserve">
+    <value>Champ de Réserve 3:</value>
+  </data>
+  <data name="SpareField4Label" xml:space="preserve">
+    <value>Champ de Réserve 4:</value>
   </data>
   <data name="tcUserDetailsResource1.ToolTip" xml:space="preserve">
     <value />
@@ -711,20 +774,38 @@
   <data name="TemplateFieldResource5.HeaderText" xml:space="preserve">
     <value />
   </data>
+  <data name="tpGeneralResource1.HeaderText" xml:space="preserve">
+    <value>Général</value>
+  </data>
   <data name="tpGeneralResource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="tpMembershipResource1.HeaderText" xml:space="preserve">
+    <value>l'Appartenance</value>
   </data>
   <data name="tpMembershipResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="tpOptionsResource1.HeaderText" xml:space="preserve">
+    <value>Options</value>
+  </data>
   <data name="tpOptionsResource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="tpOtherUserAIResource1.HeaderText" xml:space="preserve">
+    <value>Élément d'Action des Autres Utilisateurs</value>
   </data>
   <data name="tpOtherUserAIResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="tpTrainingResource1.HeaderText" xml:space="preserve">
+    <value>Entraînement</value>
+  </data>
   <data name="tpTrainingResource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="TrainingRecordsLabel" xml:space="preserve">
+    <value>Dossiers de formation:</value>
   </data>
   <data name="txtConfirmPasswordResource1.Text" xml:space="preserve">
     <value />
@@ -797,5 +878,8 @@
   </data>
   <data name="txtSF4Resource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="UserLanguageLabel" xml:space="preserve">
+    <value>Définir la langue de l'utilisateur:</value>
   </data>
 </root>

@@ -916,7 +916,7 @@
     <value>logon.png</value>
   </data>
   <data name="LoginImageHover" xml:space="preserve">
-    <value>logonmo.pmg</value>
+    <value>logonmo.png</value>
   </data>
   <data name="LogoutImage" xml:space="preserve">
     <value>logout.png</value>

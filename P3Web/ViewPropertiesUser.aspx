@@ -21,69 +21,69 @@
                         <ContentTemplate>
                             <div class="u-prop-tabcontent">
                                 <div class="u-prop-gen-row">
-                                    <div class="u-prop-field-label">Login Name:</div>
+                                    <div class="u-prop-field-label"><%= GetLocalResourceObject("LoginNameLabel") %></div>
                                     <div class="u-prop-field">
                                         <asp:TextBox ID="txtLoginName" runat="server" MaxLength="255" meta:resourcekey="txtLoginNameResource1" />
                                     </div>
                                 </div>
                                 <div class="u-prop-gen-row">
-                                    <div class="u-prop-field-label">First Name:</div>
+                                    <div class="u-prop-field-label"><%= GetLocalResourceObject("FirstNameLabel") %></div>
                                     <div class="u-prop-field">
                                         <asp:TextBox ID="txtFirstName" runat="server" style="width: 230px;" MaxLength="255" meta:resourcekey="txtFirstNameResource1" />
                                     </div>
-                                    <div class="u-prop-field-label" style="flex: 0 0 80px; text-align: center;">Last Name:</div>
+                                    <div class="u-prop-field-label" style="flex: 0 0 80px; text-align: center;"><%= GetLocalResourceObject("LastNameLabel") %></div>
                                     <div class="u-prop-field" style="flex: 0 0 270px;">
                                         <asp:TextBox ID="txtLastName" runat="server" style="width: 244px;" meta:resourcekey="txtLastNameResource1" />
                                     </div>
                                 </div>
                                 <div class="u-prop-gen-row">
-                                    <div class="u-prop-field-label">Password:</div>
+                                    <div class="u-prop-field-label"><%= GetLocalResourceObject("PasswordLabel") %></div>
                                     <div class="u-prop-field"><asp:TextBox ID="txtPasssword" runat="server" TextMode="Password" MaxLength="255" meta:resourcekey="txtPassswordResource1" /></div>
                                 </div>
                                 <div class="u-prop-gen-row">
-                                    <div class="u-prop-field-label">Confirm Password:</div>
+                                    <div class="u-prop-field-label"><%= GetLocalResourceObject("ConfirmPasswordLabel") %></div>
                                     <div class="u-prop-field"><asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" MaxLength="255" meta:resourcekey="txtConfirmPasswordResource1" /></div>
                                 </div>
                                 <div class="u-prop-gen-row">
-                                    <div class="u-prop-field-label">Email:</div>
+                                    <div class="u-prop-field-label"><%= GetLocalResourceObject("EmailLabel") %></div>
                                     <div class="u-prop-field">
                                         <asp:TextBox ID="txtEmail" runat="server" MaxLength="255" meta:resourcekey="txtEmailResource1" />
                                     </div>
                                 </div>
                                 <div class="u-prop-gen-row">
-                                    <div class="u-prop-field-label">Mobile Number:</div>
+                                    <div class="u-prop-field-label"><%= GetLocalResourceObject("MobileNumberLabel") %></div>
                                     <div class="u-prop-field">
                                         <asp:TextBox ID="txtMobileNumber" runat="server" MaxLength="15" meta:resourcekey="txtMobileNumberResource1" />
                                     </div>
                                 </div>
                                 <div class="u-prop-gen-row">
-                                    <div class="u-prop-field-label">Spare Field 1:</div>
+                                    <div class="u-prop-field-label"><%= GetLocalResourceObject("SpareField1Label") %></div>
                                     <div class="u-prop-field">
                                         <asp:TextBox ID="txtSF1" runat="server" MaxLength="255" meta:resourcekey="txtSF1Resource1" />
                                     </div>
                                 </div>
                                 <div class="u-prop-gen-row">
-                                    <div class="u-prop-field-label">Spare Field 2:</div>
+                                    <div class="u-prop-field-label"><%= GetLocalResourceObject("SpareField2Label") %></div>
                                     <div class="u-prop-field">
                                         <asp:TextBox ID="txtSF2" runat="server" MaxLength="255" meta:resourcekey="txtSF2Resource1" />
                                     </div>
                                 </div>
                                 <div class="u-prop-gen-row">
-                                    <div class="u-prop-field-label">Spare Field 3:</div>
+                                    <div class="u-prop-field-label"><%= GetLocalResourceObject("SpareField3Label") %></div>
                                     <div class="u-prop-field">
                                         <asp:TextBox ID="txtSF3" runat="server" Width="200px" MaxLength="50" meta:resourcekey="txtSF3Resource1" />
                                         <asp:CalendarExtender ID="cetxtSF3" runat="server" TargetControlID="txtSF3" BehaviorID="cetxtSF3" />
                                     </div>
                                 </div>
                                 <div class="u-prop-gen-row">
-                                    <div class="u-prop-field-label">Spare Field 4:</div>
+                                    <div class="u-prop-field-label"><%= GetLocalResourceObject("SpareField4Label") %></div>
                                     <div class="u-prop-field">
                                         <asp:TextBox ID="txtSF4" runat="server" Width="200px" MaxLength="50" meta:resourcekey="txtSF4Resource1" />
                                         <asp:CalendarExtender ID="cetxtSF4" runat="server" TargetControlID="txtSF4" BehaviorID="cetxtSF4" />
                                     </div>
                                 </div>
                                 <div class="u-prop-gen-lastrow">
-                                    <div class="u-prop-field-label" style="align-items: flex-start;">Description:</div>
+                                    <div class="u-prop-field-label" style="align-items: flex-start;"><%= GetLocalResourceObject("DescriptionLabel") %></div>
                                     <div class="u-prop-field">
                                         <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" meta:resourcekey="txtDescriptionResource1"></asp:TextBox>
                                     </div>
@@ -99,24 +99,24 @@
                                 <div class="u-prop-mem-row1">
                                     <div class="u-mem-license-type">
                                         <fieldset style="display: flex; flex-direction: column; height: 100%; border: 1px solid #dcdcdc;">
-                                            <legend>What level of access do you want to grant this user</legend>
+                                            <legend><%= GetLocalResourceObject("AccessLevelLabel") %></legend>
                                             <div class="u-mem-lt-row">
                                                 <asp:RadioButton ID="rbExtenalUser" runat="server" Text="External User" AutoPostBack="True" OnCheckedChanged="rb_CheckedChanged" meta:resourcekey="rbExtenalUserResource1" />
                                             </div>
                                             <div class="u-mem-lt-row" style="margin-left: 50px;">
-                                                External account users CANNOT access any modules
+                                                <%= GetLocalResourceObject("ExternalDescriptionLabel") %>
                                             </div>
                                             <div class="u-mem-lt-row">
                                                 <asp:RadioButton ID="rbRestricted" runat="server" Text="Restricted" AutoPostBack="True" OnCheckedChanged="rb_CheckedChanged" meta:resourcekey="rbRestrictedResource1" />
                                             </div>
                                             <div class="u-mem-lt-row" style="margin-left: 50px;">
-                                                Restricted account users can only use certain fixed functions of the selected modules
+                                                <%= GetLocalResourceObject("RestrictedDescriptionLabel") %>
                                             </div>
                                             <div class="u-mem-lt-row">
                                                 <asp:RadioButton ID="rbNormal" runat="server" Text="Normal" AutoPostBack="True" OnCheckedChanged="rb_CheckedChanged" meta:resourcekey="rbNormalResource1" />
                                             </div>
                                             <div class="u-mem-lt-row" style="margin-left: 50px;">
-                                                Standard account users can use the selected modules for normal operation
+                                                <%= GetLocalResourceObject("NormalDescriptionLabel") %>
                                             </div>
                                             <div class="u-mem-lt-row" style="margin-left: 50px;">
                                                 <asp:CheckBox ID="chkDefReq" runat="server" Text="Can set definitions and requirements and manage assessments" Enabled="False" meta:resourcekey="chkDefReqResource1" />
@@ -129,13 +129,13 @@
                                                 <asp:RadioButton ID="rbAdministrator" runat="server" Text="Adminstrator" AutoPostBack="True" OnCheckedChanged="rb_CheckedChanged" meta:resourcekey="rbAdministratorResource1" />
                                             </div>
                                             <div class="u-mem-lt-row" style="margin-left: 50px;">
-                                                Administrators have complete access to all modules and can make desired changes to settings
+                                                <%= GetLocalResourceObject("AdminDescriptionLabel") %>
                                             </div>
                                         </fieldset>
                                     </div>
                                     <div class="u-mem-module-access">
                                         <fieldset style="display: flex; flex-direction: column; height: 100%; border: 1px solid #dcdcdc;">
-                                            <legend>Modules accessible for this user</legend>
+                                            <legend><%= GetLocalResourceObject("AccessibleModulesLabel") %></legend>
                                             <div style="border: 1px solid #dcdcdc;">
                                                 <asp:CheckBoxList ID="cblModules" runat="server" CssClass="checkboxlist" meta:resourcekey="cblModulesResource1">
                                                     <asp:ListItem Value="1" meta:resourcekey="ListItemResource1">&lt;img src=&quot;images/users.png&quot; /&gt; Users</asp:ListItem>
@@ -150,7 +150,7 @@
                                     </div>
                                 </div>
                                 <div class="u-prop-mem-row2">
-                                    <div class="membership-label">Member of:</div>
+                                    <div class="membership-label"><%= GetLocalResourceObject("MemberOfLabel") %></div>
                                     <div class="membership-list">
                                         <asp:GridView ID="gvMemberships" runat="server" 
                                             DataKeyNames="GroupID,Name" 
@@ -251,7 +251,7 @@
                                 </div>
                                 <div class="u-opt-row" style="flex: 0 0 144px; display: flex; flex-direction: column; align-items: stretch;">
                                     <fieldset style="display: flex;flex-direction: column; justify-content: flex-start; border: 1px solid #dcdcdc;">
-                                        <legend>Email Notification of Action Item</legend>
+                                        <legend><%= GetLocalResourceObject("EmailNotificationLabel") %></legend>
                                         <div class="u-opt-row">
                                              <asp:CheckBox ID="cbEmailSummary" runat="server" Text="Email summary of all open Action Items" meta:resourcekey="cbEmailSummaryResource1" />
                                         </div>
@@ -270,7 +270,7 @@
                                     <asp:CheckBox ID="cbSMS" runat="server" Text="SMS notification of step, send, reply, and forward Action Items" meta:resourcekey="cbSMSResource1" />
                                 </div>
                                 <div class="u-opt-row" style="display: flex; flex-direction: row;">
-                                    <div style="flex: 0 0 200px;">Set User Language:</div>
+                                    <div style="flex: 0 0 200px;"><%= GetLocalResourceObject("UserLanguageLabel") %></div>
                                     <div style="flex: 1 1 auto;">
                                         <asp:DropDownList ID="ddlLanguage" runat="server" meta:resourcekey="ddlLanguageResource1">
                                             <asp:ListItem Value="en-US" meta:resourcekey="ListItemResource7">English</asp:ListItem>
@@ -290,7 +290,7 @@
                         <ContentTemplate>
                             <div class="u-prop-tabcontent" style="border: none;">
                                 <div class="u-prop-gen-row">
-                                    Training Records:
+                                    <%= GetLocalResourceObject("TrainingRecordsLabel") %>
                                 </div>
                                 <div class="u-prop-gen-row" style="flex: 1 1 auto; align-items: flex-start; padding: 0; border: 1px solid #dcdcdc; overflow-x: hidden; overflow-y: auto;">
                                     <asp:GridView ID="gvUserTraining" runat="server" Width="740px"
@@ -369,7 +369,7 @@
                         <ContentTemplate>
                             <div class="u-prop-tabcontent" style="border: none;">
                                 <div class="u-prop-gen-row">
-                                    This user can view the following User(s)/Entities' Action Items:
+                                    <%= GetLocalResourceObject("OtherUserAILabel") %>
                                 </div>
                                 <div class="u-prop-gen-row" style="border: 1px solid #000; flex: 1 1 auto; align-items: flex-start; padding: 0; overflow-x: hidden; overflow-y: auto;">
                                     <asp:GridView ID="gvOtherUserAI" runat="server" 
