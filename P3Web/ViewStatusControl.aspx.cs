@@ -30,6 +30,7 @@ namespace Paradigm3
                     int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
                     int StatusFrom = Convert.ToInt32(Request.QueryString["StatusFrom"]);
                     int StatusTo = Convert.ToInt32(Request.QueryString["StatusTo"]);
+                    ViewState["dtDoc"] = null;
                     await LoadDocumentInfo(ItemID, StatusFrom, StatusTo);
                 }                
             }            
@@ -44,7 +45,7 @@ namespace Paradigm3
         {
             LockFields(true, StatusTo);
 
-            // Retrieve Document Data and Populate Fields
+            // Retrieve Document Data and Populate Fields            
             DataTable dtDoc = await Document.Get_DocumentAsync(ItemID, true, StatusFrom);
             ViewState["dtDoc"] = dtDoc;
             string DocName = dtDoc.Rows[0]["Name"].ToString();
