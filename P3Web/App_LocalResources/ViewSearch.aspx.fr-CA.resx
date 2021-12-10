@@ -127,7 +127,7 @@
     <value>Destinataire</value>
   </data>
   <data name="AISentDate" xml:space="preserve">
-    <value>Date Envoyée</value>
+    <value>Date d'envoi</value>
   </data>
   <data name="AITitle" xml:space="preserve">
     <value>Titre</value>
@@ -175,7 +175,7 @@
     <value />
   </data>
   <data name="BoundFieldResource13.HeaderText" xml:space="preserve">
-    <value>Date envoyée</value>
+    <value>Date d'envoi</value>
   </data>
   <data name="BoundFieldResource14.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -358,7 +358,7 @@
     <value>Converti Par:</value>
   </data>
   <data name="ConvertedDate" xml:space="preserve">
-    <value>Date Convertie</value>
+    <value>Date de conversion</value>
   </data>
   <data name="Current" xml:space="preserve">
     <value>Courante</value>
@@ -394,10 +394,10 @@
     <value />
   </data>
   <data name="DocumentContainingText" xml:space="preserve">
-    <value>Texte du Document</value>
+    <value>Document contenant du texte</value>
   </data>
   <data name="DocumentID" xml:space="preserve">
-    <value>ID d'Origine du Document</value>
+    <value>Numéro de référence du document</value>
   </data>
   <data name="DocumentLabel" xml:space="preserve">
     <value>Étiquette du Document</value>
@@ -406,7 +406,7 @@
     <value>Nom du Document</value>
   </data>
   <data name="DocumentOrigID" xml:space="preserve">
-    <value>Document Original ID</value>
+    <value>Numéro de référence original du document</value>
   </data>
   <data name="Draft" xml:space="preserve">
     <value>Essai</value>
@@ -430,7 +430,7 @@
     <value />
   </data>
   <data name="History" xml:space="preserve">
-    <value>Histoire</value>
+    <value>Historique</value>
   </data>
   <data name="Image1Resource1.AlternateText" xml:space="preserve">
     <value />
@@ -463,7 +463,7 @@
     <value>Remarques</value>
   </data>
   <data name="LastModifiedDate" xml:space="preserve">
-    <value>Date de la Dernière Modification</value>
+    <value>Date de la dernière modification</value>
   </data>
   <data name="lblConvertedByResource1.Text" xml:space="preserve">
     <value>Converti par</value>

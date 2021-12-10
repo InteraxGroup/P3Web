@@ -136,21 +136,27 @@ namespace Paradigm3
 
         protected void Populate_Modules(bool IsAuthenticated)
         {
+            DataTable dt = P3General.Get_Modules();
             DDLModule.Items.Clear();
             if (IsAuthenticated)
             {
-                DDLModule.Items.Add(new ListItem("Documents", "3"));
-                DDLModule.Items.Add(new ListItem("Records", "4"));
-                DDLModule.Items.Add(new ListItem("Improvements", "6"));
-                DDLModule.Items.Add(new ListItem("Training", "12"));
-                DDLModule.Items.Add(new ListItem("Action Items", "14"));
+                foreach (DataRow dr in dt.Rows)
+                {
+                    if (!dr["ModuleID"].Equals(1))
+                    {
+                        DDLModule.Items.Add(new ListItem(dr["Name"].ToString(), dr["ModuleID"].ToString()));
+                    }                    
+                }
             }
             else
             {
-                DDLModule.Items.Add(new ListItem("Documents", "3"));
-                DDLModule.Items.Add(new ListItem("Records", "4"));
-                DDLModule.Items.Add(new ListItem("Improvements", "6"));
-                DDLModule.Items.Add(new ListItem("Training", "12"));
+                foreach (DataRow dr in dt.Rows)
+                {
+                    if (!dr["ModuleID"].Equals(14) && !dr["ModuleID"].Equals(1))
+                    {
+                        DDLModule.Items.Add(new ListItem(dr["Name"].ToString(), dr["ModuleID"].ToString()));
+                    }
+                }
             }
         }
 
