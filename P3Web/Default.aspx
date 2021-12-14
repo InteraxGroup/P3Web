@@ -231,7 +231,7 @@
                     </eo:SplitterPane>
                     <eo:SplitterPane ID="ListPane" runat="server" PersistScrollPosition="True" meta:resourcekey="ListPaneResource1">
                         <asp:Panel ID="pnlHome" runat="server" meta:resourcekey="pnlHomeResource1">
-                            <iframe src="homepanel.html"></iframe>
+                            <iframe src="custom/bayshore/homepage.aspx"></iframe>
                         </asp:Panel>
                         <asp:Panel ID="pnlList" runat="server" Width="1590px" Height="100%" CssClass="listViewPanel" meta:resourcekey="pnlListResource1">
                             <asp:Panel ID="pnlItemListTitle" runat="server" CssClass="pnlLinkTitle" meta:resourcekey="pnlItemListTitleResource1">

@@ -28,7 +28,7 @@ namespace Paradigm3
         {
          
             if (!IsPostBack)
-            {           
+            {                
                 // Set Properties session state
                 Session["IsGroup"] = 1;
              
@@ -2083,7 +2083,7 @@ namespace Paradigm3
                     Set_CheckLogon(false);
                     pnlHome.Visible = false;
                     pnlLogon.Visible = true;
-                    lblLogonError.Text = GetLocalResourceObject("lblLogonError").ToString();               
+                    lblLogonError.Text = GetLocalResourceObject("lblLogonError").ToString();
                     txtPassword.Focus();
                 }
             }

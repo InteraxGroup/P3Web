@@ -46,9 +46,9 @@
 					                    <li>
 						                     <%=GetLocalResourceObject("Homepnltxt2") %> 
 					                    </li>
-					                    <li>
+					                    <%--<li>
 						                  <%=GetLocalResourceObject("Homepnltxt1") %>   
-					                    </li>
+					                    </li>--%>
 				                    </ul>
                                     <p>
                                         <strong>   <%=GetLocalResourceObject("Homepnlpara1") %>   </strong>

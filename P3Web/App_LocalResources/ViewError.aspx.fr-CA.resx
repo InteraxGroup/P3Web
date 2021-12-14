@@ -123,6 +123,15 @@
   <data name="btnHomeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="ErrorPara1" xml:space="preserve">
+    <value>Une erreur s'est produite dans la page et l'application ne peut pas continuer:</value>
+  </data>
+  <data name="ErrorPara2" xml:space="preserve">
+    <value>Plus d'informations sont disponibles dans le journal des événements d'application sur le serveur. Veuillez contacter un administrateur pour signaler l'erreur et décrire le processus qui l'a provoquée. Nous nous excusons pour le dérangement.</value>
+  </data>
+  <data name="ErrorPara3" xml:space="preserve">
+    <value>Le message d'erreur n'a pas pu être récupéré. Consultez le journal des événements du serveur pour plus d'informations.</value>
+  </data>
   <data name="ErrorTitleResource1.Text" xml:space="preserve">
     <value>Paradigm 3 Erreur...</value>
   </data>

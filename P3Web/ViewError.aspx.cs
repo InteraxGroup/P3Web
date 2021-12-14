@@ -19,7 +19,7 @@ namespace Paradigm3
 
             Exception P3Error = null;
             string stackTrace = null;
-            lblError.Text = "Error message not returned.";
+            lblError.Text = GetLocalResourceObject("ErrorPara3").ToString();
             if ((Exception)Application["Paradigm 3 Web"] != null)
             {
                 P3Error = (Exception)Application["Paradigm 3 Web"];

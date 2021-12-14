@@ -16,13 +16,13 @@
             <asp:ImageButton ID="btnHome" runat="server" OnClick="btnHome_Click" ImageAlign="Right" meta:resourcekey="btnHomeResource1" />
         </div>
         <div id="pnlError">
-            An error has occurred in the page and the application cannot continue:
+            <%= GetLocalResourceObject("ErrorPara1") %>            
             <br /><br />
             &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblError" runat="server" Font-Size="Large" Font-Bold="True" ForeColor="Red" meta:resourcekey="lblErrorResource1" />
             <br /><br />
             <asp:Label ID="lblStackTrace" runat="server" meta:resourcekey="lblStackTraceResource1"></asp:Label>
             <br /><br />
-            More information is available in the Application Event Log on the server.  Please contact an Administrator to report the error and describe the process that caused it. We apologize for the inconvenience.
+            <%= GetLocalResourceObject("ErrorPara2") %>            
         </div>
     </form>
 </body>
