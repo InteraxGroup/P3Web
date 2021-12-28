@@ -437,13 +437,13 @@ namespace Paradigm3
                                 {
                                     if (dtFieldData.Rows[0]["DateData"].Equals(DBNull.Value) || dtFieldData.Rows[0]["DateData"].Equals(Convert.ToDateTime("1900/01/01")))
                                     {
-                                        if (fdr["DefaultValue"].Equals(DBNull.Value) || fdr["DefaultValue"].Equals(string.Empty))
+                                        if (!fdr["DefaultValue"].Equals(string.Empty) || fdr["DefaultValue"].ToString() != "")
                                         {
-                                            FieldValue = "MM/dd/yyyy";
+                                            FieldValue = fdr["DefaultValue"];
                                         }
                                         else
                                         {
-                                            FieldValue = fdr["DefaultValue"];
+                                            FieldValue = dtFieldData.Rows[0]["DateData"];
                                         }
                                     }
                                     else

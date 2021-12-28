@@ -45,7 +45,7 @@
                                         </li>
 					                    <li>
 						                     <%=GetLocalResourceObject("Homepnltxt2") %> 
-					                    </li>
+					                    </li>                                        
 					                    <%--<li>
 						                  <%=GetLocalResourceObject("Homepnltxt1") %>   
 					                    </li>--%>
@@ -56,7 +56,7 @@
                                     <p>
                                          <%=GetLocalResourceObject("Homepnlpara2") %>    <a href="#"><%=GetLocalResourceObject("lblclick") %></a>.<br />
                                          <%=GetLocalResourceObject("Homepnlpara3") %>    <a href="#"><%=GetLocalResourceObject("lblclick") %></a>.<br />
-                                         <%=GetLocalResourceObject("Homepnlpara4") %>    <a href="mailto:bayshore.cqrt@bayshorehealth.ca">CQRT</a>
+                                         <%=GetLocalResourceObject("Homepnlpara4") %>    <a href="mailto:bayshore.cqrt@bayshorehealth.ca">CQRT</a>.<br />
                                     </p>
                                 </div>                                
                             </asp:Panel>

@@ -171,6 +171,9 @@
   <data name="Clinical" xml:space="preserve">
     <value>Clinical</value>
   </data>
+  <data name="COVIDLink" xml:space="preserve">
+    <value>COVID Procedures</value>
+  </data>
   <data name="CQHIPPanelResource1.GroupingText" xml:space="preserve">
     <value />
   </data>

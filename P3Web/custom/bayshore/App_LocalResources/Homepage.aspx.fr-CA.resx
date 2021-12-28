@@ -171,6 +171,9 @@
   <data name="Clinical" xml:space="preserve">
     <value>Clinique</value>
   </data>
+  <data name="COVIDLink" xml:space="preserve">
+    <value>Procédures COVID</value>
+  </data>
   <data name="CQHIPPanelResource1.GroupingText" xml:space="preserve">
     <value />
   </data>
@@ -268,7 +271,7 @@
     <value>Si vous avez besoin d’assistance supplémentaire, veuillez contacter</value>
   </data>
   <data name="Homepnltxt1" xml:space="preserve">
-    <value>Utilizez un onglet ci-dessus pour afficher les informations relatives aux services spécifiques de Bayshore.</value>
+    <value>Utilisez la fonction recherche dans la barre d'outils pour localiser le fichier par nom, numéro de référence ou contenu.</value>
   </data>
   <data name="Homepnltxt2" xml:space="preserve">
     <value>Cliquez sur le lien dans le menu principal à gauche pour accéder aux fichiers couramment utilisés et/ou aux raccourcis.</value>

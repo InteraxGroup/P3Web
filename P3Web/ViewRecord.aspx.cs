@@ -360,9 +360,13 @@ namespace Paradigm3
                             {
                                 if (drFieldData[0]["DateData"].Equals(DBNull.Value) || drFieldData[0]["DateData"].Equals(Convert.ToDateTime("1900/01/01")))
                                 {
-                                    if (!FieldRows[fr]["DefaultValue"].Equals(DBNull.Value) || FieldRows[fr]["DefaultValue"].Equals(string.Empty))
+                                    if (!FieldRows[fr]["DefaultValue"].Equals(string.Empty) || FieldRows[fr]["DefaultValue"].ToString() != "")
                                     {
                                         FieldValue = FieldRows[fr]["DefaultValue"];
+                                    }
+                                    else
+                                    {
+                                        FieldValue = drFieldData[0]["DateData"];
                                     }
                                 }
                                 else

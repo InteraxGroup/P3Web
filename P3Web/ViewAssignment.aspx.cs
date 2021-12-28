@@ -39,7 +39,7 @@ namespace Paradigm3
             if (dt.Rows.Count > 0)
             {
                 gvResponsible.DataSource = dt;
-                gvResponsible.DataBind();
+                gvResponsible.DataBind();                
             }
         }
 

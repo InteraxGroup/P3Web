@@ -27,18 +27,16 @@
                         <Columns>
                             <asp:TemplateField HeaderText="" ItemStyle-Width="20px" meta:resourcekey="TemplateFieldResource1">
                                 <ItemTemplate>
-                                    <asp:CheckBox ID="chkSelect" runat="server" Checked="True" meta:resourcekey="chkSelectResource1" />
+                                    <asp:CheckBox ID="chkSelect" runat="server" Checked="False" meta:resourcekey="chkSelectResource1" />
                                 </ItemTemplate>
-
-<ItemStyle Width="20px"></ItemStyle>
+                                <ItemStyle Width="20px"></ItemStyle>
                             </asp:TemplateField>
                             <asp:BoundField HeaderText="Name" DataField="ControlFullName" HeaderStyle-HorizontalAlign="Left" meta:resourcekey="BoundFieldResource1" >
-<HeaderStyle HorizontalAlign="Left"></HeaderStyle>
+                                <HeaderStyle HorizontalAlign="Left"></HeaderStyle>
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="Type" DataField="ControlType" HeaderStyle-HorizontalAlign="Left" ItemStyle-Width="40px" meta:resourcekey="BoundFieldResource2" >
-<HeaderStyle HorizontalAlign="Left"></HeaderStyle>
-
-<ItemStyle Width="40px"></ItemStyle>
+                            <asp:BoundField HeaderText="Type" DataField="ControlType" HeaderStyle-HorizontalAlign="Left" ItemStyle-Width="40px" meta:resourcekey="BoundFieldResource2">
+                                <HeaderStyle HorizontalAlign="Left"></HeaderStyle>
+                                <ItemStyle Width="40px"></ItemStyle>
                             </asp:BoundField>
                         </Columns>
                     </asp:GridView>
