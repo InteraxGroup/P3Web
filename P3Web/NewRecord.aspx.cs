@@ -30,7 +30,7 @@ namespace Paradigm3
                 string GroupOptionSet = await P3General.Get_GroupOptionSetAsync(ModuleID, ParentGroupID);
                 if (ModuleID != 12)
                 {
-                    if (!string.IsNullOrEmpty(GroupOptionSet) && GroupOptionSet.Contains("1_3"))
+                    if (!string.IsNullOrEmpty(GroupOptionSet) && GroupOptionSet.Contains("2|1"))
                     {
                         string NameFormula = await Record.Get_NameFormulaAsync(ModuleID, ParentGroupID);
                         string[] NameFormulaValues = NameFormula.Split('|');

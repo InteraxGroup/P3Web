@@ -1168,6 +1168,7 @@
     <Content Include="releasenotes\41000.pdf" />
     <Content Include="releasenotes\41100.pdf" />
     <Content Include="releasenotes\41200.pdf" />
+    <Content Include="releasenotes\41210.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

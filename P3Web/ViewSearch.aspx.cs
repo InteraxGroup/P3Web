@@ -254,14 +254,14 @@ namespace Paradigm3
                 switch (ModuleID)
                 {
                     case 3:
-                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Current").ToString(), "1"));
-                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Pending").ToString(), "2"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Current").ToString(), "9"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Pending").ToString(), "7"));
                         DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Ready").ToString(), "3"));
-                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Review").ToString(), "4"));
-                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Collaborate").ToString(), "5"));
-                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Draft").ToString(), "6"));
-                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Open").ToString(), "7"));
-                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Obsolete").ToString(), "8"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Review").ToString(), "5"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Collaborate").ToString(), "3"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Draft").ToString(), "2"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Open").ToString(), "2"));
+                        DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Obsolete").ToString(), "0"));
                         DDLSearch.Items.Add(new ListItem(GetLocalResourceObject("Complete").ToString(), "9"));
                         break;
                     case 4:
