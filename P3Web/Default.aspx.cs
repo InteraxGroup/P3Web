@@ -141,8 +141,6 @@ namespace Paradigm3
             Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
         }
-
-
         protected void GoTo_Folder(int ModuleID, int GroupID)
         {
             string GroupName = P3General.Get_GroupName(ModuleID, GroupID);
@@ -1184,7 +1182,6 @@ namespace Paradigm3
                                         Session["IsCheckedOut"] = true;
                                         await Document.Edit_Document_HistoryAsync(3, Convert.ToInt32(editOrigID), Path.GetFileNameWithoutExtension(editCopyFileName), editFileLabel, "Item has been checked out.", UserFullName, string.Empty);
                                         await Document.Update_CheckOutStatusAsync(Convert.ToInt32(editItemID), UserFullName, 1);
-
                                     }
 
                                     // If CheckoutToServer to things, else download checked out file.

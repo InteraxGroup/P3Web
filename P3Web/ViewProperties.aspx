@@ -235,7 +235,11 @@
                     <div id="pnlHistory">
                         <asp:TextBox ID="txtHistory" runat="server" TextMode="MultiLine" ReadOnly="True" CssClass="pHistoryField" meta:resourcekey="txtHistoryResource1"></asp:TextBox>
                     </div>
+                     <div id="Div1" runat="server"  class="history-edit-buttons">
+                         <asp:Button ID="btnAddHistory" class="categories-buttons" runat="server" CommandArgument="AddHistoryMemo" Text="Add History" OnClick="Button_Click" />
+                    </div>
                 </ContentTemplate>
+                
             </asp:TabPanel>
             <asp:TabPanel ID="trainingTab" runat="server"  meta:resourcekey="trainingTabResource1">
                 <ContentTemplate>
@@ -280,6 +284,7 @@
                 </ContentTemplate>
             </asp:TabPanel>
         </asp:TabContainer>
+           
     </div>
     <div id="pnlPClose" runat="server">
         <asp:Button ID="btnClose" runat="server" Text="Close" OnClick="Button_Click" CommandArgument="CloseProperties" meta:resourcekey="btnCloseResource1" />
@@ -288,11 +293,11 @@
 
 
 
-    <a id="dummyclicker" runat="server" href="#"></a>
-    <asp:ModalPopupExtender ID="mpeEditEventDate" runat="server" PopupControlID="pnlEditEventDate" TargetControlID="dummyclicker" BackgroundCssClass="modalBackground" BehaviorID="mpeEditEventDate" DynamicServicePath=""></asp:ModalPopupExtender>
+   <a id="dummyclicker" runat="server" href="#"></a>
+    <asp:ModalPopupExtender ID="mpeEditEventDate" runat="server" PopupControlID="pnlEditEventDate" TargetControlID="dummyclicker" BackgroundCssClass="modalBackground" BehaviorID="mpeEditEventDate"></asp:ModalPopupExtender>
     <asp:Panel ID="pnlEditEventDate" runat="server" CssClass="edit-eventdate-modal" meta:resourcekey="pnlEditEventDateResource1">
         <asp:Panel ID="pnlEditEventTitleBar" runat="server" CssClass="edit-eventdate-titlebar" meta:resourcekey="pnlEditEventTitleBarResource1">
-            <asp:Label ID="ManageDateLabel" runat="server" Text="Manage Date" meta:resourcekey="ManageDateLabel"></asp:Label>
+            <span>Manage Date</span>
             <asp:ImageButton ID="btnEditEventClose" runat="server" ImageUrl="~/images/squareclose.png" meta:resourcekey="btnEditEventCloseResource1" />
         </asp:Panel>
         <div class="edit-eventdate-spacer">
@@ -324,8 +329,8 @@
             <div class="eventdate-divider"></div>
             <div class="eventdate-options">
                 <div class="date-settings">
-                    <fieldset style="display: block; height: 100%; border: 1px solid #dcdcdc; margin-bottom: 5px;">
-                        <legend><asp:Label ID="DateLabel" runat="server" Text="Date" meta:resourcekey="DateLabel"></asp:Label></legend>
+                    <fieldset style="display: block; height: 100%; border: 1px solid #dcdcdc; margin-bottom: 10px;">
+                        <legend>Date</legend>
                         <asp:RadioButton ID="rbNotSet" runat="server" Text="Not Set" Checked="True" style="display: block; margin-top: 10px;" AutoPostBack="True" OnCheckedChanged="RadioButton_CheckedChanged" meta:resourcekey="rbNotSetResource1" />
                         <div>&nbsp;</div>
                         <asp:RadioButton ID="rbSetDate" runat="server" Text="Set on the date:" style="display: block;" AutoPostBack="True" OnCheckedChanged="RadioButton_CheckedChanged" meta:resourcekey="rbSetDateResource1" />
@@ -349,7 +354,7 @@
                 </div>
                 <div class="frequency-settings">
                     <fieldset style="display: block; height: 100%; border: 1px solid #dcdcdc;">
-                        <legend><asp:Label ID="FrequencyLabel" runat="server" Text="Frequency" meta:resourcekey="FrequencyLabel"></asp:Label></legend>
+                        <legend>Frequency</legend>
                         <asp:RadioButton ID="rbOnceOnly" runat="server" Text="Once Only" style="display: block; margin-bottom: 10px;" AutoPostBack="True" OnCheckedChanged="RadioButton_CheckedChanged" meta:resourcekey="rbOnceOnlyResource1" />
                         <asp:RadioButton ID="rbEvery" runat="server" Text="Every" style="display: block;" AutoPostBack="True" OnCheckedChanged="RadioButton_CheckedChanged" meta:resourcekey="rbEveryResource1" />
                         <div style="padding-left: 30px;">
@@ -365,9 +370,9 @@
                 </div>
                 <div class="actionitem-settings">
                     <fieldset style="display: block; height: 100%; border: 1px solid #dcdcdc;">
-                        <legend><asp:Label ID="ActionItemLabel" runat="server" Text="Action Item" meta:resourcekey="ActionItemLabel"></asp:Label></legend>
+                        <legend>Action Item</legend>
                         <div style="margin: 10px auto 2px auto;">
-                            <asp:Label ID="TriggerActionItemLabel" runat="server" Text="Trigger Action Item" meta:resourcekey="TriggerActionItemLabel"></asp:Label>
+                            Trigger Action Item
                         </div>
                         <div>
                             <asp:TextBox ID="txtAITriggerNum" runat="server" TextMode="Number" Width="70px" Text="0" meta:resourcekey="txtAITriggerNumResource1"></asp:TextBox>
@@ -381,7 +386,7 @@
                                 <asp:ListItem Value="0" Text="Before" meta:resourcekey="ListItemResource16"></asp:ListItem>
                                 <asp:ListItem Value="1" Text="After" meta:resourcekey="ListItemResource17"></asp:ListItem>
                             </asp:DropDownList>
-                            <span style="display: block; font-size: .9em; color: cornflowerblue; margin-top: 10px;"><asp:Label ID="EventDateNoteLabel" runat="server" Text="Note: Calculated AFTER 'set on date' is reached." meta:resourcekey="EventDateNoteLabel"></asp:Label></span>
+                            <span style="display: block; font-size: .9em; color: cornflowerblue; margin-top: 10px;">Note: Calculated AFTER 'set on date' is reached.</span>
                         </div>
                     </fieldset>
                 </div>
@@ -391,6 +396,38 @@
             <asp:Button ID="btnSaveEventDetails" runat="server" Text="Close" OnClick="Button_Click" CommandArgument="SaveEventDateDetails" meta:resourcekey="btnSaveEventDetailsResource1" />
         </div>
     </asp:Panel>
+    
+    <a id="dummy2" runat="server" href="#"></a>
+   
+          
+    <asp:ModalPopupExtender ID="AddHistoryNotesModalPopup" runat="server" PopupControlID="pnlAddNotes" TargetControlID="dummy2" BackgroundCssClass="modalBackground" BehaviorID="AddHistoryNotesModalPopup"></asp:ModalPopupExtender>
+    <asp:Panel ID="pnlAddNotes" runat="server" CssClass="edit-eventdate-modal" meta:resourcekey="pnlEditEventDateResource1">
+        <div class="edit-eventdate-titlebar">
+            <span>Add History</span>
+        </div>
+        <div style="padding: 10px;">   
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <div id="pnladdhistorynotes">
+                    <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="530px">
+                        <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="Details for History">
+                           <ContentTemplate>
+                               <asp:TextBox ID="txtAddNotes" runat="server" TextMode="MultiLine" CssClass="pHistoryField" meta:resourcekey="txtHistoryResource1"></asp:TextBox>
+                           </ContentTemplate>
+                        </asp:TabPanel>
+                    </asp:TabContainer>
+                </div>                 
+            </ContentTemplate>      
+            </asp:UpdatePanel>
+        <div  class="history-edit-buttons">
+          <asp:Button ID="btnSaveNotes" runat="server" Text="Save" OnClick="Button_Click" CommandArgument="SaveHistoryMemoDetails" meta:resourcekey="btnSaveHistoryMemoResource1" />
+          <asp:Button ID="btnCloseNotes" runat="server" Text="Close" OnClick="Button_Click" CommandArgument="Close" meta:resourcekey="btnCloseNotesResource1" />
+       
+        </div>
+       </div>  
+    </asp:Panel>
+       </div>
+           
     <asp:Button ID="btnApplyEDTSI" runat="server" style="display: none;" OnClick="btnApplyEDTSI_Click" meta:resourcekey="btnApplyEDTSIResource1" />
     <asp:Button ID="btnApplyEDTSF" runat="server" style="display: none;" OnClick="btnApplyEDTSF_Click" meta:resourcekey="btnApplyEDTSFResource1" />
     <asp:Button ID="btnApplyCTSI" runat="server" style="display: none;" OnClick="btnApplyCTSI_Click" meta:resourcekey="btnApplyCTSIResource1" />

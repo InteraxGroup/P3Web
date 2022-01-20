@@ -1,5 +1,16 @@
 ﻿/*  LAYOUT SETTINGS  */
 
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #787878;
+    font-family: Arial;
+}
+
+    body.white {
+        background-color: #fff;
+    }
+
 #main {
     position: absolute;
     top: 10px;
@@ -7,6 +18,48 @@
     left: 10px;
     right: 10px;
     border: 1px solid black;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+#toolBar {
+    display: block;
+    width: 100%;
+    min-height: 64px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
+}
+
+#application {
+    display: flex;
+    width: 100%;
+    height: calc(100% - 90px);
+    box-sizing: border-box;
+}
+
+#footer {
+    width: 100%;
+    min-height: 28px;
+    padding-top: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid Black;
+    background-color: #F0F0F0;
+    text-align: left;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+#LeftPane {
+    flex: 0 0 17%;
+    min-width: 200px;
+    border-right: 2px solid #dcdcdc;
+}
+
+#RightPane {
+    flex: 1 1 auto;
 }
 
 #pnlHome {
@@ -16,8 +69,7 @@
 
     #pnlHome embed {
 	    width: 100%;
-        height: calc(100vh - 118px);
-	    /*height: 100%;*/ 
+        height: calc(100vh - 118px); 
     }
 
     #pnlHome iframe {
@@ -27,23 +79,6 @@
         border: none;
         outline: none;
     }
-
-
-#toolBar {
-    display: block;
-    width: 100%;
-    min-height: 64px;
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #000;
-}
-
-.P3Logo {
-    width: 131px;
-    height: 64px;
-    position: relative;
-    left: 5px;
-    top: 2px;
-}
 
 #content {
     display: block;
@@ -66,19 +101,6 @@
     min-height: 700px;
 }
 
-#footer {
-    width: 100%;
-    min-height: 28px;
-    padding-top: 2px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    border-top: 1px solid Black;
-    background-color: #F0F0F0;
-    text-align: left;
-    vertical-align: middle;
-}
-
 .lblVersion {
     position: relative;
     top: 4px;
@@ -92,18 +114,6 @@
 	.lblVersion:hover {
 		color: cornflowerblue;
 	}
-
-
-html, body {
-    height: 100%;
-    margin: 0;
-    background-color: #787878;
-    font-family: Arial;
-}
-
-    body.white {
-        background-color: #fff;
-    }
 
 .pnlLinkTitle {
     width: 100%;
@@ -280,12 +290,11 @@ html, body {
 .titleBar {
     padding-left: 5px;
     text-align: left;
-    /*background-color: #001E62;*/
     background-color: #fff;
-    /*color: #FFFFFF;*/
     color: #000;
-    height: 20px;
-    vertical-align: middle
+    font-size: 1rem;
+    box-sizing: border-box;
+    padding: 5px;
 }
 
 .spacer {

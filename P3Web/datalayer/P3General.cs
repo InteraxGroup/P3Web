@@ -824,8 +824,6 @@ namespace Paradigm3.datalayer
 			}
 		}
 
-       
-
         public static async Task<bool> HasChangetoEvidencePemission(int OrigID, int UserID)
         {
             bool result = false;
@@ -851,7 +849,6 @@ namespace Paradigm3.datalayer
             }
             return result;
         }
-
 
         public static async Task<bool> HasChangetoItemPemission(int OrigID, int UserID)
         {

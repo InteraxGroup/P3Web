@@ -109,7 +109,7 @@ html {
             #pnlToolbarRight .doc-bottom-row .left-column > div:nth-child(1) {
                 order: 1;
                 flex: 0 0 50px;
-                box-sizing:border-box;
+                box-sizing: border-box;
             }
 
             #pnlToolbarRight .doc-bottom-row .left-column > div:nth-child(2) {
@@ -123,7 +123,7 @@ html {
             order: 2;
             flex: 0 0 350px;
             display: flex;
-            flex-direction: row;            
+            flex-direction: row;
         }
 
             #pnlToolbarRight .doc-bottom-row .right-column div:nth-child(1) {
@@ -194,13 +194,13 @@ html {
         padding: 5px;
     }
 
-    .pnlStatusWindow .pnlStatusVersion {        
+    .pnlStatusWindow .pnlStatusVersion {
         flex: 0 0 30px;
         display: flex;
         flex-direction: row;
         padding: 5px;
         box-sizing: border-box;
-        font-size: .9em;        
+        font-size: .9em;
     }
 
         .pnlStatusWindow .pnlStatusVersion span {
@@ -226,7 +226,7 @@ html {
             padding: 7px 0 0 5px;
         }
 
-.version-row-1,.version-row-2,.version-row-3 {
+.version-row-1, .version-row-2, .version-row-3 {
     display: flex;
     flex-direction: row;
     font-size: .7em;
@@ -252,14 +252,14 @@ html {
         height: 23px;
     }
 
-        .pnlStatusWindow .pnlStatusList .version-options {
-            flex: 0 0 175px;
-            display: flex;
-            flex-direction: column;
-            padding: 0 10px;
-            box-sizing: border-box;
-            font-size: .8em;
-        }
+.pnlStatusWindow .pnlStatusList .version-options {
+    flex: 0 0 175px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: .8em;
+}
 
 .version-options-list {
     flex: 1 1 auto;
@@ -270,15 +270,15 @@ html {
     flex: 0 0 20px;
 }
 
-    .pnlStatusWindow .pnlStatusButtons {
-        flex: 0 0 40px;
-        padding: 5px;
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        box-sizing: border-box;
-    }
+.pnlStatusWindow .pnlStatusButtons {
+    flex: 0 0 40px;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+}
 
 #statusMessagePanel {
     position: absolute;
@@ -330,9 +330,9 @@ html {
         outline: 0;
     }
 
-    #pnlAIToolbar input[type=image]:active {
-        outline: 0;
-    }
+        #pnlAIToolbar input[type=image]:active {
+            outline: 0;
+        }
 
 #pnlAIInfo {
     display: block;
@@ -390,7 +390,7 @@ html {
 .aiLabelMiddle {
     text-align: left;
     vertical-align: middle;
-    width: 80px;
+    width: 70px;
     padding-left: 5px;
     font-size: 9pt;
     font-weight: 700;
@@ -461,7 +461,7 @@ html {
 #pnlAIPwdCnfBody {
     flex: 1 1 auto;
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;
 }
 
 .pwd-body-left {
@@ -802,10 +802,20 @@ html {
 
 .pHistoryField {
     width: 99%;
-    height: 385px;
-    font: normal normal normal 12px Arial;
+    height: 350px;
+    font: normal 12px Arial;
     border: 1px inset #CCCCCC;
     background-color: #FFFFFF;
+    overflow-x: hidden;
+    overflow-y: auto;
+    resize: none;
+    outline: none;
+}
+
+.history-edit-buttons {
+    flex: 1 1 auto;
+    float: right;
+    margin: 10px 10px 0 auto;
 }
 
 #pnlTraining {
@@ -953,15 +963,15 @@ html {
     cursor: pointer;
 }
 
-    .event-date-gridView tr th {        
-        padding: 5px 2px;
-        border-right: 1px solid #dcdcdc;        
-    }
+.event-date-gridView tr th {
+    padding: 5px 2px;
+    border-right: 1px solid #dcdcdc;
+}
 
-    .event-date-gridView tr td {
-        padding: 5px 2px;
-        border-right: 1px solid #dcdcdc;
-    }
+.event-date-gridView tr td {
+    padding: 5px 2px;
+    border-right: 1px solid #dcdcdc;
+}
 
 .event-date-selectedRow {
     background-color: #0078D7 !important;
@@ -1163,7 +1173,7 @@ html {
 .u-prop-main {
     display: flex;
     flex-direction: column;
-    height: 550px;    
+    height: 550px;
     box-sizing: border-box;
     background-color: #f1f1f1;
 }
@@ -1227,14 +1237,14 @@ html {
     box-sizing: border-box;
 }
 
-     .u-prop-field input {
+    .u-prop-field input {
         width: 590px;
         border: 1px solid #dcdcdc;
         padding: 2px 10px;
         font-size: 16px;
-        border-radius: 2px;    
+        border-radius: 2px;
         font-size: 1em;
-     }
+    }
 
         .u-prop-field input:focus {
             outline-color: #dcdcdc;
@@ -1281,7 +1291,7 @@ html {
         box-sizing: border-box;
     }
 
-.u-prop-mem-row3{
+.u-prop-mem-row3 {
     flex: 0 0 40px;
     display: flex;
     justify-content: flex-end;
@@ -1315,9 +1325,9 @@ html {
     background-color: #f1f1f1;
 }
 
-    .u-mem-module-access img {
-        width: 16px;
-    }
+.u-mem-module-access img {
+    width: 16px;
+}
 
 .disabled {
     background-color: #dcdcdc;
@@ -1417,7 +1427,7 @@ html {
 }
 
 .u-other-add-title {
-    flex: 0 0 30px;    
+    flex: 0 0 30px;
     display: flex;
     align-items: center;
     padding-left: 5px;
@@ -1469,7 +1479,6 @@ html {
 }
 
 .u-other-add-right {
-
 }
 
 /*  ------------------------------------  */
@@ -1534,8 +1543,8 @@ html {
 .modal-select-type {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    height: 180px;
+    width: 230px;
+    height: 150px;
     border: 1px solid #000;
     background-color: #f0f0f0;
     box-sizing: border-box;

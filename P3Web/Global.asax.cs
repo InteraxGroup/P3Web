@@ -41,8 +41,6 @@ namespace Paradigm3
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            // Fires when an error occurs
-            Exception myError = null;
             if (Server.GetLastError() != null)
             {
                 string eventLog = "Application";
@@ -50,7 +48,8 @@ namespace Paradigm3
                 string myErrorMessage = string.Empty;
                 string PageSource = HttpContext.Current.Request.Url.ToString();
 
-                myError = Server.GetLastError().GetBaseException();
+                // Fires when an error occurs
+                Exception myError = Server.GetLastError().GetBaseException();
 
                 myErrorMessage += "Message:\r\n" + myError.Message.ToString() + "\r\n\r\n";
                 myErrorMessage += "Source:\r\n" + myError.Source.ToString() + "\r\n\r\n";
@@ -65,7 +64,6 @@ namespace Paradigm3
                 // Write the error entry to the event log.    
                 myLog.WriteEntry("An error occurred in the application " + eventSource + ":\r\n\r\n" + myErrorMessage, EventLogEntryType.Error);
                 Application[eventSource] = myError;
-                //Response.Redirect("~/ViewError.aspx?Page=" + PageSource);
             }
         }
 

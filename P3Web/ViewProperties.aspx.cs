@@ -16,21 +16,22 @@ namespace Paradigm3
     public partial class ViewProperties : SqlViewStatePage
     {
         protected async void Page_Load(object sender, EventArgs e)
-        {            
+        {
             if (!Page.IsPostBack)
             {
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
-                    string Message = GetLocalResourceObject("SessionTimeout").ToString();
-                    ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
+                    Response.Redirect("Default.aspx", false);
                 }
-
-                int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
-                int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-                int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
-                // Initialise all other Properties details
-                await Initialize_PropertiesAsync(ItemID, ModuleID, IsGroup);
+                else
+                {
+                    int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                    int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                    int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
+                    // Initialise all other Properties details
+                    await Initialize_PropertiesAsync(ItemID, ModuleID, IsGroup);
+                }
             }
         }
 
@@ -43,10 +44,11 @@ namespace Paradigm3
         {
             // General Tab
             DataTable dt = await Properties.Get_PropertiesAsync(ItemID, ModuleID, IsGroup);
+            ViewState["Properties"] = dt;
             int ID = 0;
             int OrigID = 0;
             if (dt.Rows.Count > 0)
-            {                
+            {
                 if (IsGroup == 1)
                 {
                     ID = Convert.ToInt32(dt.Rows[0]["GroupID"]);
@@ -54,18 +56,18 @@ namespace Paradigm3
                     trainingTab.Visible = false;
                 }
                 else
-				{
+                {
                     if (ModuleID == 1)
-					{
+                    {
                         ID = Convert.ToInt32(dt.Rows[0]["UserID"]);
                         lblName.Text = dt.Rows[0]["FullName"].ToString();
                     }
                     else
-					{
-                        ID = Convert.ToInt32(dt.Rows[0]["ItemID"]);
+                    {
+                        ID = Convert.ToInt32(dt.Rows[0]["OrigID"]);
                         lblName.Text = dt.Rows[0]["Name"].ToString();
                     }
-				}
+                }
                 if (dt.Rows[0]["LabelName"] != DBNull.Value)
                 {
                     lblLabel.Text = dt.Rows[0]["LabelName"].ToString();
@@ -99,17 +101,17 @@ namespace Paradigm3
                     }
                 }
                 if (dt.Rows[0]["CreateDate"] != DBNull.Value)
-				{
+                {
                     lblCreatedDate.Text = Convert.ToDateTime(dt.Rows[0]["CreateDate"]).ToString("d");
-                }                
+                }
                 if (dt.Rows[0]["CreateBy"] != DBNull.Value)
                 {
                     lblCreatedBy.Text = dt.Rows[0]["CreateBy"].ToString();
                 }
                 if (dt.Rows[0]["LastModified"] != DBNull.Value)
-				{
+                {
                     lblModifiedDate.Text = Convert.ToDateTime(dt.Rows[0]["LastModified"]).ToString("d");
-                }                
+                }
                 if (dt.Rows[0]["ModifiedBy"] != DBNull.Value)
                 {
                     lblModifiedBy.Text = dt.Rows[0]["ModifiedBy"].ToString();
@@ -151,7 +153,7 @@ namespace Paradigm3
                 // Roles Tab
                 rolesTab.Visible = false;
                 if (ModuleID != 1)
-				{
+                {
                     rolesTab.Visible = true;
                     await Get_RolesAsync(ModuleID);
                     if (userStatus == 1 && IsGroup == 1)
@@ -173,7 +175,7 @@ namespace Paradigm3
                 // Event Dates Tab
                 eventDateTab.Visible = false;
                 if (ModuleID != 1)
-				{
+                {
                     eventDateTab.Visible = true;
                     int IDType = 1;
                     if (IsGroup == 1)
@@ -198,7 +200,7 @@ namespace Paradigm3
                 // Categories Tab
                 categoriesTab.Visible = false;
                 if (ModuleID != 1)
-				{
+                {
                     DataTable dtCategories = SearchData.Get_SearchVar(ModuleID).Tables[4];
                     DataTable dtItemCategories = await Properties.Get_ItemCategoriesAsync(ModuleID, OrigID, IsGroup);
                     ViewState["ItemCategories"] = dtItemCategories;
@@ -226,7 +228,7 @@ namespace Paradigm3
                 // Training tab
                 trainingTab.Visible = false;
                 if (ModuleID != 1)
-				{
+                {
                     if (ModuleID != 12 && IsGroup != 1)
                     {
                         trainingTab.Visible = true;
@@ -428,6 +430,25 @@ namespace Paradigm3
                     }
                     ScriptManager.RegisterStartupScript(udpProperties, GetType(), "closeproperties", "window.close();", true);
                     break;
+                case "AddHistoryMemo":
+                    if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                    {
+
+                        AddHistoryNotesModalPopup.Show();
+                        txtAddNotes.Text = string.Empty;
+
+                    }
+
+                    break;
+                case "SaveHistoryMemoDetails":
+                    if (txtAddNotes.Text != "")
+                    {
+                        string NewHistoryMemo = txtAddNotes.Text;
+                        await Add_HistoryAsync(ModuleID, OrigID, NewHistoryMemo);
+                        ScriptManager.RegisterStartupScript(udpProperties, GetType(), "close", "parent.location.reload();", true);
+
+                    }
+                    break;
             }
         }
 
@@ -550,7 +571,7 @@ namespace Paradigm3
         }
 
         protected async void btnApplyCTSF_Click(object sender, EventArgs e)
-		{
+        {
             int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
             int GroupID = Convert.ToInt32(Request.QueryString["ItemID"]);
             if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
@@ -625,17 +646,23 @@ namespace Paradigm3
         protected async Task Get_EventDateListAsync(int ModuleID)
         {
             DataTable dt = await Properties.Get_EventDateListAsync(ModuleID);
+            DataTable dtProperties = (DataTable)ViewState["Properties"];
             gvDates.DataSource = dt;
             gvDates.DataBind();
             gvDates.SelectedIndex = 0;
 
-            int OrigID = Convert.ToInt32(Request.QueryString["ItemID"]);
-            int CatID = Convert.ToInt32(gvDates.DataKeys[0].Values["CatID"]);
+            int OrigID = 0;
             int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
+            int CatID = Convert.ToInt32(gvDates.DataKeys[0].Values["CatID"]);            
             int IDType = 1;
             if (IsGroup == 1)
             {
                 IDType = 0;
+                OrigID = Convert.ToInt32(dtProperties.Rows[0]["GroupID"]);
+            }
+            else
+            {
+                OrigID = Convert.ToInt32(dtProperties.Rows[0]["OrigID"]);
             }
 
             await Get_EventDateDetailsAsync(ModuleID, OrigID, CatID, IDType);
@@ -726,19 +753,39 @@ namespace Paradigm3
         }
 
         protected async Task Save_ItemNotesAsync(int ModuleID, int OrigID)
-		{
+        {
             int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
             int IDType = 1;
             if (IsGroup == 1)
-			{
+            {
                 IDType = 0;
-			}
+            }
             string Notes = txtNotes.Text;
             await Properties.Save_NotesAsync(ModuleID, OrigID, IDType, Notes);
-		}
+        }
+
+        protected async Task Add_HistoryAsync(int ModuleID, int OrigID, string notes)
+        {
+            if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            {
+                string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                string UserData = authTicket.UserData;
+                string[] UserValues = UserData.Split(',');
+                string UserName = UserValues[1];
+                int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
+                int IDType = 1;
+                if (IsGroup == 1)
+                {
+                    IDType = 0;
+                }
+                // string Notes = txtNotes.Text;
+                await Properties.Add_HistoryMemoAsync(ModuleID, OrigID, IDType, UserName, notes);
+            }
+        }
 
         protected async Task Save_ItemCategoriesAsync(int ModuleID, int OrigID, int IsGroup)
-		{
+        {
             if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
             {
                 string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
@@ -767,9 +814,11 @@ namespace Paradigm3
         }
 
         protected async Task Save_EventDateDetailsAsync()
-		{
+        {
             if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
             {
+                DataTable dtProperties = (DataTable)ViewState["Properties"];
+
                 string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
                 FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
                 string UserData = authTicket.UserData;
@@ -779,7 +828,7 @@ namespace Paradigm3
                 // Create and Set Variables
                 int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
                 int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
-                int OrigID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                int OrigID = Convert.ToInt32(dtProperties.Rows[0]["OrigID"]);//Convert.ToInt32(Request.QueryString["ItemID"]);
                 int CatID = Convert.ToInt32(gvDates.DataKeys[gvDates.SelectedIndex].Values["CatID"]);
                 int SetType = 0;
                 int DateType = 2;
@@ -832,10 +881,10 @@ namespace Paradigm3
                 await Get_EventDatesAsync(ModuleID, OrigID, IDType);
             }
             else
-			{
+            {
                 ScriptManager.RegisterStartupScript(udpProperties, GetType(), "nologon", "alert('Your session has timed out. Please log on and try again.');", true);
-			}
-		}
+            }
+        }
 
         #endregion
 
@@ -978,13 +1027,13 @@ namespace Paradigm3
                 int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
                 DateTime TriggerDate = Convert.ToDateTime(e.Row.Cells[2].Text);
                 if (IsGroup == 1)
-				{
+                {
                     e.Row.Cells[1].Text = string.Empty;
                     e.Row.Cells[2].Text = string.Empty;
-				}
+                }
 
                 if (e.Row.Cells[2].Text.Contains("1/1/1900"))
-				{
+                {
                     e.Row.Cells[2].Text = string.Empty;
                 }
             }
@@ -1030,13 +1079,13 @@ namespace Paradigm3
             int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
             int IDType = 1;
             if (IsGroup == 1)
-			{
+            {
                 IDType = 0;
-			}
+            }
 
             await Get_EventDateDetailsAsync(ModuleID, OrigID, CatID, IDType);
             mpeEditEventDate.Show();
-        }        
+        }
 
         #endregion
 
@@ -1059,7 +1108,7 @@ namespace Paradigm3
             }
         }
 
-		#endregion
-		
-	}
+        #endregion
+
+    }
 }

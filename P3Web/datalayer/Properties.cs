@@ -38,15 +38,15 @@ namespace Paradigm3.datalayer
         }
 
         public async static Task<DataTable> Get_UserMembershipsAsync(int UserID)
-		{
+        {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Get_UserMemberships]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
@@ -55,15 +55,15 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 dt.Load(sdr);
-			}
+            }
             return dt;
-		}
+        }
 
         public static async Task<int> Update_UserMembershipsAsync(int userID, int controlID, string controlFullName, int currentUserID)
-		{
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 await conn.OpenAsync();
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Update_UserMembershipList]", conn)
                 {
@@ -76,13 +76,13 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@CurrentUserID", SqlDbType.Int, 4).Value = currentUserID;
                 return await cmd.ExecuteNonQueryAsync();
             }
-		}
+        }
 
         public static async Task<int> Remove_UserMembershipAsync(int UserId, int GroupID)
-		{
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 await conn.OpenAsync();
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Remove_UserMembership]", conn)
                 {
@@ -92,41 +92,41 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserId;
                 cmd.Parameters.Add("@GroupID", SqlDbType.Int, 4).Value = GroupID;
                 return await cmd.ExecuteNonQueryAsync();
-			}
-		}
+            }
+        }
 
         public async static Task<DataTable> Get_UserTrainingAsync(int UserID)
-		{
+        {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
             {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Get_UserTraining]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
                     CommandTimeout = 120
                 };
                 cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
-                SqlDataReader sdr = await cmd .ExecuteReaderAsync();
+                SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 dt.Load(sdr);
             }
             return dt;
-		}
+        }
 
         public async static Task<DataTable> Get_UserOtherUserAIListAsync(int UserID)
-		{
+        {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Get_OtherUserAIList]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
@@ -135,15 +135,15 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 dt.Load(sdr);
-			}
+            }
             return dt;
-		}
+        }
 
         public async static Task<int> Update_OtherUserAIListAsync(int userID, int controlID, string controlFullName, int controlType, int currentUserID)
-		{
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 await conn.OpenAsync();
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Update_OtherUserAIList]", conn)
                 {
@@ -157,13 +157,13 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@CurrentUserID", SqlDbType.Int, 4).Value = currentUserID;
                 return await cmd.ExecuteNonQueryAsync();
             }
-		}
+        }
 
         public async static Task<int> Get_TotalLicenses(int Status)
-		{            
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 int result = 0;
                 await conn.OpenAsync();
                 SqlCommand cmd = new SqlCommand("SELECT COUNT([UserID]) AS [Total] FROM [dbo].[Items1] WHERE [Status] = @Status AND [IsDeleted] = 0;", conn)
@@ -174,20 +174,20 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@Status", SqlDbType.Int, 4).Value = Status;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 while (sdr.Read())
-				{
+                {
                     result = Convert.ToInt32(sdr["Total"]);
-				}
+                }
                 return result;
-			}
-		}
+            }
+        }
 
         public async static Task<int> Add_NewUserAsync(string Name, int ParentGroupID, string FirstName, string LastName, string Password, string Email, string Mobile, string Spare01, string Spare02,
             DateTime Spare03, DateTime Spare04, string Description, int Status, string ModuleAccess, string OptionSet, string Language, int CreatorID)
-		{
+        {
 
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 await conn.OpenAsync();
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Users_Add_New_User]", conn)
                 {
@@ -212,15 +212,15 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@Language", SqlDbType.NVarChar, 255).Value = Language;
                 cmd.Parameters.Add("@CreatorID", SqlDbType.Int, 4).Value = CreatorID;
                 return await cmd.ExecuteNonQueryAsync();
-			}
-		}
+            }
+        }
 
         public static async Task<int> Update_UserAsync(int UserID, string FirstName, string LastName, string Password, string Email, string Mobile, string Spare01, string Spare02,
             DateTime Spare03, DateTime Spare04, string Description, int Status, string ModuleAccess, string OptionSet, string Language, int ModifierID)
-		{
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 await conn.OpenAsync();
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Users_Update_User]", conn)
                 {
@@ -243,12 +243,12 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@OptionSet", SqlDbType.NVarChar, 255).Value = OptionSet;
                 cmd.Parameters.Add("@Language", SqlDbType.NVarChar, 255).Value = Language;
                 cmd.Parameters.Add("@ModifierID", SqlDbType.Int, 4).Value = ModifierID;
-                return await cmd.ExecuteNonQueryAsync();                
-			}
-		}
+                return await cmd.ExecuteNonQueryAsync();
+            }
+        }
 
         public static async Task Save_NotesAsync(int ModuleID, int OrigID, int IDType, string StrNotes)
-		{
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
             {
@@ -269,6 +269,27 @@ namespace Paradigm3.datalayer
             }
         }
 
+        public static async Task Add_NotesAsync(int ModuleID, int OrigID, int IDType, string StrNotes)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Update_Notes]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                cmd.Parameters.Add("@IDType", SqlDbType.Int, 4).Value = IDType;
+                cmd.Parameters.Add("@Notes", SqlDbType.NVarChar, -1).Value = StrNotes;
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
         #endregion
 
         #region Roles Tab
@@ -527,14 +548,14 @@ namespace Paradigm3.datalayer
         }
 
         public static async Task Save_EventDateToSubItemsAsync(int ModuleID, int GroupID)
-		{
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Apply_EventDate_To_SubItems]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
@@ -544,10 +565,10 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@GroupID", SqlDbType.Int, 4).Value = GroupID;
                 await cmd.ExecuteNonQueryAsync();
             }
-		}
+        }
 
         public static async Task Save_EventDateToSubFoldersAsync(int ModuleID, int GroupID)
-		{
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
             {
@@ -564,7 +585,7 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@GroupID", SqlDbType.Int, 4).Value = GroupID;
                 await cmd.ExecuteNonQueryAsync();
             }
-        }        
+        }
 
         #endregion
 
@@ -596,19 +617,19 @@ namespace Paradigm3.datalayer
         }
 
         public static void Update_Category(int ModuleID, int OrigID, int CatID, int IsGroup, bool IsChecked)
-		{
+        {
             int IDType = 1;
-			if (IsGroup == 1)
-			{
+            if (IsGroup == 1)
+            {
                 IDType = 0;
-			}
+            }
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     conn.Open();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Update_Category]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
@@ -621,7 +642,7 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@IsChecked", SqlDbType.Bit, 2).Value = IsChecked;
                 cmd.ExecuteNonQuery();
             }
-		}
+        }
 
         public static async Task Save_CategoriesToSubItemsAsync(int ModuleID, int GroupID)
         {
@@ -695,19 +716,19 @@ namespace Paradigm3.datalayer
         }
 
         public static async Task Update_HistoryAsync(int ModuleID, int OrigID, int IsGroup, string UserName, int TransType)
-		{
+        {
             // TransType 0 = Event Date, TransType 1 = Category
 
             int Type = 0;
             if (IsGroup == 0)
-			{
+            {
                 Type = 1;
-			}
+            }
             string Details = "Following properties has been changed by: " + UserName + " (" + DateTime.Now.ToString() + ")\n" +
                 "1. Event Date has been changed.\n\n" +
                 "****************************************************************";
             if (TransType == 1)
-			{
+            {
                 Details = "Following properties has been changed by: " + UserName + " (" + DateTime.Now.ToString() + ")\n" +
                     "1. Categories have been changed.\n\n" +
                     "****************************************************************";
@@ -715,11 +736,11 @@ namespace Paradigm3.datalayer
 
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Update_History]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
@@ -731,7 +752,35 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@HistoryMemo", SqlDbType.NVarChar, -1).Value = Details;
                 await cmd.ExecuteNonQueryAsync();
             }
-		}
+        }
+
+        public static async Task Add_HistoryMemoAsync(int ModuleID, int OrigID, int Type, string UserName, string HistoryMemo)
+        {
+
+            string Details = "Following History  has been added by: " + UserName + " (" + DateTime.Now.ToString() + ")\n" +
+                  HistoryMemo + "\n\n" +
+                "****************************************************************";
+
+
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Add_History]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                cmd.Parameters.Add("@Type", SqlDbType.Int, 4).Value = Type;
+                cmd.Parameters.Add("@HistoryMemo", SqlDbType.NVarChar, -1).Value = Details;
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
 
 
         #endregion

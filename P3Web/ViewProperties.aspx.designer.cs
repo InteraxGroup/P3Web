@@ -339,6 +339,24 @@ namespace Paradigm3
         protected global::System.Web.UI.WebControls.TextBox txtHistory;
 
         /// <summary>
+        /// Div1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+
+        /// <summary>
+        /// btnAddHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddHistory;
+
+        /// <summary>
         /// trainingTab control.
         /// </summary>
         /// <remarks>
@@ -447,15 +465,6 @@ namespace Paradigm3
         protected global::System.Web.UI.WebControls.Panel pnlEditEventTitleBar;
 
         /// <summary>
-        /// ManageDateLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ManageDateLabel;
-
-        /// <summary>
         /// btnEditEventClose control.
         /// </summary>
         /// <remarks>
@@ -472,15 +481,6 @@ namespace Paradigm3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvDates;
-
-        /// <summary>
-        /// DateLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DateLabel;
 
         /// <summary>
         /// rbNotSet control.
@@ -537,15 +537,6 @@ namespace Paradigm3
         protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
 
         /// <summary>
-        /// FrequencyLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FrequencyLabel;
-
-        /// <summary>
         /// rbOnceOnly control.
         /// </summary>
         /// <remarks>
@@ -582,24 +573,6 @@ namespace Paradigm3
         protected global::System.Web.UI.WebControls.DropDownList ddlRepeatPeriod;
 
         /// <summary>
-        /// ActionItemLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ActionItemLabel;
-
-        /// <summary>
-        /// TriggerActionItemLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TriggerActionItemLabel;
-
-        /// <summary>
         /// txtAITriggerNum control.
         /// </summary>
         /// <remarks>
@@ -627,15 +600,6 @@ namespace Paradigm3
         protected global::System.Web.UI.WebControls.DropDownList ddlAITriggerWhen;
 
         /// <summary>
-        /// EventDateNoteLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EventDateNoteLabel;
-
-        /// <summary>
         /// btnSaveEventDetails control.
         /// </summary>
         /// <remarks>
@@ -643,6 +607,87 @@ namespace Paradigm3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSaveEventDetails;
+
+        /// <summary>
+        /// dummy2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor dummy2;
+
+        /// <summary>
+        /// AddHistoryNotesModalPopup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender AddHistoryNotesModalPopup;
+
+        /// <summary>
+        /// pnlAddNotes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAddNotes;
+
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
+        /// TabContainer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabContainer TabContainer1;
+
+        /// <summary>
+        /// TabPanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel TabPanel1;
+
+        /// <summary>
+        /// txtAddNotes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAddNotes;
+
+        /// <summary>
+        /// btnSaveNotes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveNotes;
+
+        /// <summary>
+        /// btnCloseNotes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCloseNotes;
 
         /// <summary>
         /// btnApplyEDTSI control.
