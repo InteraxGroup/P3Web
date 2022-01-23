@@ -25,11 +25,11 @@ namespace Paradigm3
 					string Message = GetLocalResourceObject("SessionTimeout").ToString();
 					ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
 				}
-				await InitializeUserProperties();
+				await InitializeUserPropertiesAsync();
 			}
 		}
 
-		private async Task InitializeUserProperties()
+		private async Task InitializeUserPropertiesAsync()
 		{
 			//int UserID = Convert.ToInt32(Request.QueryString["UserID"]);
 			int UserID = -1000;
@@ -1436,6 +1436,7 @@ namespace Paradigm3
 		#endregion
 
 		#region GridView
+
 		protected void GV_RowDataBound(object sender, GridViewRowEventArgs e)
 		{
 			GridView gv = (GridView)sender;

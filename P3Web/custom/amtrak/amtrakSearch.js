@@ -1,5 +1,5 @@
 ﻿function openSearch() {
-	var pth = "custom/amtrak/AmtrakSearch.aspx";
+	var pth = "AmtrakSearch.aspx";
 	var windowHeight = 720;
 	var windowWidth = 1150;
 	var xPos = screen.width / 2 - windowWidth / 2;

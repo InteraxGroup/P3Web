@@ -40,6 +40,29 @@ namespace Paradigm3.datalayer
             return dt;
         }
 
+        public static async Task<DataTable> Get_DocumentAllVersionsAsync(int OrigID, int UserID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("dbo.v4_Document_Get_Items", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
+                SqlDataReader sdr = await cmd.ExecuteReaderAsync();
+                dt.Load(sdr);
+            }
+            return dt;
+        }
+
         public static async Task<DataTable> Get_DocumentAsync(int ItemID, bool IsItemID, int ItemStatus)
         {
             DataTable dt = new DataTable();
@@ -63,11 +86,10 @@ namespace Paradigm3.datalayer
             }
             return dt;
         }
-
         public static DataTable Get_EditVersion(int OrigID, int Status)
         {
             DataTable dt = new DataTable();
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);            
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
             {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
@@ -157,15 +179,15 @@ namespace Paradigm3.datalayer
         }
 
         public static async Task<string> Get_DocumentExtensionAsync(int OrigID)
-		{
+        {
             string result = string.Empty;
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("SELECT TOP 1 [FileExtension] FROM [dbo].[Items3] WHERE [OrigID] = @OrigID ORDER BY [ItemID] DESC", conn)
                 {
                     CommandType = CommandType.Text,
@@ -174,12 +196,12 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 while (sdr.Read())
-				{
+                {
                     result = sdr["FileExtension"].ToString();
-				}
-			}
+                }
+            }
             return result;
-		}
+        }
 
         public static async Task<int> Get_DocumentPublishTypeAsync(int OrigID)
         {
@@ -604,9 +626,9 @@ namespace Paradigm3.datalayer
                 ReturnID = await cmd.ExecuteScalarAsync();
             }
             if (ReturnID != null)
-			{
+            {
                 ItemID = Convert.ToInt32(ReturnID);
-			}
+            }
             return ItemID;
         }
 
@@ -743,6 +765,28 @@ namespace Paradigm3.datalayer
                 };
                 cmd.Parameters.Add("@ItemID", SqlDbType.Int, 4).Value = ItemID;
                 await Task.FromResult(cmd.ExecuteNonQuery());
+            }
+        }
+
+        public static async Task Update_DocumentHistoryMemo(int ModuleID, int OrigID, int Type, string HistoryMemo)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("v4_Properties_Update_History", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                cmd.Parameters.Add("@Type", SqlDbType.Int, 2).Value = Type;
+                cmd.Parameters.Add("@HistoryMemo", SqlDbType.NVarChar, 500).Value = HistoryMemo;
+                await cmd.ExecuteNonQueryAsync();
             }
         }
 

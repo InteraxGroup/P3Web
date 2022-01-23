@@ -1,10 +1,10 @@
 ﻿// P3 Web JavaScript codes - Last Updated 2021-02-18 - Chris Reyno, Interax Group, Inc.
 
 if (/Mobi/.test(navigator.userAgent)) {
-	// mobile!
-	console.log('mobile');
+    // mobile!
+    console.log('mobile');
 } else {
-	console.log('not mobile');
+    console.log('not mobile');
 }
 
 function do_Logout() {
@@ -18,31 +18,31 @@ function closeP3Window() {
 //  Search
 function openSearchWindow(ModuleID, ParentGroupID) {
     var UPath = "ViewSearch.aspx?ModuleID=" + ModuleID + "&ParentGroupID=" + ParentGroupID;
-    var windowWidth = 1000;
+    var windowWidth = 900;
     var windowHeight = 255;
     if (navigator.userAgent.indexOf("MSIE") !== -1) {
         windowHeight = 250;
-    }    
+    }
     var centerWidth = (window.screen.width - windowWidth) / 2;
     window.open(UPath, 'search', 'height=' + windowHeight + ',width=' + windowWidth + ',left=' + centerWidth + ',top=20,location=0,status=0,menubar=0,toolbar=0,scrollbars=0,resizable=0');
 }
 
 function enlargeSearchWindow() {
     if (navigator.userAgent.indexOf("MSIE") != 1) {
-        window.resizeTo(1015, 625);
+        window.resizeTo(920, 625);
     }
     else {
-        window.resizeTo(1015, 650);
+        window.resizeTo(920, 650);
     }
 
 }
 
 function reduceSearchWindow() {
     if (navigator.userAgent.indexOf("MSIE") != 1) {
-        window.resizeTo(1015, 325);
+        window.resizeTo(920, 293);
     }
     else {
-        window.resizeTo(1015, 325);
+        window.resizeTo(900, 255);
     }
 }
 
@@ -92,7 +92,7 @@ function clickGoThere() {
 //  Document
 function openDocWindow(ItemID, OrigID, ItemStatus, IsItemID, url, ext, pubType) {
     //alert(ItemID + ',' + OrigID + ',' + ItemStatus + ',' + IsItemID + ',' + url + ',' + ext + ',' + pubType);
-	var os = getMobileOperatingSystem();
+    var os = getMobileOperatingSystem();
     if (os === 'iOS') {
         switch (pubType) {
             case 1:
@@ -140,30 +140,30 @@ function openDocWindow(ItemID, OrigID, ItemStatus, IsItemID, url, ext, pubType) 
         if (IsItemID == true) {
             n = ItemID + '';
         }
-		while (n.length < 7) n = '0' + n;
-		n = url.substring(2) + 'D' + n + ext;
-		window.open(n);
-		n = null;
+        while (n.length < 7) n = '0' + n;
+        n = url.substring(2) + 'D' + n + ext;
+        window.open(n);
+        n = null;
     } else {
         if (IsItemID === 'True') {
             openDocument(ItemID, IsItemID, ItemStatus);
         } else {
             openDocument(OrigID, IsItemID, ItemStatus);
-        }		
-	}
-	os = null;
+        }
+    }
+    os = null;
 }
 
 function getMobileOperatingSystem() {
-	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-	if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
         return 'iOS';
-	}
-	else if (userAgent.match(/Android/i)) {
-		return 'Android';
-	}
-	else {
-		return 'unknown';
+    }
+    else if (userAgent.match(/Android/i)) {
+        return 'Android';
+    }
+    else {
+        return 'unknown';
     }
 }
 
@@ -207,7 +207,7 @@ function openAddDocWindow(ModuleID, GroupID, AddOption, Status) {
             windowHeight = 200;
             addDocPath = 'ViewDocumentAdd.aspx?GroupID=' + GroupID + '&Status=' + Status;
             break;
-	}
+    }
     xPos = screen.width / 2 - windowWidth / 2;
     yPos = screen.height / 2 - windowHeight / 2;
     window.open(addDocPath, 'addDocWindow' + GroupID, 'height=' + windowHeight + ',width=' + windowWidth + ',top=' + yPos + ',left=' + xPos + ',location=0,status=0,menubar=0,toolbar=0,scrollbars=0,resizable=0');
@@ -248,12 +248,12 @@ function openDocumentReport(ParentGroupID) {
 }
 
 function closeDoc() {
-	var btn = document.getElementById('btnCloseDoc');
-	btn.click();
-	window.close();
+    var btn = document.getElementById('btnCloseDoc');
+    btn.click();
+    window.close();
 }
 
-function checkoutFile(url, name) {    
+function checkoutFile(url, name) {
     editRefresh(true, false, false);
     var link = document.createElement("a");
     link.download = name;
@@ -263,8 +263,8 @@ function checkoutFile(url, name) {
     link = null;
 }
 
-function checkoutToServer(url) {    
-    document.getElementById('btnRefreshDoc').click();    
+function checkoutToServer(url) {
+    document.getElementById('btnRefreshDoc').click();
     editRefresh(true, false, true);
     alert('The file has been successfully checked out to ' + url + '. You may edit the file at that location.');
 }
@@ -350,7 +350,7 @@ function digitalSignature(clientid) {
     hidden = null;
 }
 
-function showDigitalSignature(fieldid) {    
+function showDigitalSignature(fieldid) {
     this.event.preventDefault();
     document.getElementById('hdnDigitalSignatureID').value = fieldid;
     document.getElementById('pnlDigitalSignature').style.display = 'flex';
@@ -370,7 +370,7 @@ function openProperties(ItemID, ModuleID, IsGroup) {
         proPath = "ViewProperties.aspx?ItemID=" + ItemID + "&ModuleID=" + ModuleID + "&IsGroup=" + IsGroup;
         windowWidth = 640;
         windowHeight = 490;
-	}
+    }
     var centerWidth = (window.screen.width - windowWidth) / 2;
     window.open(proPath, 'properties' + ItemID, 'height=' + windowHeight + ',width=' + windowWidth + ',left=' + centerWidth + ',top=50,location=0,status=0,menubar=0,toolbar=0,scrollbars=0,resizable=0');
 }
@@ -506,11 +506,11 @@ function openReportWindow(ModuleID, GroupID, ReportID) {
 }
 
 //// Open Rename
-function openRenameWindow(moduleid, origid, userid, isgroup) {
+function openrenamewindow(moduleid, origid, userid, isgroup) {
     var renamepath = 'viewrename.aspx?moduleid=' + moduleid + '&origid=' + origid + '&userid=' + userid + '&isgroup=' + isgroup;
     var windowwidth = 550;
     var windowheight = 280;
-   var xpos = screen.width / 2 - windowwidth / 2;
+    var xpos = screen.width / 2 - windowwidth / 2;
     window.open(renamepath, 'renamewindow' + origid, 'height=' + windowheight + ',width=' + windowwidth + ',top=50px,left=' + xpos + '');
 }
 
@@ -549,6 +549,15 @@ function openEvidenceWindow(ModuleID, OrigID, UserID, IsEvidenceCheck) {
     var windowHeight = 150;
     var xPos = screen.width / 2 - windowWidth / 2;
     window.open(copyPath, 'evidenceWindow' + OrigID, 'height=' + windowHeight + ',width=' + windowWidth + ',top=300px,left=' + xPos + '');
+}
+
+// Open ExportItem
+function openExportWindow(ModuleID, OrigID, UserID, ItemStatus) {
+    var copyPath = 'ViewExportDocument.aspx?ModuleID=' + ModuleID + '&OrigID=' + OrigID + '&UserID=' + UserID + '&ItemStatus=' + ItemStatus;
+    var windowWidth = 400;
+    var windowHeight = 300;
+    var xPos = screen.width / 2 - windowWidth / 2;
+    window.open(copyPath, 'exportitemWindow' + OrigID, 'height=' + windowHeight + ',width=' + windowWidth + ',top=300px,left=' + xPos + '');
 }
 
 // Status
@@ -602,37 +611,37 @@ function hideStatusMessage() {
 
 // Misc
 function openRelNotes() {
-	var request = new XMLHttpRequest();
-	var homepanel = document.getElementById('pnlHome');
-	request.open('GET', 'releasenotes/releasenotes.html', true);
-	request.onload = function () {
-		if (this.status >= 200 && this.status < 400) {
-			// Success!
-			var resp = this.response;
-			homepanel.innerHTML = resp;
-			
-		} else {
-			// We reached our target server, but it returned an error
-			homepanel.innerHTML = '<div style="padding: 10px; background-color: #787878; color: #fff; font-size: 3em; font-weight: 700;">The release notes are not currently available.  Please try again later.</div>';
-		}
-	};
+    var request = new XMLHttpRequest();
+    var homepanel = document.getElementById('pnlHome');
+    request.open('GET', 'releasenotes/releasenotes.html', true);
+    request.onload = function () {
+        if (this.status >= 200 && this.status < 400) {
+            // Success!
+            var resp = this.response;
+            homepanel.innerHTML = resp;
 
-	request.onerror = function () {
-		// There was a connection error of some sort
-		homepanel.innerHTML = '<div style="padding: 10px; background-color: #787878; color: #fff; font-size: 3em; font-weight: 700;">The release notes are not currently available.  Please try again later.</div>';
-	};
+        } else {
+            // We reached our target server, but it returned an error
+            homepanel.innerHTML = '<div style="padding: 10px; background-color: #787878; color: #fff; font-size: 3em; font-weight: 700;">The release notes are not currently available.  Please try again later.</div>';
+        }
+    };
 
-	request.send();
+    request.onerror = function () {
+        // There was a connection error of some sort
+        homepanel.innerHTML = '<div style="padding: 10px; background-color: #787878; color: #fff; font-size: 3em; font-weight: 700;">The release notes are not currently available.  Please try again later.</div>';
+    };
+
+    request.send();
 }
 
 function resetHome() {
-	if (navigator.userAgent.indexOf("Firefox") > 0) {
-		window.location.href = 'default.aspx';
-	} else {
-		window.history.pushState({}, document.title, '' + 'Default.aspx');
-		parent.document.location.reload();
-	}
-	
+    if (navigator.userAgent.indexOf("Firefox") > 0) {
+        window.location.href = 'default.aspx';
+    } else {
+        window.history.pushState({}, document.title, '' + 'Default.aspx');
+        parent.document.location.reload();
+    }
+
 }
 
 function saveSearchScrollPos() {
@@ -715,7 +724,7 @@ function editRefresh(IsCheckedOut, cancelled, isServer) {
     if (IsCheckedOut) {
         if (!isServer) {
             document.getElementById('btnRefreshDoc').click();
-            alert('Your file has been successfully checked out and downloaded.');            
+            alert('Your file has been successfully checked out and downloaded.');
         }
     } else {
         if (cancelled) {
@@ -736,7 +745,7 @@ function getCountry() {
         success: function (json) {
             if (json.country != 'Canada') {
                 window.location.href = 'invalidLocation.html';
-			}
+            }
         },
         error: function (err) {
             console.log("Request failed, error= " + err);
@@ -900,13 +909,13 @@ EventUtil.addHandler(window, 'contextmenu', function (e) {
             document.getElementById('hdnContextID').value = rowVal;
             document.getElementById('btnShowGVMenu').click();
             rowVal = null;
-		}
-	}
+        }
+    }
     contextMenu = null;
 });
 
 function createMenu(type, id) {
-    var div = document.getElementById('p3ContextMenu');     
+    var div = document.getElementById('p3ContextMenu');
     div.style.display = 'block';
     div.style.left = document.getElementById('hdnPosX').value + 'px';
     div.style.top = document.getElementById('hdnPosY').value + 'px';
@@ -917,8 +926,8 @@ function createMenu(type, id) {
         document.getElementById('gvMenu').style.display = 'none';
     } else {
         subDiv = document.getElementById('gvMenu');
-        document.getElementById('tvMenu').style.display = 'none';        
-	}
+        document.getElementById('tvMenu').style.display = 'none';
+    }
     subDiv.style.display = 'block';
 
     // cleanup
@@ -949,5 +958,19 @@ function confirmApplyCategoriesToFolders() {
     if (confirm('This action will OVERWRITE all Categories in this folder and in all sub-folders and items. Do you wish to continue?')) {
         document.getElementById('btnApplyCTSF').click();
     }
-  
+
+    function checkRadioBtnExportItem(id) {
+
+        alert("hi");
+        var gv = document.getElementById('<%=gv.ClientID %>');
+
+        for (var i = 1; i < gv.rows.length; i++) {
+            var radioBtn = gv.rows[i].cells[0].getElementsByTagName("input");
+
+            // Check if the id not same
+            if (radioBtn[0].id != id.id) {
+                radioBtn[0].checked = false;
+            }
+        }
+    }
 }

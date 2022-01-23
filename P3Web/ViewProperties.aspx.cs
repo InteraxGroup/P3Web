@@ -40,7 +40,7 @@ namespace Paradigm3
             Session["SourcePage"] = "ViewProperties.aspx";
         }
 
-        protected async Task Initialize_PropertiesAsync(int ItemID, int ModuleID, int IsGroup)
+        private async Task Initialize_PropertiesAsync(int ItemID, int ModuleID, int IsGroup)
         {
             // General Tab
             DataTable dt = await Properties.Get_PropertiesAsync(ItemID, ModuleID, IsGroup);
@@ -250,10 +250,12 @@ namespace Paradigm3
 
         protected async void Button_Click(object sender, EventArgs e)
         {
+            DataTable dtProperties = (DataTable)ViewState["Properties"];
             Button btn = (Button)sender;
             string arg = btn.CommandArgument;
             int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-            int OrigID = Convert.ToInt32(Request.QueryString["ItemID"]);
+            //int OrigID = Convert.ToInt32(Request.QueryString["ItemID"]);
+            int OrigID = Convert.ToInt32(dtProperties.Rows[0]["OrigID"]);
             int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
             switch (arg)
             {
@@ -914,7 +916,10 @@ namespace Paradigm3
                 int UserStatus = Convert.ToInt32(UserValues[3]);
 
                 int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-                int ID = Convert.ToInt32(Request.QueryString["ItemID"]);
+                //int ID = Convert.ToInt32(Request.QueryString["ItemID"]);
+
+                DataTable dtProperties = (DataTable)ViewState["Properties"];
+                int ID = Convert.ToInt32(dtProperties.Rows[0]["OrigID"]);
                 int CatID = Convert.ToInt32(gvRoles.DataKeys[gvRoles.SelectedIndex].Values["CatID"]);
                 int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
 

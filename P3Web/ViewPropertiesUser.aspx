@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewPropertiesUser.aspx.cs" Inherits="Paradigm3.ViewPropertiesUser" Async="true" EnableEventValidation="false" meta:resourcekey="PageResource1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewPropertiesUser.aspx.cs" Inherits="Paradigm3.ViewPropertiesUser" meta:resourcekey="PageResource1" EnableEventValidation="false" Async="true" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <!DOCTYPE html>
 

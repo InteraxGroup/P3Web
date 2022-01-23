@@ -20,8 +20,7 @@
                 <span style="font-size: 1.35em;"><%=GetLocalResourceObject("pnlStatusVersion") %>  <asp:Label ID="lblVersion" runat="server" Font-Bold="True" meta:resourcekey="lblVersionResource1" /></span>
             </div>
             <div class="pnlStatusList" style="padding-left: 20px;">
-                <asp:RadioButtonList ID="rbStatus" runat="server" meta:resourcekey="rbStatusResource1">
-            
+                <asp:RadioButtonList ID="rbStatus" runat="server" meta:resourcekey="rbStatusResource1">          
                 </asp:RadioButtonList>
             </div>
             <div class="pnlStatusButtons">

@@ -44,66 +44,66 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+    <Reference Include="AjaxControlToolkit">
       <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="AjaxControlToolkit.HtmlEditor.Sanitizer, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+    <Reference Include="AjaxControlToolkit.HtmlEditor.Sanitizer">
       <HintPath>..\packages\AjaxControlToolkit.HtmlEditor.Sanitizer.20.1.0\lib\net40\AjaxControlToolkit.HtmlEditor.Sanitizer.dll</HintPath>
     </Reference>
-    <Reference Include="ClosedXML, Version=0.95.4.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ClosedXML">
       <HintPath>..\packages\ClosedXML.0.95.4\lib\net46\ClosedXML.dll</HintPath>
     </Reference>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.13.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+    <Reference Include="DocumentFormat.OpenXml">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.13.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="EO.Base">
       <HintPath>C:\Program Files (x86)\Essential Objects\EO.Total 2018\EO.Base.dll</HintPath>
     </Reference>
-    <Reference Include="EO.Web, Version=17.0.64.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+    <Reference Include="EO.Web">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Documents\P3WebLocal\P3Web\bin\EO.Web.dll</HintPath>
     </Reference>
-    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+    <Reference Include="ExcelNumberFormat">
       <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.11.37.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+    <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.11.37\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Office.Interop.Excel">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Office.Interop.PowerPoint">
       <HintPath>..\packages\Microsoft.Office.Interop.PowerPoint.15.0.4420.1017\lib\net20\Microsoft.Office.Interop.PowerPoint.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Office.Interop.Word">
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+    <Reference Include="Office">
       <HintPath>..\packages\MicrosoftOfficeCore.15.0.0\lib\net35\Office.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Management.Automation">
       <HintPath>..\packages\System.Management.Automation.dll.10.0.10586.0\lib\net40\System.Management.Automation.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="System.Security.AccessControl">
       <HintPath>..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security.Cryptography.Xml, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+    <Reference Include="System.Security.Cryptography.Xml">
       <HintPath>..\packages\System.Security.Cryptography.Xml.5.0.0\lib\net461\System.Security.Cryptography.Xml.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security.Permissions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+    <Reference Include="System.Security.Permissions">
       <HintPath>..\packages\System.Security.Permissions.5.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="System.Security.Principal.Windows">
       <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceProcess" />
@@ -643,6 +643,7 @@
     <Content Include="ViewDocumentAdd.aspx" />
     <Content Include="ViewDocumentAddFromTemplate.aspx" />
     <Content Include="ViewError.aspx" />
+    <Content Include="ViewExportDocument.aspx" />
     <Content Include="ViewFieldEdit.aspx" />
     <Content Include="ViewImprovement.aspx" />
     <Content Include="ViewMove.aspx" />
@@ -897,6 +898,13 @@
     </Compile>
     <Compile Include="ViewError.aspx.designer.cs">
       <DependentUpon>ViewError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewExportDocument.aspx.cs">
+      <DependentUpon>ViewExportDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewExportDocument.aspx.designer.cs">
+      <DependentUpon>ViewExportDocument.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewFieldEdit.aspx.cs">
       <DependentUpon>ViewFieldEdit.aspx</DependentUpon>
@@ -1183,7 +1191,9 @@
     <Content Include="Administration\App_LocalResources\Default.aspx.resx" />
     <Content Include="Administration\App_LocalResources\Default.aspx.fr-CA.resx" />
     <Content Include="App_LocalResources\Default.aspx.fr-CA.resx" />
-    <Content Include="App_LocalResources\Default.aspx.resx" />
+    <Content Include="App_LocalResources\Default.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_LocalResources\ViewChangeEvidence.aspx.resx" />
     <Content Include="App_LocalResources\ViewActionItem.aspx.resx" />
     <Content Include="App_LocalResources\ViewActionItemOtherUser.aspx.resx" />
@@ -1266,6 +1276,8 @@
     <Content Include="App_LocalResources\ViewCopy.aspx.fr-CA.resx" />
     <Content Include="custom\bayshore\App_LocalResources\Homepage.aspx.fr-CA.resx" />
     <Content Include="custom\bayshore\App_LocalResources\Homepage.aspx.resx" />
+    <Content Include="App_LocalResources\ViewExportDocument.aspx.resx" />
+    <Content Include="App_LocalResources\ViewExportDocument.aspx.fr-CA.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
