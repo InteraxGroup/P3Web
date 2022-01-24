@@ -51,6 +51,7 @@ namespace Paradigm3
         protected async Task Initialize_AI(int aiid)
         {
             DataTable dtAI = await ActionItem.Get_ActionItemAsync(aiid);
+            ViewState["ActionItem"] = dtAI;
             if (dtAI.Rows.Count > 0)
             {
                 int ModuleID = Convert.ToInt32(dtAI.Rows[0]["ShowModuleID"]);
@@ -217,12 +218,12 @@ namespace Paradigm3
         {
             Button btn = (Button)sender;
             string arg = btn.CommandArgument;
+            DataTable dtAI = (DataTable)ViewState["ActionItem"];
 
             switch (arg)
             {
                 case "CompleteActionItem":
                     int AIID = Convert.ToInt32(Request.QueryString["AIID"]);
-                    //int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
                     int ResultID = 0;
                     string ResultText = string.Empty;
                     if (ddlResults.Visible == true)
@@ -251,9 +252,9 @@ namespace Paradigm3
 						ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "AIAbort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
 					}
                     break;
-                case "ForwardActionItem":
+                case "ForwardActionItem":                    
                     int fwAIID = Convert.ToInt32(Request.QueryString["AIID"]);
-                    int fwModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                    int fwModuleID = Convert.ToInt32(dtAI.Rows[0]["ShowModuleID"]);
                     if (gvModalSelected.Rows.Count > 0)
                     {
                         Forward_AI(fwAIID, fwModuleID);
@@ -267,7 +268,7 @@ namespace Paradigm3
                     break;
                 case "ReplyActionItem":
                     int reAIID = Convert.ToInt32(Request.QueryString["AIID"]);
-                    int reModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                    int reModuleID = Convert.ToInt32(dtAI.Rows[0]["ShowModuleID"]);
                     Reply_AI(reAIID, reModuleID);
                     break;
                 case "AddUsers":
