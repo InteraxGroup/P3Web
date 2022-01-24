@@ -48,7 +48,7 @@
                                 </ItemTemplate>
 
                             </asp:TemplateField>
-                            <asp:BoundField ItemStyle-Width="150px" DataField="Status" HeaderText="Status" meta:resourcekey="BoundFieldResource1" >
+                            <asp:BoundField ItemStyle-Width="150px" DataField="StatusText" HeaderText="Status" meta:resourcekey="BoundFieldResource1" >
                                 <ItemStyle Width="150px"></ItemStyle>
                             </asp:BoundField>
                             <asp:BoundField ItemStyle-Width="150px" DataField="Version" HeaderText="Version" meta:resourcekey="BoundFieldResource2" >

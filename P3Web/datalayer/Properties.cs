@@ -756,11 +756,10 @@ namespace Paradigm3.datalayer
 
         public static async Task Add_HistoryMemoAsync(int ModuleID, int OrigID, int Type, string UserName, string HistoryMemo)
         {
-
-            string Details = "Following History  has been added by: " + UserName + " (" + DateTime.Now.ToString() + ")\n" +
-                  HistoryMemo + "\n\n" +
-                "****************************************************************";
-
+            string Details = "User Name: " + UserName + "\n" + 
+                "Time: " + DateTime.Now.ToString() + ")\n" +
+                "Action: [P3Web] - " + HistoryMemo + "\n\n" +
+                "****************************************************************\n";
 
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
@@ -781,7 +780,6 @@ namespace Paradigm3.datalayer
                 await cmd.ExecuteNonQueryAsync();
             }
         }
-
 
         #endregion
 

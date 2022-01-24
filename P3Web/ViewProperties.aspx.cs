@@ -129,7 +129,6 @@ namespace Paradigm3
                 {
                     OrigID = Convert.ToInt32(dt.Rows[0]["OrigID"]);
                 }
-
             }
             dt.Dispose();
 
@@ -222,6 +221,7 @@ namespace Paradigm3
                             btnApplyCategoriesToSubItems.Enabled = true;
                             btnApplyCategoriesToSubFolders.Enabled = true;
                         }
+                        categoriesTab.Visible = true;
                     }
                 }
 
@@ -254,9 +254,17 @@ namespace Paradigm3
             Button btn = (Button)sender;
             string arg = btn.CommandArgument;
             int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-            //int OrigID = Convert.ToInt32(Request.QueryString["ItemID"]);
-            int OrigID = Convert.ToInt32(dtProperties.Rows[0]["OrigID"]);
+            int OrigID = 0;
             int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
+            if (IsGroup == 1)
+            {
+                OrigID = Convert.ToInt32(dtProperties.Rows[0]["GroupID"]);
+            }
+            else
+            {
+                OrigID = Convert.ToInt32(dtProperties.Rows[0]["OrigID"]);
+            }
+
             switch (arg)
             {
                 case "AddRoleMembers":
@@ -269,7 +277,6 @@ namespace Paradigm3
                         FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
                         string UserData = authTicket.UserData;
                         string[] UserValues = UserData.Split(',');
-                        int UserID = Convert.ToInt32(UserValues[0]);
                         string UserFullName = UserValues[1];
 
                         int ID = Convert.ToInt32(gvRoleMembers.DataKeys[gvRoleMembers.SelectedIndex].Values["ID"]);
@@ -435,10 +442,8 @@ namespace Paradigm3
                 case "AddHistoryMemo":
                     if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
                     {
-
                         AddHistoryNotesModalPopup.Show();
                         txtAddNotes.Text = string.Empty;
-
                     }
 
                     break;
@@ -448,7 +453,6 @@ namespace Paradigm3
                         string NewHistoryMemo = txtAddNotes.Text;
                         await Add_HistoryAsync(ModuleID, OrigID, NewHistoryMemo);
                         ScriptManager.RegisterStartupScript(udpProperties, GetType(), "close", "parent.location.reload();", true);
-
                     }
                     break;
             }
@@ -914,14 +918,22 @@ namespace Paradigm3
                 string[] UserValues = UserData.Split(',');
                 int UserID = Convert.ToInt32(UserValues[0]);
                 int UserStatus = Convert.ToInt32(UserValues[3]);
+                int ID = 0;
 
                 int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
                 //int ID = Convert.ToInt32(Request.QueryString["ItemID"]);
 
                 DataTable dtProperties = (DataTable)ViewState["Properties"];
-                int ID = Convert.ToInt32(dtProperties.Rows[0]["OrigID"]);
                 int CatID = Convert.ToInt32(gvRoles.DataKeys[gvRoles.SelectedIndex].Values["CatID"]);
                 int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
+                if (IsGroup == 1)
+                {
+                    ID = Convert.ToInt32(dtProperties.Rows[0]["GroupID"]);
+                }
+                else
+                {
+                    ID = Convert.ToInt32(dtProperties.Rows[0]["OrigID"]);
+                }
 
                 await Get_RoleMembersAsync(ModuleID, ID, CatID, IsGroup);
 

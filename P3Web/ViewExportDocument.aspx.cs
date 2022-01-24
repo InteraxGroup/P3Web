@@ -76,12 +76,9 @@ namespace P3Web
                         int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
                         string UserData = ticket.UserData;
                         string[] UserValues = UserData.Split(',');
-                        int UserID = Convert.ToInt32(UserValues[0]);
                         string UserFullName = UserValues[1];
                         DateTime CurrentTime = DateTime.Now;
                         int itemid = Convert.ToInt32(Request.Form["rbSelect"]);
-                        string HistoryMemo = string.Empty;
-
                         if (itemid.ToString() != "0")
                         {
                             string FileExtension = Session["FileExtension"].ToString();
@@ -89,13 +86,15 @@ namespace P3Web
                             DocPath = @"" + DocPath.Replace(@"\\", @"\");
                             string SourceFileName = "D" + itemid.ToString().PadLeft(7, '0') + "." + FileExtension;
                             string DestinationFileName = Session["FileName"].ToString() + "." + FileExtension;
-                            //string DestinationFileName = 
                             string SourcePath = Path.Combine(DocPath, SourceFileName);
                             FileInfo file = new FileInfo(SourcePath);
                             if (file.Exists)
                             {
-                                HistoryMemo = "Following History has been added by: " + UserFullName + "\nTime: " + CurrentTime + "\nAction: " + Session["FileName"].ToString() + " (ItemID " + itemid + ") has been exported." +
-                                              "\n\n****************************************************************\n";
+                                string HistoryMemo = "User Name: " + UserFullName + "\n" +
+                                    "Time: " + CurrentTime + "\n" +
+                                    "Action: [P3Web] - Item has been exported (" + UserFullName + ")\n" +
+                                    "( ItemID = " + itemid + ")\n\n" +
+                                    "****************************************************************\n";
 
                                 await Document.Update_DocumentHistoryMemo(ModuleID, OrigID, 1, HistoryMemo);
                                 // Clear Rsponse reference  
@@ -110,8 +109,8 @@ namespace P3Web
                                 Response.Flush();
                                 // Transimiting file  
                                 Response.TransmitFile(file.FullName);
-                                HttpContext.Current.Response.Flush();
-                                HttpContext.Current.Response.SuppressContent = true;
+                                Response.Flush();
+                                Response.SuppressContent = true;
                                 HttpContext.Current.ApplicationInstance.CompleteRequest();
                                 break;
                             }
@@ -140,8 +139,7 @@ namespace P3Web
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.ToolTip = "Click first column for selecting this row.";
-
+                e.Row.ToolTip = "Click radio button to select this item.";
             }
         }
 
