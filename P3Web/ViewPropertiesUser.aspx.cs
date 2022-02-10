@@ -504,6 +504,11 @@ namespace Paradigm3
 						sbModuleAccess.Append("-1|0_-2|0_-3|0");
 						ModuleAccess = sbModuleAccess.ToString();
 					}
+					else
+                    {
+						ModuleAccess = "0|1_14|1_-1|0_-2|0_-3|0";
+                    }
+
 					// Set Optionset
 					string[] ArrOptionSet = dtUserData.Rows[0]["OptionSet"].ToString().Split('_');
 					if (cbChangePassword.Checked)
@@ -602,12 +607,12 @@ namespace Paradigm3
 		{
 			RadioButton rb = (RadioButton)sender;
 			DataTable dt = (DataTable)ViewState["UserData"];
-			string[] ModuleAccess = "0|-2_1|0_3|0_4|0_6|0_12|0_14|1_-1|0_-2|0_-3|0".Split('_');
+			string[] ModuleAccess = "0|-2_1|0_3|0_4|0_6|0_12|0_14|1_-1|0_-2|0_-3|0".Split('_');			
 			if (Request.QueryString["UserID"] != "0")
 			{
 				ModuleAccess = dt.Rows[0]["ModuleAccess"].ToString().Split('_');
 			}
-			//int UserStatus = Convert.ToInt32(dt.Rows[0]["Status"]);
+			int UserStatus = Convert.ToInt32(dt.Rows[0]["Status"]);
 			switch (rb.ID)
 			{
 				case "rbExtenalUser":
@@ -640,62 +645,62 @@ namespace Paradigm3
 						chkTrainingAnalysis.Enabled = false;
 						chkViewOtherAssessment.Enabled = false;
 
-						//switch (UserStatus)
-						//{
-						//	case 1:
-						//		foreach (ListItem li in cblModules.Items)
-						//		{
-						//			li.Selected = true;
-						//		}
-						//		cblModules.Enabled = true;
-						//		break;
-						//	case -2:
-						//	case 0:
-						//	case -1:
-						//		foreach (ListItem li in cblModules.Items)
-						//		{
-						//			li.Selected = false;
-						//			switch (li.Value)
-						//			{
-						//				case "1":
-						//					if (ModuleAccess[1] == "1|1")
-						//					{
-						//						li.Selected = true;
-						//					}
-						//					break;
-						//				case "3":
-						//					if (ModuleAccess[2] == "3|1")
-						//					{
-						//						li.Selected = true;
-						//					}
-						//					break;
-						//				case "4":
-						//					if (ModuleAccess[3] == "4|1")
-						//					{
-						//						li.Selected = true;
-						//					}
-						//					break;
-						//				case "6":
-						//					if (ModuleAccess[4] == "6|1")
-						//					{
-						//						li.Selected = true;
-						//					}
-						//					break;
-						//				case "12":
-						//					if (ModuleAccess[5] == "12|1")
-						//					{
-						//						li.Selected = true;
-						//					}
-						//					break;
-						//				case "14":
-						//					li.Selected = true;
-						//					break;
-						//			}
-						//		}
-						//		cblModules.Enabled = true;
-						//		break;
-						//}
-					}
+                        switch (UserStatus)
+                        {
+                            case 1:
+                                foreach (ListItem li in cblModules.Items)
+                                {
+                                    li.Selected = true;
+                                }
+                                cblModules.Enabled = true;
+                                break;
+                            case -2:
+                            case 0:
+                            case -1:
+                                foreach (ListItem li in cblModules.Items)
+                                {
+                                    li.Selected = false;
+                                    switch (li.Value)
+                                    {
+                                        case "1":
+                                            if (ModuleAccess[1] == "1|1")
+                                            {
+                                                li.Selected = true;
+                                            }
+                                            break;
+                                        case "3":
+                                            if (ModuleAccess[2] == "3|1")
+                                            {
+                                                li.Selected = true;
+                                            }
+                                            break;
+                                        case "4":
+                                            if (ModuleAccess[3] == "4|1")
+                                            {
+                                                li.Selected = true;
+                                            }
+                                            break;
+                                        case "6":
+                                            if (ModuleAccess[4] == "6|1")
+                                            {
+                                                li.Selected = true;
+                                            }
+                                            break;
+                                        case "12":
+                                            if (ModuleAccess[5] == "12|1")
+                                            {
+                                                li.Selected = true;
+                                            }
+                                            break;
+                                        case "14":
+                                            li.Selected = true;
+                                            break;
+                                    }
+                                }
+                                cblModules.Enabled = true;
+                                break;
+                        }
+                    }
 					break;
 				case "rbNormal":
 					if (rb.Checked)
@@ -707,62 +712,62 @@ namespace Paradigm3
 						chkTrainingAnalysis.Enabled = true;
 						chkViewOtherAssessment.Enabled = true;
 
-						//switch (UserStatus)
-						//{
-						//	case 1:
-						//		foreach (ListItem li in cblModules.Items)
-						//		{
-						//			li.Selected = true;
-						//		}
-						//		cblModules.Enabled = true;
-						//		break;
-						//	case -2:
-						//	case 0:
-						//	case -1:
-						//		foreach (ListItem li in cblModules.Items)
-						//		{
-						//			li.Selected = false;
-						//			switch (li.Value)
-						//			{
-						//				case "1":
-						//					if (ModuleAccess[1] == "1|1")
-						//					{
-						//						li.Selected = true;
-						//					}
-						//					break;
-						//				case "3":
-						//					if (ModuleAccess[2] == "3|1")
-						//					{
-						//						li.Selected = true;
-						//					}
-						//					break;
-						//				case "4":
-						//					if (ModuleAccess[3] == "4|1")
-						//					{
-						//						li.Selected = true;
-						//					}
-						//					break;
-						//				case "6":
-						//					if (ModuleAccess[4] == "6|1")
-						//					{
-						//						li.Selected = true;
-						//					}
-						//					break;
-						//				case "12":
-						//					if (ModuleAccess[5] == "12|1")
-						//					{
-						//						li.Selected = true;
-						//					}
-						//					break;
-						//				case "14":
-						//					li.Selected = true;
-						//					break;
-						//			}
-						//		}
-						//		cblModules.Enabled = true;
-						//		break;
-						//}
-					}
+                        switch (UserStatus)
+                        {
+                            //case 1:
+                            //    foreach (ListItem li in cblModules.Items)
+                            //    {
+                            //        li.Selected = true;
+                            //    }
+                            //    cblModules.Enabled = true;
+                            //    break;
+                            case -2:
+                            case 0:
+                            case -1:
+                                foreach (ListItem li in cblModules.Items)
+                                {
+                                    li.Selected = false;
+                                    switch (li.Value)
+                                    {
+                                        case "1":
+                                            if (ModuleAccess[1] == "1|1")
+                                            {
+                                                li.Selected = true;
+                                            }
+                                            break;
+                                        case "3":
+                                            if (ModuleAccess[2] == "3|1")
+                                            {
+                                                li.Selected = true;
+                                            }
+                                            break;
+                                        case "4":
+                                            if (ModuleAccess[3] == "4|1")
+                                            {
+                                                li.Selected = true;
+                                            }
+                                            break;
+                                        case "6":
+                                            if (ModuleAccess[4] == "6|1")
+                                            {
+                                                li.Selected = true;
+                                            }
+                                            break;
+                                        case "12":
+                                            if (ModuleAccess[5] == "12|1")
+                                            {
+                                                li.Selected = true;
+                                            }
+                                            break;
+                                        case "14":
+                                            li.Selected = true;
+                                            break;
+                                    }
+                                }
+                                cblModules.Enabled = true;
+                                break;
+                        }
+                    }
 					break;
 				case "rbAdministrator":
 					if (rb.Checked)
@@ -785,6 +790,7 @@ namespace Paradigm3
 					}
 					break;
 			}
+			ViewState["FirstLoad"] = false;
 		}
 
 		protected void cbl_SelectedIndexChanged(object sender, EventArgs e)
@@ -806,6 +812,9 @@ namespace Paradigm3
 						btnSubmitExportTraining.Enabled = true;
 					}
 					mpeExportTraining.Show();
+					break;
+				case "cblModules":
+					ViewState["FirstLoad"] = false;
 					break;
 			}
 		}
@@ -843,6 +852,7 @@ namespace Paradigm3
 						mpeExportTraining.Show();
 					}
 					btnSubmitExportTraining.Enabled = true;
+					ViewState["FirstLoad"] = false;
 					break;
 				case "UncheckAll":
 					foreach (ListItem cb in cblTrainColumns.Items)
@@ -854,6 +864,7 @@ namespace Paradigm3
 						btnSubmitExportTraining.Enabled = false;
 						mpeExportTraining.Show();
 					}
+					ViewState["FirstLoad"] = false;
 					break;
 				case "ExportTraining":
 					Response.Clear();
@@ -1052,6 +1063,7 @@ namespace Paradigm3
 						PopulateRootLevel(1, CurrentUserID, "1", p3Tree);
 						p3Tree.Nodes[0].Expand();
 					}
+					ViewState["FirstLoad"] = false;
 					mpeOtherUserAI.Hide();
 					break;
 				case "CancelOtherUserChanges":
@@ -1189,6 +1201,7 @@ namespace Paradigm3
 					p3Tree2.CollapseAll();
 					p3Tree2.Nodes[0].Selected = true;
 					p3Tree2.Nodes[0].Expand();
+					ViewState["FirstLoad"] = false;
 					break;
 				case "CancelMemberChanges":
 					p3Tree2.CollapseAll();
@@ -1212,6 +1225,7 @@ namespace Paradigm3
 				gvMemberships.DataSource = dt;
 				gvMemberships.DataBind();
 			}
+			ViewState["FirstLoad"] = false;
 		}
 
 		protected async void btnOK_Click(object sender, EventArgs e)
@@ -1219,7 +1233,7 @@ namespace Paradigm3
 			int UserID = -1000;
 			if (Session["SelUserID"] != null)
 			{
-				UserID = Convert.ToInt32(Session["SelUserID"]);//Convert.ToInt32(Request.QueryString["UserID"]);
+				UserID = Convert.ToInt32(Session["SelUserID"]);
 			}
 			if (UserID == -1000)
 			{
@@ -1231,7 +1245,15 @@ namespace Paradigm3
 			}
 			else
 			{
-				await UpdateUser(UserID);
+				bool IsFirsLoad = (bool)ViewState["FirstLoad"];
+				if (IsFirsLoad)
+                {
+					ClientScript.RegisterStartupScript(GetType(), "close", "window.close();", true);
+				}
+				else
+                {
+					await UpdateUser(UserID);
+				}				
 			}
 		}
 

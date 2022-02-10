@@ -137,7 +137,7 @@
                                         <fieldset style="display: flex; flex-direction: column; height: 100%; border: 1px solid #dcdcdc;">
                                             <legend><%= GetLocalResourceObject("AccessibleModulesLabel") %></legend>
                                             <div style="border: 1px solid #dcdcdc;">
-                                                <asp:CheckBoxList ID="cblModules" runat="server" CssClass="checkboxlist" meta:resourcekey="cblModulesResource1">
+                                                <asp:CheckBoxList ID="cblModules" runat="server" CssClass="checkboxlist" AutoPostBack="true" OnSelectedIndexChanged="cbl_SelectedIndexChanged" meta:resourcekey="cblModulesResource1">
                                                     <asp:ListItem Value="1" meta:resourcekey="ListItemResource1">&lt;img src=&quot;images/users.png&quot; /&gt; Users</asp:ListItem>
                                                     <asp:ListItem Value="3" meta:resourcekey="ListItemResource2">&lt;img src=&quot;images/document.png&quot; /&gt; Documentation</asp:ListItem>
                                                     <asp:ListItem Value="4" meta:resourcekey="ListItemResource3">&lt;img src=&quot;images/record.png&quot; /&gt; Records</asp:ListItem>

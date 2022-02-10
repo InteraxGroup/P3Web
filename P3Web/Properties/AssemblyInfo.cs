@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Interax Group, Inc.")]
 [assembly: AssemblyProduct("P3Web")]
-[assembly: AssemblyCopyright("Copyright © 2021 Paradigm Software Pty, Ltd.  Licensed by Interax Group, inc.")]
+[assembly: AssemblyCopyright("Copyright © 2022 Paradigm Software Pty, Ltd.  Licensed by Interax Group, inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

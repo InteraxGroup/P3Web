@@ -170,6 +170,7 @@ namespace Paradigm3
 				string LabelName = document.Rows[0]["LabelName"].ToString();
 				string DocsPath = @"" + ConfigurationManager.AppSettings["DocumentPath"];
 				string PublicPath = @"" + ConfigurationManager.AppSettings["PublicPath"] + UserID.ToString() + "/";
+				
 
 				try
 				{

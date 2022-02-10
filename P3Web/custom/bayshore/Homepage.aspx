@@ -68,21 +68,6 @@
                                     </div>
                                     <div class="bayshore-panel-content">
                                         <ajax:TabContainer ID="TCEmployeeInfo" runat="server" meta:resourcekey="TCEmployeeInfoResource1">
-                                            <ajax:TabPanel ID="TPBenefits" runat="server"  CssClass="pc-1" meta:resourcekey="TPBenefitsResource1">
-                                                <ContentTemplate>
-                                                    <div style="height: 100%">
-                                                        <h2> <%=GetLocalResourceObject("EmpPnlheaderlbl1") %></h2>
-                                                        <ul class="bullet-list">
-                                                            <li>
-                                                                <a href="https://www.ontario.ca/page/learn-about-ohip-plus" target="_blank" title="Learn about OHIP+">2018 OHIP +: Children and Youth Pharmacare</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="https://infobay.bayshore.ca/" target="_blank" title="Global Site home Page...">Global Site Home Page</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </ContentTemplate>
-                                            </ajax:TabPanel>
                                             <ajax:TabPanel ID="TPPayroll" runat="server"  CssClass="pc-1" meta:resourcekey="TPPayrollResource1">
                                                 <ContentTemplate>
                                                     <div style="height: 100%;">
@@ -182,6 +167,21 @@
                                                     </div>
                                                 </ContentTemplate>
                                             </ajax:TabPanel>
+                                            <ajax:TabPanel ID="TPBenefits" runat="server"  CssClass="pc-1" meta:resourcekey="TPBenefitsResource1">
+                                                <ContentTemplate>
+                                                    <div style="height: 100%">
+                                                        <h2> <%=GetLocalResourceObject("EmpPnlheaderlbl1") %></h2>
+                                                        <ul class="bullet-list">
+                                                            <li>
+                                                                <a href="https://www.ontario.ca/page/learn-about-ohip-plus" target="_blank" title="Learn about OHIP+">2018 OHIP +: Children and Youth Pharmacare</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="https://infobay.bayshore.ca/" target="_blank" title="Global Site home Page...">Global Site Home Page</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </ContentTemplate>
+                                            </ajax:TabPanel>                                            
                                         </ajax:TabContainer>
                                     </div>                                    
                                 </div>

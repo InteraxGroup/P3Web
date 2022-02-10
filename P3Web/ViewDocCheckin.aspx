@@ -31,8 +31,8 @@
                 </div>
                 <asp:Panel ID="pnlUpload" runat="server" CssClass="checkin-document-form" meta:resourcekey="pnlUploadResource1">
                     <div>
-                        <input id="uploader" runat="server" type="file" style="width: 99%;" />
-                        <%--<asp:FileUpload ID="uploader" runat="server" style="width: 99%;" AllowMultiple="false" />--%>
+                        <%--<input id="uploader" runat="server" type="file" style="width: 99%;" />--%>
+                        <asp:FileUpload ID="uploader" runat="server" style="width: 99%;" AllowMultiple="false" />
                     &nbsp;</div>
                     <div style="padding-top: 20px">
                         <asp:Button ID="btnCommit" runat="server" Text="Check In" Width="80px" OnClick="btnCommit_Click" CausesValidation="False" meta:resourcekey="btnCommitResource1" />

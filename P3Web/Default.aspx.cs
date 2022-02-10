@@ -31,6 +31,7 @@ namespace Paradigm3
             {
                 // Set Properties session state
                 Session["IsGroup"] = 1;
+                Session["IsEvidenceCheck"] = "False";
 
                 // Get application version.
                 string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -1147,18 +1148,15 @@ namespace Paradigm3
                         string UserFullName = UserValues[1];
 
                         // Return item details
-                        string editItemID = gvItemList.DataKeys[gvItemList.SelectedIndex].Values["ItemID"].ToString();
                         string editOrigID = gvItemList.DataKeys[gvItemList.SelectedIndex].Values["OrigID"].ToString();
+                        DataTable dtEditItem = Document.Get_Latest(Convert.ToInt32(editOrigID));
+                        string editItemID = dtEditItem.Rows[0]["ItemID"].ToString();
                         string editFileName = gvItemList.DataKeys[gvItemList.SelectedIndex].Values["Name"].ToString();
                         string editFileExtension = gvItemList.DataKeys[gvItemList.SelectedIndex].Values["FileExtension"].ToString();
                         string editFileLabel = gvItemList.DataKeys[gvItemList.SelectedIndex].Values["LabelName"].ToString();
                         string editIDFileName = "D" + editItemID.PadLeft(7, '0') + "." + editFileExtension;
                         string editCopyFileName = editFileName + "." + editFileExtension;
-                        string editItemStatus = "2";
-                        if (gvItemList.Rows[gvItemList.SelectedIndex].Cells[3].Text.Contains("Collaborate") || gvItemList.Rows[gvItemList.SelectedIndex].Cells[6].Text.Contains("Collaborate"))
-                        {
-                            editItemStatus = "3";
-                        }
+                        string editItemStatus = dtEditItem.Rows[0]["Status"].ToString();
 
                         // Return CheckoutToServer value from server if exsists. Else false.
                         bool CheckoutToServer = false;
@@ -2006,7 +2004,7 @@ namespace Paradigm3
                 int ModuleID = Convert.ToInt32(Session["ModuleID"]);
                 int ItemIndex = Convert.ToInt32(hdnContextID.Value);
                 int GroupID = Convert.ToInt32(p3Tree.SelectedValue);
-                GridView gv = new GridView();
+                GridView gv = gvItemList;
 
                 switch (ModuleID)
                 {
@@ -3073,9 +3071,8 @@ namespace Paradigm3
                         // Set User image
                         Image UserIcon = (Image)e.Row.Cells[0].FindControl("ItemIcon");
                         UserIcon.ImageUrl = "images/user.png";
-                        int UserID = Convert.ToInt32(gv.DataKeys[e.Row.RowIndex].Values["UserID"]);
                         e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gv, "Select$" + e.Row.RowIndex);
-                        e.Row.Attributes.Add("ondblclick", "openProperties(" + UserID + ",1,0);");
+                        e.Row.Attributes.Add("ondblclick", "openProperties(0,1,0);");
                         e.Row.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
                         e.Row.Attributes.Add("onmouseout", "this.style.cursor='cursor'");
                         break;
@@ -3089,6 +3086,7 @@ namespace Paradigm3
             mnuGVContext.Items.Clear();
             int ModuleID = Convert.ToInt32(Session.Contents["ModuleID"]);
             Session["IsGroup"] = 0;
+            Session["IsEvidenceCheck"] = "False";
             GridView gv = (GridView)sender;
             if (gv.SelectedIndex > -1)
             {
@@ -3167,13 +3165,16 @@ namespace Paradigm3
                 }
                 switch (ModuleID)
                 {
+                    case 1:
+                        int SelUserID = Convert.ToInt32(gvUsersList.DataKeys[gvUsersList.SelectedIndex].Values["UserID"]);
+                        Session["SelUserID"] = SelUserID;
+                        break;
                     case 0:
                     case 3:
                         if (gvItemList.SelectedIndex > -1)
                         {
                             int index = gvItemList.SelectedIndex;
                             int docOrigID = Convert.ToInt32(gvItemList.Rows[index].Cells[7].Text);
-                            //int docItemID = Convert.ToInt32(gvItemList.DataKeys[index].Values["ItemID"]);
                             bool IsEvidence = Convert.ToBoolean(gvItemList.DataKeys[index].Values["IsEvidence"]);
 
                             // set IsEvidence value in session to check items.
@@ -3182,7 +3183,6 @@ namespace Paradigm3
                             if (!gvItemList.DataKeys[index].Values["IsCheckedOut"].Equals(DBNull.Value))
                             {
                                 IsCheckedOut = Convert.ToBoolean(gvItemList.DataKeys[index].Values["IsCheckedOut"]);
-                                //IsCheckedOut = Convert.ToBoolean(Session["IsCheckedOut"]);
                             }
                             pnlProperties.Visible = true;
                             if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
@@ -4032,15 +4032,20 @@ namespace Paradigm3
             {
                 mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionCopy").ToString(), "copy"));
             }
-            if (HasChangetoEvidencePemission && Session["IsEvidenceCheck"].ToString() == "False")
-            {
-                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionEvid").ToString(), "evidence"));
-            }
 
-            if (HasChangetoItemPemission && Session["IsEvidenceCheck"].ToString() == "True")
+            if (ModuleID != 1)
             {
-                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionItem").ToString(), "item"));
+                if (HasChangetoEvidencePemission && Session["IsEvidenceCheck"].ToString() == "False")
+                {
+                    mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionEvid").ToString(), "evidence"));
+                }
+
+                if (HasChangetoItemPemission && Session["IsEvidenceCheck"].ToString() == "True")
+                {
+                    mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionItem").ToString(), "item"));
+                }                
             }
+            
             if (HasDeletePermission)
             {
                 mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionDel").ToString(), "delete"));
@@ -4059,8 +4064,6 @@ namespace Paradigm3
                 mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionExport").ToString(), "export"));
             }
             mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionProp").ToString(), "properties"));
-
-
         }
     }
 }

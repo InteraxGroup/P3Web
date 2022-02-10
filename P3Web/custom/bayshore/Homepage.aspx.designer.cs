@@ -78,15 +78,6 @@ namespace Paradigm3.custom.bayshore
         protected global::AjaxControlToolkit.TabContainer TCEmployeeInfo;
 
         /// <summary>
-        /// TPBenefits control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TPBenefits;
-
-        /// <summary>
         /// TPPayroll control.
         /// </summary>
         /// <remarks>
@@ -94,6 +85,15 @@ namespace Paradigm3.custom.bayshore
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel TPPayroll;
+
+        /// <summary>
+        /// TPBenefits control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel TPBenefits;
 
         /// <summary>
         /// GridViewEI control.
