@@ -637,6 +637,7 @@
     <Content Include="ViewAttachment.aspx" />
     <Content Include="ViewChangeEvidence.aspx" />
     <Content Include="ViewCopy.aspx" />
+    <Content Include="ViewCreateActionItem.aspx" />
     <Content Include="ViewDelete.aspx" />
     <Content Include="ViewDocCheckin.aspx" />
     <Content Include="ViewDocument.aspx" />
@@ -856,6 +857,13 @@
     </Compile>
     <Compile Include="ViewCopy.aspx.designer.cs">
       <DependentUpon>ViewCopy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCreateActionItem.aspx.cs">
+      <DependentUpon>ViewCreateActionItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewCreateActionItem.aspx.designer.cs">
+      <DependentUpon>ViewCreateActionItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewDelete.aspx.cs">
       <DependentUpon>ViewDelete.aspx</DependentUpon>
@@ -1278,6 +1286,8 @@
     <Content Include="custom\bayshore\App_LocalResources\Homepage.aspx.resx" />
     <Content Include="App_LocalResources\ViewExportDocument.aspx.resx" />
     <Content Include="App_LocalResources\ViewExportDocument.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewCreateActionItem.aspx.resx" />
+    <Content Include="App_LocalResources\ViewCreateActionItem.aspx.fr-CA.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

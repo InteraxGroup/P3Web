@@ -18,7 +18,7 @@ function closeP3Window() {
 //  Search
 function openSearchWindow(ModuleID, ParentGroupID) {
     var UPath = "ViewSearch.aspx?ModuleID=" + ModuleID + "&ParentGroupID=" + ParentGroupID;
-    var windowWidth = 900;
+    var windowWidth = 1000;
     var windowHeight = 255;
     if (navigator.userAgent.indexOf("MSIE") !== -1) {
         windowHeight = 250;
@@ -47,6 +47,15 @@ function reduceSearchWindow() {
 }
 
 //  Action Items
+
+function openCreateAIWindow(ModuleID, OrigID, UserID) {
+    var AIPath = 'ViewCreateActionItem.aspx?ModuleID=' + ModuleID + '&OrigID=' + OrigID + '&UserID=' + UserID;
+    var windowWidth = 800;
+    var windowHeight = 604;
+    var centerWidth = (window.screen.width - windowWidth) / 2;
+    window.open(AIPath, 'CreateAIWindow' + OrigID, 'height=' + windowHeight + ',width=' + windowWidth + ',top=50,left=' + centerWidth + ',location=0,menubar=0,toolbar=0,status=0,scrollbars=0,resizable=0');
+}
+
 function openAIWindow(AIID) {
     var AIPath = "ViewActionItem.aspx?AIID=" + AIID;
     var windowWidth = 800;

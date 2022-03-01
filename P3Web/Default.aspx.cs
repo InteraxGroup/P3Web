@@ -45,11 +45,9 @@ namespace Paradigm3
                 string ACS = ConfigurationManager.AppSettings["ACSUrl"];
 
                 if (ssoAuth.ToUpper() == "TRUE" && Session["IsValidSAML"] == null)
-                {
+                {                    
                     var samlEndpoint = ssoURL;
-
                     var request = new AuthRequest(issuer, ACS);
-
                     //redirect the user to the SAML provider
                     Response.Redirect(request.GetRedirectUrl(samlEndpoint), false);
                 }
@@ -951,10 +949,15 @@ namespace Paradigm3
                         case "status":
                             ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "ViewStatus", "openStatusWindow(" + ModuleID + "," + ItemID + "," + OrigID + ");", true);
                             break;
-
                         case "export":
                             ItemStatus = Convert.ToInt32(gvItemList.DataKeys[index].Values["Status"]);
                             ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "exportitem", "openExportWindow(" + ModuleID + "," + OrigID + "," + UserID + "," + ItemStatus + ",true);", true);
+                            break;
+                        case "createactionitem":
+                            if (ModuleID == 3)
+                            {
+                                ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "actionitem", "openCreateAIWindow(" + ModuleID + "," + OrigID + "," + UserID + ",true);", true);
+                            }
                             break;
                         case "setrepublish":
                             try
@@ -2124,9 +2127,9 @@ namespace Paradigm3
                 else
                 {
                     btnLogout.Visible = true;
-                    btnLogout.ImageUrl = "~/images/logout.png";
-                    btnLogout.Attributes.Add("onmouseover", "javascript:this.src='images/logoutmo.png'");
-                    btnLogout.Attributes.Add("onmouseout", "javascript:this.src='images/logout.png'");
+                    btnLogout.ImageUrl = GetLocalResourceObject("Logout").ToString();
+                    btnLogout.Attributes.Add("onmouseover", "this.src='" + GetLocalResourceObject("LogoutMo") + "'");
+                    btnLogout.Attributes.Add("onmouseout", "this.src='" + GetLocalResourceObject("Logout") + "'");
                 }
 
                 // Get user information from authentication cookie.
@@ -2393,9 +2396,9 @@ namespace Paradigm3
                 // Set display properties.
                 btnLogon.Visible = true;
                 btnLogout.Visible = false;
-                btnLogon.ImageUrl = "~/images/logon.png";
-                btnLogon.Attributes.Add("onmouseover", "javascript:this.src='images/logonmo.png'");
-                btnLogon.Attributes.Add("onmouseout", "javascript:this.src='images/logon.png'");
+                btnLogon.ImageUrl = GetLocalResourceObject("Logon").ToString();
+                btnLogon.Attributes.Add("onmouseover", "this.src='" + GetLocalResourceObject("LogonMo") + "'");
+                btnLogon.Attributes.Add("onmouseout", "this.src='" + GetLocalResourceObject("Logon") + "'");
                 lblLogon.Text = timeGreet + ',' + GetLocalResourceObject("lblLogonStatus").ToString();
 
                 pnlDirectLink.Visible = true;
@@ -4050,10 +4053,12 @@ namespace Paradigm3
             {
                 mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionDel").ToString(), "delete"));
             }
+
             if (HasStatusPermission)
             {
                 mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionStatus").ToString(), "status"));
             }
+
             if (ModuleID == 3 && HasSetRepublishPermission)
             {
                 mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRepub").ToString(), "setrepublish"));
@@ -4062,7 +4067,18 @@ namespace Paradigm3
             if (ModuleID == 3 && HasDeletePermission)
             {
                 mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionExport").ToString(), "export"));
+                //mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionActionItem").ToString(), "actionitem"));
+                //MenuItem newSubMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionCreateAI").ToString(), "createactionitem");
+                //mnuGVContext.FindItem("actionitem").ChildItems.Add(newSubMenuItem);
             }
+
+            if (ModuleID == 3)
+            {
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionActionItem").ToString(), "actionitem"));
+                MenuItem newSubMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionCreateAI").ToString(), "createactionitem");
+                mnuGVContext.FindItem("actionitem").ChildItems.Add(newSubMenuItem);
+            }
+
             mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionProp").ToString(), "properties"));
         }
     }

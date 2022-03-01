@@ -871,6 +871,17 @@ namespace Paradigm3
                                 e.Row.Attributes.Add("ondblclick", "openRecordWindow(" + strView + ");");
                                 break;
                         }
+
+                        int HasPLink = Convert.ToInt32(e.Row.Cells[5].Text);
+                        if (HasPLink != 0)
+                        {
+                            e.Row.Cells[5].Text = "P-L";
+                        }
+                        else
+                        {
+                            e.Row.Cells[5].Text = "";
+                        }
+
                         e.Row.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
                         e.Row.Attributes.Add("onmouseout", "this.style.cursor='cursor'");
                         e.Row.Attributes["onclick"] = "saveSearchScrollPos();" + Page.ClientScript.GetPostBackClientHyperlink(GV, "Select$" + e.Row.RowIndex);

@@ -918,11 +918,23 @@
   <data name="LoginImageHover" xml:space="preserve">
     <value>logonmo-fr.png</value>
   </data>
+  <data name="Logon" xml:space="preserve">
+    <value>images/logon-fr.png</value>
+  </data>
+  <data name="LogonMo" xml:space="preserve">
+    <value>images/logonmo-fr.png</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>images/logout-fr.png</value>
+  </data>
   <data name="LogoutImage" xml:space="preserve">
     <value>logout-fr.png</value>
   </data>
   <data name="LogoutImageHover" xml:space="preserve">
     <value>logoutmo-fr.png</value>
+  </data>
+  <data name="LogoutMo" xml:space="preserve">
+    <value>images/logoutmo-fr.png</value>
   </data>
   <data name="Menu1Resource1.ScrollDownText" xml:space="preserve">
     <value>Défiler vers le bas</value>
@@ -1050,8 +1062,14 @@
   <data name="mnuMoveResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="mnuOptionActionItem" xml:space="preserve">
+    <value>Élément d'action</value>
+  </data>
   <data name="mnuOptionCopy" xml:space="preserve">
     <value>Copier</value>
+  </data>
+  <data name="mnuOptionCreateAI" xml:space="preserve">
+    <value>Créer un élément d'action associé</value>
   </data>
   <data name="mnuOptionDel" xml:space="preserve">
     <value>Effacer</value>
@@ -1318,6 +1336,9 @@
     <value />
   </data>
   <data name="Splitter2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String1" xml:space="preserve">
     <value />
   </data>
   <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">

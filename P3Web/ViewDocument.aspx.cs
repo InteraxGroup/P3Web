@@ -9,6 +9,7 @@ using System.Configuration;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Office.Core;
+using Saml;
 
 namespace Paradigm3
 {

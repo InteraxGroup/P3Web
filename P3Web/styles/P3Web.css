@@ -382,7 +382,7 @@ html, body {
 }
 
 .modalBackground {
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.1);
 }
 
 embed {
@@ -682,7 +682,7 @@ embed {
     min-width: 100px;
     max-width: 300px;
     min-height: 10px;
-    max-height: 500px;
+    max-height: 1000px;
     border: 1px solid #000;
     background-color: #f1f1f1;
     box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.3);
@@ -703,6 +703,7 @@ embed {
 
             .context-menu ul li a {
                 display: block;
+                position: relative;
                 padding: 5px 10px 5px 20px;
                 text-decoration: none;
                 width: 100%;
@@ -714,3 +715,14 @@ embed {
                     background-color: #0078d7;
                     color: #fff;
                 }
+
+            .context-menu ul li ul {
+                position: absolute;
+                top: 5px;
+                left: 300px;
+                display: block;
+                list-style: none;
+                background-color: #0078d7;
+                padding: 0;
+                margin: 0;
+            }

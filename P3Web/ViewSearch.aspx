@@ -199,8 +199,11 @@
                                 <HeaderStyle CssClass="gridViewHeader" Width="70px" />
                             </asp:BoundField>
                             <asp:BoundField DataField="OrigID" HeaderText="OrigID" SortExpression="OrigID" meta:resourcekey="BoundFieldResource4">
-                                <HeaderStyle CssClass="gridViewHeader" Width="50px" />                          
-                            </asp:BoundField>                            
+                                <HeaderStyle CssClass="gridViewHeader" Width="50px" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="HasPLink" HeaderText="P-L" SortExpression="HasPLink">
+                                <HeaderStyle CssClass="gridViewHeader" Width="50px" />
+                            </asp:BoundField>
                         </Columns>
                     </asp:GridView>
                     <asp:GridView ID="gvAISearchResults" runat="server" 

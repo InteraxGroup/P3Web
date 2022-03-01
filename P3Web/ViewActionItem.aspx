@@ -174,7 +174,7 @@
                     <asp:Label ID="lblSelectResult" runat="server" Text="Result:" meta:resourcekey="lblSelectResultResource1" />&nbsp;
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddlResults" runat="server" Width="350px" ValidationGroup="CompleteAI" AppendDataBoundItems="True" meta:resourcekey="ddlResultsResource1">
+                    <asp:DropDownList ID="ddlResults" runat="server" Width="350px" style="outline: none;" ValidationGroup="CompleteAI" AppendDataBoundItems="True" meta:resourcekey="ddlResultsResource1">
                         <asp:ListItem Text="-- Select Result --" Value="0" meta:resourcekey="ListItemResource1" />
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="You must select a result." Text="*" ControlToValidate="ddlResults" Display="None" InitialValue="0" SetFocusOnError="True" ValidationGroup="CompleteAI" meta:resourcekey="RequiredFieldValidator1Resource1" />
@@ -187,7 +187,7 @@
             </tr>
             <tr>
                 <td colspan="2" class="commentsField">
-                    <asp:TextBox ID="txtComments" runat="server" Width="460px" Height="200px" BorderWidth="2px" BorderColor="White" BorderStyle="Inset" TextMode="MultiLine" Font-Names="Arial" meta:resourcekey="txtCommentsResource1" />
+                    <asp:TextBox ID="txtComments" runat="server" Width="460px" Height="200px" BorderWidth="2px" BorderColor="White" BorderStyle="Inset" TextMode="MultiLine" Font-Names="Arial" style="resize: none; outline: none;" meta:resourcekey="txtCommentsResource1" />
                 </td>
             </tr>
             <tr>
@@ -278,8 +278,7 @@
             </tr>
             <tr>
                 <td colspan="2" class="commentsField">
-                    <asp:TextBox ID="txtFWComments" runat="server" Width="460px" Height="200px" BorderWidth="2px"
-                        BorderColor="White" BorderStyle="Inset" TextMode="MultiLine" Font-Names="Arial" meta:resourcekey="txtFWCommentsResource1"></asp:TextBox>
+                    <asp:TextBox ID="txtFWComments" runat="server" Width="460px" Height="200px" BorderWidth="2px" BorderColor="White" BorderStyle="Inset" TextMode="MultiLine" Font-Names="Arial" style="outline: none; resize: none;" meta:resourcekey="txtFWCommentsResource1"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -304,7 +303,7 @@
             </tr>
             <tr>
                 <td colspan="2" class="commentsField">
-                    <asp:TextBox ID="txtReplyComments" runat="server" Width="460px" Height="200px" BorderWidth="2px" BorderColor="White" BorderStyle="Inset" TextMode="MultiLine" Font-Names="Arial" meta:resourcekey="txtReplyCommentsResource1"></asp:TextBox>
+                    <asp:TextBox ID="txtReplyComments" runat="server" Width="460px" Height="200px" BorderWidth="2px" BorderColor="White" BorderStyle="Inset" TextMode="MultiLine" Font-Names="Arial" style="outline: none; resize: none;" meta:resourcekey="txtReplyCommentsResource1"></asp:TextBox>
                 </td>
             </tr>
             <tr>

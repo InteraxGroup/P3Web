@@ -81,7 +81,7 @@
                         <asp:Panel ID="pnlMove" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlMoveResource1">
                             <asp:ImageButton ID="btnMove" runat="server" ImageUrl="~/images/move.png" OnClick="ImageButton_Click" CommandArgument="Move" meta:resourcekey="btnMoveResource1" />
                             <br />
-                            <asp:Label ID="lblMove" runat="server" Text="Move123" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblMoveResource1" />
+                            <asp:Label ID="lblMove" runat="server" Text="Move" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblMoveResource1" />
                             <asp:Panel id="MoveDropdown" runat="server" CssClass="dropdown-content" Width="100px" Visible="False" meta:resourcekey="MoveDropdownResource1">
                                 <asp:Menu ID="mnuMove" runat="server" OnMenuItemClick="mnuMove_MenuItemClick" meta:resourcekey="mnuMoveResource1">
                                     <Items>
@@ -506,8 +506,11 @@
                     <asp:HiddenField ID="hdnPosX" runat="server" />
                     <asp:HiddenField ID="hdnPosY" runat="server" />
                     <div id="gvMenu" style="display: none;">
-                        <asp:Menu ID="mnuGVContext" runat="server" OnMenuItemClick="ContextMenu_MenuItemClick" meta:resourcekey="mnuGVContextResource1">
+                        <asp:Menu ID="mnuGVContext" runat="server" OnMenuItemClick="ContextMenu_MenuItemClick" StaticDisplayLevels="3" meta:resourcekey="mnuGVContextResource1">
                             <StaticMenuItemStyle CssClass="context-menu-menuitem" />
+                            <DynamicHoverStyle BackColor="#7C6F57" />
+                            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                            <DynamicMenuStyle BackColor="#F7F6F3"/>
                         </asp:Menu>
                         <asp:Button ID="btnShowGVMenu" runat="server" OnClick="btnShowGVMenu_Click" style="display: none;" meta:resourcekey="btnShowGVMenuResource1" />
                     </div>
