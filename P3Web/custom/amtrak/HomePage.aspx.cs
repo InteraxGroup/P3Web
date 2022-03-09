@@ -33,7 +33,7 @@ namespace Paradigm3.custom.amtrak
 				}
 				
 				int TotalActionItems = await Get_ActionItems(UserID);
-				if (TotalActionItems > 0)
+				if (UserID != 0 && TotalActionItems > 0)
 				{
 					pnlActionItems.Visible = true;
 					lblActionItems.Text = "You have " + TotalActionItems.ToString() + " open Action Items";

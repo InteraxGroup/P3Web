@@ -4,8 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>P3Web: Amtrak - Document Search</title>
+    <title>P3Web: Amtrak - Document Search</title>    
 	<link id="favicon" runat="server" rel="shortcut icon" type="image/ico" href="../../p3_32.ico" />
+    <%--<link href="../../styles/P3Web.css" rel="stylesheet" />--%>
 	<link href="amtrakSearch.css" rel="stylesheet" />
 </head>
 <body>
@@ -18,7 +19,8 @@
 		<input id="LB5" type="hidden" value="selectList" />
 		<input id="LB6" type="hidden" value="selectList" />
 		<input id="LB7" type="hidden" value="selectList" />
-
+		<asp:UpdatePanel ID="udpSearch" runat="server" UpdateMode="Always">
+		<ContentTemplate>
         <div id="container">
 			<div id="filters">
 			<asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
@@ -108,16 +110,18 @@
 				</div>
 				
 			</ContentTemplate>
-			</asp:UpdatePanel>
-				<asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
-				<ProgressTemplate>
-					<div id="IMGDIV" runat="server" class="pleaseWait">
-						<asp:Image ID="Image1" runat="server" ImageUrl="~/images/pleasewait.gif" />
-					</div>
-				</ProgressTemplate>
-			</asp:UpdateProgress>
+			</asp:UpdatePanel>				
 			</div>
         </div>
+		</ContentTemplate>
+		</asp:UpdatePanel>
+		<asp:UpdateProgress ID="UpdateProgress1" runat="server">
+			<ProgressTemplate>
+				<div id="IMGDIV" runat="server" class="pleaseWait">
+					<asp:Image ID="Image1" runat="server" ImageUrl="~/images/pleasewait.gif" meta:resourcekey="Image1Resource1" />
+				</div>
+			</ProgressTemplate>
+		</asp:UpdateProgress>
     </form>
 	<script src="amtrakSearch.js"></script>
 	<script src="../../scripts/P3Web.js"></script>

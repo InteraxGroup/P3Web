@@ -10,7 +10,7 @@
     <link id="favicon" runat="server" rel="shortcut icon" type="image/ico" href="p3_32.ico" />
     <link href="styles/P3Web.css" rel="stylesheet" />
     <link href="styles/Modals.css" rel="stylesheet" />
-    <script src="scripts/P3Web.js"></script>
+    
 </head>
 <%--<body onload="getCountry()">--%>
 <body>
@@ -36,7 +36,7 @@
                 </Triggers>
             <ContentTemplate>                
                 <div id="toolBar">
-                    <iframe id="fileCheckout" style="display:none;"></iframe>
+                    <%--<iframe id="fileCheckout" style="display:none;"></iframe>--%>
                     <asp:ImageButton ID="btnLogon" runat="server" CssClass="logonButton" OnClick="ImageButton_Click" CommandArgument="gotoLogon" CommandName="goToLogon" meta:resourcekey="btnLogonResource1" />
                     <asp:ImageButton ID="btnLogout" runat="server" CssClass="logonButton" OnClick="ImageButton_Click" CommandArgument="doLogout" CommandName="doLogout" meta:resourcekey="btnLogoutResource1" />
                     <asp:Label ID="lblLogon" runat="server" CssClass="logonLabel" Font-Bold="True" meta:resourcekey="lblLogonResource1" />
@@ -506,7 +506,10 @@
                     <asp:HiddenField ID="hdnPosX" runat="server" />
                     <asp:HiddenField ID="hdnPosY" runat="server" />
                     <div id="gvMenu" style="display: none;">
-                        <asp:Menu ID="mnuGVContext" runat="server" OnMenuItemClick="ContextMenu_MenuItemClick" StaticDisplayLevels="3" meta:resourcekey="mnuGVContextResource1">
+                        <asp:Menu ID="mnuGVContext" runat="server" DynamicHorizontalOffset="10"
+                            OnMenuItemClick="ContextMenu_MenuItemClick" 
+                            StaticDisplayLevels="3" Orientation="Vertical"
+                            meta:resourcekey="mnuGVContextResource1">
                             <StaticMenuItemStyle CssClass="context-menu-menuitem" />
                             <DynamicHoverStyle BackColor="#7C6F57" />
                             <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
@@ -537,5 +540,6 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
     </form>
+    <script src="scripts/P3Web.js"></script>
 </body>
 </html>

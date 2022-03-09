@@ -397,10 +397,8 @@ namespace P3Web
 
             if (gvRoleMembers.Rows.Count > 0)
             {
-                int i = 0;
                 foreach (GridViewRow agvr in gvRoleMembers.Rows)
                 {
-
                     DataRow adrw = AIRecepients.NewRow();
                     string strUserID = gvRoleMembers.DataKeys[agvr.RowIndex].Values[0].ToString();
                     string strUserName = agvr.Cells[0].Text;

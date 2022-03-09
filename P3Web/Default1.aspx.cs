@@ -7,9 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace P3Web
 {
-    public partial class Default1 : System.Web.UI.Page
+    public partial class Default1 : SqlViewStatePage
     {
         protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ImageButton_Click(object sender, EventArgs e)
         {
 
         }

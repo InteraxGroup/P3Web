@@ -485,3 +485,22 @@ a {
 	color: #fff;
 	border: 1px solid #000;
 }
+
+.pleaseWait {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	background-color: rgba(255,255,255,0.8);
+}
+
+	.pleaseWait img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 50px;
+		height: auto;
+	}

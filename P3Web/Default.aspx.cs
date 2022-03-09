@@ -26,7 +26,6 @@ namespace Paradigm3
     {
         protected async void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 // Set Properties session state
@@ -4067,16 +4066,20 @@ namespace Paradigm3
             if (ModuleID == 3 && HasDeletePermission)
             {
                 mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionExport").ToString(), "export"));
-                //mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionActionItem").ToString(), "actionitem"));
-                //MenuItem newSubMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionCreateAI").ToString(), "createactionitem");
-                //mnuGVContext.FindItem("actionitem").ChildItems.Add(newSubMenuItem);
             }
 
             if (ModuleID == 3)
             {
-                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionActionItem").ToString(), "actionitem"));
-                MenuItem newSubMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionCreateAI").ToString(), "createactionitem");
-                mnuGVContext.FindItem("actionitem").ChildItems.Add(newSubMenuItem);
+                MenuItem aiMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionActionItem").ToString(), "actionitem");
+                MenuItem aiSubMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionCreateAI").ToString(), "createactionitem");
+                aiMenuItem.ChildItems.Add(aiSubMenuItem);
+
+                mnuGVContext.Items.Add(aiMenuItem);
+                
+
+                //mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionActionItem").ToString(), "actionitem"));
+                //MenuItem newSubMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionCreateAI").ToString(), "createactionitem");
+                //mnuGVContext.FindItem("actionitem").ChildItems.Add(newSubMenuItem);
             }
 
             mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionProp").ToString(), "properties"));

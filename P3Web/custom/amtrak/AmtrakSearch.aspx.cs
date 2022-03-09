@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using Paradigm3.datalayer;
 using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace Paradigm3.custom.amtrak
 {
@@ -18,6 +19,12 @@ namespace Paradigm3.custom.amtrak
 		{
 			if (!IsPostBack)
 			{
+				bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+				if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+				{
+					string Message = GetLocalResourceObject("SessionTimeout").ToString();
+					ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
+				}
 				Init_App();
 			}
 		}
