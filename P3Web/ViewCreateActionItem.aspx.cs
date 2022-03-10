@@ -197,7 +197,7 @@ namespace P3Web
 
                         string name = txtItemCaption.Text;
                         string days = txtDays.Text;
-                        string details = "Related Name: " + txtItemCaption.Text + " ID: " + OrigID + " Sender Name: " + UserFullName + " Time sent: " + DateTime.Now + "--------------------" + txtDetails.Text;
+                        string details = "Related Name: " + txtItemCaption.Text + "\nID: " + OrigID + "\nSender Name: " + UserFullName + "\nTime sent: " + DateTime.Now + "\n--------------------" + "\n" + txtDetails.Text + "\n--------------------" ;
                         string priority = ddlPriority.SelectedValue;
 
                         int parentGroupID = 2;
