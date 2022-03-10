@@ -57,11 +57,10 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.13.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="EO.Base">
-      <HintPath>C:\Program Files (x86)\Essential Objects\EO.Total 2018\EO.Base.dll</HintPath>
+      <HintPath>..\..\..\Users\cyadav\source\repos\InteraxGroup\P3Web-chandra\P3Web\bin\EO.Base.dll</HintPath>
     </Reference>
     <Reference Include="EO.Web">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\P3WebLocal\P3Web\bin\EO.Web.dll</HintPath>
+      <HintPath>..\..\..\Users\cyadav\Documents\P3WebLocal\P3Web\bin\EO.Web.dll</HintPath>
     </Reference>
     <Reference Include="ExcelNumberFormat">
       <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
