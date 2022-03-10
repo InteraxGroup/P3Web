@@ -73,21 +73,21 @@ namespace Paradigm3
                                 string ShowMeItemProperties = await ActionItem.Get_ShowMeFileExtensionAndPublishTypeAsync(ShowID, ShowIsItemID);
                                 string[] SMIP = ShowMeItemProperties.Split(',');
                                 if (SMIP.Length > 0)
-								{
+                                {
                                     string ShowItemID = SMIP[0];
                                     string ShowOrigID = SMIP[1];
-									string fileExtension = SMIP[2];
-									string typeOfPublish = SMIP[3];
-									string fileStatus = SMIP[4];
-									btnShowMe.Attributes.Add("onclick", "openDocWindow('" + ShowItemID + "','" + ShowOrigID + "','" + fileStatus + "','" + ShowIsItemID.ToString() + "','" + publishPath + "','." + fileExtension + "','" + typeOfPublish + "');");
-								}
+                                    string fileExtension = SMIP[2];
+                                    string typeOfPublish = SMIP[3];
+                                    string fileStatus = SMIP[4];
+                                    btnShowMe.Attributes.Add("onclick", "openDocWindow('" + ShowItemID + "','" + ShowOrigID + "','" + fileStatus + "','" + ShowIsItemID.ToString() + "','" + publishPath + "','." + fileExtension + "','" + typeOfPublish + "');");
+                                }
                                 else
-								{
+                                {
                                     btnShowMe.Attributes.Add("onclick", "alert('The SHOW ME item is unavailable.');");
                                 }
-								break;
+                                break;
                             default:
-                                int objTypeID = P3General.Get_ObjTypeID(ModuleID, ShowGroupID);                                
+                                int objTypeID = P3General.Get_ObjTypeID(ModuleID, ShowGroupID);
                                 btnShowMe.Attributes.Add("onclick", "openRecordWindow(" + ModuleID.ToString() + "," + ShowID.ToString() + "," + objTypeID.ToString() + "," + ShowGroupID.ToString() + ",0" + ");");
                                 break;
                         }
@@ -134,13 +134,13 @@ namespace Paradigm3
                         {
                             bool IsPwdCnf = await ActionItem.Get_PasswordComepleteStatus(Convert.ToInt32(dtAI.Rows[0]["EventID"]));
                             if (IsPwdCnf)
-							{
+                            {
                                 pnlCompletePwd.Visible = true;
                             }
                             else
-							{
+                            {
                                 pnlComplete.Visible = true;
-                            }                            
+                            }
                         }
                         else
                         {
@@ -243,16 +243,16 @@ namespace Paradigm3
                         string UserFullName = UserValues[1].ToString();
                         int UserID = Convert.ToInt32(UserValues[0]);
 
-						ActionItem.AI_Complete(AIID, ResultID, ResultText, Comments, UserFullName, UserID);
-						ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "AIComlpete", "aiRefresh();alert('Action Item successfully completed');", true);
+                        ActionItem.AI_Complete(AIID, ResultID, ResultText, Comments, UserFullName, UserID);
+                        ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "AIComlpete", "aiRefresh();alert('Action Item successfully completed');", true);
                         await Initialize_AI(AIID);
-					}
-					else
-					{
-						ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "AIAbort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
-					}
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "AIAbort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
+                    }
                     break;
-                case "ForwardActionItem":                    
+                case "ForwardActionItem":
                     int fwAIID = Convert.ToInt32(Request.QueryString["AIID"]);
                     int fwModuleID = Convert.ToInt32(dtAI.Rows[0]["ShowModuleID"]);
                     if (gvModalSelected.Rows.Count > 0)
@@ -359,8 +359,8 @@ namespace Paradigm3
                         gvModalSelected.DataBind();
                         gvModalSelected.SelectedIndex = -1;
                     }
-                    break;                
-                case "PwdCnf":                    
+                    break;
+                case "PwdCnf":
                     await ConfirmPasswordAsync(txtPwdCnf.Text);
                     break;
                 case "ShowCompleteModal":
@@ -374,15 +374,15 @@ namespace Paradigm3
             ImageButton btn = (ImageButton)sender;
             string arg = btn.CommandArgument;
             int AIID = Convert.ToInt32(Request.QueryString["AIID"]);
-
+            DataTable dtAI = ActionItem.Get_ActionItem(AIID);
             switch (arg)
             {
                 case "GoThere":
-                    DataTable dtAI = ActionItem.Get_ActionItem(AIID);
+                    //DataTable dtAI = ActionItem.Get_ActionItem(AIID);
                     int ShowModuleID = Convert.ToInt32(dtAI.Rows[0]["ShowModuleID"]);
                     int ItemID = Convert.ToInt32(dtAI.Rows[0]["ShowID"].ToString());
                     bool ShowIsItemID = Convert.ToBoolean(dtAI.Rows[0]["ShowIsItemID"]);
-                    int ShowGroupID = P3General.Get_ParentGroupID(ShowModuleID, ItemID);                  
+                    int ShowGroupID = P3General.Get_ParentGroupID(ShowModuleID, ItemID);
 
                     DataTable dtShowItem = ActionItem.Get_AttachedRecord(ItemID, ShowModuleID, ShowIsItemID, string.Empty);
                     int ShowOrigID = Convert.ToInt32(dtShowItem.Rows[0]["OrigID"]);
@@ -397,16 +397,26 @@ namespace Paradigm3
                     ScriptManager.RegisterStartupScript(udpActionItem, udpActionItem.GetType(), "closeAI", "closeP3Window();", true);
                     break;
                 case "OpenCompleteAIModal":
-                    mpCompleteAI.Show();
-                    txtComments.Focus();
-                    break;
+
+                    int showAction = Convert.ToInt32(dtAI.Rows[0]["ShowAction"]);
+                    if (showAction == 3)
+                    {
+                        mpAIPwdCnf.Show();
+                        btnSubmitPwd.Focus();
+                    }
+                    else
+                    {
+                        mpCompleteAI.Show();
+                        txtComments.Focus();
+                    }
+                    break; ;
                 case "OpenCompleteAIPwdModal":
                     mpAIPwdCnf.Show();
                     btnSubmitPwd.Focus();
                     break;
                 case "Previous":
                     if (Session["AIIDs"] != null)
-					{
+                    {
                         List<string> AIListForPrev = (List<string>)Session["AIIDs"];
                         if (AIListForPrev.Count > 0)
                         {
@@ -428,13 +438,13 @@ namespace Paradigm3
                         }
                     }
                     else
-					{
+                    {
                         ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "previous", "alert('There is no other Action Item to display');", true);
                     }
                     break;
                 case "Next":
                     if (Session["AIIDs"] != null)
-					{
+                    {
                         List<string> AIListForNext = (List<string>)Session["AIIDs"];
                         if (AIListForNext.Count > 0)
                         {
@@ -456,7 +466,7 @@ namespace Paradigm3
                         }
                     }
                     else
-					{
+                    {
                         ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "previous", "alert('There is no other Action Item to display');", true);
                     }
                     break;
@@ -760,9 +770,9 @@ namespace Paradigm3
         {
             // Define all variables...
             DataTable dtAI = (DataTable)ViewState["ActionItem"];
-			string AIComments = txtFWComments.Text;
-			string SendToUserNameFinal = null;
-			if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            string AIComments = txtFWComments.Text;
+            string SendToUserNameFinal = null;
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
             {
                 string authCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie);
@@ -771,108 +781,108 @@ namespace Paradigm3
                 int UserID = Convert.ToInt32(UserValues[0]);
                 string UserFullName = UserValues[1].ToString();
 
-				//  Retrieve all Action Item recipients.
-				if (gvModalSelected.Rows.Count > 0)
-				{
-					DataTable dtInit = new DataTable();
-					dtInit.Columns.Add("UserID");
-					dtInit.Columns.Add("UserFullName");
+                //  Retrieve all Action Item recipients.
+                if (gvModalSelected.Rows.Count > 0)
+                {
+                    DataTable dtInit = new DataTable();
+                    dtInit.Columns.Add("UserID");
+                    dtInit.Columns.Add("UserFullName");
 
-					DataTable dtFinal = new DataTable();
+                    DataTable dtFinal = new DataTable();
 
-					int Max = (gvModalSelected.Rows.Count - 1);
-					for (int i = 0; i <= Max; i++)
-					{
-						if (gvModalSelected.Rows[i].Visible == true)
-						{
+                    int Max = (gvModalSelected.Rows.Count - 1);
+                    for (int i = 0; i <= Max; i++)
+                    {
+                        if (gvModalSelected.Rows[i].Visible == true)
+                        {
 
-							if (gvModalSelected.Rows[i].Cells[2].Text == "User")
-							{
-								int SendToUserID = Convert.ToInt32(gvModalSelected.Rows[i].Cells[0].Text);
-								string SendToUserName = gvModalSelected.Rows[i].Cells[1].Text;
-								string[] names = SendToUserName.Split(',');
-								SendToUserNameFinal = names[1] + " " + names[0];
+                            if (gvModalSelected.Rows[i].Cells[2].Text == "User")
+                            {
+                                int SendToUserID = Convert.ToInt32(gvModalSelected.Rows[i].Cells[0].Text);
+                                string SendToUserName = gvModalSelected.Rows[i].Cells[1].Text;
+                                string[] names = SendToUserName.Split(',');
+                                SendToUserNameFinal = names[1] + " " + names[0];
 
-								DataRow ir = dtInit.NewRow();
-								ir["UserID"] = SendToUserID;
-								ir["UserFullName"] = SendToUserNameFinal;
-								dtInit.Rows.Add(ir);
-							}
-							else // Entity
-							{
-								// Get ID of Entity
-								string EntityID = gvModalSelected.Rows[i].Cells[0].Text;
+                                DataRow ir = dtInit.NewRow();
+                                ir["UserID"] = SendToUserID;
+                                ir["UserFullName"] = SendToUserNameFinal;
+                                dtInit.Rows.Add(ir);
+                            }
+                            else // Entity
+                            {
+                                // Get ID of Entity
+                                string EntityID = gvModalSelected.Rows[i].Cells[0].Text;
 
-								// Find TreeNode equivalent to Entity in P3Tree and find all Child nodes
-								P3Tree.ExpandAll();
-								TreeNode tn = FindMyNode(EntityID, P3Tree);
-								DataTable dtEntity = new DataTable();
-								dtEntity.Columns.Add("ControlID");
-								dtEntity.Columns.Add("ControlFullName");
-								DataRow fr = dtEntity.NewRow();
-								fr["ControlID"] = Convert.ToInt32(tn.Value);
-								fr["ControlFullName"] = tn.Text;
-								dtEntity.Rows.Add(fr);
-								Queue<TreeNode> queue = new Queue<TreeNode>();
-								TreeNode top;
-								foreach (TreeNode topTn in tn.ChildNodes)
-								{
-									queue.Enqueue(topTn);
-								}
-								while (queue.Count > 0)
-								{
-									top = queue.Dequeue();
-									DataRow dr = dtEntity.NewRow();
-									dr["ControlID"] = top.Value;
-									dr["ControlFullName"] = top.Text;
-									dtEntity.Rows.Add(dr);
-									foreach (TreeNode nod in top.ChildNodes)
-									{
-										queue.Enqueue(nod);
-									}
-								}
-								P3Tree.CollapseAll();
-								P3Tree.Nodes[0].Expand();
+                                // Find TreeNode equivalent to Entity in P3Tree and find all Child nodes
+                                P3Tree.ExpandAll();
+                                TreeNode tn = FindMyNode(EntityID, P3Tree);
+                                DataTable dtEntity = new DataTable();
+                                dtEntity.Columns.Add("ControlID");
+                                dtEntity.Columns.Add("ControlFullName");
+                                DataRow fr = dtEntity.NewRow();
+                                fr["ControlID"] = Convert.ToInt32(tn.Value);
+                                fr["ControlFullName"] = tn.Text;
+                                dtEntity.Rows.Add(fr);
+                                Queue<TreeNode> queue = new Queue<TreeNode>();
+                                TreeNode top;
+                                foreach (TreeNode topTn in tn.ChildNodes)
+                                {
+                                    queue.Enqueue(topTn);
+                                }
+                                while (queue.Count > 0)
+                                {
+                                    top = queue.Dequeue();
+                                    DataRow dr = dtEntity.NewRow();
+                                    dr["ControlID"] = top.Value;
+                                    dr["ControlFullName"] = top.Text;
+                                    dtEntity.Rows.Add(dr);
+                                    foreach (TreeNode nod in top.ChildNodes)
+                                    {
+                                        queue.Enqueue(nod);
+                                    }
+                                }
+                                P3Tree.CollapseAll();
+                                P3Tree.Nodes[0].Expand();
 
-								foreach (DataRow er in dtEntity.Rows)
-								{
-									DataTable dtMembers = ActionItem.Get_UsersFromEntity(Convert.ToInt32(er["ControlID"]));
-									foreach (DataRow mr in dtMembers.Rows)
-									{
-										int SendToMemberID = Convert.ToInt32(mr["ControlID"]);
-										string SendToMamberName = mr["ControlFullName"].ToString();
-										DataRow nr = dtInit.NewRow();
-										nr["UserID"] = SendToMemberID;
-										nr["UserFullName"] = SendToMamberName;
-										dtInit.Rows.Add(nr);
-									}
-								}
-							}
-						}
-					}
+                                foreach (DataRow er in dtEntity.Rows)
+                                {
+                                    DataTable dtMembers = ActionItem.Get_UsersFromEntity(Convert.ToInt32(er["ControlID"]));
+                                    foreach (DataRow mr in dtMembers.Rows)
+                                    {
+                                        int SendToMemberID = Convert.ToInt32(mr["ControlID"]);
+                                        string SendToMamberName = mr["ControlFullName"].ToString();
+                                        DataRow nr = dtInit.NewRow();
+                                        nr["UserID"] = SendToMemberID;
+                                        nr["UserFullName"] = SendToMamberName;
+                                        dtInit.Rows.Add(nr);
+                                    }
+                                }
+                            }
+                        }
+                    }
 
-					// Remove duplicate rows and send Action Items.
-					dtFinal = dtInit.DefaultView.ToTable(true);
-					if (UserID != 0)
-					{
-						foreach (DataRow fr in dtFinal.Rows)
-						{
-							int stUserUD = Convert.ToInt32(fr["UserID"]);
-							string stUserFullName = fr["UserFullName"].ToString();
-							ActionItem.Forward_ActionItem(AIID, ModuleID, stUserUD, stUserFullName, UserID, UserFullName, AIComments);
-						}
-						ScriptManager.RegisterStartupScript(udpActionItem, udpActionItem.GetType(), "myScript", "aiRefresh();alert('Action Item was successfully forwarded');", true);
-					}
-					else
-					{
-						ScriptManager.RegisterStartupScript(udpActionItem, udpActionItem.GetType(), "myScript", "alert('UserID not found.  You must be logged on to forward Action Items!');", true);
-					}
-				}
-			}
-			else
-			{
-				ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "AIAbort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
-			}
+                    // Remove duplicate rows and send Action Items.
+                    dtFinal = dtInit.DefaultView.ToTable(true);
+                    if (UserID != 0)
+                    {
+                        foreach (DataRow fr in dtFinal.Rows)
+                        {
+                            int stUserUD = Convert.ToInt32(fr["UserID"]);
+                            string stUserFullName = fr["UserFullName"].ToString();
+                            ActionItem.Forward_ActionItem(AIID, ModuleID, stUserUD, stUserFullName, UserID, UserFullName, AIComments);
+                        }
+                        ScriptManager.RegisterStartupScript(udpActionItem, udpActionItem.GetType(), "myScript", "aiRefresh();alert('Action Item was successfully forwarded');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(udpActionItem, udpActionItem.GetType(), "myScript", "alert('UserID not found.  You must be logged on to forward Action Items!');", true);
+                    }
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "AIAbort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
+            }
         }
 
         protected void Reply_AI(int AIID, int ModuleID)
@@ -888,26 +898,26 @@ namespace Paradigm3
                 string[] UserValues = UserData.Split(',');
                 UserID = Convert.ToInt32(UserValues[0]);
                 UserFullName = UserValues[1].ToString();
-            }           
+            }
 
-			if (UserID != 0)
-			{
-				string Comments = txtReplyComments.Text;
-				ActionItem.Reply_ActionItem(AIID, ModuleID, UserID, UserFullName, Comments);
-				ScriptManager.RegisterStartupScript(udpActionItem, udpActionItem.GetType(), "myScript", "aiRefresh();alert('Action Item reply successfully sent');", true);
-			}
-			else
-			{
-				ScriptManager.RegisterStartupScript(udpActionItem, udpActionItem.GetType(), "myScript", "alert('User ID not found.  You must be logged in to reply to Action Items!');", true);
-			}            
+            if (UserID != 0)
+            {
+                string Comments = txtReplyComments.Text;
+                ActionItem.Reply_ActionItem(AIID, ModuleID, UserID, UserFullName, Comments);
+                ScriptManager.RegisterStartupScript(udpActionItem, udpActionItem.GetType(), "myScript", "aiRefresh();alert('Action Item reply successfully sent');", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(udpActionItem, udpActionItem.GetType(), "myScript", "alert('User ID not found.  You must be logged in to reply to Action Items!');", true);
+            }
         }
 
-		#endregion
+        #endregion
 
-		#region Password Confirm
+        #region Password Confirm
 
         protected async Task ConfirmPasswordAsync(string password)
-		{
+        {
             if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
             {
                 //Retrieve http authentication cookie.
@@ -932,15 +942,15 @@ namespace Paradigm3
                 else
                 {
                     ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "TEST", "alert('Password not accepted. Please try again.');", true);
-                    
+
                 }
             }
             else
-			{
+            {
                 ScriptManager.RegisterStartupScript(udpActionItem, GetType(), "TEST", "alert('You are not logged in. Please log in and try again');", true);
-            }            
+            }
         }
 
-		#endregion
-	}
+        #endregion
+    }
 }
