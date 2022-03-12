@@ -20,27 +20,27 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <asp:UpdatePanel ID="udpDocData" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-        <div id="pnlDocToolBar">
+        <div id="topBar">
             <div id="pnlToolbarLeft">
                 <div class="toolbarButton">
                     <asp:ImageButton ID="btnProperties" runat="server" ImageUrl="~/images/properties.png" ToolTip="Show Properties" meta:resourcekey="btnPropertiesResource1" />
                     <br />
-                    <asp:Label ID="lblProperties" runat="server" Text="Properties" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblPropertiesResource1" />
+                    <asp:Label ID="lblProperties" runat="server" Text="Properties" meta:resourcekey="lblPropertiesResource1" />
                 </div>
                 <asp:Panel ID="pnlParaLink" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlParaLinkResource1">
                     <asp:ImageButton ID="btnParaLink" runat="server" ImageUrl="~/images/paralink.png" ToolTip="View Para-Links&reg;" meta:resourcekey="btnParaLinkResource1" />
                     <br />
-                    <asp:Label ID="lblParaLink" runat="server" Text="Para-Link&reg;" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblParaLinkResource1" />
+                    <asp:Label ID="lblParaLink" runat="server" Text="Para-Link" meta:resourcekey="lblParaLinkResource1" />
                 </asp:Panel>
                 <asp:Panel ID="pnlRelatedAI" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlRelatedAIResource1">
                     <asp:ImageButton ID="btnRelatedAI" runat="server" ImageUrl="~/images/actionitem.png" ToolTip="View Related Action Items" meta:resourcekey="btnRelatedAIResource1" />
                     <br />
-                    <asp:Label ID="lblRelatedAI" runat="server" Text="Related AI" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblRelatedAIResource1" />
+                    <asp:Label ID="lblRelatedAI" runat="server" Text="Related AI" meta:resourcekey="lblRelatedAIResource1" />
                 </asp:Panel>
                 <div class="toolbarButton">
                     <asp:ImageButton ID="btnClose" runat="server" ImageUrl="~/images/exit.png" ToolTip="Close Document" OnClick="btnCloseDoc_Click" meta:resourcekey="btnCloseResource1" />
                     <br />
-                    <asp:Label ID="lblClose" runat="server" Text="Close" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblCloseResource1" />
+                    <asp:Label ID="lblClose" runat="server" Text="Close" meta:resourcekey="lblCloseResource1" />
                 </div>
             </div>            
             <div id="pnlToolbarRight">
@@ -52,8 +52,8 @@
                     <div class="right-column">
                         <div><asp:Label ID="ReleasedLabel" runat="server" Text="Released:" meta:resourcekey="ReleasedLabel"></asp:Label></div>
                         <div>
-                            <asp:Label ID="lblReleasedData" runat="server" Font-Size="9pt" meta:resourcekey="lblReleasedDataResource1" />&nbsp;
-                            <asp:Label ID="lblReleasedByData" runat="server" Font-Size="9pt" meta:resourcekey="lblReleasedByDataResource1" />
+                            <asp:Label ID="lblReleasedData" runat="server" meta:resourcekey="lblReleasedDataResource1" />&nbsp;
+                            <asp:Label ID="lblReleasedByData" runat="server" meta:resourcekey="lblReleasedByDataResource1" />
                         </div>
                     </div>
                 </div>
@@ -65,8 +65,8 @@
                     <div class="right-column">
                         <div><asp:Label ID="VersionLabel" runat="server" Text="Version:" meta:resourcekey="VersionLabel"></asp:Label></div>
                         <div>
-                            <asp:Label ID="lblVersionData" runat="server" Font-Size="9pt" meta:resourcekey="lblVersionDataResource1" />&nbsp;
-                            <asp:Label ID="lblStatusData" runat="server" Font-Size="9pt" meta:resourcekey="lblStatusDataResource1" />
+                            <asp:Label ID="lblVersionData" runat="server" meta:resourcekey="lblVersionDataResource1" />&nbsp;
+                            <asp:Label ID="lblStatusData" runat="server" meta:resourcekey="lblStatusDataResource1" />
                         </div>
                     </div>
                 </div>

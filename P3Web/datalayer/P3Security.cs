@@ -500,11 +500,23 @@ namespace Paradigm3.datalayer
                 // Create authentication cookie for user
                 FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, username, DateTime.Now, DateTime.Now.AddMinutes(60), false, usrData, FormsAuthentication.FormsCookiePath);
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-				HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
-				{
-					HttpOnly = true,
-                    SameSite = SameSiteMode.Lax
-				};
+                string SameSitePolicy = ConfigurationManager.AppSettings["SameSitePolicy"];
+                HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                myCookie.HttpOnly = true;
+                switch (SameSitePolicy)
+                {
+                    case "None":
+                        myCookie.HttpOnly = true;
+                        myCookie.SameSite = SameSiteMode.None;
+                        break;
+                    case "Strict":
+                        myCookie.HttpOnly = true;
+                        myCookie.SameSite = SameSiteMode.Strict;
+                        break;
+                    default:                        
+                        myCookie.SameSite = SameSiteMode.Lax;
+                        break;
+                }
                 HttpContext.Current.Response.Cookies.Add(myCookie);
             }
             dsUser.Dispose();
@@ -536,11 +548,23 @@ namespace Paradigm3.datalayer
                 // Create authentication cookie for user
                 FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, username, DateTime.Now, timeout, false, usrData, FormsAuthentication.FormsCookiePath);
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-                HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
+                string SameSitePolicy = ConfigurationManager.AppSettings["SameSitePolicy"];
+                HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                myCookie.HttpOnly = true;
+                switch (SameSitePolicy)
                 {
-                    HttpOnly = true,
-                    SameSite = SameSiteMode.Lax
-                };
+                    case "None":
+                        myCookie.HttpOnly = true;
+                        myCookie.SameSite = SameSiteMode.None;
+                        break;
+                    case "Strict":
+                        myCookie.HttpOnly = true;
+                        myCookie.SameSite = SameSiteMode.Strict;
+                        break;
+                    default:
+                        myCookie.SameSite = SameSiteMode.Lax;
+                        break;
+                }
                 HttpContext.Current.Response.Cookies.Add(myCookie);
             }
             dsUser.Dispose();
@@ -562,11 +586,23 @@ namespace Paradigm3.datalayer
             // Create authentication cookie for user
             FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, "guest", DateTime.Now, DateTime.Now.AddDays(365), false, usrData, FormsAuthentication.FormsCookiePath);
             string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-            HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
+            string SameSitePolicy = ConfigurationManager.AppSettings["SameSitePolicy"];
+            HttpCookie myCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+            myCookie.HttpOnly = true;
+            switch (SameSitePolicy)
             {
-                HttpOnly = true,
-                SameSite = SameSiteMode.Lax
-            };
+                case "None":
+                    myCookie.HttpOnly = true;
+                    myCookie.SameSite = SameSiteMode.None;
+                    break;
+                case "Strict":
+                    myCookie.HttpOnly = true;
+                    myCookie.SameSite = SameSiteMode.Strict;
+                    break;
+                default:
+                    myCookie.SameSite = SameSiteMode.Lax;
+                    break;
+            }
             HttpContext.Current.Response.Cookies.Add(myCookie);
         }
 

@@ -16,52 +16,54 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <asp:UpdatePanel ID="udpActionItem" runat="server" UpdateMode="Conditional">
     <ContentTemplate>
-    <div id="pnlAIToolbar">
-        <asp:Label ID="lblCompleteTrigger" runat="server" style="display: none;" meta:resourcekey="lblCompleteTriggerResource1" />
-        <asp:Panel ID="pnlShowMe" runat="server" CssClass="toolbarButton" Visible="False" style="border-right: 1px solid #dcdcdc;" meta:resourcekey="pnlShowMeResource1">
-            <asp:ImageButton ID="btnShowMe" runat="server" ImageUrl="~/images/showme.png" CausesValidation="False" meta:resourcekey="btnShowMeResource1" />
-            <br />
-            <asp:Label ID="lblShowMeAI" runat="server" Text="Show Me" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblShowMeAIResource1" />
-        </asp:Panel>
-        <asp:Panel ID="pnlGoThere" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999999;" Visible="False" meta:resourcekey="pnlGoThereResource1">
-            <asp:ImageButton ID="btnGoThere" runat="server" ImageUrl="~/images/gothere.png" ToolTip="View Linked Folder" OnClick="ImageButton_Click" CommandArgument="GoThere" meta:resourcekey="btnGoThereResource1" />
-            <br />
-            <asp:Label ID="lblGoThere" runat="server" Text="Go There" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblGoThereResource1" />
-        </asp:Panel>
-        <asp:Panel ID="pnlComplete" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999999;" Visible ="False" meta:resourcekey="pnlCompleteResource1">
-            <asp:ImageButton ID="btnComplete" runat="server" ImageUrl="~/images/ai_complete.png" ToolTip="Complete Action Item" ValidationGroup="CompleteAI" CausesValidation="False" OnClick="ImageButton_Click" CommandArgument="OpenCompleteAIModal" meta:resourcekey="btnCompleteResource1" />
-            <br />
-            <asp:Label ID="lblCompleteAI" runat="server" Text="Complete" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblCompleteAIResource1" />
-        </asp:Panel>
-        <asp:Panel ID="pnlCompletePwd" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999;" Visible="False" meta:resourcekey="pnlCompletePwdResource1">
-            <asp:ImageButton ID="btnCompleteAIPwd" runat="server" ImageUrl="~/images/ai_complete.png" ToolTip="Complete Action Item" CausesValidation="False" OnClick="ImageButton_Click" CommandArgument="OpenCompleteAIPwdModal" meta:resourcekey="btnCompleteAIPwdResource1" />
-            <br />
-            <asp:Label ID="lblCompleteAIPwd" runat="server" Text="Complete" meta:resourcekey="lblCompleteAIPwdResource1" />
-        </asp:Panel>
-        <div class="toolbarButton" style="border-right: 1px solid #dcdcdc;">
-            <asp:ImageButton ID="btnReply" runat="server" ImageUrl="~/images/aireply.png" ToolTip="Reply to Sender" meta:resourcekey="btnReplyResource1" />
-            <br />
-            <asp:Label ID="lblReply" runat="server" Text="Reply" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblReplyResource1" />
-        </div>
-        <div class="toolbarButton" style="border-right: 1px solid #999999;">
-            <asp:ImageButton ID="btnForward" runat="server" ImageUrl="~/images/aiforward.png" ToolTip="Forward to Another User" meta:resourcekey="btnForwardResource1" />
-            <br />
-            <asp:Label ID="lblForward" runat="server" Text="Forward" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblForwardResource1" />
-        </div>
-        <div class="toolbarButton" style="border-right: 1px solid #dcdcdc;">
-            <asp:ImageButton ID="btnPrevious" runat="server" ImageUrl="~/images/previous.png" ToolTip="Previous" OnClick="ImageButton_Click" CommandArgument="Previous" meta:resourcekey="btnPreviousResource1" />
-            <br />
-            <asp:Label ID="lblPrevious" runat="server" Text="Previous" meta:resourcekey="lblPreviousResource1" />
-        </div>
-        <div class="toolbarButton" style="border-right: 1px solid #999999;">
-            <asp:ImageButton ID="btnNext" runat="server" ImageUrl="~/images/next.png" ToolTip="Next" OnClick="ImageButton_Click" CommandArgument="Next" meta:resourcekey="btnNextResource1" />
-            <br />
-            <asp:Label ID="lblNext" runat="server" Text="Next" meta:resourcekey="lblNextResource1" />
-        </div>
-        <div class="toolbarButton">
-            <asp:ImageButton ID="btnExit" runat="server" ImageUrl="~/images/exit.png" ToolTip="Close Action Item" OnClick="ImageButton_Click" CommandArgument="CloseWindow" meta:resourcekey="btnExitResource1" />
-            <br />
-            <asp:Label ID="lblExitAI" runat="server" Text="Close" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblExitAIResource1" />
+    <div id="topBar">
+        <div class="toolbar">
+            <asp:Label ID="lblCompleteTrigger" runat="server" style="display: none;" meta:resourcekey="lblCompleteTriggerResource1" />
+            <asp:Panel ID="pnlShowMe" runat="server" CssClass="toolbarButton" Visible="False" style="border-right: 1px solid #dcdcdc;" meta:resourcekey="pnlShowMeResource1">
+                <asp:ImageButton ID="btnShowMe" runat="server" ImageUrl="~/images/showme.png" CausesValidation="False" meta:resourcekey="btnShowMeResource1" />
+                <br />
+                <asp:Label ID="lblShowMeAI" runat="server" Text="Show Me" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblShowMeAIResource1" />
+            </asp:Panel>
+            <asp:Panel ID="pnlGoThere" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999999;" Visible="False" meta:resourcekey="pnlGoThereResource1">
+                <asp:ImageButton ID="btnGoThere" runat="server" ImageUrl="~/images/gothere.png" ToolTip="View Linked Folder" OnClick="ImageButton_Click" CommandArgument="GoThere" meta:resourcekey="btnGoThereResource1" />
+                <br />
+                <asp:Label ID="lblGoThere" runat="server" Text="Go There" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblGoThereResource1" />
+            </asp:Panel>
+            <asp:Panel ID="pnlComplete" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999999;" Visible ="False" meta:resourcekey="pnlCompleteResource1">
+                <asp:ImageButton ID="btnComplete" runat="server" ImageUrl="~/images/ai_complete.png" ToolTip="Complete Action Item" ValidationGroup="CompleteAI" CausesValidation="False" OnClick="ImageButton_Click" CommandArgument="OpenCompleteAIModal" meta:resourcekey="btnCompleteResource1" />
+                <br />
+                <asp:Label ID="lblCompleteAI" runat="server" Text="Complete" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblCompleteAIResource1" />
+            </asp:Panel>
+            <asp:Panel ID="pnlCompletePwd" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999;" Visible="False" meta:resourcekey="pnlCompletePwdResource1">
+                <asp:ImageButton ID="btnCompleteAIPwd" runat="server" ImageUrl="~/images/ai_complete.png" ToolTip="Complete Action Item" CausesValidation="False" OnClick="ImageButton_Click" CommandArgument="OpenCompleteAIPwdModal" meta:resourcekey="btnCompleteAIPwdResource1" />
+                <br />
+                <asp:Label ID="lblCompleteAIPwd" runat="server" Text="Complete" meta:resourcekey="lblCompleteAIPwdResource1" />
+            </asp:Panel>
+            <div class="toolbarButton" style="border-right: 1px solid #dcdcdc;">
+                <asp:ImageButton ID="btnReply" runat="server" ImageUrl="~/images/aireply.png" ToolTip="Reply to Sender" meta:resourcekey="btnReplyResource1" />
+                <br />
+                <asp:Label ID="lblReply" runat="server" Text="Reply" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblReplyResource1" />
+            </div>
+            <div class="toolbarButton" style="border-right: 1px solid #999999;">
+                <asp:ImageButton ID="btnForward" runat="server" ImageUrl="~/images/aiforward.png" ToolTip="Forward to Another User" meta:resourcekey="btnForwardResource1" />
+                <br />
+                <asp:Label ID="lblForward" runat="server" Text="Forward" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblForwardResource1" />
+            </div>
+            <div class="toolbarButton" style="border-right: 1px solid #dcdcdc;">
+                <asp:ImageButton ID="btnPrevious" runat="server" ImageUrl="~/images/previous.png" ToolTip="Previous" OnClick="ImageButton_Click" CommandArgument="Previous" meta:resourcekey="btnPreviousResource1" />
+                <br />
+                <asp:Label ID="lblPrevious" runat="server" Text="Previous" meta:resourcekey="lblPreviousResource1" />
+            </div>
+            <div class="toolbarButton" style="border-right: 1px solid #999999;">
+                <asp:ImageButton ID="btnNext" runat="server" ImageUrl="~/images/next.png" ToolTip="Next" OnClick="ImageButton_Click" CommandArgument="Next" meta:resourcekey="btnNextResource1" />
+                <br />
+                <asp:Label ID="lblNext" runat="server" Text="Next" meta:resourcekey="lblNextResource1" />
+            </div>
+            <div class="toolbarButton">
+                <asp:ImageButton ID="btnExit" runat="server" ImageUrl="~/images/exit.png" ToolTip="Close Action Item" OnClick="ImageButton_Click" CommandArgument="CloseWindow" meta:resourcekey="btnExitResource1" />
+                <br />
+                <asp:Label ID="lblExitAI" runat="server" Text="Close" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblExitAIResource1" />
+            </div>
         </div>
     </div>
     <div id="pnlAIInfo">
@@ -119,7 +121,7 @@
     <div id="pnlAIDetails">
         <%= GetLocalResourceObject("DetailsLabel") %>
         <br />
-        <asp:TextBox ID="txtDetails" runat="server" CssClass="aiDetails" ReadOnly="True" TextMode="MultiLine" Font-Names="Arial" meta:resourcekey="txtDetailsResource1" />
+        <asp:TextBox ID="txtDetails" runat="server" CssClass="aiDetails" ReadOnly="True" TextMode="MultiLine" Font-Names="sans-serif" style="resize: none;" meta:resourcekey="txtDetailsResource1" />
     </div>
 
     <asp:Button ID="btnHidden" runat="server" style="display: none;" meta:resourcekey="btnHiddenResource1" />

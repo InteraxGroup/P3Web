@@ -20,19 +20,21 @@ using System.Threading;
 using System.Globalization;
 using System.Resources;
 
-namespace P3Web
+namespace Paradigm3
 {
-    public partial class Default2 : SqlViewStatePage
+    public partial class Default : SqlViewStatePage
     {
-        #region Initialization
-
         protected async void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                lblVersion.Text = version;
+                // Set Properties session state
+                Session["IsGroup"] = 1;
+                Session["IsEvidenceCheck"] = "False";
 
+                // Get application version.
+                string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                lblVersion.Text = "Version: " + version;
                 await PopulateDLinksAsync();
 
                 //SAML Settings
@@ -42,7 +44,7 @@ namespace P3Web
                 string ACS = ConfigurationManager.AppSettings["ACSUrl"];
 
                 if (ssoAuth.ToUpper() == "TRUE" && Session["IsValidSAML"] == null)
-                {
+                {                    
                     var samlEndpoint = ssoURL;
                     var request = new AuthRequest(issuer, ACS);
                     //redirect the user to the SAML provider
@@ -97,7 +99,7 @@ namespace P3Web
                         else
                         {
                             Set_CheckLogon(false);
-                            //ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "", "alert('Unable to retrieve Windows User information');", true);
+                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "", "alert('Unable to retrieve Windows User information');", true);
                         }
                     }
                     else
@@ -204,11 +206,10 @@ namespace P3Web
                 pnlLogon.Visible = false;
                 pnlChangePW.Visible = false;
             }
+
         }
 
-        #endregion
-
-        #region Menu Functions and Methods
+        #region Menu Functions & Subroutines
 
         private async Task PopulateDLinksAsync()
         {
@@ -298,6 +299,7 @@ namespace P3Web
             p3Tree.Nodes[0].Selected = true;
             p3Tree.Nodes[0].Expand();
             mnuModules.Items[0].Selected = true;
+
         }
 
         protected void mnuModules_MenuItemClick(object sender, EventArgs e)
@@ -338,7 +340,32 @@ namespace P3Web
             switch (moduleID)
             {
                 case 0:
-                    Set_CheckLogon(User.Identity.IsAuthenticated);
+                    bool IsSelected = false;
+                    foreach (MenuItem mi in Menu1.Items)
+                    {
+                        if (mi.Selected)
+                        {
+                            IsSelected = true;
+                        }
+                    }
+                    if (IsSelected)
+                    {
+                        Menu1.SelectedItem.Selected = false;
+                    }
+                    rootImageURL = "~/images/root.png";
+                    pnlDirectLink.Visible = true;
+                    pnlTreeView.Visible = false;
+                    pnlHome.Visible = true;
+                    pnlList.Visible = false;
+                    pnlLogon.Visible = false;
+                    txtUserName.Text = string.Empty;
+                    txtPassword.Text = string.Empty;
+                    pnlChangePW.Visible = false;
+                    lblModuleLabel.Text = string.Empty;
+                    if (userID == 0)
+                    {
+                        ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "test", "resetHome()", true);
+                    }
                     break;
                 case 1:
                     parentGroupID = "1";
@@ -353,6 +380,7 @@ namespace P3Web
 
                     // Report
                     pnlReport.Visible = false;
+                    pnlProgress.Visible = false;
                     break;
                 case 3:
                     parentGroupID = ConfigurationManager.AppSettings["DefDocGroupID"];
@@ -367,6 +395,7 @@ namespace P3Web
 
                     // Report
                     pnlReport.Visible = true;
+                    pnlProgress.Visible = false;
                     break;
                 case 4:
                     parentGroupID = ConfigurationManager.AppSettings["DefRecGroupID"];
@@ -381,6 +410,7 @@ namespace P3Web
 
                     // Report
                     pnlReport.Visible = true;
+                    pnlProgress.Visible = false;
                     break;
                 case 6:
                     parentGroupID = ConfigurationManager.AppSettings["DefImpGroupID"];
@@ -394,6 +424,7 @@ namespace P3Web
                     lblModuleLabel.Text = "Improvements";
                     // Report
                     pnlReport.Visible = true;
+                    pnlProgress.Visible = false;
                     break;
                 case 12:
                     parentGroupID = ConfigurationManager.AppSettings["DefTrainGroupID"];
@@ -408,6 +439,7 @@ namespace P3Web
 
                     // Report
                     pnlReport.Visible = true;
+                    pnlProgress.Visible = false;
                     break;
                 case 14:
                     parentGroupID = ConfigurationManager.AppSettings["DefAIGroupID"];
@@ -422,6 +454,7 @@ namespace P3Web
 
                     // Report
                     pnlReport.Visible = false;
+                    pnlProgress.Visible = false;
                     break;
             }
 
@@ -455,9 +488,10 @@ namespace P3Web
             {
                 ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "report", "alert(" + ex.Message + ")", true);
             }
+
         }
 
-        protected void mnuAddItem_MenuItemClick(object sender, MenuEventArgs e)
+        protected void mnuAddDoc_MenuItemClick(object sender, MenuEventArgs e)
         {
             string ParentGroupID = p3Tree.SelectedValue;
             string AddOption = e.Item.Value;
@@ -510,6 +544,192 @@ namespace P3Web
             }
 
             pnlAddDropDown.Visible = false;
+        }
+
+        protected void mnuRename_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            {
+                //Retrieve http authentication cookie.
+                string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                string UserData = authTicket.UserData;
+                string[] UserValues = UserData.Split(',');
+                int UserID = Convert.ToInt32(UserValues[0]);
+
+                int ModuleID = Convert.ToInt32(mnuModules.SelectedValue);
+                int? OrigID;
+                int value = Convert.ToInt32(mnuRename.SelectedValue);
+                if (value == 0)
+                {
+                    GridView gv = new GridView();
+                    switch (ModuleID)
+                    {
+                        case 1:
+                            gv = gvUsersList;
+                            break;
+                        case 4:
+                        case 6:
+                        case 12:
+                            gv = gvRecordList;
+                            break;
+                        case 14:
+                            gv = gvAIList;
+                            break;
+                        default:
+                            gv = gvItemList;
+                            break;
+                    }
+                    if (gv.SelectedIndex != -1)
+                    {
+                        OrigID = Convert.ToInt32(gv.DataKeys[gv.SelectedIndex].Values["OrigID"]);
+                        if (ModuleID == 1)
+                        {
+                            OrigID = Convert.ToInt32(gv.DataKeys[gv.SelectedIndex].Values["UserID"]);
+                        }
+                        ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "openRename", "openRenameWindow(" + ModuleID + "," + OrigID + "," + UserID + ",'false');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "noItem", "alert('You must select an item to rename.');", true);
+                    }
+                }
+                else
+                {
+                    OrigID = Convert.ToInt32(p3Tree.SelectedValue);
+                    ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "openRename", "openRenameWindow(" + ModuleID + "," + OrigID + "," + UserID + ",'true');", true);
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "noLogin", "alert('Your session has timed out. Please login and try again');", true);
+            }
+            RenameDropdown.Visible = false;
+        }
+
+        protected void mnuMove_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            {
+                //Retrieve http authentication cookie.
+                string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                string UserData = authTicket.UserData;
+                string[] UserValues = UserData.Split(',');
+                int UserID = Convert.ToInt32(UserValues[0]);
+                int ModuleID = Convert.ToInt32(mnuModules.SelectedValue);
+                string SourcePath = Server.UrlEncode(p3Tree.SelectedNode.ValuePath);
+
+                int? OrigID = null;
+                int value = Convert.ToInt32(e.Item.Value);
+
+                if (value == 0)
+                {
+                    GridView gv = new GridView();
+                    switch (ModuleID)
+                    {
+                        case 1:
+                            gv = gvUsersList;
+                            break;
+                        case 4:
+                        case 6:
+                        case 12:
+                            gv = gvRecordList;
+                            break;
+                        case 14:
+                            gv = gvAIList;
+                            break;
+                        default:
+                            gv = gvItemList;
+                            break;
+                    }
+                    if (gv.SelectedIndex != -1)
+                    {
+                        OrigID = Convert.ToInt32(gv.DataKeys[gv.SelectedIndex].Values["OrigID"]);
+                        if (ModuleID == 1)
+                        {
+                            OrigID = Convert.ToInt32(gv.DataKeys[gv.SelectedIndex].Values["UserID"]);
+                        }
+                        ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "openMove", "openMoveWindow(" + ModuleID + "," + OrigID + "," + UserID + ",'" + SourcePath + "','false');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "noItem", "alert('You must select an item to rename.');", true);
+                    }
+                }
+                else
+                {
+                    OrigID = Convert.ToInt32(p3Tree.SelectedValue);
+                    ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "openRename", "openMoveWindow(" + ModuleID + "," + OrigID + "," + UserID + ",'" + SourcePath + "','true');", true);
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "noLogin", "alert('Your session has timed out. Please login and try again');", true);
+            }
+            MoveDropdown.Visible = false;
+        }
+
+        protected void mnuDelete_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            {
+                //Retrieve http authentication cookie.
+                string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                string UserData = authTicket.UserData;
+                string[] UserValues = UserData.Split(',');
+                int UserID = Convert.ToInt32(UserValues[0]);
+                int ModuleID = Convert.ToInt32(mnuModules.SelectedValue);
+
+                int? OrigID = null;
+                int value = Convert.ToInt32(mnuDelete.SelectedValue);
+
+                if (value == 0)
+                {
+                    GridView gv = new GridView();
+                    switch (ModuleID)
+                    {
+                        case 1:
+                            gv = gvUsersList;
+                            break;
+                        case 4:
+                        case 6:
+                        case 12:
+                            gv = gvRecordList;
+                            break;
+                        case 14:
+                            gv = gvAIList;
+                            break;
+                        default:
+                            gv = gvItemList;
+                            break;
+                    }
+                    if (gv.SelectedIndex != -1)
+                    {
+                        OrigID = Convert.ToInt32(gv.DataKeys[gv.SelectedIndex].Values["OrigID"]);
+                        if (ModuleID == 1)
+                        {
+                            OrigID = Convert.ToInt32(gv.DataKeys[gv.SelectedIndex].Values["UserID"]);
+                        }
+                        ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "openRename", "openDeleteWindow(" + ModuleID.ToString() + "," + OrigID.ToString() + "," + UserID.ToString() + ",'false');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "noItem", "alert('You must select an item to rename.');", true);
+                    }
+                }
+                else
+                {
+                    OrigID = Convert.ToInt32(p3Tree.SelectedValue);
+                    ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "openRename", "openDeleteWindow(" + ModuleID + "," + OrigID + "," + UserID + ",'true');", true);
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(udpToolbar, GetType(), "noLogin", "alert('Your session has timed out. Please login and try again');", true);
+            }
+            DeleteDropdown.Visible = false;
         }
 
         protected async void ContextMenu_MenuItemClick(object sender, MenuEventArgs e)
@@ -755,519 +975,63 @@ namespace P3Web
             }
         }
 
-        private async Task UpdateListViewAsync()
-        {
-            Session["IsGroup"] = 1;
-            Session["ParentGroupID"] = p3Tree.SelectedValue;
-            p3Tree.SelectedNode.Expand();
-            int moduleID = Convert.ToInt32(ConfigurationManager.AppSettings["DefModuleID"]);
-            if (Session["ModuleID"] != null)
-            {
-                moduleID = Convert.ToInt32(Session["ModuleID"]);
-            }
-            int userID = 0;
-            int userStatus = -1;
-            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-            {
-                // Get user information from authentication cookie.
-                string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
-                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
-                string UserData = authTicket.UserData;
-                string[] UserValues = UserData.Split(',');
-                userID = Convert.ToInt32(UserValues[0]);
-                userStatus = Convert.ToInt32(UserValues[3]);
-            }
-
-            int groupID = Convert.ToInt32(p3Tree.SelectedValue);
-            gvUsersList.SelectedIndex = -1;
-            gvItemList.SelectedIndex = -1;
-            gvRecordList.SelectedIndex = -1;
-            gvAIList.SelectedIndex = -1;
-            DataTable dt = P3General.Get_ItemList(moduleID, userID, groupID.ToString());
-            HttpCookie sortCookie = Request.Cookies["P3WebSort"];
-            string sortExp;
-            // set toolbar button properties and sort expression.
-            DisableButtons();
-            if (moduleID != 14)
-            {
-                pnlProperties.Visible = true;
-            }
-
-            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-            {
-                // Enable Add Button if user is authenticated
-                bool HasAddPermission = await P3General.HasAddPermissionAsync(moduleID, groupID, userID);
-                bool HasRenamePermission = await P3General.HasRenamePermissionAsync(moduleID, groupID, userID);
-                bool HasMovePermission = await P3General.HasMovePermissionAsync(moduleID, groupID, userID);
-                bool HasDeletePermission = await P3General.HasDeletePermissionAsync(moduleID, groupID, userID);
-                bool HasSetRepublishPermission = await P3General.HasSetRepublishPermissionAsync(moduleID, groupID, userID);
-
-
-                if (userStatus == 1)
-                {
-                    pnlAdd.Visible = true;
-                }
-                else
-                {
-                    if (HasAddPermission)
-                    {
-                        pnlAdd.Visible = true;
-                    }
-                }
-
-                if (HasRenamePermission)
-                {
-                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRename").ToString(), "rename"));
-                }
-
-                if (HasMovePermission)
-                {
-                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionMove").ToString(), "move"));
-                }
-
-                if (HasDeletePermission)
-                {
-                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionDel").ToString(), "delete"));
-                }
-
-                if (moduleID == 3 && HasSetRepublishPermission)
-                {
-                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRepub").ToString(), "setrepublish"));
-                }
-
-                if (HasMovePermission && moduleID != 1)
-                {
-                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionCopy").ToString(), "copy"));
-                }
-            }
-
-            switch (moduleID)
-            {
-                case 1:
-                    // Report
-                    pnlReport.Visible = false;
-
-                    // Sort GridView
-                    if (sortCookie != null)
-                    {
-                        sortExp = sortCookie.Values["usrSort"];
-                    }
-                    else
-                    {
-                        sortExp = "Name ASC";
-                    }
-                    dt.DefaultView.Sort = sortExp;
-
-                    // Clear unused grid views
-                    gvItemList.DataSource = null;
-                    gvItemList.DataBind();
-                    gvRecordList.DataSource = null;
-                    gvRecordList.DataBind();
-                    gvAIList.DataSource = null;
-                    gvAIList.DataBind();
-                    // Fill used grid View
-                    gvUsersList.DataSource = dt;
-                    gvUsersList.DataBind();
-                    break;
-                case 4:
-                    // Report
-                    pnlReport.Visible = false;
-
-                    // Sort GridView
-                    if (sortCookie != null)
-                    {
-                        sortExp = sortCookie.Values["recSort"];
-                    }
-                    else
-                    {
-                        sortExp = "Name ASC";
-                    }
-                    dt.DefaultView.Sort = sortExp;
-
-                    // Clear unused grid views
-                    gvUsersList.DataSource = null;
-                    gvUsersList.DataBind();
-                    gvItemList.DataSource = null;
-                    gvItemList.DataBind();
-                    gvAIList.DataSource = null;
-                    gvAIList.DataBind();
-                    // Fill used grid View
-                    gvRecordList.DataSource = dt;
-                    gvRecordList.DataBind();
-                    break;
-                case 6:
-                    // Report
-                    pnlReport.Visible = false;
-
-                    // Sort GridView
-                    if (sortCookie != null)
-                    {
-                        sortExp = sortCookie.Values["impSort"];
-                    }
-                    else
-                    {
-                        sortExp = "Name ASC";
-                    }
-                    dt.DefaultView.Sort = sortExp;
-
-                    // Clear unused grid views
-                    gvUsersList.DataSource = null;
-                    gvUsersList.DataBind();
-                    gvItemList.DataSource = null;
-                    gvItemList.DataBind();
-                    gvAIList.DataSource = null;
-                    gvAIList.DataBind();
-                    // Fill used grid View
-                    gvRecordList.DataSource = dt;
-                    gvRecordList.DataBind();
-                    break;
-                case 12:
-                    // Report
-                    pnlReport.Visible = false;
-
-                    // Sort GridView
-                    if (sortCookie != null)
-                    {
-                        sortExp = sortCookie.Values["trainSort"];
-                    }
-                    else
-                    {
-                        sortExp = "Name ASC";
-                    }
-                    dt.DefaultView.Sort = sortExp;
-
-                    // Clear unused grid views
-                    gvUsersList.DataSource = null;
-                    gvUsersList.DataBind();
-                    gvItemList.DataSource = null;
-                    gvItemList.DataBind();
-                    gvAIList.DataSource = null;
-                    gvAIList.DataBind();
-                    // Fill used grid View
-                    gvRecordList.DataSource = dt;
-                    gvRecordList.DataBind();
-                    break;
-                case 14:
-                    // Disable Add, Rename, and Move Buttons
-                    pnlAdd.Visible = false;
-
-                    // Report
-                    pnlReport.Visible = false;
-
-                    // Sort GridView
-                    if (sortCookie != null)
-                    {
-                        sortExp = sortCookie.Values["aiSort"];
-                    }
-                    else
-                    {
-                        sortExp = "SendDate DESC";
-                    }
-                    dt.DefaultView.Sort = sortExp;
-
-                    // Clear unused grid views
-                    gvUsersList.DataSource = null;
-                    gvUsersList.DataBind();
-                    gvRecordList.DataSource = null;
-                    gvRecordList.DataBind();
-                    gvItemList.DataSource = null;
-                    gvItemList.DataBind();
-                    // Fill used grid View
-                    gvAIList.DataSource = dt;
-                    gvAIList.DataBind();
-                    if (gvAIList.Rows.Count > 0)
-                    {
-                        gvAIList.SelectedIndex = 0;
-                    }
-
-                    Session["AIIDs"] = null;
-                    int totalAI = gvAIList.Rows.Count;
-                    List<string> AIList = new List<string>();
-                    for (int i = 0; i < totalAI; i++)
-                    {
-                        AIList.Add(gvAIList.DataKeys[i].Values["AIID"].ToString());
-                    }
-                    Session["AIIDs"] = AIList;
-
-                    // Report
-                    pnlReport.Visible = false;
-                    break;
-                default:
-                    // Sort GridView
-                    if (sortCookie != null)
-                    {
-                        sortExp = sortCookie.Values["docSort"];
-                    }
-                    else
-                    {
-                        sortExp = "Name ASC";
-                    }
-                    dt.DefaultView.Sort = sortExp;
-
-                    // Clear unused grid views
-                    gvUsersList.DataSource = null;
-                    gvUsersList.DataBind();
-                    gvRecordList.DataSource = null;
-                    gvRecordList.DataBind();
-                    gvAIList.DataSource = null;
-                    gvAIList.DataBind();
-                    // Fill used grid View
-                    gvItemList.DataSource = dt;
-                    gvItemList.DataBind();
-
-                    // Report
-                    pnlReport.Visible = true;
-                    break;
-            }
-        }
-
-        private async Task UpdateToolbarAsync()
-        {
-            if (gvItemList.SelectedIndex > -1)
-            {
-                int index = gvItemList.SelectedIndex;
-                int docOrigID = Convert.ToInt32(gvItemList.Rows[index].Cells[7].Text);
-                //int docItemID = Convert.ToInt32(gvItemList.DataKeys[index].Values["ItemID"]);
-                bool IsEvidence = Convert.ToBoolean(gvItemList.DataKeys[index].Values["IsEvidence"]);
-                bool IsCheckedOut = false;
-                if (!gvItemList.DataKeys[index].Values["IsCheckedOut"].Equals(DBNull.Value))
-                {
-                    IsCheckedOut = Convert.ToBoolean(gvItemList.DataKeys[index].Values["IsCheckedOut"]);
-                }
-                pnlProperties.Visible = true;
-                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-                {
-                    // Get user status information from authentication cookie.
-                    string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
-                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
-                    string UserData = authTicket.UserData;
-                    string[] UserValues = UserData.Split(',');
-                    int UserID = Convert.ToInt32(UserValues[0]);
-                    int UserStatus = Convert.ToInt32(UserValues[3]);
-
-                    // Get processing status value
-                    string Processing = gvItemList.Rows[index].Cells[6].Text;
-                    string Status = gvItemList.Rows[index].Cells[3].Text;
-
-                    // Show/hide "Status", "Edit", "Rename", and "Move" buttons
-                    bool HasEditPermission = await P3General.HasEditPermissionAsync(3, docOrigID, UserID);
-                    bool HasStatusPermission = await P3General.HasStatusPermissionAsync(3, docOrigID, UserID);
-                    if (IsEvidence)
-                    {
-                        pnlEdit.Visible = false;
-                        pnlStatus.Visible = false;
-                    }
-                    else
-                    {
-                        switch (UserStatus)
-                        {
-                            case 1: // Administrator
-                                if (HasEditPermission)
-                                {
-                                    if (Processing.Contains("Draft") || Processing.Contains("Collaborate") || Status.Contains("Draft") || Status.Contains("Collaborate"))
-                                    {
-                                        if (IsCheckedOut)
-                                        {
-                                            btnEdit.ImageUrl = "~/images/checkin.png";
-                                            lblEdit.Text = "Check In";
-                                        }
-                                        else
-                                        {
-                                            btnEdit.ImageUrl = "~/images/checkout.png";
-                                            lblEdit.Text = "Check Out";
-                                        }
-                                        pnlEdit.Visible = true;
-                                    }
-                                    else
-                                    {
-                                        pnlEdit.Visible = false;
-                                    }
-                                }
-                                else
-                                {
-                                    pnlEdit.Visible = false;
-                                }
-
-                                // Status?
-                                if (HasStatusPermission)
-                                {
-                                    pnlStatus.Visible = true;
-                                }
-                                else
-                                {
-                                    pnlStatus.Visible = false;
-                                }
-                                break;
-                            case 0: // Normal User
-                                    // Status?
-                                if (HasStatusPermission)
-                                {
-                                    pnlStatus.Visible = true;
-                                }
-                                else
-                                {
-                                    pnlStatus.Visible = false;
-                                }
-
-                                // Edit?
-                                if (HasEditPermission)
-                                {
-                                    if (Processing.Contains("Draft") || Processing.Contains("Collaborate") || Status.Contains("Draft") || Status.Contains("Collaborate"))
-                                    {
-                                        if (IsCheckedOut)
-                                        {
-                                            btnEdit.ImageUrl = "~/images/checkin.png";
-                                            lblEdit.Text = "Check In";
-                                        }
-                                        else
-                                        {
-                                            btnEdit.ImageUrl = "~/images/checkout.png";
-                                            lblEdit.Text = "Check Out";
-                                        }
-                                        pnlEdit.Visible = true;
-                                    }
-                                    else
-                                    {
-                                        pnlEdit.Visible = false;
-                                    }
-                                }
-                                else
-                                {
-                                    pnlEdit.Visible = false;
-                                }
-                                break;
-                            case -1: // Restricted User
-                                string RDocUser = ConfigurationManager.AppSettings["RestrictedUser"];
-                                if (RDocUser == "Edit")
-                                {
-                                    // Status?
-                                    if (HasStatusPermission)
-                                    {
-                                        pnlStatus.Visible = true;
-                                    }
-                                    else
-                                    {
-                                        pnlStatus.Visible = false;
-                                    }
-
-                                    // Edit?
-                                    if (HasEditPermission)
-                                    {
-                                        if (Processing.Contains("Draft") || Processing.Contains("Collaborate") || Status.Contains("Draft") || Status.Contains("Collaborate"))
-                                        {
-                                            if (IsCheckedOut)
-                                            {
-                                                btnEdit.ImageUrl = "~/images/checkin.png";
-                                                lblEdit.Text = "Check In";
-                                            }
-                                            else
-                                            {
-                                                btnEdit.ImageUrl = "~/images/checkout.png";
-                                                lblEdit.Text = "Check Out";
-                                            }
-                                            pnlEdit.Visible = true;
-                                        }
-                                        else
-                                        {
-                                            pnlEdit.Visible = false;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        pnlEdit.Visible = false;
-                                    }
-                                }
-                                break;
-                            default:
-                                break;
-                        }
-                        pnlRelatedAI.Visible = true;
-                        pnlParaLink.Visible = true;
-                    }
-                }
-            }
-        }
-
-        protected async Task PopulateGridViewMenu(int ModuleID, int GroupID, int OrigID, int UserID)
-        {
-            // Group Level Permissions
-            //bool HasAddPermission = await P3General.HasAddPermissionAsync(ModuleID, GroupID, UserID);
-            bool HasRenamePermission = await P3General.HasRenamePermissionAsync(ModuleID, GroupID, UserID);
-            bool HasMovePermission = await P3General.HasMovePermissionAsync(ModuleID, GroupID, UserID);
-            bool HasDeletePermission = await P3General.HasDeletePermissionAsync(ModuleID, GroupID, UserID);
-            bool HasSetRepublishPermission = await P3General.HasSetRepublishPermissionAsync(ModuleID, GroupID, UserID);
-
-            // Item Level Permissions
-            //bool HasEditPermission = await P3General.HasEditPermissionAsync(ModuleID, OrigID, UserID);
-            bool HasStatusPermission = await P3General.HasStatusPermissionAsync(ModuleID, OrigID, UserID);
-            bool HasChangetoEvidencePemission = await P3General.HasChangetoEvidencePemission(OrigID, UserID);
-            bool HasChangetoItemPemission = await P3General.HasChangetoItemPemission(OrigID, UserID);
-
-            mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionView").ToString(), "view"));
-            if (HasRenamePermission)
-            {
-                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRename").ToString(), "rename"));
-            }
-            if (HasMovePermission)
-            {
-                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionMove").ToString(), "move"));
-            }            
-            if (HasDeletePermission)
-            {
-                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionDel").ToString(), "delete"));
-            }
-            if (HasMovePermission && ModuleID != 1)
-            {
-                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionCopy").ToString(), "copy"));
-            }
-            if (HasStatusPermission)
-            {
-                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionStatus").ToString(), "status"));
-            }
-            if (ModuleID == 3)
-            {
-                if (HasChangetoEvidencePemission && Session["IsEvidenceCheck"].ToString() == "False")
-                {
-                    mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionEvid").ToString(), "evidence"));
-                }
-
-                if (HasChangetoItemPemission && Session["IsEvidenceCheck"].ToString() == "True")
-                {
-                    mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionItem").ToString(), "item"));
-                }
-            }
-            if (ModuleID == 3 && HasSetRepublishPermission)
-            {
-                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRepub").ToString(), "setrepublish"));
-            }
-            if (ModuleID == 3 && HasDeletePermission)
-            {
-                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionExport").ToString(), "export"));
-            }
-            if (ModuleID == 3)
-            {
-                MenuItem aiMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionActionItem").ToString(), "actionitem");
-                MenuItem aiSubMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionCreateAI").ToString(), "createactionitem");
-                aiMenuItem.ChildItems.Add(aiSubMenuItem);
-
-                mnuGVContext.Items.Add(aiMenuItem);
-            }
-
-            mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionProp").ToString(), "properties"));
-        }
-
         #endregion
 
-        #region Button Click Events and Methods
+        #region Button Click Events & Subroutines
 
         protected async void ImageButton_Click(object sender, EventArgs e)
         {
             ImageButton btn = (ImageButton)sender;
-            string arg = btn.CommandArgument;            
+            string arg = btn.CommandArgument;
+            AuthenticationSection authSection = (AuthenticationSection)ConfigurationManager.GetSection("system.web/authentication");
+            string authType = authSection.Mode.ToString();
+            string winDomainName = Environment.UserDomainName;
+            string winUserName = Environment.UserName;
 
             switch (arg)
-            {                
+            {
+                case "gotoLogon":
+                    if (authType == "Windows")
+                    {
+                        string p3Domain = ConfigurationManager.AppSettings["DomainName"];
+                        bool isP3User = P3Security.IsWinP3User(winUserName);
+                        if (winDomainName == p3Domain && isP3User != false)
+                        {
+                            Do_WinP3Logon(winUserName);
+                        }
+                        else
+                        {
+                            pnlDirectLink.Visible = true;
+                            pnlTreeView.Visible = false;
+                            pnlHome.Visible = false;
+                            pnlList.Visible = false;
+                            pnlLogon.Visible = true;
+                            pnlChangePW.Visible = false;
+                            txtUserName.Focus();
+                        }
+                    }
+                    else
+                    {
+                        pnlDirectLink.Visible = true;
+                        pnlTreeView.Visible = false;
+                        pnlHome.Visible = false;
+                        pnlList.Visible = false;
+                        pnlLogon.Visible = true;
+                        pnlChangePW.Visible = false;
+                        txtUserName.Focus();
+                    }
+                    break;
+                case "doLogout":
+                    // End session
+                    DisableButtons();
+                    P3Security.Do_Logout();
+                    Set_CheckLogon(false);
+                    ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "test", "window.history.pushState({}, document.title, '' + 'Default.aspx');parent.document.location.reload();", true);
+                    break;
                 case "AddItem":
+                    RenameDropdown.Visible = false;
+                    MoveDropdown.Visible = false;
+                    DeleteDropdown.Visible = false;
                     rptDropDown.Visible = false;
                     mnuAddDoc.Items.Clear();
                     int AddModuleID = Convert.ToInt32(mnuModules.SelectedValue);
@@ -1516,6 +1280,48 @@ namespace P3Web
                             break;
                     }
                     break;
+                case "Rename":
+                    pnlAddDropDown.Visible = false;
+                    MoveDropdown.Visible = false;
+                    DeleteDropdown.Visible = false;
+                    rptDropDown.Visible = false;
+                    if (!RenameDropdown.Visible)
+                    {
+                        RenameDropdown.Visible = true;
+                    }
+                    else
+                    {
+                        RenameDropdown.Visible = false;
+                    }
+                    break;
+                case "Move":
+                    pnlAddDropDown.Visible = false;
+                    RenameDropdown.Visible = false;
+                    DeleteDropdown.Visible = false;
+                    rptDropDown.Visible = false;
+                    if (!MoveDropdown.Visible)
+                    {
+                        MoveDropdown.Visible = true;
+                    }
+                    else
+                    {
+                        MoveDropdown.Visible = false;
+                    }
+                    break;
+                case "Delete":
+                    pnlAddDropDown.Visible = false;
+                    RenameDropdown.Visible = false;
+                    MoveDropdown.Visible = false;
+                    rptDropDown.Visible = false;
+                    if (!DeleteDropdown.Visible)
+                    {
+                        DeleteDropdown.Visible = true;
+                    }
+                    else
+                    {
+                        DeleteDropdown.Visible = false;
+                    }
+                    break;
                 case "Properties":
                     string PropertiesItemID = p3Tree.SelectedValue;
                     string PropertiesModuleID = mnuModules.SelectedValue;
@@ -1671,6 +1477,9 @@ namespace P3Web
                     break;
                 case "Report":
                     pnlAddDropDown.Visible = false;
+                    RenameDropdown.Visible = false;
+                    MoveDropdown.Visible = false;
+                    DeleteDropdown.Visible = false;
                     int rptModuleID = Convert.ToInt32(Session.Contents["ModuleID"]);
 
                     if (!rptDropDown.Visible)
@@ -1687,55 +1496,20 @@ namespace P3Web
             }
         }
 
+        protected void btnReport_Click(object sender, EventArgs e)
+        {
+            string pGroupID = p3Tree.SelectedValue;
+            ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "Report", "openDocumentReport(" + pGroupID + ")", true);
+        }
+
         protected void Button_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             string arg = btn.CommandArgument;
-            AuthenticationSection authSection = (AuthenticationSection)ConfigurationManager.GetSection("system.web/authentication");
-            string authType = authSection.Mode.ToString();
-            string winDomainName = Environment.UserDomainName;
-            string winUserName = Environment.UserName;
+            //int userID = 0;
 
             switch (arg)
             {
-                case "gotoLogon":
-                    if (authType == "Windows")
-                    {
-                        string p3Domain = ConfigurationManager.AppSettings["DomainName"];
-                        bool isP3User = P3Security.IsWinP3User(winUserName);
-                        if (winDomainName == p3Domain && isP3User != false)
-                        {
-                            Do_WinP3Logon(winUserName);
-                        }
-                        else
-                        {
-                            pnlDirectLink.Visible = true;
-                            pnlTreeView.Visible = false;
-                            pnlHome.Visible = false;
-                            pnlList.Visible = false;
-                            pnlLogon.Visible = true;
-                            pnlChangePW.Visible = false;
-                            txtUserName.Focus();
-                        }
-                    }
-                    else
-                    {
-                        pnlDirectLink.Visible = true;
-                        pnlTreeView.Visible = false;
-                        pnlHome.Visible = false;
-                        pnlList.Visible = false;
-                        pnlLogon.Visible = true;
-                        pnlChangePW.Visible = false;
-                        txtUserName.Focus();
-                    }
-                    break;
-                case "doLogout":
-                    // End session
-                    DisableButtons();
-                    P3Security.Do_Logout();
-                    Set_CheckLogon(false);
-                    ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "test", "window.history.pushState({}, document.title, '' + 'Default.aspx');parent.document.location.reload();", true);
-                    break;
                 case "doLogon":
                     string UserName = txtUserName.Text;
                     string Password = txtPassword.Text;
@@ -1784,45 +1558,10 @@ namespace P3Web
                     }
                     break;
                 case "Admin":
+                    //Response.Redirect("~/admin/Default.aspx");
                     Server.Transfer("~/admin/Default.aspx");
                     break;
             }
-        }
-
-        protected void btnReport_Click(object sender, EventArgs e)
-        {
-            string pGroupID = p3Tree.SelectedValue;
-            ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "Report", "openDocumentReport(" + pGroupID + ")", true);
-        }
-
-        protected async Task Get_SavedReportsAsync(int ModuleID)
-        {
-            int UserID = 0;
-            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-            {
-                string authCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
-                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
-                string UserData = authTicket.UserData;
-                string[] UserValues = UserData.Split(',');
-                UserID = Convert.ToInt32(UserValues[0]);
-            }
-            mnuReports.Items.Clear();
-            DataTable dt = await Reports.GetSavedReportsAsync(ModuleID, UserID);
-            foreach (DataRow dr in dt.Rows)
-            {
-                string ReportName = dr["SrchAndRprtName"].ToString();
-                string ReportID = dr["SrchAndRprtID"].ToString();
-
-                MenuItem itm = new MenuItem()
-                {
-                    Text = ReportName,
-                    Value = ReportID,
-                    ImageUrl = "~/images/item.png"
-                };
-
-                mnuReports.Items.Add(itm);
-            }
-            dt.Dispose();
         }
 
         protected void BtnRefreshAI_Click(object sender, EventArgs e)
@@ -2159,6 +1898,7 @@ namespace P3Web
                 ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "noaccess", "alert('You do not have rights to perform this action. " +
                     "Ask your System Administrator for details. HINT: Check the folder properties and security settings');window.location.href='Default.aspx';", true);
             }
+
         }
 
         protected async void btnAddTreeNode_Click(object sender, EventArgs e)
@@ -2193,9 +1933,63 @@ namespace P3Web
             }
         }
 
+        protected void DownloadFile(string fileName)
+        {
+            Response.Clear();
+            Response.ContentType = @"application\octet-stream";
+            //System.IO.FileInfo file = new System.IO.FileInfo(Server.MapPath(fileName));
+            FileInfo file = new FileInfo(Server.MapPath(fileName));
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
+            Response.AddHeader("Content-Length", file.Length.ToString());
+            Response.ContentType = "application/octet-stream";
+            Response.WriteFile(file.FullName);
+            Response.Flush();
+        }
+
+        protected void DisableButtons()
+        {
+            // Add
+            pnlAdd.Visible = false;
+            // Edit
+            pnlEdit.Visible = false;
+            // View
+            pnlView.Visible = false;
+            // Rename
+            pnlRename.Visible = false;
+            // Move
+            pnlMove.Visible = false;
+            // Delete
+            pnlDelete.Visible = false;
+            // Properties
+            pnlProperties.Visible = false;
+            // Status
+            pnlStatus.Visible = false;
+            // RelatedAI
+            pnlRelatedAI.Visible = false;
+            // Para-Link
+            pnlParaLink.Visible = false;
+            // Report
+            pnlReport.Visible = false;
+            // Progress
+            pnlProgress.Visible = false;
+        }
+
         protected void btnAdministration_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("administration/default.aspx");
+        }
+
+        protected void btnCloseDoc_Click(object sender, EventArgs e)
+        {
+            if (Session["ViewDoc"] != null)
+            {
+                string viewDocPath = Session.Contents["ViewDoc"].ToString();
+                if (File.Exists(Server.MapPath(viewDocPath)))
+                {
+                    File.Delete(Server.MapPath(viewDocPath));
+                }
+                Session.Remove("ViewDoc");
+            }
         }
 
         protected async void btnShowGVMenu_Click(object sender, EventArgs e)
@@ -2241,65 +2035,489 @@ namespace P3Web
             }
         }
 
-        protected void btnCloseDoc_Click(object sender, EventArgs e)
+
+        #endregion
+
+        #region Authentication
+
+        protected void DoLogon(string UserName, string Password)
         {
-            if (Session["ViewDoc"] != null)
+            // Verify if P3 User.
+            if (UserName.Length == 0)
             {
-                string viewDocPath = Session.Contents["ViewDoc"].ToString();
-                if (File.Exists(Server.MapPath(viewDocPath)))
+                lblLogonError.Text = GetLocalResourceObject("lblLogonErrorUsrname").ToString();
+            }
+            else if (Password.Length == 0)
+            {
+                lblLogonError.Text = GetLocalResourceObject("lblLogonErrorPasswrd").ToString();
+            }
+            else
+            {
+                bool UseFIPS = P3Security.IsFIPS();
+                string encPassword = P3Security.Encrypt(Password, UserName.ToUpper(), UseFIPS);
+                if (P3Security.IsUserNamePWordValid(UserName, encPassword))
                 {
-                    File.Delete(Server.MapPath(viewDocPath));
+                    string PWStatus = P3Security.Get_PWStatus(UserName);
+                    if (PWStatus == "0")
+                    {
+                        // Authenticate user to Paradigm 3
+                        P3Security.Do_Login(UserName, encPassword);
+
+                        // Set logged on display properties.
+                        Set_CheckLogon(true);
+                        lblLogonError.Text = string.Empty;
+                        lblChangePW.Text = string.Empty;
+                    }
+                    else
+                    {
+                        pnlDirectLink.Visible = true;
+                        pnlTreeView.Visible = false;
+                        pnlHome.Visible = false;
+                        pnlList.Visible = false;
+                        pnlLogon.Visible = false;
+                        pnlChangePW.Visible = true;
+                        txtNewPassword.Focus();
+                        lblLogonError.Text = string.Empty;
+                        lblChangePW.Text = "Your password has expired and must be changed to proceed.";
+                    }
                 }
-                Session.Remove("ViewDoc");
+                else
+                {
+                    Set_CheckLogon(false);
+                    pnlHome.Visible = false;
+                    pnlLogon.Visible = true;
+                    lblLogonError.Text = GetLocalResourceObject("lblLogonError").ToString();
+                    txtPassword.Focus();
+                }
             }
         }
 
-        protected void DisableButtons()
+        protected void Do_WinP3Logon(string winUserName)
         {
-            // Add
-            pnlAdd.Visible = false;
-            // Edit
-            pnlEdit.Visible = false;
-            // View
-            pnlView.Visible = false;
-            // Properties
-            pnlProperties.Visible = false;
-            // Status
-            pnlStatus.Visible = false;
-            // RelatedAI
-            pnlRelatedAI.Visible = false;
-            // Para-Link
-            pnlParaLink.Visible = false;
-            // Report
-            pnlReport.Visible = false;
+            // Do authentication.
+            P3Security.Do_WinLogin(winUserName);
+            Set_CheckLogon(true);
         }
 
-        protected void DownloadFile(string fileName)
+        protected void Set_CheckLogon(bool isLoggedon)
         {
-            Response.Clear();
-            Response.ContentType = @"application\octet-stream";
-            //System.IO.FileInfo file = new System.IO.FileInfo(Server.MapPath(fileName));
-            FileInfo file = new FileInfo(Server.MapPath(fileName));
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
-            Response.AddHeader("Content-Length", file.Length.ToString());
-            Response.ContentType = "application/octet-stream";
-            Response.WriteFile(file.FullName);
-            Response.Flush();
+            // Set greeting.
+            string timeGreet = GetLocalResourceObject("timeGreetEvening").ToString();
+
+            if (DateTime.Now.Hour < 12)
+            {
+                timeGreet = GetLocalResourceObject("timeGreetMorning").ToString();
+            }
+            else
+            {
+                timeGreet = GetLocalResourceObject("timeGreetNoon").ToString();
+            }
+
+            if (isLoggedon)
+            {
+                // Set Logon button display properties.
+                btnLogon.Visible = false;
+                AuthenticationSection authSection = (AuthenticationSection)ConfigurationManager.GetSection("system.web/authentication");
+                bool IsSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
+                string authType = authSection.Mode.ToString();
+                if (authType == "Windows" || IsSSO)
+                {
+                    btnLogout.Visible = false;
+                }
+                else
+                {
+                    btnLogout.Visible = true;
+                    btnLogout.ImageUrl = GetLocalResourceObject("Logout").ToString();
+                    btnLogout.Attributes.Add("onmouseover", "this.src='" + GetLocalResourceObject("LogoutMo") + "'");
+                    btnLogout.Attributes.Add("onmouseout", "this.src='" + GetLocalResourceObject("Logout") + "'");
+                }
+
+                // Get user information from authentication cookie.
+                int UserID = -1;
+                string UserFullName = string.Empty;
+                int UserStatus = -1;
+                string ModAccess = string.Empty;
+                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                {
+                    string authCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                    string UserData = authTicket.UserData;
+                    string[] UserValues = UserData.Split(',');
+                    UserID = Convert.ToInt32(UserValues[0]);
+                    UserFullName = UserValues[1];
+                    UserStatus = Convert.ToInt32(UserValues[3]);
+                    ModAccess = UserValues[4];
+                }
+                else
+                {
+                    P3Security.Do_Logout();
+                    Set_CheckLogon(false);
+                }
+                // Set welcome message Get greeting.
+                lblLogon.Text = timeGreet + ", " + UserFullName;
+
+                // Set Toobar button properties.
+                DisableButtons();
+
+                // Enable module menu items based on user credentials.
+                string[] ModuleAccess = ModAccess.Split('_');
+                pnlDirectLink.Visible = false;
+                pnlTreeView.Visible = true;
+                pnlHome.Visible = false;
+                pnlList.Visible = true;
+                pnlLogon.Visible = false;
+                pnlChangePW.Visible = false;
+
+                // Set initial Module height
+                int initHeight = 31;
+                // Add Home Menu Item
+                mnuModules.Items.Clear();
+                MenuItem mnuHome = new MenuItem()
+                {
+                    Text = "Home",
+                    Value = "0",
+                    ImageUrl = "~/images/home.png",
+                };
+                mnuModules.Items.Add(mnuHome);
+
+                // Add all permitted Menu Items
+                DataTable dt = P3General.Get_Modules();
+                string UserModuleName = string.Empty;
+                string AIModuleName = string.Empty;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    string imageurl = string.Empty;
+                    bool addModule = false;
+
+                    if (UserStatus == 1)
+                    {
+                        addModule = true;
+                        switch (dr["ModuleID"].ToString())
+                        {
+                            case "1":
+                                UserModuleName = dr["Name"].ToString();
+                                addModule = false;
+                                break;
+                            case "3":
+                                imageurl = "~/images/document.png";
+                                break;
+                            case "4":
+                                imageurl = "~/images/record.png";
+                                break;
+                            case "6":
+                                imageurl = "~/images/improvement.png";
+                                break;
+                            case "12":
+                                imageurl = "~/images/training.png";
+                                break;
+                            case "14":
+                                AIModuleName = dr["Name"].ToString();
+                                addModule = false;
+                                break;
+                        }
+                    }
+                    else
+                    {
+
+                        switch (dr["ModuleID"].ToString())
+                        {
+                            case "1":
+                                UserModuleName = dr["Name"].ToString();
+                                addModule = false;
+                                break;
+                            case "3":
+                                imageurl = "~/images/document.png";
+
+                                if (ModuleAccess.Length > 1)
+                                {
+                                    if (ModuleAccess[2] == "3|1")
+                                    {
+                                        addModule = true;
+                                    }
+                                }
+
+                                break;
+                            case "4":
+                                if (ModuleAccess.Length > 2)
+                                {
+                                    if (ModuleAccess[3] == "4|1")
+                                    {
+                                        addModule = true;
+                                    }
+                                }
+                                imageurl = "~/images/record.png";
+                                break;
+                            case "6":
+                                if (ModuleAccess.Length > 3)
+                                {
+                                    if (ModuleAccess[4] == "6|1")
+                                    {
+                                        addModule = true;
+                                    }
+                                }
+                                imageurl = "~/images/improvement.png";
+                                break;
+                            case "12":
+                                if (ModuleAccess.Length > 4)
+                                {
+                                    if (ModuleAccess[5] == "12|1")
+                                    {
+                                        addModule = true;
+                                    }
+                                }
+                                imageurl = "~/images/training.png";
+                                break;
+                            case "14":
+                                AIModuleName = dr["Name"].ToString();
+                                addModule = false;
+                                break;
+                        }
+                    }
+
+                    if (addModule)
+                    {
+                        MenuItem mnu = new MenuItem()
+                        {
+                            Text = dr["Name"].ToString(),
+                            Value = dr["ModuleID"].ToString(),
+                            ImageUrl = imageurl
+                        };
+                        mnuModules.Items.Add(mnu);
+                        initHeight += 32;
+                    }
+                }
+
+                // Add Users Menu Item if permitted
+                MenuItem mnuUser = new MenuItem()
+                {
+                    Text = UserModuleName,
+                    Value = "1",
+                    ImageUrl = "~/images/users.png"
+                };
+
+                if (UserStatus == 1 || (UserStatus == 0 && ModuleAccess[1] == "1|1"))
+                {
+                    mnuModules.Items.Add(mnuUser);
+                    initHeight += 32;
+                }
+                //else if (UserStatus == 0 && ModuleAccess[1] == "1|1")
+                //{
+                //    mnuModules.Items.Add(mnuUser);
+                //    initHeight += 32;
+                //}
+
+                // Add Action Item Menu Item
+                MenuItem mnuAI = new MenuItem()
+                {
+                    Text = AIModuleName,
+                    Value = "14",
+                    ImageUrl = "~/images/actionitem.png",
+                };
+                mnuModules.Items.Add(mnuAI);
+                initHeight += 31;
+
+                ModulePane.InitialSize = initHeight;
+                ModulePane.MaxHeight = initHeight + 1;
+
+                // Collect default module and folder information from config.
+                int defaultModule = Convert.ToInt32(ConfigurationManager.AppSettings["DefModuleID"]);
+                Session["ModuleID"] = defaultModule;
+                string defaultFolderID;// = string.Empty;
+                string rootImageUrl;// = string.Empty;
+
+                switch (defaultModule)
+                {
+                    case 3:
+                        mnuModules.FindItem("3").Selected = true;
+                        lblModuleLabel.Text = "Documents";
+                        rootImageUrl = "~/images/documentroot.png";
+                        defaultFolderID = ConfigurationManager.AppSettings["DefDocGroupID"];
+                        break;
+                    case 4:
+                        mnuModules.FindItem("4").Selected = true;
+                        lblModuleLabel.Text = "Records";
+                        rootImageUrl = "~/images/recordroot.png";
+                        defaultFolderID = ConfigurationManager.AppSettings["DefRecGroupID"];
+                        break;
+                    case 6:
+                        mnuModules.FindItem("6").Selected = true;
+                        lblModuleLabel.Text = "Improvements";
+                        rootImageUrl = "~/images/improvementroot.png";
+                        defaultFolderID = ConfigurationManager.AppSettings["DefImpGroupID"];
+                        break;
+                    case 12:
+                        mnuModules.FindItem("12").Selected = true;
+                        lblModuleLabel.Text = "Training";
+                        rootImageUrl = "~/images/triningroot.png";
+                        defaultFolderID = ConfigurationManager.AppSettings["DefTrainGroupID"];
+                        break;
+                    case 14:
+                        mnuModules.FindItem("14").Selected = true;
+                        lblModuleLabel.Text = "Action Items";
+                        rootImageUrl = "~/images/actionitemroot.png";
+                        defaultFolderID = ConfigurationManager.AppSettings["DefAIGroupID"];
+                        break;
+                    default:
+                        mnuModules.Items[0].Selected = true;
+                        lblModuleLabel.Text = "Documents";
+                        rootImageUrl = "~/images/root.png";
+                        defaultFolderID = ConfigurationManager.AppSettings["DefDocGroupID"];
+                        pnlDirectLink.Visible = true;
+                        pnlTreeView.Visible = false;
+                        pnlHome.Visible = true;
+                        pnlList.Visible = false;
+                        break;
+                }
+                p3Tree.RootNodeStyle.ImageUrl = rootImageUrl;
+                if (defaultModule != 0)
+                {
+                    PopulateRootLevel(defaultModule, UserID, defaultFolderID);
+                    p3Tree.Nodes[0].Expand();
+                    if (defaultModule == 14)
+                    {
+                        FindMyNode("2", p3Tree);
+                    }
+                    else
+                    {
+                        p3Tree.Nodes[0].Selected = true;
+                    }
+                }
+
+                // If user is an administrator
+                if (UserStatus == 1)
+                {
+                    pnlOtherUserAI.Visible = true;
+                    pnlAdministration.Visible = true;
+                }
+                pnlSearch.Visible = true;
+            }
+            else
+            {
+                // Set display properties.
+                btnLogon.Visible = true;
+                btnLogout.Visible = false;
+                btnLogon.ImageUrl = GetLocalResourceObject("Logon").ToString();
+                btnLogon.Attributes.Add("onmouseover", "this.src='" + GetLocalResourceObject("LogonMo") + "'");
+                btnLogon.Attributes.Add("onmouseout", "this.src='" + GetLocalResourceObject("Logon") + "'");
+                lblLogon.Text = timeGreet + ',' + GetLocalResourceObject("lblLogonStatus").ToString();
+
+                pnlDirectLink.Visible = true;
+                pnlTreeView.Visible = false;
+                pnlHome.Visible = true;
+                pnlList.Visible = false;
+                pnlLogon.Visible = false;
+                pnlChangePW.Visible = false;
+
+                // Clear TreeView and ListViews
+                p3Tree.Nodes.Clear();
+                gvItemList.DataSource = null;
+                gvItemList.DataBind();
+                gvRecordList.DataSource = null;
+                gvRecordList.DataBind();
+                gvAIList.DataSource = null;
+                gvAIList.DataBind();
+                txtUserName.Text = string.Empty;
+
+                // Disable modules menu.
+                // Add Home Menu Item
+                mnuModules.Items.Clear();
+                MenuItem mnuHome = new MenuItem()
+                {
+                    Text = "Home",
+                    Value = "0",
+                    ImageUrl = "~/images/home.png",
+                };
+                mnuModules.Items.Add(mnuHome);
+                mnuModules.Items[0].Selected = true;
+
+                ModulePane.InitialSize = 31;
+                ModulePane.MaxHeight = 31;
+
+                // Hide Search if set
+                bool HideSearchOnReadOnly = Convert.ToBoolean(ConfigurationManager.AppSettings["HideSearchOnReadOnly"]);
+                if (HideSearchOnReadOnly)
+                {
+                    pnlSearch.Visible = false;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(Request.QueryString["ModuleID"]) && !string.IsNullOrEmpty(Request.QueryString["GroupID"]))
+            {
+                int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
+                Session["ModuleID"] = ModuleID;
+                GoTo_Folder(ModuleID, GroupID);
+            }
         }
 
-        protected void lnkVersion_Click(object sender, EventArgs e)
+        protected void ChangePassword(string UserName, string NewPW, int NumPW, string OptionSet, bool IsFDA)
         {
-            ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "relnotes", "openRelNotes()", true);
-            pnlList.Visible = false;
-            pnlHome.Visible = true;
-            pnlDirectLink.Visible = true;
-            pnlTreeView.Visible = false;
-            mnuModules.Items[0].Selected = true;
+            int UserID = 0;
+            //txtUserName.Text = string.Empty;
+            bool UseFIPS = P3Security.IsFIPS();
+            string encNewPW = P3Security.Encrypt(NewPW, UserName.ToUpper(), UseFIPS);
+            if (IsFDA == true)
+            {
+                // Get old passwords for user.
+                int pwIndex = 0;
+                DataTable dtOldPass = P3Security.Get_ForbiddenPasswords(UserName, NumPW);
+                foreach (DataRow drOldPass in dtOldPass.Rows)
+                {
+                    txtConfirmPassword.Text = drOldPass[0].ToString();
+                    if (encNewPW.Equals(drOldPass["OldPass"]))
+                    {
+                        pwIndex = pwIndex + 1;
+                    }
+                }
+
+                if (pwIndex > 0)
+                {
+                    lblChangePW.Text = "You must choose a password that has not been used in the last 6 months.";
+                }
+                else
+                {
+                    // Update password and log on.                    
+                    StringBuilder sb = new StringBuilder(OptionSet);
+                    sb[2] = '0';
+                    string NewOptionSet = sb.ToString();
+                    Do_WinP3Logon(UserName);
+                    if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                    {
+                        string authCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                        FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                        string UserData = authTicket.UserData;
+                        string[] UserValues = UserData.Split(',');
+                        UserID = Convert.ToInt32(UserValues[0]);
+                    }
+                    P3Security.Do_ChangePassword(UserID, encNewPW, NewOptionSet, 0);
+                    lblLogonError.Text = string.Empty;
+                    lblChangePW.Text = string.Empty;
+                }
+            }
+            else
+            {
+                // Update password and log on.
+                StringBuilder sb = new StringBuilder(OptionSet);
+                sb[2] = '0';
+                string NewOptionSet = sb.ToString();
+                Do_WinP3Logon(UserName);
+                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                {
+                    string authCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                    string UserData = authTicket.UserData;
+                    string[] UserValues = UserData.Split(',');
+                    UserID = Convert.ToInt32(UserValues[0]);
+                }
+                P3Security.Do_ChangePassword(UserID, encNewPW, NewOptionSet, 0);
+                lblLogonError.Text = string.Empty;
+                lblChangePW.Text = string.Empty;
+            }
         }
 
         #endregion
 
-        #region TreeView Events and Methods
+        #region TreeView Events & Subroutines
 
         protected void P3Tree_TreeNodePopulate(object sender, TreeNodeEventArgs e)
         {
@@ -2555,29 +2773,36 @@ namespace P3Web
 
         private TreeNode FindChildNodes(TreeNode trNode, string searchstring)
         {
-            for (int i = 0; i < trNode.ChildNodes.Count; i++)
+            try
             {
-                TreeNode trChildNode = trNode.ChildNodes[i];
-                if (trChildNode.Value == searchstring)
+                for (int i = 0; i < trNode.ChildNodes.Count; i++)
                 {
-                    return trChildNode;
-                }
-
-                else
-                {
-                    TreeNode trAnswerNode = FindChildNodes(trChildNode, searchstring);
-                    if (trAnswerNode != null)
+                    TreeNode trChildNode = trNode.ChildNodes[i];
+                    if (trChildNode.Value == searchstring)
                     {
-                        return trAnswerNode;
+                        return trChildNode;
+                    }
+
+                    else
+                    {
+                        TreeNode trAnswerNode = FindChildNodes(trChildNode, searchstring);
+                        if (trAnswerNode != null)
+                        {
+                            return trAnswerNode;
+                        }
                     }
                 }
+                return null;
             }
-            return null;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #endregion
 
-        #region GridView Events and Methods
+        #region GridView Events & Subroutines
 
         protected void Gv_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -2741,13 +2966,12 @@ namespace P3Web
                                 break;
                         }
 
-                        e.Row.Attributes["onclick"] = "saveItemScrollPos();" + Page.ClientScript.GetPostBackClientHyperlink(gvItemList, "Select$" + e.Row.RowIndex);
+                        e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvItemList, "Select$" + e.Row.RowIndex);
                         //e.Row.Attributes["oncontextmenu"] = Page.ClientScript.GetPostBackClientHyperlink(gvItemList, "Select$" + e.Row.RowIndex);
                         int PublishFormat = Convert.ToInt32(gvItemList.DataKeys[e.Row.RowIndex].Values["TypeOfPublish"]);
                         string pubPath = ConfigurationManager.AppSettings["PublishPath"];
                         int DocStatus = Convert.ToInt32(gvItemList.DataKeys[e.Row.RowIndex].Values["Status"]);
                         e.Row.Attributes.Add("ondblclick", "openDocWindow(" + DocItemID + "," + DocOrigID + "," + DocStatus + ",'" + IsItemID + "','" + pubPath + "','" + fileExtension + "'," + PublishFormat + ")");
-                        //e.Row.Attributes.Add("oncontextmenu", "createTestMenu(" + DocOrigID + ");");
                         e.Row.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
                         e.Row.Attributes.Add("onmouseout", "this.style.cursor='cursor'");
                         e.Row.ToolTip = e.Row.Cells[1].Text;
@@ -2791,7 +3015,7 @@ namespace P3Web
                         string RecordParentGroupID = gvRecordList.DataKeys[e.Row.RowIndex].Values["ParentGroupID"].ToString();
                         string strViewRecordVar = ModuleID.ToString() + "," + RecordItemID + "," + RecordObjTypeID + "," + RecordParentGroupID + ",0";
 
-                        e.Row.Attributes["onclick"] = "saveItemScrollPos();" + Page.ClientScript.GetPostBackClientHyperlink(gvRecordList, "Select$" + e.Row.RowIndex);
+                        e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvRecordList, "Select$" + e.Row.RowIndex);
                         e.Row.Attributes.Add("ondblclick", "openRecordWindow(" + strViewRecordVar + ");");
                         e.Row.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
                         e.Row.Attributes.Add("onmouseout", "this.style.cursor='cursor'");
@@ -2840,7 +3064,7 @@ namespace P3Web
                         }
 
                         string AIID = gv.DataKeys[e.Row.RowIndex].Values["AIID"].ToString();
-                        e.Row.Attributes["onclick"] = "saveItemScrollPos('actionItem');" + Page.ClientScript.GetPostBackClientHyperlink(gv, "Select$" + e.Row.RowIndex);
+                        e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gv, "Select$" + e.Row.RowIndex);
                         e.Row.Attributes.Add("ondblclick", "openAIWindow(" + AIID + ");");
                         e.Row.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
                         e.Row.Attributes.Add("onmouseout", "this.style.cursor='cursor'");
@@ -3109,6 +3333,7 @@ namespace P3Web
                                 }
                                 pnlRelatedAI.Visible = true;
                                 pnlParaLink.Visible = true;
+                                pnlProgress.Visible = false;
                             }
                         }
                         break;
@@ -3162,10 +3387,12 @@ namespace P3Web
                             }
                             pnlRelatedAI.Visible = true;
                             pnlParaLink.Visible = true;
+                            pnlProgress.Visible = false;
                         }
                         break;
                     case 14:
                         pnlReport.Visible = false;
+                        pnlProgress.Visible = false;
                         break;
                 }
                 mnuGVContext.Items.Add(new MenuItem("Properties", "properties"));
@@ -3289,468 +3516,574 @@ namespace P3Web
 
         #endregion
 
-        #region Authentication Events and Methods
+        #region Report Subroutines
 
-        protected void DoLogon(string UserName, string Password)
-        {
-            // Verify if P3 User.
-            if (UserName.Length == 0)
-            {
-                lblLogonError.Text = GetLocalResourceObject("lblLogonErrorUsrname").ToString();
-            }
-            else if (Password.Length == 0)
-            {
-                lblLogonError.Text = GetLocalResourceObject("lblLogonErrorPasswrd").ToString();
-            }
-            else
-            {
-                bool UseFIPS = P3Security.IsFIPS();
-                string encPassword = P3Security.Encrypt(Password, UserName.ToUpper(), UseFIPS);
-                if (P3Security.IsUserNamePWordValid(UserName, encPassword))
-                {
-                    string PWStatus = P3Security.Get_PWStatus(UserName);
-                    if (PWStatus == "0")
-                    {
-                        // Authenticate user to Paradigm 3
-                        P3Security.Do_Login(UserName, encPassword);
-
-                        // Set logged on display properties.
-                        Set_CheckLogon(true);
-                        lblLogonError.Text = string.Empty;
-                        lblChangePW.Text = string.Empty;
-                    }
-                    else
-                    {
-                        pnlDirectLink.Visible = true;
-                        pnlTreeView.Visible = false;
-                        pnlHome.Visible = false;
-                        pnlList.Visible = false;
-                        pnlLogon.Visible = false;
-                        pnlChangePW.Visible = true;
-                        txtNewPassword.Focus();
-                        lblLogonError.Text = string.Empty;
-                        lblChangePW.Text = "Your password has expired and must be changed to proceed.";
-                    }
-                }
-                else
-                {
-                    Set_CheckLogon(false);
-                    pnlHome.Visible = false;
-                    pnlLogon.Visible = true;
-                    lblLogonError.Text = GetLocalResourceObject("lblLogonError").ToString();
-                    txtPassword.Focus();
-                }
-            }
-        }
-
-        protected void Do_WinP3Logon(string winUserName)
-        {
-            // Do authentication.
-            P3Security.Do_WinLogin(winUserName);
-            Set_CheckLogon(true);
-        }
-
-        protected void Set_CheckLogon(bool isLoggedon)
-        {
-            // Set greeting.
-            string timeGreet = GetLocalResourceObject("timeGreetEvening").ToString();
-
-            if (DateTime.Now.Hour < 12)
-            {
-                timeGreet = GetLocalResourceObject("timeGreetMorning").ToString();
-            }
-            else if (DateTime.Now.Hour > 12 && DateTime.Now.Hour < 17)
-            {
-                timeGreet = GetLocalResourceObject("timeGreetNoon").ToString();
-            }
-
-            if (isLoggedon)
-            {
-                // Set Logon button display properties.
-                btnLogon.Visible = false;
-                AuthenticationSection authSection = (AuthenticationSection)ConfigurationManager.GetSection("system.web/authentication");
-                bool IsSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
-                string authType = authSection.Mode.ToString();
-                if (authType == "Windows" || IsSSO)
-                {
-                    btnLogout.Visible = false;
-                }
-                else
-                {
-                    btnLogout.Visible = true;
-                }
-
-                // Get user information from authentication cookie.
-                int UserID = -1;
-                string UserFullName = string.Empty;
-                int UserStatus = -1;
-                string ModAccess = string.Empty;
-                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-                {
-                    string authCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
-                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
-                    string UserData = authTicket.UserData;
-                    string[] UserValues = UserData.Split(',');
-                    UserID = Convert.ToInt32(UserValues[0]);
-                    UserFullName = UserValues[1];
-                    UserStatus = Convert.ToInt32(UserValues[3]);
-                    ModAccess = UserValues[4];
-                }
-                else
-                {
-                    P3Security.Do_Logout();
-                    Set_CheckLogon(false);
-                }
-                // Set welcome message Get greeting.
-                lblLogon.Text = timeGreet + ", " + UserFullName;
-
-                // Set Toobar button properties.
-                DisableButtons();
-
-                // Enable module menu items based on user credentials.
-                string[] ModuleAccess = ModAccess.Split('_');
-                pnlDirectLink.Visible = false;
-                pnlTreeView.Visible = true;
-                pnlHome.Visible = false;
-                pnlList.Visible = true;
-                pnlLogon.Visible = false;
-                pnlChangePW.Visible = false;
-
-                // Set initial Module height
-                int initHeight = 31;
-                // Add Home Menu Item
-                mnuModules.Items.Clear();
-                MenuItem mnuHome = new MenuItem()
-                {
-                    Text = "Home",
-                    Value = "0",
-                    ImageUrl = "~/images/home.png",
-                };
-                mnuModules.Items.Add(mnuHome);
-
-                // Add all permitted Menu Items
-                DataTable dt = P3General.Get_Modules();
-                string UserModuleName = string.Empty;
-                string AIModuleName = string.Empty;
-                foreach (DataRow dr in dt.Rows)
-                {
-                    string imageurl = string.Empty;
-                    bool addModule = false;
-
-                    if (UserStatus == 1)
-                    {
-                        addModule = true;
-                        switch (dr["ModuleID"].ToString())
-                        {
-                            case "1":
-                                UserModuleName = dr["Name"].ToString();
-                                addModule = false;
-                                break;
-                            case "3":
-                                imageurl = "~/images/document.png";
-                                break;
-                            case "4":
-                                imageurl = "~/images/record.png";
-                                break;
-                            case "6":
-                                imageurl = "~/images/improvement.png";
-                                break;
-                            case "12":
-                                imageurl = "~/images/training.png";
-                                break;
-                            case "14":
-                                AIModuleName = dr["Name"].ToString();
-                                addModule = false;
-                                break;
-                        }
-                    }
-                    else
-                    {
-
-                        switch (dr["ModuleID"].ToString())
-                        {
-                            case "1":
-                                UserModuleName = dr["Name"].ToString();
-                                addModule = false;
-                                break;
-                            case "3":
-                                imageurl = "~/images/document.png";
-
-                                if (ModuleAccess.Length > 1)
-                                {
-                                    if (ModuleAccess[2] == "3|1")
-                                    {
-                                        addModule = true;
-                                    }
-                                }
-
-                                break;
-                            case "4":
-                                if (ModuleAccess.Length > 2)
-                                {
-                                    if (ModuleAccess[3] == "4|1")
-                                    {
-                                        addModule = true;
-                                    }
-                                }
-                                imageurl = "~/images/record.png";
-                                break;
-                            case "6":
-                                if (ModuleAccess.Length > 3)
-                                {
-                                    if (ModuleAccess[4] == "6|1")
-                                    {
-                                        addModule = true;
-                                    }
-                                }
-                                imageurl = "~/images/improvement.png";
-                                break;
-                            case "12":
-                                if (ModuleAccess.Length > 4)
-                                {
-                                    if (ModuleAccess[5] == "12|1")
-                                    {
-                                        addModule = true;
-                                    }
-                                }
-                                imageurl = "~/images/training.png";
-                                break;
-                            case "14":
-                                AIModuleName = dr["Name"].ToString();
-                                addModule = false;
-                                break;
-                        }
-                    }
-
-                    if (addModule)
-                    {
-                        MenuItem mnu = new MenuItem()
-                        {
-                            Text = dr["Name"].ToString(),
-                            Value = dr["ModuleID"].ToString(),
-                            ImageUrl = imageurl
-                        };
-                        mnuModules.Items.Add(mnu);
-                        initHeight += 32;
-                    }
-                }
-
-                // Add Users Menu Item if permitted
-                MenuItem mnuUser = new MenuItem()
-                {
-                    Text = UserModuleName,
-                    Value = "1",
-                    ImageUrl = "~/images/users.png"
-                };
-
-                if (UserStatus == 1 || (UserStatus == 0 && ModuleAccess[1] == "1|1"))
-                {
-                    mnuModules.Items.Add(mnuUser);
-                    initHeight += 32;
-                }
-
-                // Add Action Item Menu Item
-                MenuItem mnuAI = new MenuItem()
-                {
-                    Text = AIModuleName,
-                    Value = "14",
-                    ImageUrl = "~/images/actionitem.png",
-                };
-                mnuModules.Items.Add(mnuAI);
-                initHeight += 31;
-                ModulePane.Height = initHeight + 1;
-
-                // Collect default module and folder information from config.
-                int defaultModule = Convert.ToInt32(ConfigurationManager.AppSettings["DefModuleID"]);
-                Session["ModuleID"] = defaultModule;
-                string defaultFolderID;
-                string rootImageUrl;
-
-                switch (defaultModule)
-                {
-                    case 3:
-                        mnuModules.FindItem("3").Selected = true;
-                        lblModuleLabel.Text = "Documents";
-                        rootImageUrl = "~/images/documentroot.png";
-                        defaultFolderID = ConfigurationManager.AppSettings["DefDocGroupID"];
-                        break;
-                    case 4:
-                        mnuModules.FindItem("4").Selected = true;
-                        lblModuleLabel.Text = "Records";
-                        rootImageUrl = "~/images/recordroot.png";
-                        defaultFolderID = ConfigurationManager.AppSettings["DefRecGroupID"];
-                        break;
-                    case 6:
-                        mnuModules.FindItem("6").Selected = true;
-                        lblModuleLabel.Text = "Improvements";
-                        rootImageUrl = "~/images/improvementroot.png";
-                        defaultFolderID = ConfigurationManager.AppSettings["DefImpGroupID"];
-                        break;
-                    case 12:
-                        mnuModules.FindItem("12").Selected = true;
-                        lblModuleLabel.Text = "Training";
-                        rootImageUrl = "~/images/triningroot.png";
-                        defaultFolderID = ConfigurationManager.AppSettings["DefTrainGroupID"];
-                        break;
-                    case 14:
-                        mnuModules.FindItem("14").Selected = true;
-                        lblModuleLabel.Text = "Action Items";
-                        rootImageUrl = "~/images/actionitemroot.png";
-                        defaultFolderID = ConfigurationManager.AppSettings["DefAIGroupID"];
-                        break;
-                    default:
-                        mnuModules.Items[0].Selected = true;
-                        lblModuleLabel.Text = "Documents";
-                        rootImageUrl = "~/images/root.png";
-                        defaultFolderID = ConfigurationManager.AppSettings["DefDocGroupID"];
-                        pnlDirectLink.Visible = true;
-                        pnlTreeView.Visible = false;
-                        pnlHome.Visible = true;
-                        pnlList.Visible = false;
-                        break;
-                }
-                p3Tree.RootNodeStyle.ImageUrl = rootImageUrl;
-                if (defaultModule != 0)
-                {
-                    PopulateRootLevel(defaultModule, UserID, defaultFolderID);
-                    p3Tree.Nodes[0].Expand();
-                    if (defaultModule == 14)
-                    {
-                        FindMyNode("2", p3Tree);
-                    }
-                    else
-                    {
-                        p3Tree.Nodes[0].Selected = true;
-                    }
-                }
-
-                // If user is an administrator
-                if (UserStatus == 1)
-                {
-                    pnlOtherUserAI.Visible = true;
-                    pnlAdministration.Visible = true;
-                }
-                pnlSearch.Visible = true;
-            }
-            else
-            {
-                // Set display properties.
-                btnLogon.Visible = true;
-                btnLogout.Visible = false;
-                lblLogon.Text = timeGreet + ',' + GetLocalResourceObject("lblLogonStatus").ToString();
-
-                pnlDirectLink.Visible = true;
-                pnlTreeView.Visible = false;
-                pnlHome.Visible = true;
-                pnlList.Visible = false;
-                pnlLogon.Visible = false;
-                pnlChangePW.Visible = false;
-
-                // Clear TreeView and ListViews
-                p3Tree.Nodes.Clear();
-                gvItemList.DataSource = null;
-                gvItemList.DataBind();
-                gvRecordList.DataSource = null;
-                gvRecordList.DataBind();
-                gvAIList.DataSource = null;
-                gvAIList.DataBind();
-                txtUserName.Text = string.Empty;
-
-                // Disable modules menu.
-                // Add Home Menu Item
-                mnuModules.Items.Clear();
-                MenuItem mnuHome = new MenuItem()
-                {
-                    Text = "Home",
-                    Value = "0",
-                    ImageUrl = "~/images/home.png",
-                };
-                mnuModules.Items.Add(mnuHome);
-                mnuModules.Items[0].Selected = true;
-
-                ModulePane.Height = 31;
-
-                // Hide Search if set
-                bool HideSearchOnReadOnly = Convert.ToBoolean(ConfigurationManager.AppSettings["HideSearchOnReadOnly"]);
-                if (HideSearchOnReadOnly)
-                {
-                    pnlSearch.Visible = false;
-                }
-            }
-
-            if (!string.IsNullOrEmpty(Request.QueryString["ModuleID"]) && !string.IsNullOrEmpty(Request.QueryString["GroupID"]))
-            {
-                int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-                int GroupID = Convert.ToInt32(Request.QueryString["GroupID"]);
-                Session["ModuleID"] = ModuleID;
-                GoTo_Folder(ModuleID, GroupID);
-            }
-        }
-
-        protected void ChangePassword(string UserName, string NewPW, int NumPW, string OptionSet, bool IsFDA)
+        protected async Task Get_SavedReportsAsync(int ModuleID)
         {
             int UserID = 0;
-            bool UseFIPS = P3Security.IsFIPS();
-            string encNewPW = P3Security.Encrypt(NewPW, UserName.ToUpper(), UseFIPS);
-            if (IsFDA == true)
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
             {
-                // Get old passwords for user.
-                int pwIndex = 0;
-                DataTable dtOldPass = P3Security.Get_ForbiddenPasswords(UserName, NumPW);
-                foreach (DataRow drOldPass in dtOldPass.Rows)
-                {
-                    txtConfirmPassword.Text = drOldPass[0].ToString();
-                    if (encNewPW.Equals(drOldPass["OldPass"]))
-                    {
-                        pwIndex += 1;
-                    }
-                }
+                string authCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                string UserData = authTicket.UserData;
+                string[] UserValues = UserData.Split(',');
+                UserID = Convert.ToInt32(UserValues[0]);
+            }
+            mnuReports.Items.Clear();
+            DataTable dt = await Reports.GetSavedReportsAsync(ModuleID, UserID);
+            foreach (DataRow dr in dt.Rows)
+            {
+                string ReportName = dr["SrchAndRprtName"].ToString();
+                string ReportID = dr["SrchAndRprtID"].ToString();
 
-                if (pwIndex > 0)
+                MenuItem itm = new MenuItem()
                 {
-                    lblChangePW.Text = "You must choose a password that has not been used in the last 6 months.";
-                }
-                else
-                {
-                    // Update password and log on.                    
-                    StringBuilder sb = new StringBuilder(OptionSet);
-                    sb[2] = '0';
-                    string NewOptionSet = sb.ToString();
-                    Do_WinP3Logon(UserName);
-                    if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-                    {
-                        string authCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
-                        FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
-                        string UserData = authTicket.UserData;
-                        string[] UserValues = UserData.Split(',');
-                        UserID = Convert.ToInt32(UserValues[0]);
-                    }
-                    P3Security.Do_ChangePassword(UserID, encNewPW, NewOptionSet, 0);
-                    lblLogonError.Text = string.Empty;
-                    lblChangePW.Text = string.Empty;
-                }
+                    Text = ReportName,
+                    Value = ReportID,
+                    ImageUrl = "~/images/item.png"
+                };
+
+                mnuReports.Items.Add(itm);
             }
-            else
-            {
-                // Update password and log on.
-                StringBuilder sb = new StringBuilder(OptionSet);
-                sb[2] = '0';
-                string NewOptionSet = sb.ToString();
-                Do_WinP3Logon(UserName);
-                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-                {
-                    string authCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
-                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
-                    string UserData = authTicket.UserData;
-                    string[] UserValues = UserData.Split(',');
-                    UserID = Convert.ToInt32(UserValues[0]);
-                }
-                P3Security.Do_ChangePassword(UserID, encNewPW, NewOptionSet, 0);
-                lblLogonError.Text = string.Empty;
-                lblChangePW.Text = string.Empty;
-            }
+            dt.Dispose();
         }
 
         #endregion
+
+        protected void lnkVersion_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "relnotes", "openRelNotes()", true);
+            pnlList.Visible = false;
+            pnlHome.Visible = true;
+            pnlDirectLink.Visible = true;
+            pnlTreeView.Visible = false;
+            mnuModules.Items[0].Selected = true;
+        }
+
+        private async Task UpdateListViewAsync()
+        {
+            Session["IsGroup"] = 1;
+            Session["ParentGroupID"] = p3Tree.SelectedValue;
+            p3Tree.SelectedNode.Expand();
+            int moduleID = Convert.ToInt32(ConfigurationManager.AppSettings["DefModuleID"]);
+            if (Session["ModuleID"] != null)
+            {
+                moduleID = Convert.ToInt32(Session["ModuleID"]);
+            }
+            int userID = 0;
+            int userStatus = -1;
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            {
+                // Get user information from authentication cookie.
+                string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                string UserData = authTicket.UserData;
+                string[] UserValues = UserData.Split(',');
+                userID = Convert.ToInt32(UserValues[0]);
+                userStatus = Convert.ToInt32(UserValues[3]);
+            }
+
+            int groupID = Convert.ToInt32(p3Tree.SelectedValue);
+            gvUsersList.SelectedIndex = -1;
+            gvItemList.SelectedIndex = -1;
+            gvRecordList.SelectedIndex = -1;
+            gvAIList.SelectedIndex = -1;
+            DataTable dt = P3General.Get_ItemList(moduleID, userID, groupID.ToString());
+            HttpCookie sortCookie = Request.Cookies["P3WebSort"];
+            string sortExp;
+            // set toolbar button properties and sort expression.
+            DisableButtons();
+            if (moduleID != 14)
+            {
+                pnlProperties.Visible = true;
+            }
+
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            {
+                // Enable Add Button if user is authenticated
+                bool HasAddPermission = await P3General.HasAddPermissionAsync(moduleID, groupID, userID);
+                bool HasRenamePermission = await P3General.HasRenamePermissionAsync(moduleID, groupID, userID);
+                bool HasMovePermission = await P3General.HasMovePermissionAsync(moduleID, groupID, userID);
+                bool HasDeletePermission = await P3General.HasDeletePermissionAsync(moduleID, groupID, userID);
+                bool HasSetRepublishPermission = await P3General.HasSetRepublishPermissionAsync(moduleID, groupID, userID);
+
+
+                if (userStatus == 1)
+                {
+                    pnlAdd.Visible = true;
+                }
+                else
+                {
+                    if (HasAddPermission)
+                    {
+                        pnlAdd.Visible = true;
+                    }
+                }
+
+                if (HasRenamePermission)
+                {
+                    pnlRename.Visible = true;
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRename").ToString(), "rename"));
+                }
+
+                if (HasMovePermission)
+                {
+                    pnlMove.Visible = true;
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionMove").ToString(), "move"));
+                }
+
+                if (HasDeletePermission)
+                {
+                    pnlDelete.Visible = true;
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionDel").ToString(), "delete"));
+                }
+
+                if (moduleID == 3 && HasSetRepublishPermission)
+                {
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRepub").ToString(), "setrepublish"));
+                }
+
+                if (HasMovePermission && moduleID != 1)
+                {
+                    pnlMove.Visible = true;
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionCopy").ToString(), "copy"));
+                }
+            }
+
+            switch (moduleID)
+            {
+                case 1:
+                    // Report
+                    pnlReport.Visible = false;
+                    pnlProgress.Visible = false;
+
+                    // Sort GridView
+                    if (sortCookie != null)
+                    {
+                        sortExp = sortCookie.Values["usrSort"];
+                    }
+                    else
+                    {
+                        sortExp = "Name ASC";
+                    }
+                    dt.DefaultView.Sort = sortExp;
+
+                    // Clear unused grid views
+                    gvItemList.DataSource = null;
+                    gvItemList.DataBind();
+                    gvRecordList.DataSource = null;
+                    gvRecordList.DataBind();
+                    gvAIList.DataSource = null;
+                    gvAIList.DataBind();
+                    // Fill used grid View
+                    gvUsersList.DataSource = dt;
+                    gvUsersList.DataBind();
+                    break;
+                case 4:
+                    // Report
+                    pnlReport.Visible = false;
+                    pnlProgress.Visible = false;
+
+                    // Sort GridView
+                    if (sortCookie != null)
+                    {
+                        sortExp = sortCookie.Values["recSort"];
+                    }
+                    else
+                    {
+                        sortExp = "Name ASC";
+                    }
+                    dt.DefaultView.Sort = sortExp;
+
+                    // Clear unused grid views
+                    gvUsersList.DataSource = null;
+                    gvUsersList.DataBind();
+                    gvItemList.DataSource = null;
+                    gvItemList.DataBind();
+                    gvAIList.DataSource = null;
+                    gvAIList.DataBind();
+                    // Fill used grid View
+                    gvRecordList.DataSource = dt;
+                    gvRecordList.DataBind();
+                    break;
+                case 6:
+                    // Report
+                    pnlReport.Visible = false;
+                    pnlProgress.Visible = false;
+
+                    // Sort GridView
+                    if (sortCookie != null)
+                    {
+                        sortExp = sortCookie.Values["impSort"];
+                    }
+                    else
+                    {
+                        sortExp = "Name ASC";
+                    }
+                    dt.DefaultView.Sort = sortExp;
+
+                    // Clear unused grid views
+                    gvUsersList.DataSource = null;
+                    gvUsersList.DataBind();
+                    gvItemList.DataSource = null;
+                    gvItemList.DataBind();
+                    gvAIList.DataSource = null;
+                    gvAIList.DataBind();
+                    // Fill used grid View
+                    gvRecordList.DataSource = dt;
+                    gvRecordList.DataBind();
+                    break;
+                case 12:
+                    // Report
+                    pnlReport.Visible = false;
+                    pnlProgress.Visible = false;
+
+                    // Sort GridView
+                    if (sortCookie != null)
+                    {
+                        sortExp = sortCookie.Values["trainSort"];
+                    }
+                    else
+                    {
+                        sortExp = "Name ASC";
+                    }
+                    dt.DefaultView.Sort = sortExp;
+
+                    // Clear unused grid views
+                    gvUsersList.DataSource = null;
+                    gvUsersList.DataBind();
+                    gvItemList.DataSource = null;
+                    gvItemList.DataBind();
+                    gvAIList.DataSource = null;
+                    gvAIList.DataBind();
+                    // Fill used grid View
+                    gvRecordList.DataSource = dt;
+                    gvRecordList.DataBind();
+                    break;
+                case 14:
+                    // Disable Add, Rename, and Move Buttons
+                    pnlAdd.Visible = false;
+                    pnlRename.Visible = false;
+                    pnlMove.Visible = false;
+                    // Report
+                    pnlReport.Visible = false;
+                    pnlProgress.Visible = false;
+
+                    // Sort GridView
+                    if (sortCookie != null)
+                    {
+                        sortExp = sortCookie.Values["aiSort"];
+                    }
+                    else
+                    {
+                        sortExp = "SendDate DESC";
+                    }
+                    dt.DefaultView.Sort = sortExp;
+
+                    // Clear unused grid views
+                    gvUsersList.DataSource = null;
+                    gvUsersList.DataBind();
+                    gvRecordList.DataSource = null;
+                    gvRecordList.DataBind();
+                    gvItemList.DataSource = null;
+                    gvItemList.DataBind();
+                    // Fill used grid View
+                    gvAIList.DataSource = dt;
+                    gvAIList.DataBind();
+                    if (gvAIList.Rows.Count > 0)
+                    {
+                        gvAIList.SelectedIndex = 0;
+                    }
+
+                    Session["AIIDs"] = null;
+                    int totalAI = gvAIList.Rows.Count;
+                    List<string> AIList = new List<string>();
+                    for (int i = 0; i < totalAI; i++)
+                    {
+                        AIList.Add(gvAIList.DataKeys[i].Values["AIID"].ToString());
+                    }
+                    Session["AIIDs"] = AIList;
+
+                    // Report
+                    pnlReport.Visible = false;
+                    pnlProgress.Visible = false;
+                    break;
+                default:
+                    // Sort GridView
+                    if (sortCookie != null)
+                    {
+                        sortExp = sortCookie.Values["docSort"];
+                    }
+                    else
+                    {
+                        sortExp = "Name ASC";
+                    }
+                    dt.DefaultView.Sort = sortExp;
+
+                    // Clear unused grid views
+                    gvUsersList.DataSource = null;
+                    gvUsersList.DataBind();
+                    gvRecordList.DataSource = null;
+                    gvRecordList.DataBind();
+                    gvAIList.DataSource = null;
+                    gvAIList.DataBind();
+                    // Fill used grid View
+                    gvItemList.DataSource = dt;
+                    gvItemList.DataBind();
+
+                    // Report
+                    pnlReport.Visible = true;
+                    pnlProgress.Visible = false;
+                    break;
+            }
+        }
+
+        private async Task UpdateToolbarAsync()
+        {
+            if (gvItemList.SelectedIndex > -1)
+            {
+                int index = gvItemList.SelectedIndex;
+                int docOrigID = Convert.ToInt32(gvItemList.Rows[index].Cells[7].Text);
+                //int docItemID = Convert.ToInt32(gvItemList.DataKeys[index].Values["ItemID"]);
+                bool IsEvidence = Convert.ToBoolean(gvItemList.DataKeys[index].Values["IsEvidence"]);
+                bool IsCheckedOut = false;
+                if (!gvItemList.DataKeys[index].Values["IsCheckedOut"].Equals(DBNull.Value))
+                {
+                    IsCheckedOut = Convert.ToBoolean(gvItemList.DataKeys[index].Values["IsCheckedOut"]);
+                }
+                pnlProperties.Visible = true;
+                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                {
+                    // Get user status information from authentication cookie.
+                    string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                    string UserData = authTicket.UserData;
+                    string[] UserValues = UserData.Split(',');
+                    int UserID = Convert.ToInt32(UserValues[0]);
+                    int UserStatus = Convert.ToInt32(UserValues[3]);
+
+                    // Get processing status value
+                    string Processing = gvItemList.Rows[index].Cells[6].Text;
+                    string Status = gvItemList.Rows[index].Cells[3].Text;
+
+                    // Show/hide "Status", "Edit", "Rename", and "Move" buttons
+                    bool HasEditPermission = await P3General.HasEditPermissionAsync(3, docOrigID, UserID);
+                    bool HasStatusPermission = await P3General.HasStatusPermissionAsync(3, docOrigID, UserID);
+                    if (IsEvidence)
+                    {
+                        pnlEdit.Visible = false;
+                        pnlStatus.Visible = false;
+                    }
+                    else
+                    {
+                        switch (UserStatus)
+                        {
+                            case 1: // Administrator
+                                if (HasEditPermission)
+                                {
+                                    if (Processing.Contains("Draft") || Processing.Contains("Collaborate") || Status.Contains("Draft") || Status.Contains("Collaborate"))
+                                    {
+                                        if (IsCheckedOut)
+                                        {
+                                            btnEdit.ImageUrl = "~/images/checkin.png";
+                                            lblEdit.Text = "Check In";
+                                        }
+                                        else
+                                        {
+                                            btnEdit.ImageUrl = "~/images/checkout.png";
+                                            lblEdit.Text = "Check Out";
+                                        }
+                                        pnlEdit.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        pnlEdit.Visible = false;
+                                    }
+                                }
+                                else
+                                {
+                                    pnlEdit.Visible = false;
+                                }
+
+                                // Status?
+                                if (HasStatusPermission)
+                                {
+                                    pnlStatus.Visible = true;
+                                }
+                                else
+                                {
+                                    pnlStatus.Visible = false;
+                                }
+                                break;
+                            case 0: // Normal User
+                                    // Status?
+                                if (HasStatusPermission)
+                                {
+                                    pnlStatus.Visible = true;
+                                }
+                                else
+                                {
+                                    pnlStatus.Visible = false;
+                                }
+
+                                // Edit?
+                                if (HasEditPermission)
+                                {
+                                    if (Processing.Contains("Draft") || Processing.Contains("Collaborate") || Status.Contains("Draft") || Status.Contains("Collaborate"))
+                                    {
+                                        if (IsCheckedOut)
+                                        {
+                                            btnEdit.ImageUrl = "~/images/checkin.png";
+                                            lblEdit.Text = "Check In";
+                                        }
+                                        else
+                                        {
+                                            btnEdit.ImageUrl = "~/images/checkout.png";
+                                            lblEdit.Text = "Check Out";
+                                        }
+                                        pnlEdit.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        pnlEdit.Visible = false;
+                                    }
+                                }
+                                else
+                                {
+                                    pnlEdit.Visible = false;
+                                }
+                                break;
+                            case -1: // Restricted User
+                                string RDocUser = ConfigurationManager.AppSettings["RestrictedUser"];
+                                if (RDocUser == "Edit")
+                                {
+                                    // Status?
+                                    if (HasStatusPermission)
+                                    {
+                                        pnlStatus.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        pnlStatus.Visible = false;
+                                    }
+
+                                    // Edit?
+                                    if (HasEditPermission)
+                                    {
+                                        if (Processing.Contains("Draft") || Processing.Contains("Collaborate") || Status.Contains("Draft") || Status.Contains("Collaborate"))
+                                        {
+                                            if (IsCheckedOut)
+                                            {
+                                                btnEdit.ImageUrl = "~/images/checkin.png";
+                                                lblEdit.Text = "Check In";
+                                            }
+                                            else
+                                            {
+                                                btnEdit.ImageUrl = "~/images/checkout.png";
+                                                lblEdit.Text = "Check Out";
+                                            }
+                                            pnlEdit.Visible = true;
+                                        }
+                                        else
+                                        {
+                                            pnlEdit.Visible = false;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        pnlEdit.Visible = false;
+                                    }
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                        pnlRelatedAI.Visible = true;
+                        pnlParaLink.Visible = true;
+                        pnlProgress.Visible = false;
+                    }
+                }
+            }
+        }
+
+        protected async Task PopulateGridViewMenu(int ModuleID, int GroupID, int OrigID, int UserID)
+        {
+            // Group Level Permissions
+            //bool HasAddPermission = await P3General.HasAddPermissionAsync(ModuleID, GroupID, UserID);
+            bool HasRenamePermission = await P3General.HasRenamePermissionAsync(ModuleID, GroupID, UserID);
+            bool HasMovePermission = await P3General.HasMovePermissionAsync(ModuleID, GroupID, UserID);
+            bool HasDeletePermission = await P3General.HasDeletePermissionAsync(ModuleID, GroupID, UserID);
+            bool HasSetRepublishPermission = await P3General.HasSetRepublishPermissionAsync(ModuleID, GroupID, UserID);
+
+            // Item Level Permissions
+            //bool HasEditPermission = await P3General.HasEditPermissionAsync(ModuleID, OrigID, UserID);
+            bool HasStatusPermission = await P3General.HasStatusPermissionAsync(ModuleID, OrigID, UserID);
+            bool HasChangetoEvidencePemission = await P3General.HasChangetoEvidencePemission(OrigID, UserID);
+            bool HasChangetoItemPemission = await P3General.HasChangetoItemPemission(OrigID, UserID);
+
+            mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionView").ToString(), "view"));
+            if (HasRenamePermission)
+            {
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRename").ToString(), "rename"));
+            }
+            if (HasMovePermission)
+            {
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionMove").ToString(), "move"));
+            }
+
+            if (HasMovePermission && ModuleID != 1)
+            {
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionCopy").ToString(), "copy"));
+            }
+
+            if (ModuleID != 1)
+            {
+                if (HasChangetoEvidencePemission && Session["IsEvidenceCheck"].ToString() == "False")
+                {
+                    mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionEvid").ToString(), "evidence"));
+                }
+
+                if (HasChangetoItemPemission && Session["IsEvidenceCheck"].ToString() == "True")
+                {
+                    mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionItem").ToString(), "item"));
+                }                
+            }
+            
+            if (HasDeletePermission)
+            {
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionDel").ToString(), "delete"));
+            }
+
+            if (HasStatusPermission)
+            {
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionStatus").ToString(), "status"));
+            }
+
+            if (ModuleID == 3 && HasSetRepublishPermission)
+            {
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionRepub").ToString(), "setrepublish"));
+            }
+
+            if (ModuleID == 3 && HasDeletePermission)
+            {
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionExport").ToString(), "export"));
+            }
+
+            if (ModuleID == 3)
+            {
+                MenuItem aiMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionActionItem").ToString(), "actionitem");
+                MenuItem aiSubMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionCreateAI").ToString(), "createactionitem");
+                aiMenuItem.ChildItems.Add(aiSubMenuItem);
+
+                mnuGVContext.Items.Add(aiMenuItem);
+                
+
+                //mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionActionItem").ToString(), "actionitem"));
+                //MenuItem newSubMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionCreateAI").ToString(), "createactionitem");
+                //mnuGVContext.FindItem("actionitem").ChildItems.Add(newSubMenuItem);
+            }
+
+            mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionProp").ToString(), "properties"));
+        }
     }
 }

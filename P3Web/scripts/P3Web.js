@@ -28,22 +28,11 @@ function openSearchWindow(ModuleID, ParentGroupID) {
 }
 
 function enlargeSearchWindow() {
-    if (navigator.userAgent.indexOf("MSIE") != 1) {
-        window.resizeTo(920, 625);
-    }
-    else {
-        window.resizeTo(920, 650);
-    }
-
+    window.resizeTo(1017, 650);
 }
 
 function reduceSearchWindow() {
-    if (navigator.userAgent.indexOf("MSIE") != 1) {
-        window.resizeTo(920, 293);
-    }
-    else {
-        window.resizeTo(900, 255);
-    }
+    window.resizeTo(1017, 330);
 }
 
 //  Action Items
@@ -650,7 +639,20 @@ function resetHome() {
         window.history.pushState({}, document.title, '' + 'Default.aspx');
         parent.document.location.reload();
     }
+}
 
+function saveItemScrollPos(grid) {
+    var elem = document.getElementById('listView');
+    var target = document.getElementById('scrollPos');
+    if (elem.scrollTop != null) {
+        target.value = elem.scrollTop;
+    }
+    console.log(elem.id);
+}
+
+function setItemScrollPos(val) {
+    var elem = document.getElementById("listView");
+    elem.scrollTop = val;
 }
 
 function saveSearchScrollPos() {
@@ -889,8 +891,8 @@ var createXHR = (function () {
 EventUtil.addHandler(window, 'contextmenu', function (e) {
     EventUtil.preventDefault(e);
     document.getElementById('hdnPosX').value = e.pageX;
-    document.getElementById('hdnPosY').value = e.pageY;
-    var contextMenu = document.getElementById('p3ContextMenu')
+    document.getElementById('hdnPosY').value = (e.pageY - 50);
+    var contextMenu = document.getElementById('p3ContextMenu');
     if (contextMenu) {
         contextMenu.style.display = 'none';
     }

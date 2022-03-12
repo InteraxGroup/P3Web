@@ -13,7 +13,7 @@ html {
 
 .docBody {
     margin: 0;
-    font-family: Arial;
+    font-family: sans-serif;
     font-size: 12px;
 }
 
@@ -28,12 +28,13 @@ html {
 
 #pnlToolbarLeft {
     order: 1;
-    flex: 0 0 320px;
+    flex: 1 1 auto;
+    display: flex;
 }
 
 #pnlToolbarRight {
     order: 2;
-    flex: 1 1 auto;
+    flex: 0 0 800px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -340,7 +341,7 @@ html {
     height: 105px;
     text-align: center;
     border: solid 1px #999999;
-    margin: 0 auto
+    margin: 10px auto 0 auto;
 }
 
 #pnlAIDetails {

@@ -315,7 +315,7 @@
   <data name="ddlResultsResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="DetailsLabel:" xml:space="preserve">
+  <data name="DetailsLabel" xml:space="preserve">
     <value>Les Détails</value>
   </data>
   <data name="gvModalSelectedResource1.Caption" xml:space="preserve">

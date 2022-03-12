@@ -124,7 +124,7 @@
     <value />
   </data>
   <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
-    <value>Nom</value>
+    <value>Name</value>
   </data>
   <data name="BoundFieldResource10.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -142,7 +142,7 @@
     <value />
   </data>
   <data name="BoundFieldResource11.HeaderText" xml:space="preserve">
-    <value>Nom</value>
+    <value>Name</value>
   </data>
   <data name="BoundFieldResource12.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -151,7 +151,7 @@
     <value />
   </data>
   <data name="BoundFieldResource12.HeaderText" xml:space="preserve">
-    <value>Étiqueter</value>
+    <value>Label</value>
   </data>
   <data name="BoundFieldResource13.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -160,7 +160,7 @@
     <value />
   </data>
   <data name="BoundFieldResource13.HeaderText" xml:space="preserve">
-    <value>Statut</value>
+    <value>Status</value>
   </data>
   <data name="BoundFieldResource14.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -169,7 +169,7 @@
     <value />
   </data>
   <data name="BoundFieldResource14.HeaderText" xml:space="preserve">
-    <value>Initiateur</value>
+    <value>Initiator</value>
   </data>
   <data name="BoundFieldResource15.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -178,7 +178,7 @@
     <value />
   </data>
   <data name="BoundFieldResource15.HeaderText" xml:space="preserve">
-    <value>Créé</value>
+    <value>Created</value>
   </data>
   <data name="BoundFieldResource16.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -205,7 +205,7 @@
     <value />
   </data>
   <data name="BoundFieldResource18.HeaderText" xml:space="preserve">
-    <value>Converti par</value>
+    <value>Converted By</value>
   </data>
   <data name="BoundFieldResource19.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -214,7 +214,7 @@
     <value />
   </data>
   <data name="BoundFieldResource19.HeaderText" xml:space="preserve">
-    <value>Date de la version</value>
+    <value>Version Date</value>
   </data>
   <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -223,7 +223,7 @@
     <value />
   </data>
   <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
-    <value>Étiqueter</value>
+    <value>Label</value>
   </data>
   <data name="BoundFieldResource20.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -232,7 +232,7 @@
     <value />
   </data>
   <data name="BoundFieldResource20.HeaderText" xml:space="preserve">
-    <value>Destinataire</value>
+    <value>Recipient</value>
   </data>
   <data name="BoundFieldResource21.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -241,7 +241,7 @@
     <value />
   </data>
   <data name="BoundFieldResource21.HeaderText" xml:space="preserve">
-    <value>Élément d'action</value>
+    <value>ActionItem</value>
   </data>
   <data name="BoundFieldResource22.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -250,7 +250,7 @@
     <value />
   </data>
   <data name="BoundFieldResource22.HeaderText" xml:space="preserve">
-    <value>Module connexe</value>
+    <value>Related Module</value>
   </data>
   <data name="BoundFieldResource23.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -259,7 +259,7 @@
     <value />
   </data>
   <data name="BoundFieldResource23.HeaderText" xml:space="preserve">
-    <value>Identifiant associé</value>
+    <value>Related ID</value>
   </data>
   <data name="BoundFieldResource24.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -268,7 +268,7 @@
     <value />
   </data>
   <data name="BoundFieldResource24.HeaderText" xml:space="preserve">
-    <value>Date d'échéance</value>
+    <value>Due Date</value>
   </data>
   <data name="BoundFieldResource25.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -277,7 +277,7 @@
     <value />
   </data>
   <data name="BoundFieldResource25.HeaderText" xml:space="preserve">
-    <value>Envoyée par</value>
+    <value>Sent By</value>
   </data>
   <data name="BoundFieldResource26.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -286,7 +286,7 @@
     <value />
   </data>
   <data name="BoundFieldResource26.HeaderText" xml:space="preserve">
-    <value>Date envoyée</value>
+    <value>Sent Date</value>
   </data>
   <data name="BoundFieldResource27.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -304,7 +304,7 @@
     <value />
   </data>
   <data name="BoundFieldResource28.HeaderText" xml:space="preserve">
-    <value>Priorité</value>
+    <value>Priority</value>
   </data>
   <data name="BoundFieldResource29.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -313,7 +313,7 @@
     <value />
   </data>
   <data name="BoundFieldResource29.HeaderText" xml:space="preserve">
-    <value>Date de fin</value>
+    <value>Completed Date</value>
   </data>
   <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -322,7 +322,7 @@
     <value />
   </data>
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
-    <value>Statut</value>
+    <value>Status</value>
   </data>
   <data name="BoundFieldResource30.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -331,7 +331,7 @@
     <value />
   </data>
   <data name="BoundFieldResource30.HeaderText" xml:space="preserve">
-    <value>Nom</value>
+    <value>Name</value>
   </data>
   <data name="BoundFieldResource31.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -340,7 +340,7 @@
     <value />
   </data>
   <data name="BoundFieldResource31.HeaderText" xml:space="preserve">
-    <value>Prénom</value>
+    <value>First Name</value>
   </data>
   <data name="BoundFieldResource32.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -349,7 +349,7 @@
     <value />
   </data>
   <data name="BoundFieldResource32.HeaderText" xml:space="preserve">
-    <value>Nom de famille</value>
+    <value>Last Name</value>
   </data>
   <data name="BoundFieldResource33.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -358,7 +358,7 @@
     <value />
   </data>
   <data name="BoundFieldResource33.HeaderText" xml:space="preserve">
-    <value>Nom et prénom</value>
+    <value>Full Name</value>
   </data>
   <data name="BoundFieldResource34.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -376,7 +376,7 @@
     <value />
   </data>
   <data name="BoundFieldResource35.HeaderText" xml:space="preserve">
-    <value>Statut</value>
+    <value>Status</value>
   </data>
   <data name="BoundFieldResource36.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -394,7 +394,7 @@
     <value />
   </data>
   <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
-    <value>Converti par</value>
+    <value>Converted By</value>
   </data>
   <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -403,7 +403,7 @@
     <value />
   </data>
   <data name="BoundFieldResource5.HeaderText" xml:space="preserve">
-    <value>Date convertie</value>
+    <value>Converted Date</value>
   </data>
   <data name="BoundFieldResource6.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -412,7 +412,7 @@
     <value />
   </data>
   <data name="BoundFieldResource6.HeaderText" xml:space="preserve">
-    <value>Traitement</value>
+    <value>Processing</value>
   </data>
   <data name="BoundFieldResource7.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -439,7 +439,7 @@
     <value />
   </data>
   <data name="BoundFieldResource9.HeaderText" xml:space="preserve">
-    <value>Dernière modification</value>
+    <value>Last Modified</value>
   </data>
   <data name="btnAddResource1.AlternateText" xml:space="preserve">
     <value />
@@ -460,25 +460,25 @@
     <value />
   </data>
   <data name="btnAdminResource1.Text" xml:space="preserve">
-    <value>Administrateur</value>
+    <value>Admin</value>
   </data>
   <data name="btnAdminResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnCancelChangePWResource1.Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Cancel</value>
   </data>
   <data name="btnCancelChangePWResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnCancelLogonResource1.Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Cancel</value>
   </data>
   <data name="btnCancelLogonResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnChangePWResource1.Text" xml:space="preserve">
-    <value>d'accord</value>
+    <value>OK</value>
   </data>
   <data name="btnChangePWResource1.ToolTip" xml:space="preserve">
     <value />
@@ -516,17 +516,11 @@
   <data name="btnLogonResource1.AlternateText" xml:space="preserve">
     <value />
   </data>
-  <data name="btnLogonResource1.Text" xml:space="preserve">
-    <value>Connexion</value>
-  </data>
   <data name="btnLogonResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnLogoutResource1.AlternateText" xml:space="preserve">
     <value />
-  </data>
-  <data name="btnLogoutResource1.Text" xml:space="preserve">
-    <value>Déconnecter</value>
   </data>
   <data name="btnLogoutResource1.ToolTip" xml:space="preserve">
     <value />
@@ -646,7 +640,7 @@
     <value />
   </data>
   <data name="btnSubmitLogonResource1.Text" xml:space="preserve">
-    <value>Se connecter</value>
+    <value>Logon</value>
   </data>
   <data name="btnSubmitLogonResource1.ToolTip" xml:space="preserve">
     <value />
@@ -699,9 +693,6 @@
   <data name="gvUsersListResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="HomeModule" xml:space="preserve">
-    <value>Accueil</value>
-  </data>
   <data name="Image1Resource1.AlternateText" xml:space="preserve">
     <value />
   </data>
@@ -733,7 +724,7 @@
     <value />
   </data>
   <data name="lblAddResource1.Text" xml:space="preserve">
-    <value>Ajouter</value>
+    <value>Add New</value>
   </data>
   <data name="lblAddResource1.ToolTip" xml:space="preserve">
     <value />
@@ -745,52 +736,52 @@
     <value />
   </data>
   <data name="lblChangePWResource1.Text" xml:space="preserve">
-    <value>Votre mot de passe a expiré et doit être modifié pour continuer.</value>
+    <value>Your password has expired and must be changed to proceed.</value>
   </data>
   <data name="lblChangePWResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblConfirmPasswordResource1.Text" xml:space="preserve">
-    <value>Confirmez le mot de passe:</value>
+    <value>Confirm Password:</value>
   </data>
   <data name="lblConfirmPasswordResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblDeleteResource1.Text" xml:space="preserve">
-    <value>Effacer</value>
+    <value>Delete</value>
   </data>
   <data name="lblDeleteResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblEditResource1.Text" xml:space="preserve">
-    <value>Éditer</value>
+    <value>Edit</value>
   </data>
   <data name="lblEditResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblGuideResource1.Text" xml:space="preserve">
-    <value>Aide</value>
+    <value>User Guide</value>
   </data>
   <data name="lblGuideResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblItemListTitleResource1.Text" xml:space="preserve">
-    <value />
+    <value>Item List</value>
   </data>
   <data name="lblItemListTitleResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblLinkTitleResource1.Text" xml:space="preserve">
-    <value>Raccourcis</value>
+    <value>Direct Links</value>
   </data>
   <data name="lblLinkTitleResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblLogonError" xml:space="preserve">
-    <value>Échec de la connexion. Veuillez réessayer.</value>
+    <value>Logon not successful.  Please try again.</value>
   </data>
   <data name="lblLogonErrorPasswrd" xml:space="preserve">
-    <value>Vous devez entrer un mot de passe.</value>
+    <value>You must enter a password.</value>
   </data>
   <data name="lblLogonErrorResource1.Text" xml:space="preserve">
     <value />
@@ -799,7 +790,7 @@
     <value />
   </data>
   <data name="lblLogonErrorUsrname" xml:space="preserve">
-    <value>Vous devez saisir un nom d'utilisateur.</value>
+    <value>You must enter a username.</value>
   </data>
   <data name="lblLogonResource1.Text" xml:space="preserve">
     <value />
@@ -808,7 +799,7 @@
     <value />
   </data>
   <data name="lblLogonStatus" xml:space="preserve">
-    <value>Vous n'êtes pas connecté.</value>
+    <value>You are not logged in.</value>
   </data>
   <data name="lblModuleLabelResource1.Text" xml:space="preserve">
     <value />
@@ -817,19 +808,19 @@
     <value />
   </data>
   <data name="lblMoveResource1.Text" xml:space="preserve">
-    <value>Mouvement</value>
+    <value>Move</value>
   </data>
   <data name="lblMoveResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblNewPasswordResource1.Text" xml:space="preserve">
-    <value>Nouveau mot de passe:</value>
+    <value>New Password:</value>
   </data>
   <data name="lblNewPasswordResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblOtherUserAIResource1.Text" xml:space="preserve">
-    <value>Autre utilisateur</value>
+    <value>Other User</value>
   </data>
   <data name="lblOtherUserAIResource1.ToolTip" xml:space="preserve">
     <value />
@@ -841,55 +832,55 @@
     <value />
   </data>
   <data name="lblPasswordResource1.Text" xml:space="preserve">
-    <value>Mot de passe:</value>
+    <value>Password:</value>
   </data>
   <data name="lblPasswordResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblProgressResource1.Text" xml:space="preserve">
-    <value>Progrès</value>
+    <value>Progress</value>
   </data>
   <data name="lblProgressResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblPropertiesResource1.Text" xml:space="preserve">
-    <value>Propriétés</value>
+    <value>Properties</value>
   </data>
   <data name="lblPropertiesResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblRelatedAIResource1.Text" xml:space="preserve">
-    <value>AI Associée</value>
+    <value>Related AI</value>
   </data>
   <data name="lblRelatedAIResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblRenameResource1.Text" xml:space="preserve">
-    <value>Renommer</value>
+    <value>Rename</value>
   </data>
   <data name="lblRenameResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblReportResource1.Text" xml:space="preserve">
-    <value>Rapports</value>
+    <value>Reports</value>
   </data>
   <data name="lblReportResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblSearchResource1.Text" xml:space="preserve">
-    <value>Rechercher</value>
+    <value>Search</value>
   </data>
   <data name="lblSearchResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblStatusResource1.Text" xml:space="preserve">
-    <value>Statut</value>
+    <value>Status</value>
   </data>
   <data name="lblStatusResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblUserNameResource1.Text" xml:space="preserve">
-    <value>Nom d'utilisateur:</value>
+    <value>User Name:</value>
   </data>
   <data name="lblUserNameResource1.ToolTip" xml:space="preserve">
     <value />
@@ -901,7 +892,7 @@
     <value />
   </data>
   <data name="lblViewResource1.Text" xml:space="preserve">
-    <value>Vue</value>
+    <value>View</value>
   </data>
   <data name="lblViewResource1.ToolTip" xml:space="preserve">
     <value />
@@ -918,20 +909,32 @@
   <data name="lnkVersionResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="Logon" xml:space="preserve">
+    <value>images/logon.png</value>
+  </data>
+  <data name="LogonMo" xml:space="preserve">
+    <value>images/logonmo.png</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>images/logout.png</value>
+  </data>
+  <data name="LogoutMo" xml:space="preserve">
+    <value>images/logoutmo.png</value>
+  </data>
   <data name="Menu1Resource1.ScrollDownText" xml:space="preserve">
-    <value>Défiler vers le bas</value>
+    <value>Scroll down</value>
   </data>
   <data name="Menu1Resource1.ScrollUpText" xml:space="preserve">
-    <value>Faites défiler vers le haut</value>
+    <value>Scroll up</value>
   </data>
   <data name="Menu1Resource1.SkipLinkText" xml:space="preserve">
-    <value>Ignorer les liens de navigation</value>
+    <value>Skip Navigation Links</value>
   </data>
   <data name="Menu1Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="MenuItemResource1.Text" xml:space="preserve">
-    <value>Renommer l'élément</value>
+    <value>Rename Item</value>
   </data>
   <data name="MenuItemResource1.ToolTip" xml:space="preserve">
     <value />
@@ -940,7 +943,7 @@
     <value>0</value>
   </data>
   <data name="MenuItemResource2.Text" xml:space="preserve">
-    <value>Renommer le dossier</value>
+    <value>Rename Folder</value>
   </data>
   <data name="MenuItemResource2.ToolTip" xml:space="preserve">
     <value />
@@ -949,7 +952,7 @@
     <value>1</value>
   </data>
   <data name="MenuItemResource3.Text" xml:space="preserve">
-    <value>Déplacer l'élément</value>
+    <value>Move Item</value>
   </data>
   <data name="MenuItemResource3.ToolTip" xml:space="preserve">
     <value />
@@ -958,7 +961,7 @@
     <value>0</value>
   </data>
   <data name="MenuItemResource4.Text" xml:space="preserve">
-    <value>Déplacer le dossier</value>
+    <value>Move Folder</value>
   </data>
   <data name="MenuItemResource4.ToolTip" xml:space="preserve">
     <value />
@@ -967,7 +970,7 @@
     <value>1</value>
   </data>
   <data name="MenuItemResource5.Text" xml:space="preserve">
-    <value>Effacer l'article</value>
+    <value>Delete Item</value>
   </data>
   <data name="MenuItemResource5.ToolTip" xml:space="preserve">
     <value />
@@ -976,7 +979,7 @@
     <value>0</value>
   </data>
   <data name="MenuItemResource6.Text" xml:space="preserve">
-    <value>Supprimer le dossier</value>
+    <value>Delete Folder</value>
   </data>
   <data name="MenuItemResource6.ToolTip" xml:space="preserve">
     <value />
@@ -985,133 +988,136 @@
     <value>1</value>
   </data>
   <data name="mnuAddDocResource1.ScrollDownText" xml:space="preserve">
-    <value>Défiler vers le bas</value>
+    <value>Scroll down</value>
   </data>
   <data name="mnuAddDocResource1.ScrollUpText" xml:space="preserve">
-    <value>Faites défiler vers le haut</value>
+    <value>Scroll up</value>
   </data>
   <data name="mnuAddDocResource1.SkipLinkText" xml:space="preserve">
-    <value>Ignorer les liens de navigation</value>
+    <value>Skip Navigation Links</value>
   </data>
   <data name="mnuAddDocResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="mnuDeleteResource1.ScrollDownText" xml:space="preserve">
-    <value>Défiler vers le bas</value>
+    <value>Scroll down</value>
   </data>
   <data name="mnuDeleteResource1.ScrollUpText" xml:space="preserve">
-    <value>Faites défiler vers le haut</value>
+    <value>Scroll up</value>
   </data>
   <data name="mnuDeleteResource1.SkipLinkText" xml:space="preserve">
-    <value>Ignorer les liens de navigation</value>
+    <value>Skip Navigation Links</value>
   </data>
   <data name="mnuDeleteResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="mnuGVContextResource1.ScrollDownText" xml:space="preserve">
-    <value>Défiler vers le bas</value>
+    <value>Scroll down</value>
   </data>
   <data name="mnuGVContextResource1.ScrollUpText" xml:space="preserve">
-    <value>Faites défiler vers le haut</value>
+    <value>Scroll up</value>
   </data>
   <data name="mnuGVContextResource1.SkipLinkText" xml:space="preserve">
-    <value>Ignorer les liens de navigation</value>
+    <value>Skip Navigation Links</value>
   </data>
   <data name="mnuGVContextResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="mnuModulesResource1.ScrollDownText" xml:space="preserve">
-    <value>Défiler vers le bas</value>
+    <value>Scroll down</value>
   </data>
   <data name="mnuModulesResource1.ScrollUpText" xml:space="preserve">
-    <value>Faites défiler vers le haut</value>
+    <value>Scroll up</value>
   </data>
   <data name="mnuModulesResource1.SkipLinkText" xml:space="preserve">
-    <value>Ignorer les liens de navigation</value>
+    <value>Skip Navigation Links</value>
   </data>
   <data name="mnuModulesResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="mnuMoveResource1.ScrollDownText" xml:space="preserve">
-    <value>Défiler vers le bas</value>
+    <value>Scroll down</value>
   </data>
   <data name="mnuMoveResource1.ScrollUpText" xml:space="preserve">
-    <value>Faites défiler vers le haut</value>
+    <value>Scroll up</value>
   </data>
   <data name="mnuMoveResource1.SkipLinkText" xml:space="preserve">
-    <value>Ignorer les liens de navigation</value>
+    <value>Skip Navigation Links</value>
   </data>
   <data name="mnuMoveResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="mnuOptionActionItem" xml:space="preserve">
-    <value>Élément d'action</value>
+    <value>Action Item</value>
   </data>
   <data name="mnuOptionCopy" xml:space="preserve">
-    <value>Copier</value>
+    <value>Copy To</value>
   </data>
   <data name="mnuOptionCreateAI" xml:space="preserve">
-    <value>Créer un élément d'action associé</value>
+    <value>Create Related Action Item</value>
   </data>
   <data name="mnuOptionDel" xml:space="preserve">
-    <value>Effacer</value>
+    <value>Delete</value>
   </data>
   <data name="mnuOptionEvid" xml:space="preserve">
-    <value>Modification des preuves</value>
+    <value>Change to Evidence</value>
+  </data>
+  <data name="mnuOptionExport" xml:space="preserve">
+    <value>Export Item</value>
   </data>
   <data name="mnuOptionItem" xml:space="preserve">
-    <value>Changer pour l'article</value>
+    <value>Change to Item</value>
   </data>
   <data name="mnuOptionMove" xml:space="preserve">
-    <value>Se déplacer</value>
+    <value>Move</value>
   </data>
   <data name="mnuOptionProp" xml:space="preserve">
-    <value>Propriétés</value>
+    <value>Properties</value>
   </data>
   <data name="mnuOptionRename" xml:space="preserve">
-    <value>Renommer</value>
+    <value>Rename</value>
   </data>
   <data name="mnuOptionRepub" xml:space="preserve">
-    <value>Définir la republier</value>
+    <value>Set Republish</value>
   </data>
   <data name="mnuOptionStatus" xml:space="preserve">
-    <value>Statut</value>
+    <value>Status</value>
   </data>
   <data name="mnuOptionView" xml:space="preserve">
-    <value>Vue</value>
+    <value>View</value>
   </data>
   <data name="mnuRenameResource1.ScrollDownText" xml:space="preserve">
-    <value>Défiler vers le bas</value>
+    <value>Scroll down</value>
   </data>
   <data name="mnuRenameResource1.ScrollUpText" xml:space="preserve">
-    <value>Faites défiler vers le haut</value>
+    <value>Scroll up</value>
   </data>
   <data name="mnuRenameResource1.SkipLinkText" xml:space="preserve">
-    <value>Ignorer les liens de navigation</value>
+    <value>Skip Navigation Links</value>
   </data>
   <data name="mnuRenameResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="mnuReportsResource1.ScrollDownText" xml:space="preserve">
-    <value>Défiler vers le bas</value>
+    <value>Scroll down</value>
   </data>
   <data name="mnuReportsResource1.ScrollUpText" xml:space="preserve">
-    <value>Faites défiler vers le haut</value>
+    <value>Scroll up</value>
   </data>
   <data name="mnuReportsResource1.SkipLinkText" xml:space="preserve">
-    <value>Ignorer les liens de navigation</value>
+    <value>Skip Navigation Links</value>
   </data>
   <data name="mnuReportsResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="mnuTVContextResource1.ScrollDownText" xml:space="preserve">
-    <value>Défiler vers le bas</value>
+    <value>Scroll down</value>
   </data>
   <data name="mnuTVContextResource1.ScrollUpText" xml:space="preserve">
-    <value>Faites défiler vers le haut</value>
+    <value>Scroll up</value>
   </data>
   <data name="mnuTVContextResource1.SkipLinkText" xml:space="preserve">
-    <value>Ignorer les liens de navigation</value>
+    <value>Skip Navigation Links</value>
   </data>
   <data name="mnuTVContextResource1.ToolTip" xml:space="preserve">
     <value />
@@ -1132,13 +1138,13 @@
     <value />
   </data>
   <data name="p3TreeResource1.CollapseImageToolTip" xml:space="preserve">
-    <value>Effondrer {0}</value>
+    <value>Collapse {0}</value>
   </data>
   <data name="p3TreeResource1.ExpandImageToolTip" xml:space="preserve">
-    <value>étendre {0}</value>
+    <value>Expand {0}</value>
   </data>
   <data name="p3TreeResource1.SkipLinkText" xml:space="preserve">
-    <value>Ignorer les liens de navigation.</value>
+    <value>Skip Navigation Links.</value>
   </data>
   <data name="p3TreeResource1.ToolTip" xml:space="preserve">
     <value />
@@ -1320,9 +1326,6 @@
   <data name="Splitter2Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
   </data>
@@ -1360,13 +1363,13 @@
     <value />
   </data>
   <data name="timeGreetEvening" xml:space="preserve">
-    <value>Bonjour</value>
+    <value>Good Evening</value>
   </data>
   <data name="timeGreetMorning" xml:space="preserve">
-    <value>Bonjour</value>
+    <value>Good Morning</value>
   </data>
   <data name="timeGreetNoon" xml:space="preserve">
-    <value>Bonjour</value>
+    <value>Good Afternoon</value>
   </data>
   <data name="TreePaneResource1.ToolTip" xml:space="preserve">
     <value />

@@ -15,13 +15,13 @@
 <body class="paraLinkBody">
     <form id="form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
-        <div id="toolbar">
+        <div id="toolbar" class="toolbar" style="border-bottom: 1px solid #787878; height: 55px; margin-bottom: 10px;">
             <asp:Panel ID="pnlShowMe" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlShowMeResource1">
                 <asp:ImageButton ID="btnShowMe" runat="server" ImageUrl="~/images/showme.png" OnClick="ImageButton_Click" CommandArgument="ShowMe" meta:resourcekey="btnShowMeResource1" />
                 <br />
                 <asp:Label ID="lblShowMe" runat="server" Text="Show Me" meta:resourcekey="lblShowMeResource1" />
             </asp:Panel>
-            <asp:Panel ID="pnlGoThere" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999999;" Visible="False" meta:resourcekey="pnlGoThereResource1">
+            <asp:Panel ID="pnlGoThere" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #dcdcdc;" Visible="False" meta:resourcekey="pnlGoThereResource1">
                 <asp:ImageButton ID="btnGoThere" runat="server" ImageUrl="~/images/gothere.png" OnClick="ImageButton_Click" CommandArgument="GoThere" meta:resourcekey="btnGoThereResource1" />
                 <br />
                 <asp:Label ID="lblGoThere" runat="server" Text="Go There" meta:resourcekey="lblGoThereResource1" />
@@ -31,7 +31,7 @@
                 <br />
                 <asp:Label ID="lblAddPLink" runat="server" Text="Add" meta:resourcekey="lblAddPLinkResource1" />
             </asp:Panel>
-            <asp:Panel ID="pnlRemovePLink" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #999999;" Visible="False" meta:resourcekey="pnlRemovePLinkResource1">
+            <asp:Panel ID="pnlRemovePLink" runat="server" CssClass="toolbarButton" style="border-right: 1px solid #dcdcdc;" Visible="False" meta:resourcekey="pnlRemovePLinkResource1">
                 <asp:ImageButton ID="btnRemovePLink" runat="server" ImageUrl="~/images/removeplink.png" OnClick="ImageButton_Click" CommandArgument="RemovePLink" meta:resourcekey="btnRemovePLinkResource1" />
                 <br />
                 <asp:Label ID="lblRemovePLink" runat="server" Text="Remove" meta:resourcekey="lblRemovePLinkResource1" />

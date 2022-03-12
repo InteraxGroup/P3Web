@@ -22,58 +22,60 @@
                 <asp:AsyncPostBackTrigger ControlID="btnFinishStep" EventName="Click" />
             </Triggers>
         <ContentTemplate>
-            <div id="toolBar">
-            <asp:Panel ID="pnlSave" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlSaveResource1">
-                <asp:ImageButton ID="BtnSave" runat="server" ImageUrl="~/images/save.png" OnClick="ImageButton_Click" CommandArgument="SaveItem" ToolTip="Save Record" meta:resourcekey="BtnSaveResource1" />
-                <br />
-                <asp:Label ID="lblSave" runat="server" Text="Save" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblSaveResource1" />
-            </asp:Panel>
-            <asp:Panel ID="pnlCalculate" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlCalculateResource1">
-                <asp:ImageButton ID="BtnCalculate" runat="server" ImageUrl="~/images/calculate.png" OnClick="ImageButton_Click" CommandArgument="Calculate" ToolTip="Calculate Formula Fields" meta:resourcekey="BtnCalculateResource1" />
-                <br />
-                <asp:Label ID="Calculate" runat="server" Text="Calculate" meta:resourcekey="CalculateResource2" />
-            </asp:Panel>
-            <asp:Panel ID="pnlEdit" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlEditResource1">
-                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/edit.png" OnClick="ImageButton_Click" CommandArgument="EditItem" ToolTip="Set Record to Edit Mode" meta:resourcekey="BtnEditResource1" />
-                <br />
-                <asp:Label ID="lblEdit" runat="server" Text="Edit" meta:resourcekey="lblEditResource1" />
-            </asp:Panel>
-            <asp:Panel ID="pnlProperties" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlPropertiesResource1">
-                <asp:ImageButton ID="BtnProperties" runat="server" ImageUrl="~/images/properties.png" ToolTip="View Record Properties" meta:resourcekey="BtnPropertiesResource1" />
-                <br />
-                <asp:Label ID="lblProperties" runat="server" Text="Properties" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblPropertiesResource1" />
-            </asp:Panel>
-            <asp:Panel ID="pnlParaLink" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlParaLinkResource1">
-                <asp:ImageButton ID="BtnParaLink" runat="server" ImageUrl="~/images/paralink.png" CommandArgument="ParaLink" ToolTip="View Record Para-Links&reg;" meta:resourcekey="BtnParaLinkResource1" />
-                <br />
-                <asp:Label ID="lblParaLink" runat="server" Text="Para-Link&reg;" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblParaLinkResource1" />
-            </asp:Panel>
-            <asp:Panel ID="pnlRelatedAI" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlRelatedAIResource1">
-                <asp:ImageButton ID="BtnRelatedAI" runat="server" ImageUrl="~/images/actionitem.png" ToolTip="View Related Action Items" meta:resourcekey="BtnRelatedAIResource1" />
-                <br />
-                <asp:Label ID="lblRelatedAI" runat="server" Text="Related AI" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblRelatedAIResource1" />
-            </asp:Panel>
-            <asp:Panel ID="pnlAttachment" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlAttachmentResource1">
-                <asp:ImageButton ID="BtnAttachment" runat="server" ImageUrl="~/images/attachment.png" OnClick="ImageButton_Click" CommandArgument="Attach" ToolTip="View Record Attachments" meta:resourcekey="BtnAttachmentResource1" />
-                <br />
-                <asp:Label ID="lblAttachment" runat="server" Text="Attachments" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblAttachmentResource1" />
-            </asp:Panel>
-            <asp:Panel ID="pnlTrainLink" runat="server" CssClass="toolbarButton" style="width: 62px;" Visible="False" meta:resourcekey="pnlTrainLinkResource1">
-                <asp:ImageButton ID="BtnTrainLink" runat="server" ImageUrl="~/images/traininglink.png" ToolTip="View Training Record Links" meta:resourcekey="BtnTrainLinkResource1" />
-                <br />
-                <asp:Label ID="lblTrainLink" runat="server" Text="Training Link" meta:resourcekey="lblTrainLinkResource1" />
-            </asp:Panel>
-			<asp:Panel ID="pnlAssessment" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlAssessmentResource1">
-				<asp:ImageButton ID="BtnAssessment" runat="server" ImageUrl="~/images/assessment.png" ToolTip="Launch Competency Assessment" meta:resourcekey="BtnAssessmentResource1" />
-				<br />
-				<asp:Label ID="lblAssessment" runat="server" Text="Assessment" meta:resourcekey="lblAssessmentResource1" />
-			</asp:Panel>
-            <asp:Panel ID="pnlClose" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlCloseResource1">
-                <asp:ImageButton ID="BtnClose" runat="server" ImageUrl="~/images/exit.png" OnClick="ImageButton_Click" CommandArgument="CloseItem" ToolTip="Close Record" meta:resourcekey="BtnCloseResource1" />
-                <br />
-                <asp:Label ID="lblClose" runat="server" Text="Close" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblCloseResource1" />
-            </asp:Panel>
-        </div>
+            <div id="topBar">
+                <div class="toolbar">
+                    <asp:Panel ID="pnlSave" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlSaveResource1">
+                        <asp:ImageButton ID="BtnSave" runat="server" ImageUrl="~/images/save.png" OnClick="ImageButton_Click" CommandArgument="SaveItem" ToolTip="Save Record" meta:resourcekey="BtnSaveResource1" />
+                        <br />
+                        <asp:Label ID="lblSave" runat="server" Text="Save" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblSaveResource1" />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlCalculate" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlCalculateResource1">
+                        <asp:ImageButton ID="BtnCalculate" runat="server" ImageUrl="~/images/calculate.png" OnClick="ImageButton_Click" CommandArgument="Calculate" ToolTip="Calculate Formula Fields" meta:resourcekey="BtnCalculateResource1" />
+                        <br />
+                        <asp:Label ID="Calculate" runat="server" Text="Calculate" meta:resourcekey="CalculateResource2" />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlEdit" runat="server" CssClass="toolbarButton" Visible="False" meta:resourcekey="pnlEditResource1">
+                        <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/edit.png" OnClick="ImageButton_Click" CommandArgument="EditItem" ToolTip="Set Record to Edit Mode" meta:resourcekey="BtnEditResource1" />
+                        <br />
+                        <asp:Label ID="lblEdit" runat="server" Text="Edit" meta:resourcekey="lblEditResource1" />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlProperties" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlPropertiesResource1">
+                        <asp:ImageButton ID="BtnProperties" runat="server" ImageUrl="~/images/properties.png" ToolTip="View Record Properties" meta:resourcekey="BtnPropertiesResource1" />
+                        <br />
+                        <asp:Label ID="lblProperties" runat="server" Text="Properties" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblPropertiesResource1" />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlParaLink" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlParaLinkResource1">
+                        <asp:ImageButton ID="BtnParaLink" runat="server" ImageUrl="~/images/paralink.png" CommandArgument="ParaLink" ToolTip="View Record Para-Links&reg;" meta:resourcekey="BtnParaLinkResource1" />
+                        <br />
+                        <asp:Label ID="lblParaLink" runat="server" Text="Para-Link" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblParaLinkResource1" />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlRelatedAI" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlRelatedAIResource1">
+                        <asp:ImageButton ID="BtnRelatedAI" runat="server" ImageUrl="~/images/actionitem.png" ToolTip="View Related Action Items" meta:resourcekey="BtnRelatedAIResource1" />
+                        <br />
+                        <asp:Label ID="lblRelatedAI" runat="server" Text="Related AI" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblRelatedAIResource1" />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlAttachment" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlAttachmentResource1">
+                        <asp:ImageButton ID="BtnAttachment" runat="server" ImageUrl="~/images/attachment.png" OnClick="ImageButton_Click" CommandArgument="Attach" ToolTip="View Record Attachments" meta:resourcekey="BtnAttachmentResource1" />
+                        <br />
+                        <asp:Label ID="lblAttachment" runat="server" Text="Attachments" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblAttachmentResource1" />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlTrainLink" runat="server" CssClass="toolbarButton" style="width: 62px;" Visible="False" meta:resourcekey="pnlTrainLinkResource1">
+                        <asp:ImageButton ID="BtnTrainLink" runat="server" ImageUrl="~/images/traininglink.png" ToolTip="View Training Record Links" meta:resourcekey="BtnTrainLinkResource1" />
+                        <br />
+                        <asp:Label ID="lblTrainLink" runat="server" Text="Training Link" meta:resourcekey="lblTrainLinkResource1" />
+                    </asp:Panel>
+			        <asp:Panel ID="pnlAssessment" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlAssessmentResource1">
+				        <asp:ImageButton ID="BtnAssessment" runat="server" ImageUrl="~/images/assessment.png" ToolTip="Launch Competency Assessment" meta:resourcekey="BtnAssessmentResource1" />
+				        <br />
+				        <asp:Label ID="lblAssessment" runat="server" Text="Assessment" meta:resourcekey="lblAssessmentResource1" />
+			        </asp:Panel>
+                    <asp:Panel ID="pnlClose" runat="server" CssClass="toolbarButton" meta:resourcekey="pnlCloseResource1">
+                        <asp:ImageButton ID="BtnClose" runat="server" ImageUrl="~/images/exit.png" OnClick="ImageButton_Click" CommandArgument="CloseItem" ToolTip="Close Record" meta:resourcekey="BtnCloseResource1" />
+                        <br />
+                        <asp:Label ID="lblClose" runat="server" Text="Close" Font-Size="8pt" Font-Names="Arial" meta:resourcekey="lblCloseResource1" />
+                    </asp:Panel>
+                </div>
+            </div>
         </ContentTemplate>
         </asp:UpdatePanel>
 

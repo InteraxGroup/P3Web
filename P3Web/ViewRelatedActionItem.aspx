@@ -17,8 +17,8 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <asp:UpdatePanel ID="udpRelatedAI" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-        <div id="toolBar">
-            <div style="display: block; position: relative; width: 800px; position: relative;">
+        <div id="topBar">
+            <div class="toolbar">
                 <div class="toolbarButton">
                     <asp:ImageButton ID="btnView" runat="server" ImageUrl="~/images/view.png" OnClick="ImageButton_Click" CommandArgument="View" meta:resourcekey="btnViewResource1" />
                     <br />
