@@ -375,8 +375,8 @@
                     <asp:Panel ID="pnlLogon" runat="server" style="height: calc(100vh - 85px);" DefaultButton="btnSubmitLogon" HorizontalAlign="Center" meta:resourcekey="pnlLogonResource1">
                         <table class="loginTable">
                             <tr>
-                                <td class="titleBar" colspan="2">
-                                    Paradigm 3 Log In
+                                <td class="titleBar" colspan="2" style="font-size: .95rem;">
+                                    <%= GetLocalResourceObject("P3WebLogin") %>
                                 </td>
                             </tr>
                             <tr>
@@ -406,9 +406,8 @@
                             </tr>
                             <tr>
                                 <td style="text-align: right; vertical-align: middle; height: 40px; padding-right: 5px;" colspan="2">
-                                    <asp:Button ID="btnSubmitLogon" runat="server" Width="100px" Text="Logon" OnClick="Button_Click" CommandArgument="doLogon" meta:resourcekey="btnSubmitLogonResource1" />
-                                        &nbsp;
-                                    <asp:Button ID="btnCancelLogon" runat="server" Width="75px" Text="Cancel" CausesValidation="False" OnClick="Button_Click" CommandArgument="cancelLogon" meta:resourcekey="btnCancelLogonResource1" />
+                                    <asp:Button ID="btnSubmitLogon" runat="server" CssClass="authbutton" Text="Logon" OnClick="Button_Click" CommandArgument="doLogon" meta:resourcekey="btnSubmitLogonResource1" />
+                                    <asp:Button ID="btnCancelLogon" runat="server" CssClass="authbutton" Text="Cancel" CausesValidation="False" OnClick="Button_Click" CommandArgument="cancelLogon" meta:resourcekey="btnCancelLogonResource1" />
                                 </td>
                             </tr>
                         </table>
@@ -464,19 +463,32 @@
                     <asp:HiddenField ID="hdnPosX" runat="server" />
                     <asp:HiddenField ID="hdnPosY" runat="server" />
                     <div id="gvMenu" style="display: none;">
-                        <asp:Menu ID="mnuGVContext" runat="server" DynamicHorizontalOffset="10"
+                        <asp:Menu ID="mnuGVContext" runat="server"
+                            DynamicHorizontalOffset="10"
                             OnMenuItemClick="ContextMenu_MenuItemClick" 
-                            StaticDisplayLevels="3" Orientation="Vertical"
+                            StaticDisplayLevels="3" 
+                            Orientation="Vertical"
                             meta:resourcekey="mnuGVContextResource1">
+                            <LevelSubMenuStyles>
+                                <asp:SubMenuStyle CssClass="context-menu-menuitem" />
+                            </LevelSubMenuStyles>
                             <StaticMenuItemStyle CssClass="context-menu-menuitem" />
-                            <DynamicHoverStyle BackColor="#7C6F57" />
-                            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-                            <DynamicMenuStyle BackColor="#F7F6F3"/>
+                            <DynamicHoverStyle BackColor="#7c6f57" />
+                            <DynamicMenuItemStyle HorizontalPadding="2px" VerticalPadding="2px" />
+                            <DynamicMenuStyle BackColor="#f1f1f1"/>
                         </asp:Menu>
                         <asp:Button ID="btnShowGVMenu" runat="server" OnClick="btnShowGVMenu_Click" style="display: none;" meta:resourcekey="btnShowGVMenuResource1" />
                     </div>
                     <div id="tvMenu" style="display: none;">
-                        <asp:Menu ID="mnuTVContext" runat="server" OnMenuItemClick="ContextMenu_MenuItemClick" meta:resourcekey="mnuTVContextResource1">
+                        <asp:Menu ID="mnuTVContext" runat="server" 
+                            StaticDisplayLevels="3" 
+                            Orientation="Vertical"
+                            OnMenuItemClick="ContextMenu_MenuItemClick" 
+                            meta:resourcekey="mnuTVContextResource1">                            
+                            <StaticMenuItemStyle CssClass="context-menu-menuitem" />
+                            <DynamicHoverStyle BackColor="#7C6F57" />
+                            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                            <DynamicMenuStyle BackColor="#F7F6F3"/>
                         </asp:Menu>
                     </div>
                 </asp:Panel>

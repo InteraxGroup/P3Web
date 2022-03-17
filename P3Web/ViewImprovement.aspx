@@ -394,7 +394,7 @@
             </Triggers>
         <ContentTemplate>
         <div id="pnlFinishStep">
-            <table style="width: 950px; padding: 0px; border: 0px solid Black;">
+            <table style="width: 100%; padding: 0px; border: 0px solid Black;">
                 <tr>
                     <td style="width: 150px; vertical-align: middle;">
                         <asp:Button ID="BtnFinishStep" runat="server" Text="Finish Step" Width="140px" OnClick="BtnFinishStep_Click" meta:resourcekey="BtnFinishStepResource1" />

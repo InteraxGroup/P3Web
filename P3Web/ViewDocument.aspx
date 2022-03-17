@@ -46,24 +46,24 @@
             <div id="pnlToolbarRight">
                 <div class="doc-top-row">
                     <div class="left-column">
-                        <div><asp:Label ID="NameLabel" runat="server" Text="Name:" meta:resourcekey="NameLabel"></asp:Label></div>
+                        <div><asp:Label ID="NameLabel" runat="server" Text="Name:" Font-Bold="true" meta:resourcekey="NameLabel"></asp:Label></div>
                         <div><asp:Label ID="lblNameData" CssClass="truncate" runat="server" meta:resourcekey="lblNameDataResource1" /></div>
                     </div>
                     <div class="right-column">
-                        <div><asp:Label ID="ReleasedLabel" runat="server" Text="Released:" meta:resourcekey="ReleasedLabel"></asp:Label></div>
+                        <div><asp:Label ID="ReleasedLabel" runat="server" Text="Released:" Font-Bold="true" meta:resourcekey="ReleasedLabel"></asp:Label></div>
                         <div>
                             <asp:Label ID="lblReleasedData" runat="server" meta:resourcekey="lblReleasedDataResource1" />&nbsp;
-                            <asp:Label ID="lblReleasedByData" runat="server" meta:resourcekey="lblReleasedByDataResource1" />
+                            (<asp:Label ID="lblReleasedByData" runat="server" meta:resourcekey="lblReleasedByDataResource1" />)
                         </div>
                     </div>
                 </div>
                 <div class="doc-bottom-row">
                     <div class="left-column">
-                        <div><asp:Label ID="LabelLabel" runat="server" Text="Label:" meta:resourcekey="LabelLabel"></asp:Label></div>
+                        <div><asp:Label ID="LabelLabel" runat="server" Text="Label:" Font-Bold="true" meta:resourcekey="LabelLabel"></asp:Label></div>
                         <div><asp:Label ID="lblLabelData" CssClass="truncate" runat="server" meta:resourcekey="lblLabelDataResource1" /></div>
                     </div>
                     <div class="right-column">
-                        <div><asp:Label ID="VersionLabel" runat="server" Text="Version:" meta:resourcekey="VersionLabel"></asp:Label></div>
+                        <div><asp:Label ID="VersionLabel" runat="server" Text="Version:" Font-Bold="true" meta:resourcekey="VersionLabel"></asp:Label></div>
                         <div>
                             <asp:Label ID="lblVersionData" runat="server" meta:resourcekey="lblVersionDataResource1" />&nbsp;
                             <asp:Label ID="lblStatusData" runat="server" meta:resourcekey="lblStatusDataResource1" />

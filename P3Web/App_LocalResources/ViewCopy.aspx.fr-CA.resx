@@ -148,13 +148,13 @@
     <value>Copie</value>
   </data>
   <data name="lblCopyastext" xml:space="preserve">
-    <value>Copier sous</value>
+    <value>Comme:</value>
   </data>
   <data name="lblCopyfrmtext" xml:space="preserve">
-    <value>Copier de</value>
+    <value>Ce:</value>
   </data>
   <data name="lblCopynametext" xml:space="preserve">
-    <value>Copier le nom</value>
+    <value>Nom:</value>
   </data>
   <data name="lblHeadertxtgrp" xml:space="preserve">
     <value>Copier le groupe</value>

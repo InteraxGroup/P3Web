@@ -34,10 +34,11 @@ html {
 
 #pnlToolbarRight {
     order: 2;
-    flex: 0 0 800px;
+    flex: 0 0 900px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    font-size: .8rem;
 }
 
     #pnlToolbarRight div {
@@ -731,8 +732,8 @@ html {
     display: block;
     width: 800px;
     height: 55px;
-    padding-top: 5px;
-    margin: 0 auto;
+    margin: 20px auto;
+    background-color:red;
 }
 
 #pnlAIList {
@@ -1517,9 +1518,9 @@ html {
 #pnlPLContent {
     display: block;
     width: 930px;
-    height: 600px;
+    height: 590px;
     margin: 0 auto;
-    /*padding-top: 10px;*/
+    padding-top: 10px;
     box-sizing: border-box;
 }
 
@@ -1558,6 +1559,14 @@ html {
     background-color: #FFFFFF;
     border: 1px inset #CCCCCC;
     overflow: auto;
+}
+
+.linkListHeader {
+    background-color: #f0f0f0;
+    font-weight: 300;
+    font-size: 12px;
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
 }
 
 .modal-select-type {

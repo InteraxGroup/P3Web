@@ -1246,11 +1246,11 @@ namespace P3Web
             }
             if (ModuleID == 3)
             {
-                MenuItem aiMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionActionItem").ToString(), "actionitem");
+                //MenuItem aiMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionActionItem").ToString(), "actionitem");
                 MenuItem aiSubMenuItem = new MenuItem(GetLocalResourceObject("mnuOptionCreateAI").ToString(), "createactionitem");
-                aiMenuItem.ChildItems.Add(aiSubMenuItem);
+                //aiMenuItem.ChildItems.Add(aiSubMenuItem);
 
-                mnuGVContext.Items.Add(aiMenuItem);
+                mnuGVContext.Items.Add(aiSubMenuItem);
             }
 
             mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionProp").ToString(), "properties"));

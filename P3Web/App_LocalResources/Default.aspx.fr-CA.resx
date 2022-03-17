@@ -1048,7 +1048,7 @@
     <value>Élément d'action</value>
   </data>
   <data name="mnuOptionCopy" xml:space="preserve">
-    <value>Copier</value>
+    <value>Copier...</value>
   </data>
   <data name="mnuOptionCreateAI" xml:space="preserve">
     <value>Créer un élément d'action associé</value>

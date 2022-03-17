@@ -121,19 +121,19 @@
     <value />
   </data>
   <data name="BtnAttachmentResource1.ToolTip" xml:space="preserve">
-    <value>View Record Attachments</value>
+    <value>Afficher les pièces jointes des enregistrements</value>
   </data>
   <data name="BtnCalculateResource1.AlternateText" xml:space="preserve">
     <value />
   </data>
   <data name="BtnCalculateResource1.ToolTip" xml:space="preserve">
-    <value>Calculate Formula Fields</value>
+    <value>Calculer les champs de formule</value>
   </data>
   <data name="BtnCloseResource1.AlternateText" xml:space="preserve">
     <value />
   </data>
   <data name="BtnCloseResource1.ToolTip" xml:space="preserve">
-    <value>Close Record</value>
+    <value>Fermer l'enregistrement</value>
   </data>
   <data name="btnDigitalSignatureResource1.Text" xml:space="preserve">
     <value />
@@ -142,7 +142,7 @@
     <value />
   </data>
   <data name="btnDSSubmitResource1.Text" xml:space="preserve">
-    <value>Submit</value>
+    <value>Soumettre</value>
   </data>
   <data name="btnDSSubmitResource1.ToolTip" xml:space="preserve">
     <value />
@@ -151,7 +151,7 @@
     <value />
   </data>
   <data name="BtnEditResource1.ToolTip" xml:space="preserve">
-    <value>Set Record to Edit Mode</value>
+    <value>Définir l'enregistrement sur le mode d'édition</value>
   </data>
   <data name="BtnInstructionsResource1.AlternateText" xml:space="preserve">
     <value />
@@ -163,19 +163,19 @@
     <value />
   </data>
   <data name="BtnParaLinkResource1.ToolTip" xml:space="preserve">
-    <value>View Record Para-Links®</value>
+    <value>Afficher les Para-Links d'enregistrement</value>
   </data>
   <data name="BtnPrintResource1.AlternateText" xml:space="preserve">
     <value />
   </data>
   <data name="BtnPrintResource1.ToolTip" xml:space="preserve">
-    <value>Print Record</value>
+    <value>Imprimer l'enregistrement</value>
   </data>
   <data name="BtnPropertiesResource1.AlternateText" xml:space="preserve">
     <value />
   </data>
   <data name="BtnPropertiesResource1.ToolTip" xml:space="preserve">
-    <value>View Record Properties</value>
+    <value>Afficher les propriétés de l'enregistrement</value>
   </data>
   <data name="btnRefreshRecResource1.Text" xml:space="preserve">
     <value />
@@ -187,13 +187,13 @@
     <value />
   </data>
   <data name="BtnRelatedAIResource1.ToolTip" xml:space="preserve">
-    <value>View Related Action Items</value>
+    <value>Afficher les éléments d'action associés</value>
   </data>
   <data name="BtnSaveResource1.AlternateText" xml:space="preserve">
     <value />
   </data>
   <data name="BtnSaveResource1.ToolTip" xml:space="preserve">
-    <value>Save Record</value>
+    <value>Enregistrer l'enregistrement</value>
   </data>
   <data name="btnUpdateFieldResource1.Text" xml:space="preserve">
     <value />
@@ -208,7 +208,7 @@
     <value />
   </data>
   <data name="CalculateResource2.Text" xml:space="preserve">
-    <value>Calculate</value>
+    <value>Calculer</value>
   </data>
   <data name="CalculateResource2.ToolTip" xml:space="preserve">
     <value />
@@ -220,13 +220,13 @@
     <value />
   </data>
   <data name="lblAttachmentResource1.Text" xml:space="preserve">
-    <value>Attachments</value>
+    <value>Fixations</value>
   </data>
   <data name="lblAttachmentResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblCloseResource1.Text" xml:space="preserve">
-    <value>Close</value>
+    <value>Fermer</value>
   </data>
   <data name="lblCloseResource1.ToolTip" xml:space="preserve">
     <value />
@@ -244,7 +244,7 @@
     <value />
   </data>
   <data name="lblEditResource1.Text" xml:space="preserve">
-    <value>Edit</value>
+    <value>Éditer</value>
   </data>
   <data name="lblEditResource1.ToolTip" xml:space="preserve">
     <value />
@@ -262,13 +262,13 @@
     <value />
   </data>
   <data name="lblLabelFieldResource1.Text" xml:space="preserve">
-    <value>Label:</value>
+    <value>Étiqueter:</value>
   </data>
   <data name="lblLabelFieldResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblNameFieldResource1.Text" xml:space="preserve">
-    <value>Name:</value>
+    <value>Nom:</value>
   </data>
   <data name="lblNameFieldResource1.ToolTip" xml:space="preserve">
     <value />
@@ -280,25 +280,25 @@
     <value />
   </data>
   <data name="lblPrintResource1.Text" xml:space="preserve">
-    <value>Print</value>
+    <value>Impression</value>
   </data>
   <data name="lblPrintResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblPropertiesResource1.Text" xml:space="preserve">
-    <value>Properties</value>
+    <value>Propriétés</value>
   </data>
   <data name="lblPropertiesResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblRelatedAIResource1.Text" xml:space="preserve">
-    <value>Related AI</value>
+    <value>Associée</value>
   </data>
   <data name="lblRelatedAIResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblSaveResource1.Text" xml:space="preserve">
-    <value>Save</value>
+    <value>Sauvegarder</value>
   </data>
   <data name="lblSaveResource1.ToolTip" xml:space="preserve">
     <value />
@@ -310,7 +310,7 @@
     <value />
   </data>
   <data name="lblStatusFieldResource1.Text" xml:space="preserve">
-    <value>Status:</value>
+    <value>Statut:</value>
   </data>
   <data name="lblStatusFieldResource1.ToolTip" xml:space="preserve">
     <value />
@@ -322,7 +322,7 @@
     <value />
   </data>
   <data name="lblStepResource1.Text" xml:space="preserve">
-    <value>Select Step:</value>
+    <value>Sélectionnez l'étape:</value>
   </data>
   <data name="lblStepResource1.ToolTip" xml:space="preserve">
     <value />
@@ -784,19 +784,19 @@
     <value>8</value>
   </data>
   <data name="MenuTabsResource1.ScrollDownText" xml:space="preserve">
-    <value>Scroll down</value>
+    <value>Défiler vers le bas</value>
   </data>
   <data name="MenuTabsResource1.ScrollUpText" xml:space="preserve">
-    <value>Scroll up</value>
+    <value>Faites défiler vers le haut</value>
   </data>
   <data name="MenuTabsResource1.SkipLinkText" xml:space="preserve">
-    <value>Skip Navigation Links</value>
+    <value>Sauter les liens de navigation</value>
   </data>
   <data name="MenuTabsResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>Paradigm 3 -- Record</value>
+    <value>Paradigm 3 -- Enregistrement</value>
   </data>
   <data name="Panel0Resource1.GroupingText" xml:space="preserve">
     <value />
@@ -1153,7 +1153,7 @@
     <value />
   </data>
   <data name="SessionTimeout" xml:space="preserve">
-    <value>Votre session SSO a expiré. Veuillez redémarrer votre navigateur pour restaurer l'accès à votre application.</value>
+    <value>Votre session SSO a expiré. Veuillez redémarrer votre navigateur pour que l'accès à votre application soit restauré.</value>
   </data>
   <data name="txtDSPasswordResource1.Text" xml:space="preserve">
     <value />

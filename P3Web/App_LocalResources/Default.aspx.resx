@@ -1045,7 +1045,7 @@
     <value>Action Item</value>
   </data>
   <data name="mnuOptionCopy" xml:space="preserve">
-    <value>Copy To</value>
+    <value>Copy To...</value>
   </data>
   <data name="mnuOptionCreateAI" xml:space="preserve">
     <value>Create Related Action Item</value>
@@ -1142,6 +1142,9 @@
   </data>
   <data name="p3TreeResource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="P3WebLogin" xml:space="preserve">
+    <value>Connexion P3Web</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Paradigm 3</value>

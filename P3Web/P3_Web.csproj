@@ -1230,7 +1230,7 @@
     <Content Include="App_LocalResources\ViewPrintRecord.aspx.resx" />
     <Content Include="App_LocalResources\ViewProperties.aspx.resx" />
     <Content Include="App_LocalResources\ViewPropertiesUser.aspx.resx" />
-    <Content Include="App_LocalResources\ViewRecord.aspx.resx" />
+    <Content Include="App_LocalResources\ViewRecord.aspx.fr-CA.resx" />
     <Content Include="App_LocalResources\ViewRelatedActionItem.aspx.resx" />
     <Content Include="App_LocalResources\ViewRename.aspx.resx" />
     <Content Include="App_LocalResources\ViewReport.aspx.resx" />
@@ -1269,7 +1269,7 @@
     <Content Include="App_LocalResources\ViewPrintRecord.aspx.fr-CA.resx" />
     <Content Include="App_LocalResources\ViewProperties.aspx.fr-CA.resx" />
     <Content Include="App_LocalResources\ViewPropertiesUser.aspx.fr-CA.resx" />
-    <Content Include="App_LocalResources\ViewRecord.aspx.fr-CA.resx" />
+    <Content Include="App_LocalResources\ViewRecord.aspx.resx" />
     <Content Include="App_LocalResources\ViewRelatedActionItem.aspx.fr-CA.resx" />
     <Content Include="App_LocalResources\ViewRename.aspx.fr-CA.resx" />
     <Content Include="App_LocalResources\ViewReport.aspx.fr-CA.resx" />

@@ -17,40 +17,36 @@
         <div class="modify-body">
             <div class="modify-title">
                 <asp:Label ID="lblTitle" runat="server"/>
-            </div>
-           
-           <div style="display:flex; flex-direction:row;">
-                
-                <div style="padding-left:10px" >    
-                   <asp:label class="formLabel" id="lblCopyName" runat="server"/>
-                    <asp:TextBox ID="txt_CopyName" style="font-weight:bold" runat="server" ReadOnly="true" Enabled="false"/>
+            </div>           
+           <div style="display: flex; flex-direction: row; height: 30px; align-items: center;">                
+                <div style="padding-left: 5px; flex: 1 1 auto;" >    
+                    <asp:label class="formLabel" id="lblCopyName" runat="server"/>
+                    <asp:TextBox ID="txt_CopyName" style="font-weight:bold; width: 340px;" runat="server" ReadOnly="true" Enabled="false"/>
                 </div>
-                <div id="dv_copyFrom"  runat="server" style="padding-left:10px">
+                <div id="dv_copyFrom" runat="server" style="flex: 0 0 150px;">
                     <asp:label class="formLabel" ID="lblCopyfrm" runat="server"/>
-                     <asp:DropDownList runat="server" ID="ddl_CopyVersion" CssClass="form-control"></asp:DropDownList>
-                    
+                    <asp:DropDownList runat="server" ID="ddl_CopyVersion" CssClass="form-control"></asp:DropDownList>                    
                 </div>
-                <div  id="dv_copyAs"  runat="server" style="padding-left:10px">
-                   <asp:label  class="formLabel" ID="lblCopyAs" runat="server"/>
-                        <asp:DropDownList runat="server" ID="ddl_CopyType" CssClass="form-control">                
-                        </asp:DropDownList>
+                <div id="dv_copyAs" runat="server" style="flex: 0 0 150px;">
+                    <asp:label  class="formLabel" ID="lblCopyAs" runat="server"/>
+                    <asp:DropDownList runat="server" ID="ddl_CopyType" CssClass="form-control">                
+                    </asp:DropDownList>
                 </div>
-                    </div>
-                <div style="flex: 1 1 auto; width: 100%; border: 1px solid #dcdcdc; background-color: #fff; overflow: auto; padding: 5px 0; box-sizing: border-box;">
-                    <asp:TreeView ID="p3Tree" runat="server"
-                        EnableClientScript="false"
-                        NodeIndent="15"
-                        ExpandDepth="1"
-                        OnTreeNodePopulate="P3Tree_TreeNodePopulate"
-                        OnSelectedNodeChanged="P3Tree_SelectedNodeChanged">
-                        <NodeStyle ForeColor="#000000" Font-Bold="false" Font-Names="Arial" Font-Size="10pt" Font-Underline="False" ImageUrl="~/images/folder.png" NodeSpacing="0px" VerticalPadding="0px" />
-                        <SelectedNodeStyle BackColor="#0078D7" ForeColor="#FFFFFF" HorizontalPadding="2px" VerticalPadding="0px" />
-                    </asp:TreeView>
-                </div>
-                <div style="flex: 0 0 50px; width: 100%; box-sizing: border-box; display: flex; align-items: flex-end;">
-                    <asp:TextBox ID="txtFolderName" runat="server" ReadOnly="true" Width="99%" Height="30px" />
-                </div>
-           
+            </div>
+            <div style="flex: 1 1 auto; width: 100%; border: 1px solid #dcdcdc; background-color: #fff; overflow: auto; padding: 5px 0; box-sizing: border-box;">
+                <asp:TreeView ID="p3Tree" runat="server"
+                    EnableClientScript="false"
+                    NodeIndent="15"
+                    ExpandDepth="1"
+                    OnTreeNodePopulate="P3Tree_TreeNodePopulate"
+                    OnSelectedNodeChanged="P3Tree_SelectedNodeChanged">
+                    <NodeStyle ForeColor="#000000" Font-Bold="false" Font-Names="Arial" Font-Size="10pt" Font-Underline="False" ImageUrl="~/images/folder.png" NodeSpacing="0px" VerticalPadding="0px" />
+                    <SelectedNodeStyle BackColor="#0078D7" ForeColor="#FFFFFF" HorizontalPadding="2px" VerticalPadding="0px" />
+                </asp:TreeView>
+            </div>
+            <div style="flex: 0 0 50px; width: 100%; box-sizing: border-box; display: flex; align-items: flex-end;">
+                <asp:TextBox ID="txtFolderName" runat="server" ReadOnly="true" Width="99%" Height="30px" />
+            </div>           
             <div class="modify-buttons">
                 <div class="chkBox"><asp:CheckBox ID="chkProperties" runat="server" TextAlign="Right" /></div>
                 <asp:Button ID="btnSubmit" runat="server" Text="Submit" meta:Resourcekey="btnSubmit" />

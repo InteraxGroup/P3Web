@@ -1153,7 +1153,7 @@
     <value />
   </data>
   <data name="SessionTimeout" xml:space="preserve">
-    <value>Your SSO session has timed out. Please restart your browser have your application access restored.</value>
+    <value>Votre session SSO a expiré. Veuillez redémarrer votre navigateur pour restaurer l'accès à votre application.</value>
   </data>
   <data name="txtDSPasswordResource1.Text" xml:space="preserve">
     <value />

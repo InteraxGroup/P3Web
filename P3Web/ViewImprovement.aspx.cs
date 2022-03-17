@@ -1300,20 +1300,23 @@ namespace Paradigm3
                         else
                         {
                             if (UserStatus == 1)
-							{
+                            {
                                 BtnFinishStep.Enabled = true;
                                 BtnNotApplicable.Enabled = true;
                             }
-
-                            int ObjTypeID = Convert.ToInt32(dsData.Tables["Get_TabList"].Rows[SelectedTab]["ObjID"]);
-                            DataTable dtAssigned = Record.Get_TabAssigned(ItemID, ObjTypeID, 6);
-
-                            foreach (DataRow drA in dtAssigned.Rows)
+                            else
                             {
-                                if (UserID == Convert.ToInt32(drA["ControlID"]))
+                                int ObjTypeID = Convert.ToInt32(dsData.Tables["Get_TabList"].Rows[SelectedTab]["ObjID"]);
+                                DataTable dtAssigned = Record.Get_TabAssigned(ItemID, ObjTypeID, 6);
+
+                                foreach (DataRow drA in dtAssigned.Rows)
                                 {
-                                    BtnFinishStep.Enabled = true;
-                                    BtnNotApplicable.Enabled = true;
+                                    int ID = Convert.ToInt32(drA["ControlID"]);
+                                    if (ID == UserID)
+                                    {
+                                        BtnFinishStep.Enabled = true;
+                                        BtnNotApplicable.Enabled = false;
+                                    }
                                 }
                             }
                         }
