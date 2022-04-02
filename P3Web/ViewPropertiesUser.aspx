@@ -244,30 +244,30 @@
                         <ContentTemplate>
                             <div class="u-prop-tabcontent" style="border: none;">
                                 <div class="u-opt-row">
-                                    <asp:CheckBox ID="cbChangePassword" runat="server" Text="Prompt the user to change password at next login" meta:resourcekey="cbChangePasswordResource1" />
+                                    <asp:CheckBox ID="cbChangePassword" runat="server" Text="Prompt the user to change password at next login" OnCheckedChanged="cb_Changed" meta:resourcekey="cbChangePasswordResource1" />
                                 </div>
                                 <div class="u-opt-row">
-                                    <asp:CheckBox ID="cbDisableUser" runat="server" Text="Disable user's account" meta:resourcekey="cbDisableUserResource1" />
+                                    <asp:CheckBox ID="cbDisableUser" runat="server" Text="Disable user's account" OnCheckedChanged="cb_Changed" meta:resourcekey="cbDisableUserResource1" />
                                 </div>
                                 <div class="u-opt-row" style="flex: 0 0 144px; display: flex; flex-direction: column; align-items: stretch;">
                                     <fieldset style="display: flex;flex-direction: column; justify-content: flex-start; border: 1px solid #dcdcdc;">
                                         <legend><%= GetLocalResourceObject("EmailNotificationLabel") %></legend>
                                         <div class="u-opt-row">
-                                             <asp:CheckBox ID="cbEmailSummary" runat="server" Text="Email summary of all open Action Items" meta:resourcekey="cbEmailSummaryResource1" />
+                                             <asp:CheckBox ID="cbEmailSummary" runat="server" Text="Email summary of all open Action Items" OnCheckedChanged="cb_Changed" meta:resourcekey="cbEmailSummaryResource1" />
                                         </div>
                                         <div class="u-opt-row">
-                                             <asp:CheckBox ID="cbEmailAll" runat="server" Text="Email all Event Action Item" meta:resourcekey="cbEmailAllResource1" />
+                                             <asp:CheckBox ID="cbEmailAll" runat="server" Text="Email all Event Action Item" OnCheckedChanged="cb_Changed" meta:resourcekey="cbEmailAllResource1" />
                                         </div>
                                         <div class="u-opt-row">
-                                             <asp:CheckBox ID="cbEmailUrgent" runat="server" Text="Email urgent Action Item ONLY" meta:resourcekey="cbEmailUrgentResource1" />
+                                             <asp:CheckBox ID="cbEmailUrgent" runat="server" Text="Email urgent Action Item ONLY" OnCheckedChanged="cb_Changed" meta:resourcekey="cbEmailUrgentResource1" />
                                         </div>
                                         <div class="u-opt-row">
-                                             <asp:CheckBox ID="cbEmailStep" runat="server" Text="Email notification of step, send, reply, and forward Action Item" meta:resourcekey="cbEmailStepResource1" />
+                                             <asp:CheckBox ID="cbEmailStep" runat="server" Text="Email notification of step, send, reply, and forward Action Item" OnCheckedChanged="cb_Changed" meta:resourcekey="cbEmailStepResource1" />
                                         </div>
                                     </fieldset>
                                 </div>
                                 <div class="u-opt-row">
-                                    <asp:CheckBox ID="cbSMS" runat="server" Text="SMS notification of step, send, reply, and forward Action Items" meta:resourcekey="cbSMSResource1" />
+                                    <asp:CheckBox ID="cbSMS" runat="server" Text="SMS notification of step, send, reply, and forward Action Items" OnCheckedChanged="cb_Changed" meta:resourcekey="cbSMSResource1" />
                                 </div>
                                 <div class="u-opt-row" style="display: flex; flex-direction: row;">
                                     <div style="flex: 0 0 200px;"><%= GetLocalResourceObject("UserLanguageLabel") %></div>
@@ -280,7 +280,7 @@
                                     </div>
                                 </div>
                                 <div class="u-opt-row">
-                                    <asp:CheckBox ID="cbHeaderFooter" runat="server" Text="User can apply Header/Footer" meta:resourcekey="cbHeaderFooterResource1" />
+                                    <asp:CheckBox ID="cbHeaderFooter" runat="server" Text="User can apply Header/Footer" OnCheckedChanged="cb_Changed" meta:resourcekey="cbHeaderFooterResource1" />
                                 </div>
                                 <div class="u-ops-row" style="flex: 1 1 auto;"></div>
                             </div>

@@ -310,7 +310,7 @@
     <value />
   </data>
   <data name="btnGoResource1.Text" xml:space="preserve">
-    <value>Visualiser</value>
+    <value>Localiser</value>
   </data>
   <data name="btnGoResource1.ToolTip" xml:space="preserve">
     <value />
@@ -322,7 +322,7 @@
     <value />
   </data>
   <data name="btnShowMeResource1.Text" xml:space="preserve">
-    <value>Localiser</value>
+    <value>Visualiser</value>
   </data>
   <data name="btnShowMeResource1.ToolTip" xml:space="preserve">
     <value />

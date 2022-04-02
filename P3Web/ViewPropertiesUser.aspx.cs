@@ -605,14 +605,21 @@ namespace Paradigm3
 
 		protected void rb_CheckedChanged(object sender, EventArgs e)
 		{
+			int UserID = 0;
+			int UserStatus = -1;
+			if (Session["SelUserID"] != null)
+            {
+				UserID = Convert.ToInt32(Session["SelUserID"]);
+            }
 			RadioButton rb = (RadioButton)sender;
 			DataTable dt = (DataTable)ViewState["UserData"];
 			string[] ModuleAccess = "0|-2_1|0_3|0_4|0_6|0_12|0_14|1_-1|0_-2|0_-3|0".Split('_');			
-			if (Request.QueryString["UserID"] != "0")
+			if (UserID > 0)
 			{
 				ModuleAccess = dt.Rows[0]["ModuleAccess"].ToString().Split('_');
+				UserStatus = Convert.ToInt32(dt.Rows[0]["Status"]);
 			}
-			int UserStatus = Convert.ToInt32(dt.Rows[0]["Status"]);
+			
 			switch (rb.ID)
 			{
 				case "rbExtenalUser":
@@ -714,13 +721,13 @@ namespace Paradigm3
 
                         switch (UserStatus)
                         {
-                            //case 1:
-                            //    foreach (ListItem li in cblModules.Items)
-                            //    {
-                            //        li.Selected = true;
-                            //    }
-                            //    cblModules.Enabled = true;
-                            //    break;
+                            case 1:
+                                foreach (ListItem li in cblModules.Items)
+                                {
+                                    li.Selected = true;
+                                }
+                                cblModules.Enabled = true;
+                                break;
                             case -2:
                             case 0:
                             case -1:
@@ -792,6 +799,11 @@ namespace Paradigm3
 			}
 			ViewState["FirstLoad"] = false;
 		}
+
+		protected void cb_Changed(object sender, EventArgs e)
+        {
+			ViewState["FirstLoad"] = false;
+        }
 
 		protected void cbl_SelectedIndexChanged(object sender, EventArgs e)
 		{

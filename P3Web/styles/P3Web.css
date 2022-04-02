@@ -72,6 +72,7 @@
     border-right: 2px solid #dcdcdc;
     display: flex;
     flex-direction:column;
+    overflow: hidden;
 }
 
     .tmtop {
@@ -108,7 +109,7 @@
 
     #pnlHome iframe {
         width: 100%;
-        height: calc(100vh - 118px);
+        height: calc(100vh - 85px);
         box-sizing: border-box;
         border: none;
         outline: none;
