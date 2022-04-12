@@ -140,7 +140,7 @@ namespace Paradigm3.datalayer
             }
         }
 
-        public static void Open_TrainingRecord(int ItemID, int OrigID, int UserID, int RecordOrigID, int RecordItemID )
+        public static void Open_TrainingRecord(int ItemID, int OrigID, int UserID, int RecordOrigID, int RecordItemID , string Version)
         {
             //int NewItemID = 0;
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
@@ -160,6 +160,7 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = RecordOrigID;
                 cmd.Parameters.Add("@DocOrigID", SqlDbType.Int, 4).Value = OrigID;
                 cmd.Parameters.Add("@DocItemID", SqlDbType.Int, 4).Value = ItemID;
+                cmd.Parameters.Add("@Version", SqlDbType.NVarChar, 255).Value = Version;
                 cmd.ExecuteNonQuery();
             }
         }

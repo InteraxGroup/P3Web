@@ -278,7 +278,7 @@ namespace Paradigm3
                                 int TrainingRecordOrigID = Convert.ToInt32(dt.Rows[0]["ItemOrigid"]);
                                 int TrainingRecordItemID = Convert.ToInt32(dt.Rows[0]["ItemID"]);
                                 Status.Update_LinkedDocument(ItemID, OrigID, UserID, UserFullName);
-                                Status.Open_TrainingRecord(ItemID, OrigID, UserID, TrainingRecordOrigID, TrainingRecordItemID);
+                                Status.Open_TrainingRecord(ItemID, OrigID, UserID, TrainingRecordOrigID, TrainingRecordItemID, NewVersion);
                             }
                             TaskName = "Converted from " + OldStatus + ". Converted to " + NewStatus + " (" + NewVersion + "),  Re-training Required";
                             await Document.Edit_Document_HistoryAsync(3, OrigID, ItemName, LabelName, TaskName, UserFullName, HistoryDetails);
