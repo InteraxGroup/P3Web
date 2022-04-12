@@ -270,6 +270,20 @@ namespace Paradigm3
 					{
 						TriggerEvent(EventIndexes[i], ParentGroupID, OrigID, LatestItemID, ItemName, LabelName, HistoryDetails, StatusFrom, StatusTo);
 					}
+
+                    if(chkbxReTraining.Checked == true)
+                    {
+                        DataTable dt = await Status.Get_TrainingItemsAsync(ItemID, 3);
+                        if (dt.Rows.Count > 1)
+                        {
+                            for (int i = 0; i < dt.Rows.Count; i++) {
+                                int TrainingRecordOrigID = Convert.ToInt32(dt.Rows[0]["ItemOrigid"]);
+                                int TrainingRecordItemID = Convert.ToInt32(dt.Rows[0]["ItemID"]);
+                                Status.Update_LinkedDocument(ItemID, OrigID, UserID, UserFullName);
+                                Status.Open_TrainingRecord(ItemID, OrigID, UserID, TrainingRecordOrigID, TrainingRecordItemID);
+                            }
+                        }
+                    }
                     Page.ClientScript.RegisterStartupScript(GetType(), "close", "showStatusMessage(3, 'Status successfully updated!', false)", true);
                 }
 				catch (Exception ex)

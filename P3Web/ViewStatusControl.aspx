@@ -70,8 +70,11 @@
                             <asp:ListItem Text="Medium (+0.1)" Value="1" meta:resourcekey="ListItemResource5" />
                             <asp:ListItem Text="Minor (+0.0.1)" Value="2" meta:resourcekey="ListItemResource6" />
                         </asp:RadioButtonList>
-                    </fieldset>
+                    </fieldset>    
+                       <asp:CheckBox ID="chkbxReTraining" runat="server" Text="Re-Training Required" CssClass="checkbox"/>
                 </div>
+              
+                
             </div>
             <div class="pnlStatusButtons">
                 <asp:Button ID="btnSubmit" runat="server" Text="OK" Width="70px" OnClick="btnSubmit_Click" meta:resourcekey="btnSubmitResource1" />
