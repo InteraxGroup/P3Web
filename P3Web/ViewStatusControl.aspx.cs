@@ -26,14 +26,14 @@ namespace Paradigm3
                     ClientScript.RegisterStartupScript(GetType(), "sessiontimeout", "alert('" + Message + "');window.close();", true);
                 }
                 else
-				{
+                {
                     int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
                     int StatusFrom = Convert.ToInt32(Request.QueryString["StatusFrom"]);
                     int StatusTo = Convert.ToInt32(Request.QueryString["StatusTo"]);
                     ViewState["dtDoc"] = null;
                     await LoadDocumentInfo(ItemID, StatusFrom, StatusTo);
-                }                
-            }            
+                }
+            }
         }
 
         protected void Page_Init(object sender, EventArgs e)
@@ -121,7 +121,7 @@ namespace Paradigm3
                 case 1:
                     if (arrVer.Length == 2)
                     {
-                        str1 = CurrentVersion.Split('.')[1];                        
+                        str1 = CurrentVersion.Split('.')[1];
                     }
                     i = Convert.ToInt32(str1) + 1;
                     nv = str0.ToString() + "." + i.ToString();
@@ -130,11 +130,11 @@ namespace Paradigm3
                     if (arrVer.Length == 3)
                     {
                         str2 = CurrentVersion.Split('.')[2];
-                    } 
+                    }
                     i = Convert.ToInt32(str2) + 1;
                     nv = str0.ToString() + "." + str1.ToString() + "." + i.ToString();
                     break;
-            }            
+            }
             txtNewVersion.Text = nv;
         }
 
@@ -142,11 +142,11 @@ namespace Paradigm3
         {
             int StatusTo = Convert.ToInt32(Request.QueryString["StatusTo"]);
             int index = rblRevisionMethod.SelectedIndex;
-            
+
             switch (index)
             {
                 case 0:
-                    LockFields(true, StatusTo);                                        
+                    LockFields(true, StatusTo);
                     break;
                 case 1:
                     LockFields(false, StatusTo);
@@ -229,73 +229,82 @@ namespace Paradigm3
                 int UserID = Convert.ToInt32(UserValues[0]);
                 string UserFullName = UserValues[1];
 
-				List<int> EventIndexes = new List<int>();
+                List<int> EventIndexes = new List<int>();
 
-				if (StatusTo == 9)
-				{
-					//EventIndexes.Add(19);
-					int RevType = Convert.ToInt32(rblRevisionType.SelectedValue);
-					switch (RevType)
-					{
-						case 0:
-							EventIndexes.Add(19);
-							EventIndexes.Add(24);
-							break;
-						case 1:
-							EventIndexes.Add(19);
-							EventIndexes.Add(25);
-							break;
-						case 2:
-							EventIndexes.Add(19);
-							EventIndexes.Add(27);
-							break;
-					}
-					int RevLevel = Convert.ToInt32(rblRevisionType.SelectedValue);
-					string TaskName0 = "Converted from CURRENT (" + txtCurrVersion.Text + "). Converted to OBSOLETE (" + txtCurrVersion.Text + ").";
-					await Document.Edit_Document_HistoryAsync(3, OrigID, ItemName, LabelName, TaskName0, UserFullName, string.Empty);
-				}
-				else
-				{
-					EventIndexes.Add(21);
-				}
+                if (StatusTo == 9)
+                {
+                    //EventIndexes.Add(19);
+                    int RevType = Convert.ToInt32(rblRevisionType.SelectedValue);
+                    switch (RevType)
+                    {
+                        case 0:
+                            EventIndexes.Add(19);
+                            EventIndexes.Add(24);
+                            break;
+                        case 1:
+                            EventIndexes.Add(19);
+                            EventIndexes.Add(25);
+                            break;
+                        case 2:
+                            EventIndexes.Add(19);
+                            EventIndexes.Add(27);
+                            break;
+                    }
+                    int RevLevel = Convert.ToInt32(rblRevisionType.SelectedValue);
+                    string TaskName0 = "Converted from CURRENT (" + txtCurrVersion.Text + "). Converted to OBSOLETE (" + txtCurrVersion.Text + ").";
+                    await Document.Edit_Document_HistoryAsync(3, OrigID, ItemName, LabelName, TaskName0, UserFullName, string.Empty);
+                }
+                else
+                {
+                    EventIndexes.Add(21);
+                }
 
-				Status.Convert_Status(3, ItemID, OrigID, NewVersion, StatusFrom, StatusTo, EffectiveDate, UserID, UserFullName);
-				TaskName = "Converted from " + OldStatus + ". Converted to " + NewStatus + " (" + NewVersion + ").";
-				await Document.Edit_Document_HistoryAsync(3, OrigID, ItemName, LabelName, TaskName, UserFullName, HistoryDetails);
 
-				// Trigger Event if there is one set.
-				try
-				{
-					for (int i = 0; i < EventIndexes.Count; i++)
-					{
-						TriggerEvent(EventIndexes[i], ParentGroupID, OrigID, LatestItemID, ItemName, LabelName, HistoryDetails, StatusFrom, StatusTo);
-					}
+                // Trigger Event if there is one set.
+                try
+                {
+                    for (int i = 0; i < EventIndexes.Count; i++)
+                    {
+                        TriggerEvent(EventIndexes[i], ParentGroupID, OrigID, LatestItemID, ItemName, LabelName, HistoryDetails, StatusFrom, StatusTo);
+                    }
 
-                    if(chkbxReTraining.Checked == true)
+                    if (chkbxReTraining.Checked == true)
                     {
                         DataTable dt = await Status.Get_TrainingItemsAsync(ItemID, 3);
                         if (dt.Rows.Count > 1)
                         {
-                            for (int i = 0; i < dt.Rows.Count; i++) {
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
                                 int TrainingRecordOrigID = Convert.ToInt32(dt.Rows[0]["ItemOrigid"]);
                                 int TrainingRecordItemID = Convert.ToInt32(dt.Rows[0]["ItemID"]);
                                 Status.Update_LinkedDocument(ItemID, OrigID, UserID, UserFullName);
                                 Status.Open_TrainingRecord(ItemID, OrigID, UserID, TrainingRecordOrigID, TrainingRecordItemID);
                             }
+                            TaskName = "Converted from " + OldStatus + ". Converted to " + NewStatus + " (" + NewVersion + "),  Re-training Required";
+                            await Document.Edit_Document_HistoryAsync(3, OrigID, ItemName, LabelName, TaskName, UserFullName, HistoryDetails);
                         }
+                    }
+
+                    else
+                    {
+
+                        Status.Convert_Status(3, ItemID, OrigID, NewVersion, StatusFrom, StatusTo, EffectiveDate, UserID, UserFullName);
+                        TaskName = "Converted from " + OldStatus + ". Converted to " + NewStatus + " (" + NewVersion + ").";
+                        await Document.Edit_Document_HistoryAsync(3, OrigID, ItemName, LabelName, TaskName, UserFullName, HistoryDetails);
+
                     }
                     Page.ClientScript.RegisterStartupScript(GetType(), "close", "showStatusMessage(3, 'Status successfully updated!', false)", true);
                 }
-				catch (Exception ex)
-				{
-					Page.ClientScript.RegisterStartupScript(GetType(), "close", "showStatusMessage(3, " + ex.Message + ", true)", true);
-					throw ex;
-				}
-			}
-			else
-			{
-				ClientScript.RegisterStartupScript(GetType(), "AIAbort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
-			}           
+                catch (Exception ex)
+                {
+                    Page.ClientScript.RegisterStartupScript(GetType(), "close", "showStatusMessage(3, " + ex.Message + ", true)", true);
+                    throw ex;
+                }
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(GetType(), "AIAbort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
+            }
         }
 
         protected void TriggerEvent(int EventIndexID, int ParentGroupID, int OrigID, int LatestItemID, string ItemName, string LabelName, string HistoryDetails, int StatusFrom, int StatusTo)
@@ -322,7 +331,7 @@ namespace Paradigm3
 
                 // Trigger all events related to the task
                 foreach (DataRow row in dt.Rows)
-				{
+                {
                     int EventID = Convert.ToInt32(row["EventID"]);
                     string EventTitle = row["Name"].ToString();
                     string Details = row["Details"].ToString();
