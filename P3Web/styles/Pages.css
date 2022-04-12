@@ -1335,6 +1335,11 @@ html {
     box-sizing: border-box;
 }
 
+.checkbox {
+    font-weight: bold;
+    margin: 10px 0 0 0;
+}
+
 .checkboxlist {
     width: 100%;
     background-color: #fff;
