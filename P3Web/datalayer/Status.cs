@@ -116,6 +116,55 @@ namespace Paradigm3.datalayer
             }
         }
 
+        public static void Update_LinkedDocument(int ItemID, int OrigID, int UserID, string UserName)
+        {
+            //int NewItemID = 0;
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    conn.Open();
+                }
+                SqlCommand cmd = new SqlCommand("[dbo].[v4_Training_Update_LinkedItem]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+
+                cmd.Parameters.Add("@ItemID", SqlDbType.Int, 4).Value = ItemID;
+                cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                cmd.Parameters.Add("@UserName", SqlDbType.NVarChar, 255).Value = UserName;
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void Open_TrainingRecord(int ItemID, int OrigID, int UserID, int RecordOrigID, int RecordItemID, string Version)
+        {
+            //int NewItemID = 0;
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    conn.Open();
+                }
+                SqlCommand cmd = new SqlCommand("[dbo].[v4_Training_Insert_OpenTrainingRecords_On_ConvertDocument]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@ItemID", SqlDbType.Int, 4).Value = RecordItemID;
+                cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = RecordOrigID;
+                cmd.Parameters.Add("@DocOrigID", SqlDbType.Int, 4).Value = OrigID;
+                cmd.Parameters.Add("@DocItemID", SqlDbType.Int, 4).Value = ItemID;
+                cmd.Parameters.Add("@Version", SqlDbType.NVarChar, 255).Value = Version;
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public static int GetCurrentID(int OrigID)
         {
             int value = 0;
@@ -159,7 +208,7 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
                 cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
-                while(sdr.Read())
+                while (sdr.Read())
                 {
                     if (sdr["IsSimpleControl"].Equals(1))
                     {
@@ -172,15 +221,15 @@ namespace Paradigm3.datalayer
         }
 
         public static async Task<DataTable> GetStatusOptionsAsync(int ModuleID, int OrigID, int UserID, int CanEdit)
-		{
+        {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Status_Get_AvailableOptions]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
@@ -194,7 +243,30 @@ namespace Paradigm3.datalayer
                 dt.Load(sdr);
             }
             return dt;
-		}
+        }
+
+        public static async Task<DataTable> Get_TrainingItemsAsync(int ItemID, int ModuleID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("dbo.v4_Properties_Get_Training", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@ItemID", SqlDbType.Int, 4).Value = ItemID;
+                cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
+                SqlDataReader sdr = await cmd.ExecuteReaderAsync();
+                dt.Load(sdr);
+            }
+            return dt;
+        }
 
     }
 }

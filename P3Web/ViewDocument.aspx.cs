@@ -253,7 +253,8 @@ namespace Paradigm3
                 {
                     string docURL = ConfigurationManager.AppSettings["PublishPath"].ToString();
                     string fullDocPath = docURL + PubFileName + PubFileExtension;
-                    if (File.Exists(Server.MapPath(fullDocPath)))                    {
+                    if (File.Exists(Server.MapPath(fullDocPath)))
+                    {
                         
                         DateTime now = DateTime.Now;
                         string uniqueId = now.ToString("yyyyMMddHHmmssfff");

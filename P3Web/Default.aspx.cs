@@ -338,7 +338,22 @@ namespace P3Web
             switch (moduleID)
             {
                 case 0:
-                    Set_CheckLogon(User.Identity.IsAuthenticated);
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        pnlDirectLink.Visible = true;
+                        pnlTreeView.Visible = false;
+                        pnlHome.Visible = true;
+                        pnlList.Visible = false;
+                        pnlLogon.Visible = false;
+                        pnlChangePW.Visible = false;
+                    }
+                    else
+                    {
+                        Set_CheckLogon(false);
+                    }
+
+                    // Report
+                    pnlReport.Visible = false;
                     break;
                 case 1:
                     parentGroupID = "1";

@@ -733,7 +733,7 @@ html {
     width: 800px;
     height: 55px;
     margin: 20px auto;
-    background-color:red;
+    background-color: red;
 }
 
 #pnlAIList {
@@ -1333,6 +1333,11 @@ html {
     flex: 0 0 250px;
     padding: 5px;
     box-sizing: border-box;
+}
+
+.checkbox {
+    font-weight: bold;
+    margin: 10px 0 0 0;
 }
 
 .checkboxlist {

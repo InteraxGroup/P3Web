@@ -562,7 +562,7 @@ function openExportWindow(ModuleID, OrigID, UserID, ItemStatus) {
 function openStatusWindow(ModuleID, ItemID, OrigID) {
     var statusPath = "ViewStatus.aspx?ModuleID=" + ModuleID + "&ItemID=" + ItemID + "&OrigID=" + OrigID;
     var windowWidth = 400;
-    var windowHeight = 300;
+    var windowHeight = 330;
     var xPos = screen.width / 2 - windowWidth / 2;
     var yPos = screen.height / 2 - windowHeight / 2;
     window.open(statusPath, 'statusWindow' + OrigID, 'height=' + windowHeight + ',width=' + windowWidth + ',top=' + yPos + ',left=' + xPos + ',location=0,status=0,menubar=0,toolbar=0,scrollbars=0,resizable=0');
