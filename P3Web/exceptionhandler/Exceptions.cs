@@ -22,7 +22,7 @@ namespace P3Web
 
         //}
 
-        public async Task LogExceptionAsync(string message, int userid)
+        public async Task LogExceptionAsync(string message, int userid, string IP, string url)
         {
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString))
             {
@@ -35,13 +35,20 @@ namespace P3Web
                     CommandType = CommandType.StoredProcedure,
                     CommandTimeout = 120
                 };
+                cmd.Parameters.Add("@ErrorMessage", SqlDbType.NVarChar, 255).Value = "P3WebExceptions";
                 cmd.Parameters.Add("@Description", SqlDbType.NVarChar, int.MaxValue).Value = message;
                 cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = userid;
                 cmd.Parameters.Add("@AppName", SqlDbType.NVarChar, 255).Value = "P3WebApp";
-             //   cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
+                cmd.Parameters.Add("@UserIP", SqlDbType.NVarChar, 255).Value = IP;
+                cmd.Parameters.Add("@Url", SqlDbType.NVarChar, 255).Value = url;
                 await cmd.ExecuteNonQueryAsync();
             }
             RedirectErrorPage();
+        }
+
+        public Task LogExceptionAsync(string message, int userid)
+        {
+            throw new NotImplementedException();
         }
 
         public void LogExceptiontoDB(string message, int userid,  string IP, string url)
@@ -57,12 +64,14 @@ namespace P3Web
                     CommandType = CommandType.StoredProcedure,
                     CommandTimeout = 120
                 };
+
+                cmd.Parameters.Add("@ErrorMessage", SqlDbType.NVarChar, 255).Value = "P3WebExceptions";
                 cmd.Parameters.Add("@Description", SqlDbType.NVarChar, int.MaxValue).Value = message;
                 cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = userid;
                 cmd.Parameters.Add("@AppName", SqlDbType.NVarChar, 255).Value = "P3WebApp";
                 cmd.Parameters.Add("@UserIP", SqlDbType.NVarChar, 255).Value = IP;
                 cmd.Parameters.Add("@Url", SqlDbType.NVarChar, 255).Value = url;
-                //   cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
+                
                 cmd.ExecuteNonQueryAsync();
             }
             RedirectErrorPage();

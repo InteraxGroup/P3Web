@@ -2558,7 +2558,10 @@ namespace P3Web
                         userID = Convert.ToInt32(UserValues[0]);
 
                         Exceptions p3WebException = new Exceptions();
-                        await p3WebException.LogExceptionAsync(ex.ToString(), userID);
+                        string userIP = HttpContext.Current.Request.UserHostAddress;
+                        string url = HttpContext.Current.Request.Url.ToString();
+
+                        await p3WebException.LogExceptionAsync(ex.ToString(), userID, userIP, url);
                     }
                 }
 
