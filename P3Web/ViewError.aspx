@@ -12,17 +12,25 @@
 <body class="errorBody">
     <form id="form1" runat="server">
         <div id="pnlDetails">
-            <asp:Label ID="ErrorTitle" runat="server" Text="Paradigm 3 Error..." Font-Size="X-Large" Font-Bold="True" ForeColor="#E0E0E0" meta:resourcekey="ErrorTitleResource1" />
-            <asp:ImageButton ID="btnHome" runat="server" OnClick="btnHome_Click" ImageAlign="Right" meta:resourcekey="btnHomeResource1" />
+            <asp:Label ID="ErrorTitle" runat="server" Text=" Paradigm 3 Error" Font-Size="X-Large" Font-Bold="True" ForeColor="#E0E0E0" meta:resourcekey="ErrorTitleResource1" />
+            
+            <asp:ImageButton ID="btnExit" runat="server" OnClick="btnExit_Click" ImageAlign="Right" meta:resourcekey="btnExiteResource" OnClientClick="window.close();" />
+            <asp:ImageButton ID="btnHome" runat="server" OnClick="btnHome_Click" ImageAlign="Left" meta:resourcekey="btnHomeResource1" />
         </div>
+          <div style="float:left;width:20px; height:20px; position:relative" >
+             <asp:Image ID="imgAlert" runat="server" style="width:30px; height:30px; position:relative; margin-left: 3px" />
+              <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
         <div id="pnlError">
             <%= GetLocalResourceObject("ErrorPara1") %>            
-            <br /><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblError" runat="server" Font-Size="Large" Font-Bold="True" ForeColor="Red" meta:resourcekey="lblErrorResource1" />
-            <br /><br />
+           
+            <%--<asp:Label ID="lblError" runat="server" Font-Size="Large" Font-Bold="True" ForeColor="Red" meta:resourcekey="lblErrorResource1" />
+            <br /><br />--%>
+            
             <asp:Label ID="lblStackTrace" runat="server" meta:resourcekey="lblStackTraceResource1"></asp:Label>
             <br /><br />
-            <%= GetLocalResourceObject("ErrorPara2") %>            
+            <%= GetLocalResourceObject("ErrorPara2") %>       
+               
         </div>
     </form>
 </body>

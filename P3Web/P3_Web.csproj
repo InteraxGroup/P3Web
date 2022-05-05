@@ -56,6 +56,9 @@
     <Reference Include="DocumentFormat.OpenXml">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.13.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="ExcelNumberFormat">
       <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
@@ -178,6 +181,7 @@
     <Content Include="Administration\lib\twitter-bootstrap\js\bootstrap.esm.min.js" />
     <Content Include="Administration\lib\twitter-bootstrap\js\bootstrap.js" />
     <Content Include="Administration\lib\twitter-bootstrap\js\bootstrap.min.js" />
+    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="attachments\Do_Not_Delete.txt" />
     <Content Include="custom\amtrak\acela.png" />
     <Content Include="custom\amtrak\AmtrakSearch.aspx" />
@@ -743,6 +747,8 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="exceptionhandler\Exceptions.cs" />
+    <Compile Include="exceptionhandler\IExceptionHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

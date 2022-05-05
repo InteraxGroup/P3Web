@@ -2534,10 +2534,35 @@ namespace P3Web
 
         protected async void P3Tree_SelectedNodeChanged(object sender, EventArgs e)
         {
-            mnuTVContext.Items.Clear();
-            mnuGVContext.Items.Clear();
-            await UpdateListViewAsync();
-            mnuTVContext.Items.Add(new MenuItem("Properties", "properties"));
+            try
+            {
+                mnuTVContext.Items.Clear();
+                mnuGVContext.Items.Clear();
+                await UpdateListViewAsync();
+                mnuTVContext.Items.Add(new MenuItem("Properties", "properties"));
+            }
+
+            catch (Exception ex)
+            {
+                if (ex.Source != null)
+                {
+                    int userID;
+                    if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                    {
+
+                        //Retrieve http authentication cookie.
+                        string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                        FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                        string UserData = authTicket.UserData;
+                        string[] UserValues = UserData.Split(',');
+                        userID = Convert.ToInt32(UserValues[0]);
+
+                        Exceptions p3WebException = new Exceptions();
+                        await p3WebException.LogExceptionAsync(ex.ToString(), userID);
+                    }
+                }
+
+            }
         }
 
         protected void FindMyNode(string searchstring, TreeView tvNodes)

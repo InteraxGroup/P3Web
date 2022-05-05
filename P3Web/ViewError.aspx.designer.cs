@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Paradigm3 {
-    
-    
-    public partial class ViewError {
-        
+namespace Paradigm3
+{
+
+
+    public partial class ViewError
+    {
+
         /// <summary>
         /// favicon control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlLink favicon;
-        
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// ErrorTitle control.
         /// </summary>
@@ -38,7 +40,16 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ErrorTitle;
-        
+
+        /// <summary>
+        /// btnExit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnExit;
+
         /// <summary>
         /// btnHome control.
         /// </summary>
@@ -47,16 +58,16 @@ namespace Paradigm3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnHome;
-        
+
         /// <summary>
-        /// lblError control.
+        /// imgAlert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
-        
+        protected global::System.Web.UI.WebControls.Image imgAlert;
+
         /// <summary>
         /// lblStackTrace control.
         /// </summary>
