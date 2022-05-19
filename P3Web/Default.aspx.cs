@@ -660,10 +660,6 @@ namespace P3Web
                                     int ObjTypeID = P3General.Get_ObjTypeID(ModuleID, RecordParentGroupID);
                                     ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "ViewRecord", "openRecordWindow(" + ModuleID + "," + ItemID + "," + ObjTypeID + "," + RecordParentGroupID + ",0);", true);
                                     break;
-                                case 14:
-                                    ItemID = Convert.ToInt32(gvAIList.DataKeys[index].Values["AIID"]);
-                                    ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "ViewActionItem", "openAIWindow(" + ItemID + ");", true);
-                                    break;
                                 default:
                                     string FileStatus = gvItemList.SelectedRow.Cells[3].Text;
                                     bool IsItemID = false;
@@ -1271,10 +1267,8 @@ namespace P3Web
 
                 mnuGVContext.Items.Add(aiSubMenuItem);
             }
-            if (ModuleID != 14)
-            {
-                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionProp").ToString(), "properties"));
-            }            
+
+            mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionProp").ToString(), "properties"));
         }
 
         #endregion
@@ -3134,14 +3128,9 @@ namespace P3Web
                         }
                         break;
                     case 4:
-                        // set IsEvidence value in session to check items.
-                        Session["IsEvidenceCheck"] = "False";
-                        break;
                     case 6:
-                        // set IsEvidence value in session to check items.
-                        Session["IsEvidenceCheck"] = "False";
-                        break;
                     case 12:
+                        Session["IsEvidenceCheck"] = "False";
                         pnlProperties.Visible = true;
                         if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
                         {

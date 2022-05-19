@@ -39,8 +39,8 @@ namespace Paradigm3.custom.amtrak
 					lblActionItems.Text = "You have " + TotalActionItems.ToString() + " open Action Items";
 				}
 
-				gvRecentBulletins.DataSource = await Get_Bulletins(7735);
-				//gvRecentBulletins.DataSource = await Get_Bulletins(109);
+				//gvRecentBulletins.DataSource = await Get_Bulletins(7735);
+				gvRecentBulletins.DataSource = await Get_Bulletins(109);
 				gvRecentBulletins.DataBind();
 			}
 		}
@@ -87,15 +87,17 @@ namespace Paradigm3.custom.amtrak
 				}
 				//string command = "SELECT TOP 100 * FROM [dbo].[Items3] WHERE [Status] = 9 AND [IsDeleted] = 0 AND [IsWithdrawn] = 0 AND [IsEvidence] = 0 ORDER BY [VersionDate] DESC";
 				string command2 = ";WITH cte AS " +
-					"(SELECT [GroupID] " +
-					"FROM [dbo].[Groups3] " +
-					"WHERE ([ParentGroupID] = @GroupID OR [GroupID] = @GroupID) AND [IsDeleted] = 0 AND ISNULL([Name], '') <> '' " +
-					"UNION ALL " +
-					"SELECT a.[GroupID] " +
-					"FROM [dbo].[Groups3] AS a " +
-					"INNER JOIN cte AS b ON a.[ParentGroupID] = b.[GroupID] " +
-					"WHERE a.[IsDeleted] = 0 AND ISNULL(a.[Name], '') <> '') " +
-					"SELECT * FROM [dbo].[Items3] WHERE [ParentGroupID] IN (SELECT [GroupID] FROM cte) AND [Status] = 9 AND [IsDeleted] = 0 AND [IsWithdrawn] = 0 AND [IsEvidence] = 0 AND [VersionDate] > DATEADD(DAY, -120, GETDATE()) " +
+					"(" +
+						"SELECT [GroupID] " +
+						"FROM [dbo].[Groups3] " +
+						"WHERE ([ParentGroupID] = @GroupID OR [GroupID] = @GroupID) AND [IsDeleted] = 0 AND ISNULL([Name], '') <> '' " +
+						"UNION ALL " +
+						"SELECT a.[GroupID] " +
+						"FROM [dbo].[Groups3] AS a " +
+						"INNER JOIN cte AS b ON a.[ParentGroupID] = b.[GroupID] " +
+						"WHERE a.[IsDeleted] = 0 AND ISNULL(a.[Name], '') <> ''" +
+					") " +
+					"SELECT * FROM [dbo].[Items3] WHERE [ParentGroupID] IN (SELECT [GroupID] FROM cte) AND [Status] = 9 AND [IsDeleted] = 0 AND [IsWithdrawn] = 0 AND [IsEvidence] = 0 AND [VersionDate] > DATEADD(DAY, -180, GETDATE()) " +
 					"ORDER BY [VersionDate] DESC";
 
 				SqlCommand cmd = new SqlCommand(command2, conn)

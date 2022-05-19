@@ -19,15 +19,17 @@ namespace Paradigm3
 
             Exception P3Error = null;
             string stackTrace = null;
-            lblError.Text = GetLocalResourceObject("ErrorPara3").ToString();
+            // lblError.Text = GetLocalResourceObject("ErrorPara3").ToString();
             if ((Exception)Application["Paradigm 3 Web"] != null)
             {
                 P3Error = (Exception)Application["Paradigm 3 Web"];
                 stackTrace = P3Error.StackTrace.ToString();
-                lblError.Text = P3Error.Message.ToString();
+                // lblError.Text = P3Error.Message.ToString();
             }
 
-            btnHome.ImageUrl = "~/images/exit.png";
+            btnExit.ImageUrl = "~/images/exit.png";
+            imgAlert.ImageUrl = "~/images/alert.png";
+            btnHome.ImageUrl = "~/images/Home.png";
             if (PageSource.Contains("Default.aspx"))
             {
                 btnHome.ImageUrl = "~/images/home.png";
@@ -36,14 +38,11 @@ namespace Paradigm3
 
         protected void btnHome_Click(object sender, ImageClickEventArgs e)
         {
-            if (btnHome.ImageUrl == "~/images/home.png")
-            {
-                Response.Redirect("~/");
-            }
-            else
-            {
-                Page.ClientScript.RegisterStartupScript(GetType(), "closeWindow", "window.close();", true);
-            }
+            Response.Redirect("Default.aspx");
+        }
+        protected void btnExit_Click(object sender, ImageClickEventArgs e)
+        {
+            
         }
     }
 }

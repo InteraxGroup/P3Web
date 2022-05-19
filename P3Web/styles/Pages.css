@@ -1624,8 +1624,11 @@ html {
 }
 
 #pnlError {
-    padding: 5px;
+    padding: 7px;
+    margin-left: 30px;
+    position: relative;
 }
+
 
 /*  VIEWFIELDEDIT.ASPX  */
 

@@ -2,6 +2,8 @@
 using System.Web;
 using System.Diagnostics;
 using Paradigm3.datalayer;
+using System.Web.Security;
+using P3Web;
 
 namespace Paradigm3
 {
@@ -14,7 +16,7 @@ namespace Paradigm3
         }
 
         protected void Session_Start(object sender, EventArgs e)
-        {            
+        {
 
         }
 
@@ -25,7 +27,7 @@ namespace Paradigm3
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-		}
+        }
 
         protected void Application_Error(object sender, EventArgs e)
         {
@@ -52,6 +54,36 @@ namespace Paradigm3
                 // Write the error entry to the event log.    
                 myLog.WriteEntry("An error occurred in the application " + eventSource + ":\r\n\r\n" + myErrorMessage, EventLogEntryType.Error);
                 Application[eventSource] = myError;
+
+                //Check if HTTP exceptions
+                HttpException httpException = myError as HttpException;
+                if (httpException != null)
+                {
+                    switch (httpException.GetHttpCode())
+                    {
+                        case 404:
+                        case 504:
+                            return;
+                    }
+                }
+
+                //Write error to DB
+                int userID;
+                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                {
+
+                    //Retrieve http authentication cookie.
+                    string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                    string UserData = authTicket.UserData;
+                    string[] UserValues = UserData.Split(',');
+                    userID = Convert.ToInt32(UserValues[0]);
+
+                    Exceptions myExceptionClass = new Exceptions();
+                    string userIP = HttpContext.Current.Request.UserHostAddress;
+                    string url = HttpContext.Current.Request.Url.ToString();
+                    myExceptionClass.LogExceptiontoDB(myErrorMessage, userID, userIP, url);
+                }
             }
         }
 

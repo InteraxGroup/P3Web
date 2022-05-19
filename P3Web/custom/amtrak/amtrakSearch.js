@@ -76,7 +76,7 @@ function openAmtrakDocument(ItemID) {
 
 function openMechDocuments(GroupID) {
 	//window.parent.location.href = 'http://obiwan/p3web/default.aspx?ModuleID=3&GroupID=' + GroupID;
-	window.parent.location.href = 'http://pdgmweb01p/paradigm/default.aspx?ModuleID=3&GroupID=' + GroupID;
+	window.parent.location.href = '../../default.aspx?ModuleID=3&GroupID=' + GroupID;
 }
 
 function openFAQ() {

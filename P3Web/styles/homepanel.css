@@ -27,7 +27,7 @@ ul {
 .homeContent {
     display: block;
     width: 100%;
-    height: calc(100vh - 118px);
+    height: calc(100vh - 150px);
 }
 
 .customBanner {
@@ -36,8 +36,6 @@ ul {
     height: 150px;
     border-bottom: 1px solid Black;
     overflow: hidden;
-/*    background-color: #003366;
-    background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1) 90%);*/
 }
 
 .customContent {

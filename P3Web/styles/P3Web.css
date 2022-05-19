@@ -11,7 +11,8 @@
     width: 100%;
     height: 55px;
     background-color: #f1f1f1;
-    border-bottom: 1px solid #dcdcdc;
+    border-top: 1px solid #787878;
+    border-bottom: 1px solid #787878;
     box-sizing: border-box;
     font-size: 10px;
 }
@@ -61,6 +62,7 @@
     height: 30px;
     display: flex;
     border-top: 1px solid #787878;
+    border-bottom: 1px solid #787878;
     background-color: #f1f1f1;
     align-items: center;
     box-sizing: border-box;
@@ -104,12 +106,12 @@
 
 #pnlHome {
     width: 100%;
-    height: calc(100vh - 118px);
+    height: calc(100vh - 116px);
 }
 
     #pnlHome iframe {
         width: 100%;
-        height: calc(100vh - 85px);
+        height: calc(100vh - 89px);
         box-sizing: border-box;
         border: none;
         outline: none;

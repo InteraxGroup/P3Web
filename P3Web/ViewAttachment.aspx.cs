@@ -203,6 +203,10 @@ namespace Paradigm3
                         int AtchSerialNo = Convert.ToInt32(gvAttach.DataKeys[gvAttach.SelectedIndex].Values["AtchSerialNo"]);
                         // Get Public folder location
                         string publicPath = Server.MapPath(ConfigurationManager.AppSettings["PublicPath"] + "/" + UserID.ToString()) + "/";
+                        if (!Directory.Exists(publicPath))
+                        {
+                            Directory.CreateDirectory(publicPath);
+                        }
                         // Get Attachment Location
                         bool IsFolder = UseAttachFolder();
                         string destPath = string.Empty;

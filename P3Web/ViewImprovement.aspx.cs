@@ -1402,7 +1402,7 @@ namespace Paradigm3
             int ObjTypeID = Convert.ToInt32(Request.QueryString["ObjTypeID"]);
             DataSet ds = (DataSet)ViewState["GenRecord"];
             int ObjID = Convert.ToInt32(ds.Tables["Get_TabList"].Rows[index]["ObjID"]);
-            if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
             {
                 string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie);

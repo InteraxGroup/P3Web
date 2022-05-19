@@ -77,12 +77,45 @@ a {
 
 .customBanner {
 	position: relative;
-	flex: 0 0 100px;
+	flex: 0 0 60px;
 	background-color: #00537e;
 	border-bottom: 1px solid #fff;
 	display: flex;
 	align-items: center;
 	flex-direction: row;
+	box-sizing: border-box;
+}
+
+.bannerText {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	font-size: 1.2em;
+	color: #fff;
+}
+
+	.bannerText div:nth-child(1) {
+		flex: 0 0 40px;
+		display: flex;
+		align-items: flex-start;
+		font-size: 1.5em;
+	}
+
+	.bannerText div:nth-child(2) {
+		flex: 1;
+		font-size: .8em;
+	}
+
+#imgLogo {
+	width: auto;
+	height: 60px;
+	margin: 0;
+}
+
+#imgAcela {
+	width: auto;
+	height: 100px;
+	margin: 0;
 }
 
 .amtrak-ActionItems {
@@ -106,16 +139,16 @@ a {
 	margin: 0;
 	padding: 10px 0 0 0;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	height: 100%;
 	overflow: auto;
 	background-color: #00537e;
 }
 
 .amtrak-buttons {
-	flex: 0 0 33%;
+	flex: 0 0 70px;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	padding: 5px;
 	box-sizing: border-box;
 }
@@ -179,8 +212,7 @@ a {
 	}
 
 .homeBtn {
-	flex: 0 0 50px;
-	width: 300px;
+	flex: 0 0 400px;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -207,7 +239,6 @@ a {
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		/*color: #002436;*/
 		margin: 0;
 		padding: 0;
 		font-size: 1.5em;
@@ -240,22 +271,26 @@ a {
 }
 
 .grid {
-	flex: 1 1 auto;
+	flex: 1 1 200px;
+	min-height: 0;
 	background-color: #fff;
 	border: 1px solid #e6e9eb;
 	box-sizing: border-box;
 	border-radius: 4px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 	.grid .gridHeader {
 		width: 100%;
 		box-sizing: border-box;
+		border-top: 1px solid #000;
 		border-bottom: 1px solid #000;
 		background-color: #e6e9eb;
 		color: #002436;
 		text-align: center;
-		font-size: .9em;
-		font-weight: 500;
+		font-size: 1em;
+		font-weight: 600;
 		padding: 5px;
 	}
 
@@ -341,7 +376,7 @@ a {
 	color: #000;
 	text-decoration: none;
 	text-align: left;
-	font: bold 1.25em arial, verdana;
+	font: bold 1em arial, verdana;
 	height: 20px;
 	border-bottom: 1px solid black;
 }
@@ -363,6 +398,12 @@ a {
 	background-color: #0078D7 !important;
 	color: #fff !important;
 	vertical-align: middle;
+}
+
+.linkTitle {
+	text-decoration: underline;
+	margin: 0;
+	padding: 0;
 }
 
 .form-group {
@@ -504,3 +545,60 @@ a {
 		width: 50px;
 		height: auto;
 	}
+
+@media only screen and (max-width: 1024px) {
+	.customBanner {
+		flex: 0 0 50px;
+		font-size: 10px;
+	}
+
+	#imgLogo {
+		height: 50px;
+	}
+
+	#imgAcela {
+		display: none;
+	}
+
+	.bannerText div:nth-child(1) {
+		flex: 0 0 20px;
+		display: flex;
+		align-items: flex-start;
+		font-size: 1.5em;
+	}
+
+	.bannerText div:nth-child(2) {
+		flex: 1;
+		font-size: .8em;
+	}
+
+	.amtrak-buttons {
+		flex: 0 0 40px;
+	}
+
+	.homeBtn {
+		flex: 0 0 300px;
+		height: 40px;
+		margin-bottom: 0;
+	}
+
+		.homeBtn .homeBtn-header {
+			font-size: .9em;
+			text-transform: uppercase;
+		}
+
+	.amtrak-links div {
+		width: 250px;
+		padding: 5px 0 0 10px;
+		color: #fff;
+		font-size: .85rem;
+	}
+
+	.amtrak-gridView {
+		font: normal .85em arial, verdana;
+	}
+
+	.amtrak-gridViewHeader {
+		font: bold .85em arial, verdana;
+	}
+}
