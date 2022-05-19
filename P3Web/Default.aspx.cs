@@ -566,6 +566,9 @@ namespace P3Web
                         case "rename":
                             ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "renamegroup", "openRenameWindow(" + ModuleID + "," + GroupID + "," + UserID + ",true);", true);
                             break;
+                        case "headerfooter":
+                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "headerfootergroup", "openHeaderFooterWindow(" + ModuleID + "," + GroupID + "," + UserID + ",true);", true);
+                            break;
                         case "setrepublish":
                             try
                             {
@@ -753,6 +756,11 @@ namespace P3Web
                                 ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "actionitem", "openCreateAIWindow(" + ModuleID + "," + OrigID + "," + UserID + ",true);", true);
                             }
                             break;
+
+                        case "headerfooter":
+                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "headerfootergroup", "openHeaderFooterWindow(" + ModuleID + "," + OrigID + "," + UserID + ",true);", true);
+                            break;
+
                         case "setrepublish":
                             try
                             {
@@ -1266,6 +1274,10 @@ namespace P3Web
                 //aiMenuItem.ChildItems.Add(aiSubMenuItem);
 
                 mnuGVContext.Items.Add(aiSubMenuItem);
+            }
+            if (ModuleID == 3 && HasDeletePermission)
+            {
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionHeaderFooter").ToString(), "headerfooter"));
             }
 
             mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionProp").ToString(), "properties"));

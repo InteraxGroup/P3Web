@@ -636,6 +636,7 @@
     <Content Include="ViewDocument.aspx" />
     <Content Include="ViewDocumentAdd.aspx" />
     <Content Include="ViewDocumentAddFromTemplate.aspx" />
+    <Content Include="ViewDocumentAddHeaderFooter.aspx" />
     <Content Include="ViewError.aspx" />
     <Content Include="ViewExportDocument.aspx" />
     <Content Include="ViewFieldEdit.aspx" />
@@ -892,6 +893,13 @@
     </Compile>
     <Compile Include="ViewDocumentAddFromTemplate.aspx.designer.cs">
       <DependentUpon>ViewDocumentAddFromTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDocumentAddHeaderFooter.aspx.cs">
+      <DependentUpon>ViewDocumentAddHeaderFooter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewDocumentAddHeaderFooter.aspx.designer.cs">
+      <DependentUpon>ViewDocumentAddHeaderFooter.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewError.aspx.cs">
       <DependentUpon>ViewError.aspx</DependentUpon>

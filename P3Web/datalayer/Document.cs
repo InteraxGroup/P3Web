@@ -375,6 +375,53 @@ namespace Paradigm3.datalayer
             return dt;
         }
 
+
+        public static async Task<DataTable> Get_HeaderFooterListAsync(int OrigID, int ParentGroupID, int GroupID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("dbo.[v4_Get_HeaderFooter_Templates]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                cmd.Parameters.Add("@GroupID", SqlDbType.Int, 4).Value = GroupID;
+                cmd.Parameters.Add("@ParentgroupID", SqlDbType.Int, 4).Value = ParentGroupID;
+                SqlDataReader sdr = cmd.ExecuteReader();
+                dt.Load(sdr);
+            }
+            return dt;
+        }
+
+        public static async Task<DataTable> Get_AllDocumentItemsAsync(int OrigID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("dbo.[v4_Document_Get_All_Items]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                SqlDataReader sdr = cmd.ExecuteReader();
+                dt.Load(sdr);
+            }
+            return dt;
+        }
+
         public static DataTable Has_Trigger_Event(int EventIndexID, int RelatedID, int ModuleID)
         {
             DataTable dt = new DataTable();

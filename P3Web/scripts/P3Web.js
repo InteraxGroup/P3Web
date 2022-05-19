@@ -568,6 +568,14 @@ function openStatusWindow(ModuleID, ItemID, OrigID) {
     window.open(statusPath, 'statusWindow' + OrigID, 'height=' + windowHeight + ',width=' + windowWidth + ',top=' + yPos + ',left=' + xPos + ',location=0,status=0,menubar=0,toolbar=0,scrollbars=0,resizable=0');
 }
 
+//// Open Header Footer
+function openHeaderFooterWindow(moduleid, origid, userid, isgroup) {
+    var headerfooterpath = 'ViewDocumentAddHeaderFooter.aspx?moduleid=' + moduleid + '&origid=' + origid + '&userid=' + userid + '&isgroup=' + isgroup;
+    var windowwidth = 500;
+    var windowheight = 520;
+    var xpos = screen.width / 2 - windowwidth / 2;
+    window.open(headerfooterpath, 'headerfooterWindow' + origid, 'height=' + windowheight + ',width=' + windowwidth + ',top=50px,left=' + xpos + '');
+}
 function showStatusMessage(moduleid, msg, iserror) {
     var msgpnl = document.getElementById("statusMessagePanel");
     var msgbox = document.getElementById("statusMessage");

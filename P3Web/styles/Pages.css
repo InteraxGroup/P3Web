@@ -1655,3 +1655,18 @@ html {
     width: calc(50vw - 10px);
     font-size: 14px;
 }
+
+
+/*  --------------------------------------  */
+/*  STYLE & LAYOUT FOR VIEWDOCUMENTADDHEADERFOOTER.ASPX  */
+/*  --------------------------------------  */
+
+.headerfooterBody {
+    background-color: #F0F0F0;
+    text-align: left;
+    margin: 0;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+

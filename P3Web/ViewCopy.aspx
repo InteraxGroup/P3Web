@@ -78,8 +78,8 @@
                     &nbsp;
                     <button id="btnNo" runat="server" style="width: 70px;" onclick="javascript:document.getElementById('msg').style.display='none';">No</button>
                 </div>
-            </div>--%>
-        </div>
+            </div>
+        </div>--%>
     </form>
 </body>
 </html>
