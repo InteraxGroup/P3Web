@@ -217,41 +217,51 @@ namespace Paradigm3
 				int FieldID = Convert.ToInt32(dr["FieldID"]);
 				int FieldType = Convert.ToInt32(dr["FieldType"]);
 				DataSet ds = await Task.FromResult((DataSet)Session["PrintData"]);
-				DataTable dt = ds.Tables[3].AsEnumerable().Where(row => row.Field<int>("FieldID") == FieldID).CopyToDataTable();
-				Label lblFieldData = (Label)e.Item.FindControl("lblFieldData");
+				if (ds.Tables[3].Rows.Count > 0)
+                {
+					DataTable dt = ds.Tables[3].AsEnumerable().Where(row => row.Field<int>("FieldID") == FieldID).CopyToDataTable();
+					Label lblFieldData = (Label)e.Item.FindControl("lblFieldData");
 
-				switch (FieldType)
-				{
-					case 0:
-					case 3:
-					case 7:
-						lblFieldData.Text = dt.Rows[0]["TextData"].ToString();
-						break;
-					case 1:
-						lblFieldData.Text = dt.Rows[0]["TextData"].ToString();
-						break;
-					case 6:
-						lblFieldData.Text = P3General.RTFtoText(dt.Rows[0]["MemoData"].ToString());
-						break;
-					case 4:
-					case 16:
-						lblFieldData.Text = Convert.ToDateTime(dt.Rows[0]["DateData"]).ToShortDateString();
-						break;
-					case 8:
-						lblFieldData.Text = dt.Rows[0]["NumData"].ToString();
-						break;
-					case 2:
-						bool IsChecked = Convert.ToBoolean(dt.Rows[0]["NumData"]);
-						if (IsChecked)
-						{
-							lblFieldData.Text = "Yes";
-						}
-						else
-						{
-							lblFieldData.Text = "No";
-						}
-						break;
+					switch (FieldType)
+					{
+						case 0:
+						case 3:
+						case 7:
+							lblFieldData.Text = dt.Rows[0]["TextData"].ToString();
+							break;
+						case 1:
+							lblFieldData.Text = dt.Rows[0]["TextData"].ToString();
+							break;
+						case 6:
+							lblFieldData.Text = P3General.RTFtoText(dt.Rows[0]["MemoData"].ToString());
+							break;
+						case 4:
+						case 16:
+							lblFieldData.Text = Convert.ToDateTime(dt.Rows[0]["DateData"]).ToShortDateString();
+							break;
+						case 8:
+							lblFieldData.Text = dt.Rows[0]["NumData"].ToString();
+							break;
+						case 2:
+							bool IsChecked = Convert.ToBoolean(dt.Rows[0]["NumData"]);
+							if (IsChecked)
+							{
+								lblFieldData.Text = "Yes";
+							}
+							else
+							{
+								lblFieldData.Text = "No";
+							}
+							break;
+					}
 				}
+				else
+                {
+					ClientScript.RegisterStartupScript(GetType(), 
+						"No Fields", "alert('This record has no field data. Update the field data in the record to print its details.');window.close();", 
+						true);
+                }
+				
 			}
 		}
 
