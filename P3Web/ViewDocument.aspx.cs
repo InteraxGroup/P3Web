@@ -260,7 +260,15 @@ namespace Paradigm3
                         string uniqueId = now.ToString("yyyyMMddHHmmssfff");
                         string viewDocPath = PublicUrl + dt.Rows[0]["Name"].ToString() + "_" + uniqueId + PubFileExtension;
                         await CopyAsync(Server.MapPath(fullDocPath), Server.MapPath(viewDocPath));
-                        DocViewer.Attributes.Add("src", viewDocPath);
+                        if (PubFileExtension == ".pdf")
+                        {
+                            DocViewer.Attributes.Add("src", "lib/pdfjs/web/viewer.html?file=../../../public/" + UserID.ToString() + "/" + dt.Rows[0]["Name"].ToString() + "_" + uniqueId + PubFileExtension);
+
+                        }
+                        else
+                        {
+                            DocViewer.Attributes.Add("src", viewDocPath);
+                        }                        
                         //ScriptManager.RegisterStartupScript(udpDocument, GetType(), "test", "alert('" + DocViewer.Src + "')", true);
                         Session["ViewDoc"] = viewDocPath;
                     }
