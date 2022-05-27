@@ -758,7 +758,7 @@ namespace P3Web
                             break;
 
                         case "headerfooter":
-                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "headerfootergroup", "openHeaderFooterWindow(" + ModuleID + "," + OrigID + "," + UserID + ",true);", true);
+                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "headerfootergroup", "openHeaderFooterWindow(" + ModuleID + "," + OrigID + "," + UserID + ",false);", true);
                             break;
 
                         case "setrepublish":
@@ -861,6 +861,11 @@ namespace P3Web
                 if (HasMovePermission && moduleID != 1)
                 {
                     mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionCopy").ToString(), "copy"));
+                   
+                }
+                if (moduleID == 3 && HasDeletePermission)
+                {
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionHeaderFooter").ToString(), "headerfooter"));
                 }
             }
 

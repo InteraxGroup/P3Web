@@ -10,17 +10,28 @@
 	<link href="styles/P3Web.css" rel="stylesheet" />
 	<script src="scripts/P3Web.js"></script>
 
-      <script type="text/javascript">
-        function chkboxValidation(chk) {
-            var chkList = chk.parentNode.parentNode.parentNode;
-            var chks = chkList.getElementsByTagName("input");
-            for (var i = 0; i < chks.length; i++) {
-                if (chks[i] != chk && chk.checked) {
-                    chks[i].checked = false;
-                }
-            }
+    <script language="javascript" type="text/javascript">
+
+        function oncheckchange(checked) {
+            var chk1 = document.getElementById('cbCollaborateVersion');
+            var chk2 = document.getElementById('cbCurrentVersion');
+            var chk3 = document.getElementById('cbDraftVersion');
+            var chk4 = document.getElementById('cbObsoletedVersion');
+            var chk5 = document.getElementById('cbPendingVersion');
+            var chk6 = document.getElementById('cbReadyVersion');
+            var chk7 = document.getElementById('cbReviewVersion');
+
+            chk1.disabled = checked;
+            chk2.disabled = checked;
+            chk3.disabled = checked;
+            chk4.disabled = checked;
+            chk5.disabled = checked;
+            chk6.disabled = checked;
+            chk7.disabled = checked;
+           
         }
-      </script>
+    </script>
+
 </head>
 <body class="headerfooterBody">
       <form id="form1" runat="server">
@@ -35,7 +46,7 @@
                  <fieldset style="display: flex;flex-direction: column; justify-content: flex-start; border: 1px solid #dcdcdc;">
                 
                     <asp:label class="formLabel" ID="lblTemplateName" runat="server" Font-Bold="true" Text="Select a Header/Footer to apply"/>
-                    <asp:DropDownList runat="server" ID="ddlTemplates" DataTextField="Name" DataValueField="ItemID"></asp:DropDownList>                    
+                    <asp:DropDownList runat="server" ID="ddlTemplates"></asp:DropDownList>                    
                
               </fieldset> 
             </div>
@@ -61,25 +72,25 @@
              <div class="u-prop-tabcontent" style="border: none;"> 
                                     <div class="u-opt-row" style="flex: 1 1 auto; display: flex; flex-direction: column;">
                                         <fieldset style="display: flex;flex-direction: column; justify-content: flex-start; border: 1px solid #dcdcdc;">
-                                            <legend>  <asp:CheckBox ID="cbAllversions" runat="server"  Text="All Version" CssClass="formLabel"/> </legend>
+                                            <legend>  <asp:CheckBox ID="cbAllversions" runat="server" OnClick="oncheckchange(this.checked);"  Text="All Version" CssClass="formLabel" OnCheckedChanged="cbAllversions_CheckedChanged"/> </legend>
                                             <table>
                                                 <tr>
                                                     <td>
                                                          <div class="u-opt-row">
-                                                <asp:CheckBox ID="cbCurrentVersion" runat="server" onclick="chkboxValidation(this);"  Text="Current Version" CssClass="formLabel" />
+                                                <asp:CheckBox ID="cbCurrentVersion"  runat="server"    Text="Current Version" CssClass="formLabel" />
                                             </div>
                                           
                                            
                                                     </td>
                                                     <td>
                                                          <div class="u-opt-row">
-                                                <asp:CheckBox ID="cbReadyVersion" runat="server" onclick="chkboxValidation(this);" Text="Ready Version" CssClass="formLabel"/>
+                                                <asp:CheckBox ID="cbReadyVersion" runat="server"   Text="Ready Version" CssClass="formLabel"/>
                                             </div>
                                                     </td>
                                                     <td>
  
                                             <div class="u-opt-row">
-                                                <asp:CheckBox ID="cbDraftVersion" runat="server" onclick="chkboxValidation(this);" Text="Draft Version" CssClass="formLabel" />
+                                                <asp:CheckBox ID="cbDraftVersion" runat="server"   Text="Draft Version" CssClass="formLabel" />
                                             </div>
                                                     </td>
                                                 </tr>
@@ -87,18 +98,18 @@
                                                 <tr>
                                                     <td>
                                                          <div class="u-opt-row">
-                                                <asp:CheckBox ID="cbCollaborateVersion" runat="server" onclick="chkboxValidation(this);" Text="Collaborate Version" CssClass="formLabel"/>
+                                                <asp:CheckBox ID="cbCollaborateVersion" runat="server"   Text="Collaborate Version" CssClass="formLabel"/>
                                             </div>
                                                     </td>
                                                     <td>
                                                         <div class="u-opt-row">
-                                                <asp:CheckBox ID="cbReviewVersion" runat="server" onclick="chkboxValidation(this);" Text="Review Version" CssClass="formLabel" />
+                                                <asp:CheckBox ID="cbReviewVersion" runat="server"   Text="Review Version" CssClass="formLabel" OnCheckedChanged="cbReviewVersion_CheckedChanged" />
                                             </div>
 
                                                     </td>
                                                     <td>
                                                           <div class="u-opt-row">
-                                                <asp:CheckBox ID="cbPendingVersion" runat="server" onclick="chkboxValidation(this);"  Text="Pending Version" CssClass="formLabel"/>
+                                                <asp:CheckBox ID="cbPendingVersion" runat="server"    Text="Pending Version" CssClass="formLabel"/>
                                             </div>
                                                     </td>
                                                 </tr>
@@ -106,7 +117,7 @@
                                                 <tr>
                                                     <td>
                                                          <div class="u-opt-row">
-                                                <asp:CheckBox ID="cbObsoletedVersion" runat="server" onclick="chkboxValidation(this);"  Text="Obsolete Version/Completed Item" CssClass="formLabel"/>
+                                                <asp:CheckBox ID="cbObsoletedVersion" runat="server"    Text="Obsolete Version/Completed Item" CssClass="formLabel"/>
                                             </div>
                                                     </td>
                                                    
