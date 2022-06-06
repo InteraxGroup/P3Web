@@ -1298,10 +1298,6 @@ namespace Paradigm3
             }
 
             DataTable dt = await SearchData.Get_RoleSearchResultsAsync(ModuleID, ParentGroupID, AssignedID, RoleID, isSubGroup, isWithdrawn, UserID, SiteID);
-			//gvSearchResults.DataSource = dt;
-			//gvSearchResults.DataBind();
-			//lblResultCount.Text = dt.Rows.Count.ToString() + " results found";
-			//dt.Dispose();
 			return dt;
         }
 

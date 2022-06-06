@@ -694,7 +694,7 @@
     <Content Include="public\import\Do_Not_Delete.txt" />
     <Content Include="releasenotes\releasenotes.html" />
     <Content Include="ReportDocument.aspx" />
-    <Content Include="scripts\ALTER_ITEMS1_ADD_LOGIN_COLUMNSsql.sql" />
+    <Content Include="scripts\ALTER_ITEMS1_ADD_LOGIN_COLUMNS.sql" />
     <Content Include="scripts\CREATE_P3WEB_STORED_PROCEDURES_V4.14.0.0.sql" />
     <Content Include="styles\Assessment.css" />
     <Content Include="styles\Assignment.css" />
