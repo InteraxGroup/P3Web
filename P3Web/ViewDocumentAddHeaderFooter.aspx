@@ -59,14 +59,14 @@
             </div> 
              
                  <div class="u-opt-row" style="flex: 1 1 auto; display: flex; flex-direction: column;">
-                      <fieldset style="display: flex;flex-direction: column; justify-content: flex-start; border: 1px solid #dcdcdc;">
+                     <%-- <fieldset style="display: flex;flex-direction: column; justify-content: flex-start; border: 1px solid #dcdcdc;">
                             <p style="font-weight:bold" class="formLabel">Following options are only applicable on MS Excel files only</p> 
                  <asp:RadioButtonList ID="RadioButtonList1" runat="server" CssClass="formLabel">
                      <asp:ListItem Enabled="false" Value="1" > Apply Header/Footer from first sheet</asp:ListItem>
                     <asp:ListItem ID="rbAllSheets"  Value="2" Enabled="false"> Apply Header/Footer from all sheets</asp:ListItem>
     
                   </asp:RadioButtonList>
-                          </fieldset>
+                          </fieldset>--%>
            
             </div>
              <div class="u-prop-tabcontent" style="border: none;"> 

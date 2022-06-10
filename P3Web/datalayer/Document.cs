@@ -303,6 +303,39 @@ namespace Paradigm3.datalayer
             }
         }
 
+        public static async Task Update_HistoryAsync(int ModuleID, int OrigID, string UserName, string text)
+        {
+            // TransType 0 = Event Date, TransType 1 = Category
+
+             string Details = "Header/Footer applied to the item by: " + UserName + " (" + DateTime.Now.ToString() + ")\n" +
+                    "\n\n" +
+                    "****************************************************************";
+
+            string HistoryMemo = "User notes: "+ text + "\r\n"+
+                                 "User Name: " + UserName + "\r\n" +
+                                 "Time: " + DateTime.Now.ToString() + "\r\n" +
+                                 "Action: " + Details;
+
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Update_History]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                cmd.Parameters.Add("@Type", SqlDbType.Int, 4).Value = 1;
+                cmd.Parameters.Add("@HistoryMemo", SqlDbType.NVarChar, -1).Value = HistoryMemo;
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
         #endregion
 
         #region Events

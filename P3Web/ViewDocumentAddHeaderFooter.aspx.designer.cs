@@ -87,24 +87,6 @@ namespace P3Web
         protected global::System.Web.UI.WebControls.TextBox txtDocumentName;
 
         /// <summary>
-        /// RadioButtonList1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
-
-        /// <summary>
-        /// rbAllSheets control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListItem rbAllSheets;
-
-        /// <summary>
         /// cbAllversions control.
         /// </summary>
         /// <remarks>

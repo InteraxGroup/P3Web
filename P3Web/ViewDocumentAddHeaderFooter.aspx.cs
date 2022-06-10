@@ -12,6 +12,8 @@ using System.Configuration;
 using System.IO;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using A = DocumentFormat.OpenXml.Drawing;
+using Pic = DocumentFormat.OpenXml.Drawing.Pictures;
 
 namespace P3Web
 {
@@ -22,9 +24,10 @@ namespace P3Web
         private bool checkHeaderAppliedStatus = false;
         private bool checkFooterAppliedStatus = false;
         private int count = 0;
+
         protected async void Page_Load(object sender, EventArgs e)
         {
-          
+
 
             if (!Page.IsPostBack)
             {
@@ -68,8 +71,8 @@ namespace P3Web
                 UserID = Convert.ToInt32(UserValues[0]);
             }
             DataTable dt = await Paradigm3.datalayer.Document.Get_HeaderFooterListAsync(OrigID, ModuleID, ParentGroupID);
-           
-           
+
+
 
             if (IsGroup)
             {
@@ -78,18 +81,19 @@ namespace P3Web
                 DataTable dtGrp = Paradigm3.datalayer.Document.Get_ParentGroupDetails(ParentGroupID);
 
                 ViewState["grpData"] = dtGroup;
-                            Session["templateExtension"] = "docx";
-                            dt.DefaultView.RowFilter = "FileExtension = 'docx'";
-                            ddlTemplates.DataSource = dt;
-                            ddlTemplates.DataTextField = "Name";
-                            ddlTemplates.DataValueField = "ItemID";
-                            ddlTemplates.DataBind();
+                Session["templateExtension"] = "docx";
+                dt.DefaultView.RowFilter = "FileExtension = 'docx'";
+                ddlTemplates.DataSource = dt;
+                ddlTemplates.DataTextField = "Name";
+                ddlTemplates.DataValueField = "ItemID";
+                ddlTemplates.DataBind();
                 txtDocumentName.Text = dtGrp.Rows[0]["Name"].ToString();
 
-              
+
 
             }
-            else {
+            else
+            {
                 DataTable dtDoc = await Paradigm3.datalayer.Document.Get_AllDocumentItemsAsync(OrigID);
                 ViewState["dtDoc"] = dtDoc;
                 string DocName = dtDoc.Rows[0]["Name"].ToString();
@@ -125,9 +129,9 @@ namespace P3Web
                 }
 
             }
-               
-           
-         
+
+
+
         }
 
         protected async void Button_Click(object sender, EventArgs e)
@@ -137,10 +141,10 @@ namespace P3Web
             string arg = btn.CommandArgument;
             switch (arg)
             {
-            case "Close":
-                   
-                        Page.ClientScript.RegisterStartupScript(GetType(), "closeStatus", "closeP3Window();", true);
-                        break;
+                case "Close":
+
+                    Page.ClientScript.RegisterStartupScript(GetType(), "closeStatus", "closeP3Window();", true);
+                    break;
 
                 case "Submit":
                     if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
@@ -160,88 +164,29 @@ namespace P3Web
                         ApplyHeaderFootertoDocumentItemID();
                         if (checkHeaderAppliedStatus && checkFooterAppliedStatus)
                         {
-                            await Paradigm3.datalayer.Document.Edit_Document_HistoryAsync(3, OrigID, txtDocumentName.Text, "", "Applied Header Footer to the document", UserFullName, txtHistory.Text);
-                            ScriptManager.RegisterStartupScript(udpHeaderFooter, udpHeaderFooter.GetType(), "myScript", "alert('Applied Header/Footer successfully');window.close();", true);
+                            await Paradigm3.datalayer.Document.Update_HistoryAsync(3, OrigID, UserFullName, txtHistory.Text);
+                            ScriptManager.RegisterStartupScript(udpHeaderFooter, udpHeaderFooter.GetType(), "myScript", "alert('Successfully applied Header/Footer to item/s: " + count + "'); window.close();", true);
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('Can not applied Header/Footer. Check Error Table')", true);
+                            ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('Can not applied Header/Footer. Check error log')", true);
                         }
                     }
                     break;
             }
 
         }
-
-        private static Boolean AddHeaderFromTo(string filepathFrom, string filepathTo)
+        private void ApplyHeaderFootertoDoc(int ItemID)
         {
-            // Replace header in target document with header of source document.
-            using (WordprocessingDocument
-                wdDoc = WordprocessingDocument.Open(filepathTo, true))
-            {
-                MainDocumentPart mainPart = wdDoc.MainDocumentPart;
 
-                // Delete the existing header part.
-                mainPart.DeleteParts(mainPart.HeaderParts);
-
-                // Create a new header part.
-                DocumentFormat.OpenXml.Packaging.HeaderPart headerPart =
-            mainPart.AddNewPart<HeaderPart>();
+            int TemplateID = Convert.ToInt32(ddlTemplates.SelectedValue.ToString());
+            int DocID = ItemID;
+            string templateExtension = Session["templateExtension"].ToString();
+            string fileExtension = Session["templateExtension"].ToString();
+            string TemplateFileName = TemplateID.ToString().PadLeft(7, '0') + "." + templateExtension;
+            TemplateFileName = "D" + TemplateFileName;
 
 
-                // Get Id of the headerPart.
-                string rId = mainPart.GetIdOfPart(headerPart);
-
-                // Feed target headerPart with source headerPart.
-                using (WordprocessingDocument wdDocSource =
-                    WordprocessingDocument.Open(filepathFrom, true))
-                {
-                    DocumentFormat.OpenXml.Packaging.HeaderPart firstHeader =
-            wdDocSource.MainDocumentPart.HeaderParts.FirstOrDefault();
-
-                    wdDocSource.MainDocumentPart.HeaderParts.FirstOrDefault();
-
-                    if (firstHeader != null)
-                    {
-                        headerPart.FeedData(firstHeader.GetStream());
-                    }
-                }
-
-                // Get SectionProperties and Replace HeaderReference with new Id.
-                IEnumerable<DocumentFormat.OpenXml.Wordprocessing.SectionProperties> sectPrs =
-                mainPart.Document.Body.Elements<SectionProperties>();
-
-                try
-                {
-                    foreach (var sectPr in sectPrs)
-                    {
-                        // Delete existing references to headers.
-                        sectPr.RemoveAllChildren<HeaderReference>();
-
-                        // Create the new header reference node.
-                        sectPr.PrependChild<HeaderReference>(new HeaderReference() { Id = rId });
-                    }
-
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    return false;
-                }
-            }
-        }
-
-        private void ApplyHeaderFootertoDoc(int ItemID) 
-        { 
-        
-        int TemplateID = Convert.ToInt32(ddlTemplates.SelectedValue.ToString());
-        int DocID = ItemID;
-        string templateExtension = Session["templateExtension"].ToString();
-        string fileExtension = Session["templateExtension"].ToString();
-        string TemplateFileName = TemplateID.ToString().PadLeft(7, '0') + "." + templateExtension;
-        TemplateFileName = "D" + TemplateFileName;
-           
-            
             string DocFileName = DocID.ToString().PadLeft(7, '0') + "." + fileExtension;
             DocFileName = "D" + DocFileName;
 
@@ -263,8 +208,9 @@ namespace P3Web
                                 string filepathFrom = DocPath + TemplateFileName;
                                 string filepathTo = DocPath + DocFileName;
 
-                                //checkHeaderAppliedStatus = AddHeaderFromTo(filepathFrom.Replace("\\\\", "\\"), filepathTo.Replace("\\\\", "\\"));
-                                checkFooterAppliedStatus = AddFooterFromTo(filepathFrom.Replace("\\\\", "\\"), filepathTo.Replace("\\\\", "\\"));
+                                checkHeaderAppliedStatus = PrependHeader(filepathFrom.Replace("\\\\", "\\"), filepathTo.Replace("\\\\", "\\"));
+                                checkFooterAppliedStatus = PrependFooter(filepathFrom.Replace("\\\\", "\\"), filepathTo.Replace("\\\\", "\\"));                   
+
                                 count++;
                             }
                             catch (Exception ex)
@@ -283,69 +229,255 @@ namespace P3Web
                 ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('Header/Footer or Document extension should be DOCX!')", true);
             }
         }
-        public static Boolean AddFooterFromTo(string filepathFrom, string filepathTo)
+
+        public bool PrependHeader(string headerTemplatePath, string documentPath)
         {
-            // Replace header in target document with header of source document.
-            using (WordprocessingDocument
-                wdDoc = WordprocessingDocument.Open(filepathTo, true))
+            try
             {
-                MainDocumentPart mainPart = wdDoc.MainDocumentPart;
-
-                // Delete the existing footer part.
-                mainPart.DeleteParts(mainPart.FooterParts);
-
-                // Create a new footer part.
-                DocumentFormat.OpenXml.Packaging.FooterPart footerPart =
-            mainPart.AddNewPart<FooterPart>();
-
-                // Get Id of the footerPart.
-                string rId = mainPart.GetIdOfPart(footerPart);
-
-                // Feed target FooterPart with source headerPart.
-                using (WordprocessingDocument wdDocSource =
-                    WordprocessingDocument.Open(filepathFrom, true))
+                // Open docx where append header
+                using (var wdDoc = WordprocessingDocument.Open(documentPath, true))
                 {
-                    DocumentFormat.OpenXml.Packaging.FooterPart firstFooter =
-                    wdDocSource.MainDocumentPart.FooterParts.FirstOrDefault();  //wdDocSource.MainDocumentPart.FooterParts.First();
+                    var mainPart = wdDoc.MainDocumentPart;
 
+                    // Remove exist header
+                    mainPart.DeleteParts(mainPart.HeaderParts);
 
+                    // Create new header
+                    var headerParts = mainPart.AddNewPart<HeaderPart>();
 
-                    if (firstFooter != null)
+                    // Get Id of new header
+                    var rId = mainPart.GetIdOfPart(headerParts);
+
+                    // Open the header document to be copied
+                    using (var wdDocSource = WordprocessingDocument.Open(headerTemplatePath, true))
                     {
-                        
-                        footerPart.FeedData(firstFooter.GetStream());
+                        var firstHeader = wdDocSource.MainDocumentPart.HeaderParts.FirstOrDefault();
+                        if (firstHeader != null)
+                        {
+                            // Copy content of header
+                            headerParts.FeedData(firstHeader.GetStream());
+
+                            // Keep formatting
+                            foreach (var childElement in headerParts.Header.Descendants<Paragraph>())
+                            {
+                                var paragraph = (Paragraph)childElement;
+                                if (paragraph.ParagraphProperties.SpacingBetweenLines == null)
+                                {
+                                    paragraph.ParagraphProperties.SpacingBetweenLines = new SpacingBetweenLines
+                                    {
+                                        After = "0"
+                                    };
+                                    paragraph.ParagraphProperties.ParagraphStyleId = new ParagraphStyleId
+                                    {
+                                        Val = "No Spacing"
+                                    };
+                                }
+                            }
+
+                            // Create list of Parts ID needed to new header
+                            var listToAdd = new List<KeyValuePair<Type, Stream>>();
+                            foreach (var idPart in firstHeader.Parts)
+                            {
+                                var part = firstHeader.GetPartById(idPart.RelationshipId);
+                                if (part is ImagePart)
+                                {
+                                    headerParts.AddNewPart<ImagePart>("image/png", idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(ImagePart), part.GetStream()));
+                                }
+                                else if (part is DiagramStylePart)
+                                {
+                                    headerParts.AddNewPart<DiagramStylePart>(idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(DiagramStylePart), part.GetStream()));
+                                }
+                                else if (part is DiagramColorsPart)
+                                {
+                                    headerParts.AddNewPart<DiagramColorsPart>(idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(DiagramColorsPart),
+                                        part.GetStream()));
+                                }
+                                else if (part is DiagramDataPart)
+                                {
+                                    headerParts.AddNewPart<DiagramDataPart>(idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(DiagramDataPart), part.GetStream()));
+                                }
+                                else if (part is DiagramLayoutDefinitionPart)
+                                {
+                                    headerParts.AddNewPart<DiagramStylePart>(idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(DiagramStylePart), part.GetStream()));
+                                }
+                                else if (part is DiagramPersistLayoutPart)
+                                {
+                                    headerParts.AddNewPart<DiagramPersistLayoutPart>(idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(DiagramPersistLayoutPart),
+                                        part.GetStream()));
+                                }
+                            }
+                            var i = 0;
+                            foreach (var idPart in headerParts.Parts)
+                            {
+                                var part = headerParts.GetPartById(idPart.RelationshipId);
+                                if (part.GetType() == listToAdd[i].Key)
+                                {
+                                    part.FeedData(listToAdd[i].Value);
+                                }
+                                i++;
+                            }
+                        }
+                        else
+                        {
+                            mainPart.DeleteParts(mainPart.HeaderParts);
+                            var sectToRemovePrs = mainPart.Document.Body.Descendants<SectionProperties>();
+                            foreach (var sectPr in sectToRemovePrs)
+                            {
+                                // Delete reference of header
+                                sectPr.RemoveAllChildren<HeaderReference>();
+                            }
+                            return true;
+                        }
                     }
-                }
 
-                // Get SectionProperties and Replace FooterReference with new Id.
-                IEnumerable<DocumentFormat.OpenXml.Wordprocessing.SectionProperties> sectPrs =
-               mainPart.Document.Body.Elements<SectionProperties>();
-
-                try
-                {
+                    // Get all sections, and past header to each section (Page)
+                    var sectPrs = mainPart.Document.Body.Descendants<SectionProperties>();
                     foreach (var sectPr in sectPrs)
                     {
-                        // Delete existing references to footer.
-                          sectPr.RemoveAllChildren<FooterReference>();
-
-                        // Create the new footer reference node.
-                        // sectPr.AppendChild<FooterReference>(new FooterReference() { Id = rId });
-
-                        //sectPr.PrependChild<DocumentFormat.OpenXml.Wordprocessing.FooterReference>(new DocumentFormat.OpenXml.Wordprocessing.FooterReference() { Type = DocumentFormat.OpenXml.Wordprocessing.HeaderFooterValues.Default, Id = rId });
-                        FooterReference footerReference1 = new FooterReference() { Type = DocumentFormat.OpenXml.Wordprocessing.HeaderFooterValues.Default, Id = "r98" };
-
-
-                        sectPr.InsertAt(footerReference1, 0);
-
+                        // Delete old reference
+                        sectPr.RemoveAllChildren<HeaderReference>();
+                        // Add new header reference
+                        sectPr.PrependChild(new HeaderReference { Id = rId });
                     }
 
                     return true;
                 }
-                catch (Exception ex)
-                {
-                    return false;
-                }
+
             }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool PrependFooter(string footerTemplatePath, string documentPath)
+        {
+            try
+            {
+                // Open docx where append footer
+                using (var wdDoc = WordprocessingDocument.Open(documentPath, true))
+                {
+                    var mainPart = wdDoc.MainDocumentPart;
+
+                    // Remove exist footer
+                    mainPart.DeleteParts(mainPart.FooterParts);
+
+                    // Create new footer
+                    var footerParts = mainPart.AddNewPart<FooterPart>();
+
+                    // Get Id of new footer
+                    var rId = mainPart.GetIdOfPart(footerParts);
+
+                    // Open the footer document to be copied
+                    using (var wdDocSource = WordprocessingDocument.Open(footerTemplatePath, true))
+                    {
+                        var firstFooter = wdDocSource.MainDocumentPart.FooterParts.LastOrDefault();
+                        if (firstFooter != null)
+                        {
+                            // Copy content of footer
+                            footerParts.FeedData(firstFooter.GetStream());
+                            // Keep formatting
+                            foreach (var childElement in footerParts.Footer.Descendants<Paragraph>())
+                            {
+                                var paragraph = (Paragraph)childElement;
+                                if (paragraph.ParagraphProperties.SpacingBetweenLines == null)
+                                {
+                                    paragraph.ParagraphProperties.SpacingBetweenLines = new SpacingBetweenLines
+                                    {
+                                        After = "0"
+                                    };
+                                    paragraph.ParagraphProperties.ParagraphStyleId = new ParagraphStyleId
+                                    {
+                                        Val = "No Spacing"
+                                    };
+                                }
+                            }
+                            // Create list of Parts ID needed to new footer
+                            var listToAdd = new List<KeyValuePair<Type, Stream>>();
+                            foreach (var idPart in firstFooter.Parts)
+                            {
+                                var part = firstFooter.GetPartById(idPart.RelationshipId);
+                                if (part is ImagePart)
+                                {
+                                    footerParts.AddNewPart<ImagePart>("image/png", idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(ImagePart), part.GetStream()));
+                                }
+                                else if (part is DiagramStylePart)
+                                {
+                                    footerParts.AddNewPart<DiagramStylePart>(idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(DiagramStylePart), part.GetStream()));
+                                }
+                                else if (part is DiagramColorsPart)
+                                {
+                                    footerParts.AddNewPart<DiagramColorsPart>(idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(DiagramColorsPart),
+                                        part.GetStream()));
+                                }
+                                else if (part is DiagramDataPart)
+                                {
+                                    footerParts.AddNewPart<DiagramDataPart>(idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(DiagramDataPart), part.GetStream()));
+                                }
+                                else if (part is DiagramLayoutDefinitionPart)
+                                {
+                                    footerParts.AddNewPart<DiagramStylePart>(idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(DiagramStylePart), part.GetStream()));
+                                }
+                                else if (part is DiagramPersistLayoutPart)
+                                {
+                                    footerParts.AddNewPart<DiagramPersistLayoutPart>(idPart.RelationshipId);
+                                    listToAdd.Add(new KeyValuePair<Type, Stream>(typeof(DiagramPersistLayoutPart),
+                                        part.GetStream()));
+                                }
+                            }
+                            // Foreach ID, copy stream to new footer
+                            var i = 0;
+                            foreach (var idPart in footerParts.Parts)
+                            {
+                                var part = footerParts.GetPartById(idPart.RelationshipId);
+                                if (part.GetType() == listToAdd[i].Key)
+                                {
+                                    part.FeedData(listToAdd[i].Value);
+                                }
+                                i++;
+                            }
+                        }
+                        else
+                        {
+                            mainPart.DeleteParts(mainPart.FooterParts);
+                            var sectToRemovePrs = mainPart.Document.Body.Descendants<SectionProperties>();
+                            foreach (var sectPr in sectToRemovePrs)
+                            {
+                                // Delete reference of footer
+                                sectPr.RemoveAllChildren<FooterReference>();
+                            }
+
+                        }
+                    }
+
+                    // Get all sections, and past footer to each section (Page)
+                    var sectPrs = mainPart.Document.Body.Descendants<SectionProperties>();
+                    foreach (var sectPr in sectPrs)
+                    {
+                        // Delete old reference
+                        sectPr.RemoveAllChildren<FooterReference>();
+                        // Add new footer reference
+                        sectPr.PrependChild(new FooterReference { Id = rId });
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
 
         protected void ApplyHeaderFootertoDocumentItemID()
@@ -357,145 +489,221 @@ namespace P3Web
                 dt = (DataTable)ViewState["grpData"];
             }
             else
-            { 
-                dt = (DataTable)ViewState["dtDoc"]; 
+            {
+                dt = (DataTable)ViewState["dtDoc"];
             }
             int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
             int itemID = 0;
-            int selectedVersion = DocumentVersion();
-            switch (selectedVersion)
+            List<int> selectedVersion = DocumentVersion();
+
+            foreach (int version in selectedVersion)
             {
-                case 1: // All
-                    if (ModuleID == 3)
-                    {
-                        DataRow[] dr = dt.Select();
-                        for (int i = 0; i < dr.Count(); i++)
+                switch (version)
+                {
+                    case 1: // All
+                        if (ModuleID == 3)
                         {
-                            itemID = Convert.ToInt32(dr[i]["ItemID"]);
-                            ApplyHeaderFootertoDoc(itemID);
-                        }
-                    }
+                            DataRow[] dr = dt.Select();
+                            if (dr.Length > 0)
+                            {
+                                for (int i = 0; i < dr.Count(); i++)
+                                {
+                                    itemID = Convert.ToInt32(dr[i]["ItemID"]);
+                                    ApplyHeaderFootertoDoc(itemID);
+                                }
+                            }
+                            else
+                            {
 
-                    break;
-                case 0: // Obsolete
-                    if (ModuleID == 3)
-                    {
-                        DataRow[] dr = dt.Select("Status= 0");
-                        for (int i = 0; i < dr.Count(); i++)
-                        {
-                            itemID = Convert.ToInt32(dr[i]["ItemID"]);
-                            ApplyHeaderFootertoDoc(itemID);
-                        }
-                    }
-                   
-                    break;
-                case 2: // Draft/Open
-                    if (ModuleID == 3)
-                    {
-                        DataRow[] dr = dt.Select("Status= 2");
-                        for (int i = 0; i < dr.Count(); i++)
-                        {
-                            itemID = Convert.ToInt32(dr[i]["ItemID"]);
-                            ApplyHeaderFootertoDoc(itemID);
-                        }
-                    }
-                    break;
-                case 3: // Collaborate
+                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for this status!')", true);
 
-                    if (ModuleID == 3)
-                    {
-                        DataRow[] dr = dt.Select("Status= 0");
-                        for (int i = 0; i < dr.Count(); i++)
-                        {
-                            itemID = Convert.ToInt32(dr[i]["ItemID"]);
-                            ApplyHeaderFootertoDoc(itemID);
-                        }
-                    }
-                    break;
-                case 5: // Review
-                    if (ModuleID == 3)
-                    {
-                        DataRow[] dr = dt.Select("Status= 5");
-                        for (int i = 0; i < dr.Count(); i++)
-                        {
-                            itemID = Convert.ToInt32(dr[i]["ItemID"]);
-                            ApplyHeaderFootertoDoc(itemID);
-                        }
-                    }
-                    break;
-                case 6: // Ready
-                    if (ModuleID == 3)
-                    {
-                        DataRow[] dr = dt.Select("Status= 6");
-                        for (int i = 0; i < dr.Count(); i++)
-                        {
-                            itemID = Convert.ToInt32(dr[i]["ItemID"]);
-                            ApplyHeaderFootertoDoc(itemID);
-                        }
-                    }
+                            }
 
-                    break;
-                case 7: // Pending
-                    if (ModuleID == 3)
-                    {
-                        DataRow[] dr = dt.Select("Status= 7");
-                        for (int i = 0; i < dr.Count(); i++)
-                        {
-                            itemID = Convert.ToInt32(dr[i]["ItemID"]);
-                            ApplyHeaderFootertoDoc(itemID);
                         }
-                    }
-                    break;
-                case 9: // Current
-                    if (ModuleID == 3)
-                    {
-                        DataRow[] dr = dt.Select("Status= 9");
-                        for (int i = 0; i < dr.Count(); i++)
+
+                        break;
+                    case 0: // Obsolete
+                        if (ModuleID == 3)
                         {
-                            itemID = Convert.ToInt32(dr[i]["ItemID"]);
-                            ApplyHeaderFootertoDoc(itemID);
+                            DataRow[] dr = dt.Select("Status= 0");
+                            if (dr.Length > 0)
+                            {
+                                for (int i = 0; i < dr.Count(); i++)
+                                {
+                                    itemID = Convert.ToInt32(dr[i]["ItemID"]);
+                                    ApplyHeaderFootertoDoc(itemID);
+                                }
+                            }
+                            else
+                            {
+
+                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Obsolete status!')", true);
+
+                            }
                         }
-                    }
-                    break;
+
+                        break;
+                    case 2: // Draft/Open
+                        if (ModuleID == 3)
+                        {
+                            DataRow[] dr = dt.Select("Status= 2");
+                            if (dr.Length > 0)
+                            {
+                                for (int i = 0; i < dr.Count(); i++)
+                                {
+                                    itemID = Convert.ToInt32(dr[i]["ItemID"]);
+                                    ApplyHeaderFootertoDoc(itemID);
+                                }
+                            }
+                            else
+                            {
+
+                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Draft status!')", true);
+
+                            }
+                        }
+                        break;
+                    case 3: // Collaborate
+
+                        if (ModuleID == 3)
+                        {
+                            DataRow[] dr = dt.Select("Status= 0");
+                            if (dr.Length > 0)
+                            {
+                                for (int i = 0; i < dr.Count(); i++)
+                                {
+                                    itemID = Convert.ToInt32(dr[i]["ItemID"]);
+                                    ApplyHeaderFootertoDoc(itemID);
+                                }
+                            }
+                            else
+                            {
+
+                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Collaborate status!')", true);
+
+                            }
+                        }
+                        break;
+                    case 5: // Review
+                        if (ModuleID == 3)
+                        {
+                            DataRow[] dr = dt.Select("Status= 5");
+                            if (dr.Length > 0)
+                            {
+                                for (int i = 0; i < dr.Count(); i++)
+                                {
+                                    itemID = Convert.ToInt32(dr[i]["ItemID"]);
+                                    ApplyHeaderFootertoDoc(itemID);
+                                }
+                            }
+                            else
+                            {
+
+                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Review status!')", true);
+
+                            }
+                        }
+                        break;
+                    case 6: // Ready
+                        if (ModuleID == 3)
+                        {
+                            DataRow[] dr = dt.Select("Status= 6");
+                            if (dr.Length > 0)
+                            {
+                                for (int i = 0; i < dr.Count(); i++)
+                                {
+                                    itemID = Convert.ToInt32(dr[i]["ItemID"]);
+                                    ApplyHeaderFootertoDoc(itemID);
+                                }
+                            }
+                            else
+                            {
+
+                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Ready status!')", true);
+
+                            }
+                        }
+
+                        break;
+                    case 7: // Pending
+                        if (ModuleID == 3)
+                        {
+                            DataRow[] dr = dt.Select("Status= 7");
+                            if (dr.Length > 0)
+                            {
+                                for (int i = 0; i < dr.Count(); i++)
+                                {
+                                    itemID = Convert.ToInt32(dr[i]["ItemID"]);
+                                    ApplyHeaderFootertoDoc(itemID);
+                                }
+                            }
+                            else
+                            {
+
+                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Pending Status!')", true);
+
+                            }
+                        }
+                        break;
+                    case 9: // Current
+                        if (ModuleID == 3)
+                        {
+                            DataRow[] dr = dt.Select("Status= 9");
+                            if (dr.Length > 0)
+                            {
+                                for (int i = 0; i < dr.Count(); i++)
+                                {
+                                    itemID = Convert.ToInt32(dr[i]["ItemID"]);
+                                    ApplyHeaderFootertoDoc(itemID);
+                                }
+                            }
+                            else
+                            {
+
+                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Current status!')", true);
+
+                            }
+                        }
+                        break;
+                }
             }
 
-
         }
-   
-        private int DocumentVersion()
+
+        private List<int> DocumentVersion()
         {
-            int version = -1;
+            List<int> version = new List<int>();
             if (cbAllversions.Checked)
             {
-                version = 1;
+                version.Add(1);
             }
             if (cbReadyVersion.Checked)
             {
-                version = 6;
+                version.Add(6);
             }
             if (cbDraftVersion.Checked)
             {
-                version = 2;
+                version.Add(2);
             }
             if (cbCollaborateVersion.Checked)
             {
-                version = 3;
+                version.Add(3);
             }
             if (cbReviewVersion.Checked)
             {
-                version = 5;
+                version.Add(5);
             }
             if (cbPendingVersion.Checked)
             {
-                version = 7;
+                version.Add(7);
             }
             if (cbObsoletedVersion.Checked)
             {
-                version = 0;
+                version.Add(0);
             }
             if (cbCurrentVersion.Checked)
             {
-                version = 9;
+                version.Add(9);
             }
             return version;
 
@@ -533,6 +741,7 @@ namespace P3Web
 
             }
         }
+
     }
 
 }

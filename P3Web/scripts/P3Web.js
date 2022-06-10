@@ -572,7 +572,7 @@ function openStatusWindow(ModuleID, ItemID, OrigID) {
 function openHeaderFooterWindow(moduleid, origid, userid, isgroup) {
     var headerfooterpath = 'ViewDocumentAddHeaderFooter.aspx?moduleid=' + moduleid + '&origid=' + origid + '&userid=' + userid + '&isgroup=' + isgroup;
     var windowwidth = 500;
-    var windowheight = 520;
+    var windowheight = 400;
     var xpos = screen.width / 2 - windowwidth / 2;
     window.open(headerfooterpath, 'headerfooterWindow' + origid, 'height=' + windowheight + ',width=' + windowwidth + ',top=50px,left=' + xpos + '');
 }
