@@ -1059,6 +1059,9 @@
   <data name="mnuOptionExport" xml:space="preserve">
     <value>Export Item</value>
   </data>
+  <data name="mnuOptionHeaderFooter" xml:space="preserve">
+    <value>Apply Header/Footer</value>
+  </data>
   <data name="mnuOptionItem" xml:space="preserve">
     <value>Change to Item</value>
   </data>

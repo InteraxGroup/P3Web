@@ -566,6 +566,10 @@ namespace P3Web
                         case "rename":
                             ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "renamegroup", "openRenameWindow(" + ModuleID + "," + GroupID + "," + UserID + ",true);", true);
                             break;
+                        case "headerfooter":
+                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "headerfootergroup", "openHeaderFooterWindow(" + ModuleID + "," + GroupID + "," + UserID + ",true);", true);
+                            //ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "headerfootergroup", "console.log('HF Clicked');", true);
+                            break;
                         case "setrepublish":
                             try
                             {
@@ -753,6 +757,9 @@ namespace P3Web
                                 ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "actionitem", "openCreateAIWindow(" + ModuleID + "," + OrigID + "," + UserID + ",true);", true);
                             }
                             break;
+                        case "headerfooter":
+                            ScriptManager.RegisterStartupScript(udpSplitter, GetType(), "headerfootergroup", "openHeaderFooterWindow(" + ModuleID + "," + OrigID + "," + UserID + ",false);", true);
+                            break;
                         case "setrepublish":
                             try
                             {
@@ -763,7 +770,6 @@ namespace P3Web
                             {
                                 ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "ViewStatus", "alert('" + ex.Message + "');", true);
                             }
-
                             break;
                     }
                 }
@@ -853,6 +859,11 @@ namespace P3Web
                 if (HasMovePermission && moduleID != 1)
                 {
                     mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionCopy").ToString(), "copy"));
+                }
+
+                if (moduleID == 3 && HasDeletePermission)
+                {
+                    mnuTVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionHeaderFooter").ToString(), "headerfooter"));
                 }
             }
 
@@ -1266,6 +1277,11 @@ namespace P3Web
                 //aiMenuItem.ChildItems.Add(aiSubMenuItem);
 
                 mnuGVContext.Items.Add(aiSubMenuItem);
+            }
+
+            if (ModuleID == 3 && HasDeletePermission)
+            {
+                mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionHeaderFooter").ToString(), "headerfooter"));
             }
 
             mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionProp").ToString(), "properties"));

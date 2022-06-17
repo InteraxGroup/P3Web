@@ -1077,6 +1077,9 @@
   <data name="mnuOptionEvid" xml:space="preserve">
     <value>Modification des preuves</value>
   </data>
+  <data name="mnuOptionHeaderFooter" xml:space="preserve">
+    <value>Appliquer l'en-tête/pied de page</value>
+  </data>
   <data name="mnuOptionItem" xml:space="preserve">
     <value>Changer pour l'article</value>
   </data>

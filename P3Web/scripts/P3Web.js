@@ -280,6 +280,45 @@ function testCheckIn() {
     return false;
 }
 
+function openHeaderFooterWindow(moduleid, origid, userid, isgroup) {
+    var headerfooterpath = 'ViewDocumentAddHeaderFooter.aspx?moduleid=' + moduleid + '&origid=' + origid + '&userid=' + userid + '&isgroup=' + isgroup;
+    var windowwidth = 520;
+    var windowheight = 500;
+    var xpos = screen.width / 2 - windowwidth / 2;
+    window.open(headerfooterpath, 'headerfooterWindow' + origid, 'height=' + windowheight + ',width=' + windowwidth + ',top=50px,left=' + xpos + '');
+}
+
+function showStatusMessage(moduleid, msg, iserror) {
+    var msgpnl = document.getElementById("statusMessagePanel");
+    var msgbox = document.getElementById("statusMessage");
+    var msglbl = document.getElementById("lblStatusMessage");
+    var docbtn = document.getElementById("closeRefreshDoc");
+    var recbtn = document.getElementById("closeRefreshRecord");
+    if (moduleid == 3) {
+        docbtn.style.display = "block";
+        recbtn.style.display = "none";
+    } else {
+        docbtn.style.display = "none";
+        recbtn.style.display = "block";
+    }
+
+    msglbl.innerText = msg;
+    msgpnl.style.display = "block";
+    if (iserror) {
+        msgbox.style.backgroundColor = "red";
+        msgbox.style.color = "white";
+    } else {
+        msgbox.style.backgroundColor = "#F0F0F0";
+        msgbox.style.color = "black";
+    }
+
+    msgpnl = null;
+    msgbox = null;
+    msglbl = null;
+    docbtn = null;
+    recbtn = null;
+}
+
 //  New Record/Improvement/Training
 
 function addRecord(ModuleID, ItemID, ObjTypeID, ParentGroupID) {

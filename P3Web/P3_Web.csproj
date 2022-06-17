@@ -695,6 +695,7 @@
     <Content Include="releasenotes\releasenotes.html" />
     <Content Include="ReportDocument.aspx" />
     <Content Include="scripts\ALTER_ITEMS1_ADD_LOGIN_COLUMNS.sql" />
+    <Content Include="scripts\CREATE_ERROR_LOG_TABLE.sql" />
     <Content Include="scripts\CREATE_P3WEB_STORED_PROCEDURES_V4.14.0.0.sql" />
     <Content Include="styles\Assessment.css" />
     <Content Include="styles\Assignment.css" />
@@ -732,6 +733,7 @@
     <Content Include="ViewDocument.aspx" />
     <Content Include="ViewDocumentAdd.aspx" />
     <Content Include="ViewDocumentAddFromTemplate.aspx" />
+    <Content Include="ViewDocumentAddHeaderFooter.aspx" />
     <Content Include="ViewError.aspx" />
     <Content Include="ViewExportDocument.aspx" />
     <Content Include="ViewFieldEdit.aspx" />
@@ -997,6 +999,13 @@
     </Compile>
     <Compile Include="ViewDocumentAddFromTemplate.aspx.designer.cs">
       <DependentUpon>ViewDocumentAddFromTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDocumentAddHeaderFooter.aspx.cs">
+      <DependentUpon>ViewDocumentAddHeaderFooter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewDocumentAddHeaderFooter.aspx.designer.cs">
+      <DependentUpon>ViewDocumentAddHeaderFooter.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewError.aspx.cs">
       <DependentUpon>ViewError.aspx</DependentUpon>
@@ -1672,6 +1681,7 @@
     <Content Include="App_LocalResources\Default.aspx.resx">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_LocalResources\ViewDocumentAddHeaderFooter.aspx.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -18,7 +18,7 @@ namespace Paradigm3
         protected async void Page_Load(object sender, EventArgs e)
         {            
             if (!IsPostBack)
-            {
+            {                
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
                 if (UseSSO && Request.Cookies[FormsAuthentication.FormsCookieName] == null)
                 {
@@ -266,8 +266,7 @@ namespace Paradigm3
                         await CopyAsync(Server.MapPath(fullDocPath), Server.MapPath(viewDocPath));
                         if (PubFileExtension == ".pdf")
                         {
-                            DocViewer.Attributes.Add("src", "lib/pdfjs/web/viewer.html?file=../../../public/" + UserID.ToString() + "/" + dt.Rows[0]["Name"].ToString() + "_" + uniqueId + PubFileExtension);
-
+                            DocViewer.Attributes.Add("src", "lib/pdfjs/web/viewer.html?file=../../../public/" + UserID.ToString() + "/" + dt.Rows[0]["Name"].ToString() + "_" + uniqueId + PubFileExtension);                        
                         }
                         else
                         {

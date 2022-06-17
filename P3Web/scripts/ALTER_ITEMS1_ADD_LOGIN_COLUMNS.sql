@@ -1,8 +1,26 @@
 USE P3
 GO
 
-ALTER TABLE dbo.Items1
-ADD LastLogOnTime NUMERIC(20,10),
-	LogOnHistory NVARCHAR(255),
-	MstRcntMdlAndFldr NVARCHAR(255),
-	PwdChngDate NUMERIC(20,10)
+IF COL_LENGTH('Items1', 'LastLogOnTime') IS NULL
+BEGIN
+	ALTER TABLE dbo.Items1
+	ADD LastLogOnTime NUMERIC(20,10);
+END
+
+IF COL_LENGTH('Items1', 'LogOnHistory') IS NULL
+BEGIN
+	ALTER TABLE dbo.Items1
+	ADD LogOnHistory NVARCHAR(255);
+END
+
+IF COL_LENGTH('Items1', 'MstRcntMdlAndFldr') IS NULL
+BEGIN
+	ALTER TABLE dbo.Items1
+	ADD MstRcntMdlAndFldr NVARCHAR(255);
+END
+
+IF COL_LENGTH('Items1', 'PwdChngDate') IS NULL
+BEGIN
+	ALTER TABLE dbo.Items1
+	ADD PwdChngDate NUMERIC(20,10);
+END

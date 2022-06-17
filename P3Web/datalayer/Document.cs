@@ -303,6 +303,39 @@ namespace Paradigm3.datalayer
             }
         }
 
+        public static async Task Update_HistoryAsync(int ModuleID, int OrigID, string UserName, string text)
+        {
+            // TransType 0 = Event Date, TransType 1 = Category
+
+            string Details = "Header/Footer applied to the item by: " + UserName + " (" + DateTime.Now.ToString() + ")\n" +
+                   "\n\n" +
+                   "****************************************************************";
+
+            string HistoryMemo = "User notes: " + text + "\r\n" +
+                                 "User Name: " + UserName + "\r\n" +
+                                 "Time: " + DateTime.Now.ToString() + "\r\n" +
+                                 "Action: " + Details;
+
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("[dbo].[v4_Properties_Update_History]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                cmd.Parameters.Add("@Type", SqlDbType.Int, 4).Value = 1;
+                cmd.Parameters.Add("@HistoryMemo", SqlDbType.NVarChar, -1).Value = HistoryMemo;
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
         #endregion
 
         #region Events
@@ -364,6 +397,53 @@ namespace Paradigm3.datalayer
                     conn.Open();
                 }
                 SqlCommand cmd = new SqlCommand("dbo.v4_Document_Get_PTitleMember", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                SqlDataReader sdr = cmd.ExecuteReader();
+                dt.Load(sdr);
+            }
+            return dt;
+        }
+
+
+        public static async Task<DataTable> Get_HeaderFooterListAsync(int OrigID, int ParentGroupID, int GroupID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("dbo.[v4_Get_HeaderFooter_Templates]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                cmd.Parameters.Add("@GroupID", SqlDbType.Int, 4).Value = GroupID;
+                cmd.Parameters.Add("@ParentgroupID", SqlDbType.Int, 4).Value = ParentGroupID;
+                SqlDataReader sdr = cmd.ExecuteReader();
+                dt.Load(sdr);
+            }
+            return dt;
+        }
+
+        public static async Task<DataTable> Get_AllDocumentItemsAsync(int OrigID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("dbo.[v4_Document_Get_All_Items]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
                     CommandTimeout = 120
