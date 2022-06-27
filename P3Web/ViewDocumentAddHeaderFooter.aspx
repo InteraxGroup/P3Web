@@ -119,6 +119,7 @@
                                                          <div class="u-opt-row">
                                                 <asp:CheckBox ID="cbObsoletedVersion" runat="server"    Text="Obsolete Version/Completed Item" CssClass="formLabel"/>
                                             </div>
+<<<<<<< Updated upstream
                                                     </td>
                                                    
                                                 </tr>
@@ -157,5 +158,38 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
           </form>
+=======
+                                        </td>
+                                    </tr>
+                                </table> 
+                            </fieldset>
+                            <div id="pnlHistory">
+                                <fieldset style="border: 1px solid #dcdcdc; margin: 5px;">
+                                    <p style="font-weight:bold" class="formLabel">Notes for History</p>
+                                    <asp:TextBox ID="txtHistory" runat="server" TextMode="MultiLine" CssClass="hfHistoryField" meta:resourcekey="txtHistoryResource1"></asp:TextBox>
+                                </fieldset>
+                            </div>
+
+                             <div class="u-opt-row">
+                                                <asp:CheckBox ID="chkbxApplySubFolder" runat="server"  Text="Apply to Sub-Folder and Items" CssClass="formLabel" OnCheckedChanged="chkbxApplySubFolder_CheckedChanged" />
+                                            </div>
+                            <div id="pnlPClose" runat="server" style="padding: 10px 5px; text-align: right;">
+                                <asp:Button ID="btnSubmit" runat="server" Width="80px" CommandArgument="Submit" OnClick="Button_Click" Text="Apply" meta:resourcekey="btnSubmitResource1" />
+                                <asp:Button ID="btnClose" runat="server" Width="80px" OnClientClick="window.close();"  Text="Close" meta:resourcekey="btnCloseResource1" />
+                            </div>
+                        </div>
+                    </div>                    
+                </div>                
+           </ContentTemplate>
+       </asp:UpdatePanel>
+       <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+           <ProgressTemplate>
+               <div id="IMGDIV" runat="server" class="pleaseWait">
+                   <asp:Image ID="Image1" runat="server" ImageUrl="~/images/pleasewait.gif" meta:resourcekey="Image1Resource1" />
+               </div>
+           </ProgressTemplate>
+       </asp:UpdateProgress>
+   </form>
+>>>>>>> Stashed changes
 </body>
 </html>
