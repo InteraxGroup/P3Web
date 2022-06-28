@@ -49,6 +49,7 @@ namespace P3Web
             }
 
         }
+
         protected void Page_Init(object sender, EventArgs e)
         {
             Session["SourcePage"] = "ViewDocumentAddHeaderFooter.aspx";
@@ -70,11 +71,8 @@ namespace P3Web
             }
             DataTable dt = await Paradigm3.datalayer.Document.Get_HeaderFooterListAsync(OrigID, ModuleID, ParentGroupID);
 
-
-
             if (IsGroup)
             {
-
                 DataTable dtGroup = P3General.Get_ItemList(ModuleID, UserID, ParentGroupID.ToString());
                 DataTable dtGrp = Paradigm3.datalayer.Document.Get_ParentGroupDetails(ParentGroupID);
 
@@ -86,9 +84,6 @@ namespace P3Web
                 ddlTemplates.DataValueField = "ItemID";
                 ddlTemplates.DataBind();
                 txtDocumentName.Text = dtGrp.Rows[0]["Name"].ToString();
-
-
-
             }
             else
             {
@@ -123,13 +118,8 @@ namespace P3Web
                     }
 
                     txtDocumentName.Text = dtDoc.Rows[0]["Name"].ToString();
-
                 }
-
             }
-
-
-
         }
 
         protected async void Button_Click(object sender, EventArgs e)
@@ -147,7 +137,6 @@ namespace P3Web
                     if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
                     {
                         int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-                        // int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
                         int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
                         bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
                         DateTime CurrentTime = DateTime.Now;
@@ -173,6 +162,7 @@ namespace P3Web
             }
 
         }
+
         private void ApplyHeaderFootertoDoc(int ItemID)
         {
             int TemplateID = Convert.ToInt32(ddlTemplates.SelectedValue.ToString());
@@ -507,13 +497,9 @@ namespace P3Web
                             }
                             else
                             {
-
                                 ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for this status!')", true);
-
                             }
-
                         }
-
                         break;
                     case 0: // Obsolete
                         if (ModuleID == 3)
@@ -529,9 +515,7 @@ namespace P3Web
                             }
                             else
                             {
-
                                 ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Obsolete status!')", true);
-
                             }
                         }
 
@@ -550,9 +534,7 @@ namespace P3Web
                             }
                             else
                             {
-
                                 ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Draft status!')", true);
-
                             }
                         }
                         break;
@@ -611,12 +593,9 @@ namespace P3Web
                             }
                             else
                             {
-
                                 ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Ready status!')", true);
-
                             }
                         }
-
                         break;
                     case 7: // Pending
                         if (ModuleID == 3)
@@ -632,9 +611,7 @@ namespace P3Web
                             }
                             else
                             {
-
                                 ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Pending Status!')", true);
-
                             }
                         }
                         break;
@@ -652,15 +629,12 @@ namespace P3Web
                             }
                             else
                             {
-
                                 ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Current status!')", true);
-
                             }
                         }
                         break;
                 }
             }
-
         }
 
         private List<int> DocumentVersion()

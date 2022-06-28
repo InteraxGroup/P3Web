@@ -1435,7 +1435,7 @@ namespace Paradigm3
                 if (index < (ds.Tables["Get_TabList"].Rows.Count - 1))
 				{
                     await SaveFieldDataAsync(TargetPanel, ItemID, false);
-                    int nextObjID = Convert.ToInt32(ds.Tables["Get_TabList"].Rows[index + 1]["ObjTypeID"]);
+                    int nextObjID = Convert.ToInt32(ds.Tables["Get_TabList"].Rows[index + 1]["ObjID"]);
                     if (!ds.Tables["Get_TabList"].Rows[index + 1]["PopUpType"].Equals(DBNull.Value) && !ds.Tables["Get_TabList"].Rows[index + 1]["PopUpType"].Equals(0))
                     {
                         if (ViewState["ErrorState"].ToString() != "true")
@@ -1452,7 +1452,7 @@ namespace Paradigm3
                             foreach (DataRow dr in Record.Get_Responsible(ItemID, nextObjID).Rows)
                             {
                                 string ItemName = ds.Tables["Get_ItemData"].Rows[0]["Name"].ToString();
-                                string TabName = ds.Tables["Get_TabList"].Rows[index + 1]["Caption"].ToString();
+                                string TabName = "No. " + (index + 2).ToString() + " - " + ds.Tables["Get_TabList"].Rows[index + 1]["Caption"].ToString();
 
                                 if (Convert.ToInt32(dr["ControlType"]) == 6)
                                 {

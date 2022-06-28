@@ -1153,6 +1153,7 @@ namespace Paradigm3.datalayer
                 da.InsertCommand.Parameters.Add("@ShowType", SqlDbType.Int, 4, "ShowType");
                 da.InsertCommand.Parameters.Add("@ShowModuleID", SqlDbType.Int, 4, "ShowModuleID");
                 da.InsertCommand.Parameters.Add("@ShowAction", SqlDbType.Int, 4, "ShowAction");
+                da.InsertCommand.Parameters.Add("@ShowObjID", SqlDbType.Int, 4, "ShowObjID");
                 da.InsertCommand.Parameters.Add("@DateSet", SqlDbType.DateTime, 8, "DateSet");
                 da.InsertCommand.Parameters.Add("@IsRegReminder", SqlDbType.Bit, 1, "IsRegReminder");
                 da.InsertCommand.Parameters.Add("@RegReminderDay", SqlDbType.Int, 4, "RegReminderDay");
@@ -1224,6 +1225,7 @@ namespace Paradigm3.datalayer
                 dr["ShowType"] = 1;
                 dr["ShowModuleID"] = ModuleID;
                 dr["ShowAction"] = 0;
+                dr["ShowObjID"] = ObjID;
                 dr["DateSet"] = DBNull.Value;
                 dr["IsRegReminder"] = 0;
                 dr["RegReminderDay"] = DBNull.Value;
@@ -2436,7 +2438,7 @@ namespace Paradigm3.datalayer
                 dr["ParentGroupID"] = 2;
                 dr["AIType"] = 0;
                 dr["ParentID"] = DBNull.Value;
-                dr["Name"] = "Address Step : " + dsData.Tables["Get_TabList"].Rows[0]["Caption"].ToString() +
+                dr["Name"] = "Address Step: No. 1 - " + dsData.Tables["Get_TabList"].Rows[0]["Caption"].ToString() +
                     " (" + ItemName + ")";
                 dr["Details"] = "You have been assigned to address the step " + dsData.Tables["Get_TabList"].Rows[0]["Caption"].ToString() + "\r\n\r\n" +
                     "Please access the item and address this step." + "\r\n" +
