@@ -12,21 +12,18 @@ using System.Configuration;
 using System.IO;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using A = DocumentFormat.OpenXml.Drawing;
-using Pic = DocumentFormat.OpenXml.Drawing.Pictures;
 
 namespace P3Web
 {
     public partial class ViewDocumentAddHeaderFooter : SqlViewStatePage
     {
-        private string _templateExtension = String.Empty;
-        private string _fileExtension = String.Empty;
         private bool checkHeaderAppliedStatus = false;
         private bool checkFooterAppliedStatus = false;
         private int count = 0;
-
+        private bool _applyAllSubFolders = false;
         protected async void Page_Load(object sender, EventArgs e)
         {
+
             if (!Page.IsPostBack)
             {
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
@@ -36,13 +33,22 @@ namespace P3Web
                 }
                 else
                 {
-
-                    int ItemID = Convert.ToInt32(Request.QueryString["OrigID"]);
-                    int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-                    // int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
-                    int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
                     bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
-                    await Initialize_ComponentsAsync(OrigID, ItemID, ModuleID, IsGroup);
+                    if (IsGroup)
+                    {
+
+                        int GroupID = Convert.ToInt32(Request.QueryString["OrigID"]);
+                        int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                        await Initialize_ComponentsAsync(0, GroupID, ModuleID, IsGroup);
+                    }
+                    else
+                    {
+
+                        int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                        int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
+                        await Initialize_ComponentsAsync(OrigID, 0, ModuleID, IsGroup);
+                    }
+
 
 
                 }
@@ -68,62 +74,62 @@ namespace P3Web
                 string[] UserValues = UserData.Split(',');
                 UserID = Convert.ToInt32(UserValues[0]);
             }
-            DataTable dt = await Paradigm3.datalayer.Document.Get_HeaderFooterListAsync(OrigID, ModuleID, ParentGroupID);
-
-
+            DataTable dt = await Paradigm3.datalayer.Document.Get_HeaderFooterListAsync();
 
             if (IsGroup)
             {
 
                 DataTable dtGroup = P3General.Get_ItemList(ModuleID, UserID, ParentGroupID.ToString());
                 DataTable dtGrp = Paradigm3.datalayer.Document.Get_ParentGroupDetails(ParentGroupID);
+                string fileExtension = dtGroup.Rows[0]["FileExtension"].ToString();
+                Session["fileExtension"] = fileExtension;
 
-                ViewState["grpData"] = dtGroup;
-                Session["templateExtension"] = "docx";
-                dt.DefaultView.RowFilter = "FileExtension = 'docx'";
-                ddlTemplates.DataSource = dt;
-                ddlTemplates.DataTextField = "Name";
-                ddlTemplates.DataValueField = "ItemID";
-                ddlTemplates.DataBind();
-                txtDocumentName.Text = dtGrp.Rows[0]["Name"].ToString();
+                if (fileExtension.ToUpper() == "DOCX")
+                {
+                    ViewState["grpData"] = dtGroup;
+                    Session["templateExtension"] = "docx";
+                    dt.DefaultView.RowFilter = "FileExtension = 'docx'";
+                    ddlTemplates.DataSource = dt;
+                    ddlTemplates.DataTextField = "Name";
+                    ddlTemplates.DataValueField = "ItemID";
+                    ddlTemplates.DataBind();
+                    txtDocumentName.Text = dtGrp.Rows[0]["Name"].ToString();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(udpHeaderFooter, udpHeaderFooter.GetType(), "myScript", "alert('Only DOCX extension type document supported!'); window.close();", true);
 
 
+                }
 
             }
             else
             {
                 DataTable dtDoc = await Paradigm3.datalayer.Document.Get_AllDocumentItemsAsync(OrigID);
                 ViewState["dtDoc"] = dtDoc;
-                string DocName = dtDoc.Rows[0]["Name"].ToString();
-                string CurrentVersion = dtDoc.Rows[0]["Version"].ToString();
                 if (dtDoc.Rows.Count > 0)
                 {
                     string fileExtension = dtDoc.Rows[0]["FileExtension"].ToString();
                     Session["fileExtension"] = fileExtension;
-                    if (dt.Rows.Count > 0) { }
-                    switch (fileExtension.ToUpper())
+                
+                    if (fileExtension.ToUpper() == "DOCX")
                     {
-                        case "DOC":
-                            Session["templateExtension"] = "doc";
-                            dt.DefaultView.RowFilter = "FileExtension = 'doc'";
-                            ddlTemplates.DataSource = dt;
-                            ddlTemplates.DataTextField = "Name";
-                            ddlTemplates.DataValueField = "ItemID";
-                            ddlTemplates.DataBind();
-                            break;
-                        case "DOCX":
-
                             Session["templateExtension"] = "docx";
                             dt.DefaultView.RowFilter = "FileExtension = 'docx'";
                             ddlTemplates.DataSource = dt;
                             ddlTemplates.DataTextField = "Name";
                             ddlTemplates.DataValueField = "ItemID";
                             ddlTemplates.DataBind();
-                            break;
+                            txtDocumentName.Text = dtDoc.Rows[0]["Name"].ToString();
                     }
 
-                    txtDocumentName.Text = dtDoc.Rows[0]["Name"].ToString();
+                   
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(udpHeaderFooter, udpHeaderFooter.GetType(), "myScript", "alert('Only DOCX extension type document supported!'); window.close();", true);
 
+
+                    }
                 }
 
             }
@@ -134,6 +140,7 @@ namespace P3Web
 
         protected async void Button_Click(object sender, EventArgs e)
         {
+
             Button btn = (Button)sender;
             string arg = btn.CommandArgument;
             switch (arg)
@@ -146,19 +153,22 @@ namespace P3Web
                 case "Submit":
                     if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
                     {
-                        int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
-                        // int IsGroup = Convert.ToInt32(Request.QueryString["IsGroup"]);
+
                         int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
-                        bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
-                        DateTime CurrentTime = DateTime.Now;
+
                         string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
                         FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
                         string UserData = authTicket.UserData;
                         string[] UserValues = UserData.Split(',');
-                        int UserStatus = Convert.ToInt32(UserValues[3]);
-                        int UserID = Convert.ToInt32(UserValues[0]);
                         string UserFullName = UserValues[1];
-                        ApplyHeaderFootertoDocumentItemID();
+
+                        if (_applyAllSubFolders)
+                        {
+                            ApplytoAllSubgroupFolders();
+                        }              
+                        
+                        ApplytoItemsOnly();
+                        
                         if (checkHeaderAppliedStatus && checkFooterAppliedStatus)
                         {
                             await Paradigm3.datalayer.Document.Update_HistoryAsync(3, OrigID, UserFullName, txtHistory.Text);
@@ -175,6 +185,7 @@ namespace P3Web
         }
         private void ApplyHeaderFootertoDoc(int ItemID)
         {
+
             int TemplateID = Convert.ToInt32(ddlTemplates.SelectedValue.ToString());
             int DocID = ItemID;
             string templateExtension = Session["templateExtension"].ToString();
@@ -195,21 +206,23 @@ namespace P3Web
                 {
                     if (File.Exists(DocPath + TemplateFileName))
                     {
+
                         if (File.Exists(DocPath + DocFileName))
                         {
                             try
                             {
+
                                 string filepathFrom = DocPath + TemplateFileName;
                                 string filepathTo = DocPath + DocFileName;
 
                                 checkHeaderAppliedStatus = PrependHeader(filepathFrom.Replace("\\\\", "\\"), filepathTo.Replace("\\\\", "\\"));
-                                checkFooterAppliedStatus = PrependFooter(filepathFrom.Replace("\\\\", "\\"), filepathTo.Replace("\\\\", "\\"));
+                                checkFooterAppliedStatus = PrependFooter(filepathFrom.Replace("\\\\", "\\"), filepathTo.Replace("\\\\", "\\"));                   
 
                                 count++;
                             }
                             catch (Exception ex)
                             {
-                                throw ex;
+
                             }
                         }
 
@@ -219,6 +232,7 @@ namespace P3Web
             }
             else
             {
+
                 ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('Header/Footer or Document extension should be DOCX!')", true);
             }
         }
@@ -343,7 +357,7 @@ namespace P3Web
                 }
 
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
@@ -466,25 +480,70 @@ namespace P3Web
                 }
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
 
         }
 
-        protected void ApplyHeaderFootertoDocumentItemID()
+        protected async void ApplytoAllSubgroupFolders()
         {
+
             bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
-            DataTable dt;
+
             if (IsGroup)
             {
-                dt = (DataTable)ViewState["grpData"];
+
+                if (_applyAllSubFolders)
+                {
+                    int GroupID = Convert.ToInt32(Request.QueryString["OrigID"]);
+                    int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
+                    int UserID = Convert.ToInt32(Request.QueryString["UserID"]);
+
+                    DataTable dtGrpList = await Paradigm3.datalayer.Document.Get_AllSubgroupsAsync(GroupID);
+
+                    if (dtGrpList.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < dtGrpList.Rows.Count; i++)
+                        {
+                            int ParentGroupID = Convert.ToInt32(dtGrpList.Rows[i]["GroupID"]);
+                            DataTable dtGroup = P3General.Get_ItemList(ModuleID, UserID, ParentGroupID.ToString());
+                            ApplyHeaderFootertoDocumentItemID(dtGroup);
+                        }
+
+                    }
+
+                    else
+                    {
+                        DataTable dt = (DataTable)ViewState["grpData"];
+                        ApplyHeaderFootertoDocumentItemID(dt);
+                    }
+                }
             }
             else
             {
-                dt = (DataTable)ViewState["dtDoc"];
+
             }
+        }
+
+        protected void ApplytoItemsOnly()
+        {
+            bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
+
+            if (IsGroup)
+            {
+                DataTable dt = (DataTable)ViewState["grpData"];
+                ApplyHeaderFootertoDocumentItemID(dt);
+            }
+            else
+            {
+                DataTable dt = (DataTable)ViewState["dtDoc"];
+                ApplyHeaderFootertoDocumentItemID(dt);
+            }
+        }
+        protected void ApplyHeaderFootertoDocumentItemID(DataTable dt)
+        {
             int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
             int itemID = 0;
             List<int> selectedVersion = DocumentVersion();
@@ -505,13 +564,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                            else
-                            {
-
-                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for this status!')", true);
-
-                            }
-
+                           
                         }
 
                         break;
@@ -527,12 +580,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                            else
-                            {
-
-                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Obsolete status!')", true);
-
-                            }
+                           
                         }
 
                         break;
@@ -548,12 +596,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                            else
-                            {
-
-                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Draft status!')", true);
-
-                            }
+                           
                         }
                         break;
                     case 3: // Collaborate
@@ -569,12 +612,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                            else
-                            {
-
-                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Collaborate status!')", true);
-
-                            }
+                           
                         }
                         break;
                     case 5: // Review
@@ -589,12 +627,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                            else
-                            {
-
-                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Review status!')", true);
-
-                            }
+                          
                         }
                         break;
                     case 6: // Ready
@@ -609,12 +642,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                            else
-                            {
-
-                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Ready status!')", true);
-
-                            }
+                           
                         }
 
                         break;
@@ -630,12 +658,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                            else
-                            {
-
-                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Pending Status!')", true);
-
-                            }
+                          
                         }
                         break;
                     case 9: // Current
@@ -650,12 +673,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                            else
-                            {
-
-                                ScriptManager.RegisterStartupScript(udpHeaderFooter, GetType(), "myScript", "alert('No item/s exists for Current status!')", true);
-
-                            }
+                            
                         }
                         break;
                 }
@@ -735,6 +753,23 @@ namespace P3Web
             }
         }
 
+        protected void chkbxApplySubFolder_CheckedChanged(object sender, EventArgs e)
+        {
+            bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
+
+            if (IsGroup)
+            {
+
+                if (chkbxApplySubFolder.Checked)
+                {
+                    _applyAllSubFolders = true;
+                }
+            }
+            else
+            {
+                chkbxApplySubFolder.Enabled = false;
+            }
+        }
     }
 
 }
