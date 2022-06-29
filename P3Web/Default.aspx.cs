@@ -664,6 +664,12 @@ namespace P3Web
                                     int ObjTypeID = P3General.Get_ObjTypeID(ModuleID, RecordParentGroupID);
                                     ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "ViewRecord", "openRecordWindow(" + ModuleID + "," + ItemID + "," + ObjTypeID + "," + RecordParentGroupID + ",0);", true);
                                     break;
+                                case 14:
+                                    int aiIndex = gvAIList.SelectedRow.RowIndex;
+                                    string strAIID = gvAIList.DataKeys[aiIndex].Values["AIID"].ToString();
+                                   
+                                    ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "ViewAI", "openAIWindow(" + strAIID + ")", true);
+                                    break;
                                 default:
                                     string FileStatus = gvItemList.SelectedRow.Cells[3].Text;
                                     bool IsItemID = false;
