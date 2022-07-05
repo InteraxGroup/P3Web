@@ -137,6 +137,7 @@ namespace Paradigm3
                             Record.Add_TabDueDateSettings(ModuleID, ParentGroupID, NewItemID);
                         }
 
+                        ItemName = Record.Get_RecordName(ModuleID, NewItemID);
 
                         DataTable dtTE = ds.Tables[3];
                         DataTable dtTabs = ds.Tables[0];
@@ -155,7 +156,6 @@ namespace Paradigm3
                                 int UserID = Convert.ToInt32(UserValues[0]);
                                 string UserFullName = UserValues[1];
                                 Record.Add_StepResponsible(ModuleID, NewItemID, FirstObjTypeID, UserID, UserFullName, "User");
-                                //Record.TriggerStepEvent(NewItemID, txtName.Text, ModuleID, FirstObjTypeID, ParentGroupID, UserID, UserFullName, ds);
                             }
                         }
 
@@ -194,7 +194,7 @@ namespace Paradigm3
                                                     {
                                                         case 1:
                                                             // User
-                                                            Record.TriggerStepEvent(NewItemID, txtName.Text, ModuleID, ObjTypeID, ParentGroupID, Convert.ToInt32(RoleRow["ControlID"]), RoleRow["ControlFullName"].ToString(), ds);
+                                                            Record.TriggerStepEvent(NewItemID, ItemName, ModuleID, ObjTypeID, ParentGroupID, Convert.ToInt32(RoleRow["ControlID"]), RoleRow["ControlFullName"].ToString(), ds);
                                                             break;
                                                         case 6:
                                                             // Position Title
@@ -203,7 +203,7 @@ namespace Paradigm3
                                                             {
                                                                 if (Convert.ToInt32(drPosTemp["ControlType"]) == 1)
                                                                 {
-                                                                    Record.TriggerStepEvent(NewItemID, txtName.Text, ModuleID, ObjTypeID, ParentGroupID, Convert.ToInt32(drPosTemp["ControlID"]), drPosTemp["ControlFullName"].ToString(), ds);
+                                                                    Record.TriggerStepEvent(NewItemID, ItemName, ModuleID, ObjTypeID, ParentGroupID, Convert.ToInt32(drPosTemp["ControlID"]), drPosTemp["ControlFullName"].ToString(), ds);
                                                                 }
                                                             }
                                                             dtPosTemp.Dispose();
@@ -218,14 +218,14 @@ namespace Paradigm3
                                                 {
                                                     if (Convert.ToInt32(drPos2["ControlType"]) == 1)
                                                     {
-                                                        Record.TriggerStepEvent(NewItemID, txtName.Text, ModuleID, ObjTypeID, ParentGroupID, Convert.ToInt32(drPos2["ControlID"]), drPos2["ControlFullName"].ToString(), ds);
+                                                        Record.TriggerStepEvent(NewItemID, ItemName, ModuleID, ObjTypeID, ParentGroupID, Convert.ToInt32(drPos2["ControlID"]), drPos2["ControlFullName"].ToString(), ds);
                                                     }
                                                 }
                                                 dtPos.Dispose();
                                                 break;
                                             default:
                                                 // User Account
-                                                Record.TriggerStepEvent(NewItemID, txtName.Text, ModuleID, ObjTypeID, ParentGroupID, Convert.ToInt32(drResp["ControlID"]), drResp["ControlFullName"].ToString(), ds);
+                                                Record.TriggerStepEvent(NewItemID, ItemName, ModuleID, ObjTypeID, ParentGroupID, Convert.ToInt32(drResp["ControlID"]), drResp["ControlFullName"].ToString(), ds);
                                                 break;
                                         }
                                     }

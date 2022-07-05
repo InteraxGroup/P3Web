@@ -23,7 +23,6 @@ namespace P3Web
         private bool _applyAllSubFolders = false;
         protected async void Page_Load(object sender, EventArgs e)
         {
-
             if (!Page.IsPostBack)
             {
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
@@ -36,25 +35,20 @@ namespace P3Web
                     bool IsGroup = Convert.ToBoolean(Request.QueryString["IsGroup"]);
                     if (IsGroup)
                     {
-
                         int GroupID = Convert.ToInt32(Request.QueryString["OrigID"]);
                         int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
                         await Initialize_ComponentsAsync(0, GroupID, ModuleID, IsGroup);
                     }
                     else
                     {
-
                         int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
                         int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
                         await Initialize_ComponentsAsync(OrigID, 0, ModuleID, IsGroup);
                     }
-
-
-
                 }
             }
-
         }
+
         protected void Page_Init(object sender, EventArgs e)
         {
             Session["SourcePage"] = "ViewDocumentAddHeaderFooter.aspx";
@@ -78,7 +72,6 @@ namespace P3Web
 
             if (IsGroup)
             {
-
                 DataTable dtGroup = P3General.Get_ItemList(ModuleID, UserID, ParentGroupID.ToString());
                 DataTable dtGrp = Paradigm3.datalayer.Document.Get_ParentGroupDetails(ParentGroupID);
                 string fileExtension = dtGroup.Rows[0]["FileExtension"].ToString();
@@ -98,10 +91,7 @@ namespace P3Web
                 else
                 {
                     ScriptManager.RegisterStartupScript(udpHeaderFooter, udpHeaderFooter.GetType(), "myScript", "alert('Only DOCX extension type document supported!'); window.close();", true);
-
-
                 }
-
             }
             else
             {
@@ -122,25 +112,16 @@ namespace P3Web
                             ddlTemplates.DataBind();
                             txtDocumentName.Text = dtDoc.Rows[0]["Name"].ToString();
                     }
-
-                   
                     else
                     {
                         ScriptManager.RegisterStartupScript(udpHeaderFooter, udpHeaderFooter.GetType(), "myScript", "alert('Only DOCX extension type document supported!'); window.close();", true);
-
-
                     }
                 }
-
             }
-
-
-
         }
 
         protected async void Button_Click(object sender, EventArgs e)
         {
-
             Button btn = (Button)sender;
             string arg = btn.CommandArgument;
             switch (arg)
@@ -153,7 +134,6 @@ namespace P3Web
                 case "Submit":
                     if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
                     {
-
                         int OrigID = Convert.ToInt32(Request.QueryString["OrigID"]);
 
                         string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
@@ -183,6 +163,7 @@ namespace P3Web
             }
 
         }
+
         private void ApplyHeaderFootertoDoc(int ItemID)
         {
 
@@ -564,9 +545,6 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                           
-                        }
-
                         break;
                     case 0: // Obsolete
                         if (ModuleID == 3)
@@ -579,10 +557,8 @@ namespace P3Web
                                     itemID = Convert.ToInt32(dr[i]["ItemID"]);
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
-                            }
-                           
+                            }                      
                         }
-
                         break;
                     case 2: // Draft/Open
                         if (ModuleID == 3)
@@ -596,7 +572,6 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                           
                         }
                         break;
                     case 3: // Collaborate
@@ -642,9 +617,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                           
                         }
-
                         break;
                     case 7: // Pending
                         if (ModuleID == 3)
@@ -658,7 +631,6 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                          
                         }
                         break;
                     case 9: // Current
@@ -673,12 +645,10 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-                            
                         }
                         break;
                 }
             }
-
         }
 
         private List<int> DocumentVersion()
