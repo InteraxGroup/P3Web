@@ -876,6 +876,33 @@ namespace Paradigm3.datalayer
             return result;
         }
 
+        public static string Get_FileExtension(int OrigID)
+        {
+            string fileExtension = "";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    conn.Open();
+                }
+                SqlCommand cmd = new SqlCommand("Select top 1 * from items3 where OrigID = @OrigID and IsEvidence = 0", conn)
+                {
+                    CommandType = CommandType.Text,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                   fileExtension = rdr["FileExtension"].ToString();
+                 
+                }
+                conn.Close();
+            }
+            return fileExtension;
+        }
+          
         #endregion
 
         #region Asynchronous Functions and Methods

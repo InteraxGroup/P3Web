@@ -307,11 +307,11 @@ namespace Paradigm3.datalayer
         {
             // TransType 0 = Event Date, TransType 1 = Category
 
-            string Details = "Header/Footer applied to the item by: " + UserName + " (" + DateTime.Now.ToString() + ")\n" +
-                   "\n\n" +
-                   "****************************************************************";
+             string Details = "Header/Footer applied to the item by: " + UserName + " (" + DateTime.Now.ToString() + ")\n" +
+                    "\n\n" +
+                    "****************************************************************";
 
-            string HistoryMemo = "User notes: " + text + "\r\n" +
+            string HistoryMemo = "User notes: "+ text + "\r\n"+
                                  "User Name: " + UserName + "\r\n" +
                                  "Time: " + DateTime.Now.ToString() + "\r\n" +
                                  "Action: " + Details;
@@ -408,7 +408,7 @@ namespace Paradigm3.datalayer
             return dt;
         }
 
-        public static async Task<DataTable> Get_HeaderFooterListAsync(int OrigID, int ParentGroupID, int GroupID)
+        public static async Task<DataTable> Get_HeaderFooterListAsync()
         {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
@@ -423,9 +423,6 @@ namespace Paradigm3.datalayer
                     CommandType = CommandType.StoredProcedure,
                     CommandTimeout = 120
                 };
-                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
-                cmd.Parameters.Add("@GroupID", SqlDbType.Int, 4).Value = GroupID;
-                cmd.Parameters.Add("@ParentgroupID", SqlDbType.Int, 4).Value = ParentGroupID;
                 SqlDataReader sdr = cmd.ExecuteReader();
                 dt.Load(sdr);
             }
@@ -448,6 +445,28 @@ namespace Paradigm3.datalayer
                     CommandTimeout = 120
                 };
                 cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                SqlDataReader sdr = cmd.ExecuteReader();
+                dt.Load(sdr);
+            }
+            return dt;
+        }
+
+        public static async Task<DataTable> Get_AllSubgroupsAsync(int ParentGroupID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    await conn.OpenAsync();
+                }
+                SqlCommand cmd = new SqlCommand("dbo.[v4_Get_All_SubGroups]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@ParentGroupID", SqlDbType.Int, 4).Value = ParentGroupID;
                 SqlDataReader sdr = cmd.ExecuteReader();
                 dt.Load(sdr);
             }
