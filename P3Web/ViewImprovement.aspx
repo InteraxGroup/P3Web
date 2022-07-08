@@ -128,11 +128,11 @@
                         <asp:Label ID="lblResponsibleField" runat="server" Text="Responsible:" CssClass="recordLabel" meta:resourcekey="lblResponsibleFieldResource1" />
                     </td>
                     <td style="height: 24px; width: 580px; text-align: left;">
-                        <asp:TextBox ID="txtResponsibleData" runat="server" Width="570px" ReadOnly="True" CssClass="ro_TitleControl" meta:resourcekey="txtResponsibleDataResource1" />
+                        <asp:TextBox ID="txtResponsibleData" runat="server"  TextMode="Multiline" Width="570px" ReadOnly="True" CssClass="ro_TitleControl" meta:resourcekey="txtResponsibleDataResource1" />
                     </td>
                     <td style="height: 24px; width: 50px; text-align: left; vertical-align: bottom;">
                         <asp:ImageButton ID="BtnAddResp" runat="server" ImageUrl="~/images/btnAdd_lock.png" ToolTip="Add Responsible Person" CommandArgument="AddRoleMembers" OnClick="ImageButton_Click" meta:resourcekey="BtnAddRespResource1" />
-                        <asp:ImageButton ID="BtnRemoveResp" runat="server" ImageUrl="~/images/btnRemove_lock.png" ToolTip="Remove All Responsible" meta:resourcekey="BtnRemoveRespResource1" />
+                        <asp:ImageButton ID="BtnRemoveResp" runat="server" ImageUrl="~/images/btnRemove_lock.png" ToolTip="Remove All Responsible" CommandArgument="RemoveMembers" OnClick="ImageButton_Click" meta:resourcekey="BtnRemoveRespResource1" />
                     </td>
                     <td colspan="2" style="text-align: right;" >
                         <asp:Label ID="lblExpectedCompletionField" runat="server" Text="Expected Completion Date:" CssClass="recordLabel" Font-Size="X-Small" meta:resourcekey="lblExpectedCompletionFieldResource1" />
@@ -417,6 +417,7 @@
         <asp:Button ID="btnUpdateUserList" runat="server" OnClick="Button_Click" CommandArgument="updateuser" style="display: none;" meta:resourcekey="btnUpdateUserListResource1" />
         <asp:Button ID="btnUpdateField" runat="server" OnClick="Button_Click" CommandArgument="updatefield" style="display: none;" meta:resourcekey="btnUpdateFieldResource1" />
         <asp:Button ID="btnDigitalSignature" runat="server" OnClick="Button_Click" CommandArgument="digitalSignature" style="display: none;" meta:resourcekey="btnDigitalSignatureResource1" />
+        <asp:Button ID="btnRefreshRoles" runat="server" CommandArgument="UpdateRoleMembers" OnClick="Button_Click" Style="display: none;" meta:resourcekey="btnRefreshRolesResource1" />
         <asp:HiddenField ID="hdnDigitalSignatureID" runat="server" />
 
         <div id="pnlDigitalSignature" class="digital-signature-background">

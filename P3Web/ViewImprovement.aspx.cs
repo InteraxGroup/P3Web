@@ -1229,6 +1229,45 @@ namespace Paradigm3
                         ScriptManager.RegisterStartupScript(udpDetails, GetType(), "AuthFail", "alert('Username or password is incorrect. Please try again');", true);
                     }
                     break;
+                case "UpdateRoleMembers":
+                    if (Session.Contents["dtSelected"] != null)
+                    {
+                        if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                        {
+                            string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                            FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                            string UserData = authTicket.UserData;
+                            string[] UserValues = UserData.Split(',');
+                            int UserID = Convert.ToInt32(UserValues[0]);
+                            string UserFullName = UserValues[1];
+
+
+                            DataTable dtRoles = (DataTable)Session.Contents["dtSelected"];
+
+
+                            DataTable uniqueRows = dtRoles.DefaultView.ToTable("ControlFullName", true);
+
+                            foreach (DataRow dr in uniqueRows.Rows)
+                            {
+
+                                int RoleControlID = Convert.ToInt32(dr["ControlID"]);
+                                string RoleControlFullName = dr["ControlFullName"].ToString();
+                                int RoleControlType = Convert.ToInt32(dr["ControlType"]);
+                                if (String.IsNullOrEmpty(txtResponsibleData.Text))
+                                {
+                                    txtResponsibleData.Text = RoleControlFullName;
+                                }
+
+                                else
+                                {
+                                    txtResponsibleData.Text += "," + RoleControlFullName;
+                                }
+                               // await ActionItem.Add_UserMemberAsync(ModuleID, OrigID, IsGroup, RoleControlID, RoleControlFullName, RoleControlType, UserID, UserFullName);
+                            }
+                            //await Get_SendAIMembersAsync(ModuleID, OrigID, IsGroup);
+                        }
+                    }
+                    break;
             }
         }
 
@@ -1257,6 +1296,10 @@ namespace Paradigm3
             {
                 case "AddRoleMembers":
                     ScriptManager.RegisterStartupScript(udpDetails, GetType(), "addRoles", "openSelect('Roles')", true);
+                    break;
+                   
+                case "RemoveMembers":
+                    txtResponsibleData.Text = "";
                     break;
                 case "SaveItem":
                     // Update main item record              
