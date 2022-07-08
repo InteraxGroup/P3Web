@@ -131,7 +131,7 @@
                         <asp:TextBox ID="txtResponsibleData" runat="server" Width="570px" ReadOnly="True" CssClass="ro_TitleControl" meta:resourcekey="txtResponsibleDataResource1" />
                     </td>
                     <td style="height: 24px; width: 50px; text-align: left; vertical-align: bottom;">
-                        <asp:ImageButton ID="BtnAddResp" runat="server" ImageUrl="~/images/btnAdd_lock.png" ToolTip="Add Responsible Person" meta:resourcekey="BtnAddRespResource1" />
+                        <asp:ImageButton ID="BtnAddResp" runat="server" ImageUrl="~/images/btnAdd_lock.png" ToolTip="Add Responsible Person" CommandArgument="AddRoleMembers" OnClick="ImageButton_Click" meta:resourcekey="BtnAddRespResource1" />
                         <asp:ImageButton ID="BtnRemoveResp" runat="server" ImageUrl="~/images/btnRemove_lock.png" ToolTip="Remove All Responsible" meta:resourcekey="BtnRemoveRespResource1" />
                     </td>
                     <td colspan="2" style="text-align: right;" >

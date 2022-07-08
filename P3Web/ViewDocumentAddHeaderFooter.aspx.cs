@@ -545,6 +545,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
+                        }
                         break;
                     case 0: // Obsolete
                         if (ModuleID == 3)

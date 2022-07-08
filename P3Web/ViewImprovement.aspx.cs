@@ -1255,6 +1255,9 @@ namespace Paradigm3
 
             switch (arg)
             {
+                case "AddRoleMembers":
+                    ScriptManager.RegisterStartupScript(udpDetails, GetType(), "addRoles", "openSelect('Roles')", true);
+                    break;
                 case "SaveItem":
                     // Update main item record              
                     await Edit_RecordAsync(ItemID, "Item Edited");
