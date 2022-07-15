@@ -261,6 +261,7 @@ namespace Paradigm3.custom.amtrak
 					GVResults.DataSource = null;
 					GVResults.DataBind();
 					lblTotal.Text = string.Empty;
+					GVResults.SelectedIndex = -1;
 					break;
 			}
 
@@ -272,8 +273,8 @@ namespace Paradigm3.custom.amtrak
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
 				string itemid = GVResults.DataKeys[e.Row.RowIndex].Values["OrigID"].ToString();
-				e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GVResults, "Select$" + e.Row.RowIndex);
-				e.Row.Attributes.Add("ondblclick", "openAmtrakDocument(" + itemid + ");");
+				e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GVResults, "Select$" + e.Row.RowIndex) + ";openAmtrakDocument(" + itemid + ");";
+				//e.Row.Attributes.Add("ondblclick", "openAmtrakDocument(" + itemid + ");");
 			}
 		}
 

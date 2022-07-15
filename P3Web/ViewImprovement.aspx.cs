@@ -15,7 +15,7 @@ namespace Paradigm3
     public partial class ViewImprovement1 : SqlViewStatePage
     {
         protected async void Page_Load(object sender, EventArgs e)
-        {            
+        {
             if (!IsPostBack)
             {
                 bool UseSSO = Convert.ToBoolean(ConfigurationManager.AppSettings["UseSSO"]);
@@ -33,7 +33,7 @@ namespace Paradigm3
                 MenuTabs.Items[0].Selected = true;
                 await Initialize_ImprovementAsync(ItemID, ParentGroupID, ObjTypeID);
                 EditMode(await CanEdit());
-            }            
+            }
         }
 
         #region Initialization
@@ -125,7 +125,7 @@ namespace Paradigm3
                         strResp = strResp + dtResp.Rows[n]["ControlFullName"].ToString();
                     }
                 }
-                txtResponsibleData.Text = strResp;
+                txtResponsibleData.Text = HttpUtility.HtmlDecode(strResp);
             }
             else
             {
@@ -206,7 +206,7 @@ namespace Paradigm3
         {
             string UserFullName = string.Empty;
             if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-			{
+            {
                 //Retrieve http authentication cookie.
                 string authCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie);
@@ -246,7 +246,7 @@ namespace Paradigm3
                 {
                     int FieldID = Convert.ToInt32(fdr["FieldID"]);
                     bool IsMandatory = Convert.ToBoolean(fdr["IsMandatory"]);
-                    string FieldName = fdr["FieldName"].ToString();                   
+                    string FieldName = fdr["FieldName"].ToString();
                     int FieldType = Convert.ToInt32(fdr["FieldType"]);
                     bool IsExternal = Convert.ToBoolean(fdr["IsExternalField"]);
                     object DefaultValue = fdr["DefaultValue"];
@@ -429,7 +429,7 @@ namespace Paradigm3
                             if (IsMandatory)
                             {
                                 TargetPanel.Controls.Add(lblMandatory);
-                                
+
                             }
                             TargetPanel.Controls.Add(DDL);
                             // Set editing properties for the control.
@@ -470,14 +470,14 @@ namespace Paradigm3
                             else
                             {
                                 if (FieldType == 4)
-								{
+                                {
                                     dTextBox.Text = Convert.ToDateTime(FieldValue).ToShortDateString();
                                 }
                                 else
-								{
+                                {
                                     dTextBox.Text = Convert.ToDateTime(FieldValue).ToString();
                                 }
-                                
+
                             }
                             dTextBox.Attributes.Add("style", "position: absolute;top: " + FieldTop.ToString() + "px;left: " + FieldLeft.ToString() + "px;width: " + FieldWidth.ToString() + "px;height: " + FieldHeight.ToString() + "px");
                             dTextBox.EnableViewState = true;
@@ -490,7 +490,7 @@ namespace Paradigm3
                                 Format = Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
                             };
                             if (FieldType == 16)
-							{
+                            {
                                 calExtend.Format = "M/dd/yyyy H:mm:ss tt";
                             }
                             TargetPanel.Controls.Add(calExtend);
@@ -785,7 +785,7 @@ namespace Paradigm3
                             break;
                         case 30:
                             if (dtFieldData.Rows.Count > 0)
-							{
+                            {
                                 if (dtFieldData.Rows[0]["MemoData"].Equals(DBNull.Value) || dtFieldData.Rows[0]["MemoData"].Equals(string.Empty))
                                 {
                                     if (fdr["DefaultValue"].Equals(DBNull.Value))
@@ -849,7 +849,7 @@ namespace Paradigm3
         }
 
         protected void EditMode(int editMode)
-        {             
+        {
             switch (editMode)
             {
                 case 0:
@@ -867,7 +867,7 @@ namespace Paradigm3
                     LockFields(true);
                     pnlSave.Visible = false;
                     pnlCalculate.Visible = false;
-                    pnlEdit.Visible = true;                    
+                    pnlEdit.Visible = true;
                     BtnFinishStep.Enabled = false;
                     BtnNotApplicable.Enabled = false;
                     BtnAddResp.Enabled = false;
@@ -918,65 +918,65 @@ namespace Paradigm3
                 bool HasEditPermission = await P3General.HasEditPermissionAsync(6, ItemID, UserID);
 
                 if (IsComplete != 0)
-				{
-					if (IsNew == "1" && Panel0.Visible)
-					{
-						EditMode = 0;
+                {
+                    if (IsNew == "1" && Panel0.Visible)
+                    {
+                        EditMode = 0;
                         BtnFinishStep.Enabled = true;
-					}
-					else if (StepCompleted == false)
-					{
-						if (UserStatus == 1)
-						{
-							EditMode = 1;
-						}
-                        else if (i == 0 && Panel0.Visible)
-						{                            
-                            if (HasEditPermission)
-							{
-                                EditMode = 1;
-							}
+                    }
+                    else if (StepCompleted == false)
+                    {
+                        if (UserStatus == 1)
+                        {
+                            EditMode = 1;
                         }
-						else
-						{
-							BtnAddResp.Visible = true;
-							BtnAddResp.Enabled = true;
-							BtnRemoveResp.Visible = true;
-							BtnRemoveResp.Enabled = true;
-							DataTable dt = Record.Get_Responsible(ItemID, ObjTypeID);
-                            
+                        else if (i == 0 && Panel0.Visible)
+                        {
                             if (HasEditPermission)
-							{
+                            {
                                 EditMode = 1;
-							}
-							if (dt.Rows.Count > 0)
-							{
-								foreach (DataRow dr in dt.Rows)
-								{
-									if (UserFullName == dr["ControlFullName"].ToString())
-									{
-										EditMode = 1;
-									}
-									else
-									{
-										int ControlID = Convert.ToInt32(dr["ControlID"]);
-										DataTable dtEntityMember = Record.IsEntityMember(ControlID);
-										foreach (DataRow dre in dtEntityMember.Rows)
-										{
-											if (UserID == Convert.ToInt32(dre["ControlID"]))
-											{
-												EditMode = 1;
-											}
-										}
-									}
+                            }
+                        }
+                        else
+                        {
+                            BtnAddResp.Visible = true;
+                            BtnAddResp.Enabled = true;
+                            BtnRemoveResp.Visible = true;
+                            BtnRemoveResp.Enabled = true;
+                            DataTable dt = Record.Get_Responsible(ItemID, ObjTypeID);
 
-								}
-							}
-						}
-					}
-				}
-			}
-			
+                            if (HasEditPermission)
+                            {
+                                EditMode = 1;
+                            }
+                            if (dt.Rows.Count > 0)
+                            {
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                                    if (UserFullName == dr["ControlFullName"].ToString())
+                                    {
+                                        EditMode = 1;
+                                    }
+                                    else
+                                    {
+                                        int ControlID = Convert.ToInt32(dr["ControlID"]);
+                                        DataTable dtEntityMember = Record.IsEntityMember(ControlID);
+                                        foreach (DataRow dre in dtEntityMember.Rows)
+                                        {
+                                            if (UserID == Convert.ToInt32(dre["ControlID"]))
+                                            {
+                                                EditMode = 1;
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             ds.Dispose();
             return EditMode;
         }
@@ -1184,7 +1184,7 @@ namespace Paradigm3
                 case "updatefield":
                     string updateFieldID = Session.Contents["UpdateFieldID"].ToString();
                     string UpdatedValue = Session.Contents["UpdatedValue"].ToString();
-                    
+
                     // Get User Information
                     if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
                     {
@@ -1194,21 +1194,21 @@ namespace Paradigm3
                         string[] UserValues = UserData.Split(',');
                         string UserFullName = UserValues[1].ToString();
 
-						// Find Field to Update and update it
-						TextBox tb = (TextBox)FindControl(updateFieldID);
-						string OldValue = tb.Text;
-						string NewValue = UpdatedValue + "\r\n" +
-							"[" + UserFullName + " " + DateTime.Now + "]\r\n" +
-							"--------------------------------------------\r\n" +
-							OldValue;
-						tb.Text = NewValue;
-						tb.Enabled = false;
-						tb.CssClass = "ro_Control";
-					}
-					else
-					{
-						ScriptManager.RegisterStartupScript(udpDetails, GetType(), "Abort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
-					}                    
+                        // Find Field to Update and update it
+                        TextBox tb = (TextBox)FindControl(updateFieldID);
+                        string OldValue = tb.Text;
+                        string NewValue = UpdatedValue + "\r\n" +
+                            "[" + UserFullName + " " + DateTime.Now + "]\r\n" +
+                            "--------------------------------------------\r\n" +
+                            OldValue;
+                        tb.Text = NewValue;
+                        tb.Enabled = false;
+                        tb.CssClass = "ro_Control";
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(udpDetails, GetType(), "Abort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
+                    }
                     break;
                 case "digitalSignature":
                     string digitalFieldID = hdnDigitalSignatureID.Value;
@@ -1218,15 +1218,54 @@ namespace Paradigm3
                     bool isFIPS = P3Security.IsFIPS();
                     string DigitalSignature = await P3Security.DigitalSignature(UserName, Password, isFIPS);
                     if (DigitalSignature != "No User")
-					{
+                    {
                         string SignatureValue = "Digitally approved by [ " + DigitalSignature + " ] [ " + DateTime.Now.ToString() + " ]";
                         tbds.Text = SignatureValue;
                         tbds.Enabled = false;
                         tbds.CssClass = "ro_Control";
-					}
+                    }
                     else
-					{
+                    {
                         ScriptManager.RegisterStartupScript(udpDetails, GetType(), "AuthFail", "alert('Username or password is incorrect. Please try again');", true);
+                    }
+                    break;
+                case "UpdateRoleMembers":
+                    if (Session.Contents["dtSelected"] != null)
+                    {
+                        if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                        {
+                            string authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                            FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie);
+                            string UserData = authTicket.UserData;
+                            string[] UserValues = UserData.Split(',');
+                            int UserID = Convert.ToInt32(UserValues[0]);
+                            string UserFullName = UserValues[1];
+
+
+                            DataTable dtRoles = (DataTable)Session.Contents["dtSelected"];
+
+
+                            DataTable uniqueRows = dtRoles.DefaultView.ToTable("ControlFullName", true);
+
+                            foreach (DataRow dr in uniqueRows.Rows)
+                            {
+
+                                int RoleControlID = Convert.ToInt32(dr["ControlID"]);
+                                string RoleControlFullName = dr["ControlFullName"].ToString();
+                                int RoleControlType = Convert.ToInt32(dr["ControlType"]);
+                                if (String.IsNullOrEmpty(txtResponsibleData.Text))
+                                {
+                                    txtResponsibleData.Text = RoleControlFullName;
+                                }
+
+                                else
+                                {
+                                    txtResponsibleData.Text += "," + RoleControlFullName;
+                                }
+                                // await ActionItem.Add_UserMemberAsync(ModuleID, OrigID, IsGroup, RoleControlID, RoleControlFullName, RoleControlType, UserID, UserFullName);
+                            }
+                            //await Get_SendAIMembersAsync(ModuleID, OrigID, IsGroup);
+                        }
                     }
                     break;
             }
@@ -1236,13 +1275,14 @@ namespace Paradigm3
         {
             DataSet dsData = (DataSet)ViewState["GenRecord"];
             //int OrigID = Convert.ToInt32(dsData.Tables["Get_ItemData"].Rows[0]["OrigID"]);
-            int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);           
+            int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
             int SelectedTab = Convert.ToInt32(MenuTabs.SelectedValue);
+            int index = Convert.ToInt32(MenuTabs.SelectedValue);
 
             ImageButton btn = (ImageButton)sender;
             string arg = btn.CommandArgument;
             // Determine the currently active Panel.
-            int index = Convert.ToInt32(MenuTabs.SelectedValue);
+
             Panel TargetPanel = new Panel();
             foreach (var panel in GetControlsOfType<Panel>(form1))
             {
@@ -1255,13 +1295,23 @@ namespace Paradigm3
 
             switch (arg)
             {
+                case "AddRoleMembers":
+                    ScriptManager.RegisterStartupScript(udpDetails, GetType(), "addRoles", "openSelect('Roles')", true);
+                    break;
+
+                case "RemoveMembers":
+                    txtResponsibleData.Text = "";
+                    int StepObjTypeID = Convert.ToInt32(dsData.Tables["Get_TabList"].Rows[index]["ObjTypeID"]);
+                    Record.RemoveResponsibleUser(ItemID, 6, StepObjTypeID);
+
+                    break;
                 case "SaveItem":
                     // Update main item record              
                     await Edit_RecordAsync(ItemID, "Item Edited");
 
                     // Update RecordsData table with any new field values.
                     await SaveFieldDataAsync(TargetPanel, ItemID, false);
-
+                    SaveUserResponsibleforStep(ItemID);
                     // Set display properties for Save & Edit buttons.
                     bool saveItem = true;
                     ViewState["SaveItem"] = saveItem;
@@ -1281,7 +1331,7 @@ namespace Paradigm3
                     break;
                 case "EditItem":
                     if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-					{
+                    {
                         string authCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
                         FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie);
                         string UserData = ticket.UserData;
@@ -1411,29 +1461,29 @@ namespace Paradigm3
                 int UserID = Convert.ToInt32(UserValues[0]);
                 string UserFullName = UserValues[1].ToString();
 
-				// Identify selected panel.
-				Panel TargetPanel = new Panel();
-				foreach (var panel in GetControlsOfType<Panel>(form1))
-				{
-					Panel p = panel;
-					if (p.ID == "Panel" + index.ToString())
-					{
-						TargetPanel = p;
-					}
-				}
+                // Identify selected panel.
+                Panel TargetPanel = new Panel();
+                foreach (var panel in GetControlsOfType<Panel>(form1))
+                {
+                    Panel p = panel;
+                    if (p.ID == "Panel" + index.ToString())
+                    {
+                        TargetPanel = p;
+                    }
+                }
 
-				pnlSave.Visible = false;
-				pnlEdit.Visible = false;
+                pnlSave.Visible = false;
+                pnlEdit.Visible = false;
 
-				BtnFinishStep.Enabled = false;
-				BtnAddResp.Enabled = false;
-				BtnAddResp.Visible = false;
-				BtnRemoveResp.Enabled = false;
-				BtnRemoveResp.Visible = false;
-				LockFields(true);
+                BtnFinishStep.Enabled = false;
+                BtnAddResp.Enabled = false;
+                BtnAddResp.Visible = false;
+                BtnRemoveResp.Enabled = false;
+                BtnRemoveResp.Visible = false;
+                LockFields(true);
 
                 if (index < (ds.Tables["Get_TabList"].Rows.Count - 1))
-				{
+                {
                     await SaveFieldDataAsync(TargetPanel, ItemID, false);
                     int nextObjID = Convert.ToInt32(ds.Tables["Get_TabList"].Rows[index + 1]["ObjID"]);
                     if (!ds.Tables["Get_TabList"].Rows[index + 1]["PopUpType"].Equals(DBNull.Value) && !ds.Tables["Get_TabList"].Rows[index + 1]["PopUpType"].Equals(0))
@@ -1443,7 +1493,7 @@ namespace Paradigm3
                             string str = index.ToString() + "," + ItemID.ToString() + "," + nextObjID.ToString() + "," + "0";
                             ScriptManager.RegisterStartupScript(udpFinish, udpFinish.GetType(), "Assignment", "openAssignment(" + str + ");", true);
                             ViewState["ErrorState"] = "false";
-                        }                        
+                        }
                     }
                     else
                     {
@@ -1480,8 +1530,8 @@ namespace Paradigm3
                         }
                     }
                 }
-				else
-				{
+                else
+                {
                     await SaveFieldDataAsync(TargetPanel, ItemID, false);
                     if (ViewState["ErrorState"].ToString() != "true")
                     {
@@ -1491,14 +1541,14 @@ namespace Paradigm3
                     }
                 }
                 await Initialize_ImprovementAsync(ItemID, ParentGroupID, ObjTypeID);
-				ViewState["SaveItem"] = true;
-				ViewState["EditMode"] = false;
-				EditMode(await CanEdit());
-			}
-			else
-			{
-				ScriptManager.RegisterStartupScript(udpFinish, GetType(), "Abort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
-			}            
+                ViewState["SaveItem"] = true;
+                ViewState["EditMode"] = false;
+                EditMode(await CanEdit());
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(udpFinish, GetType(), "Abort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
+            }
         }
 
         protected async void BtnNotApplicable_Click(object sender, EventArgs e)
@@ -1593,13 +1643,13 @@ namespace Paradigm3
                 string[] UserValues = UserData.Split(',');
                 int UserID = Convert.ToInt32(UserValues[0]);
                 string UserFullName = UserValues[1].ToString();
-				await Record.Edit_RecordAsync(6, ItemID, UserID, UserFullName);
-				Record.Edit_History(6, OrigID, TabName, TaskName, UserFullName);
-			}
+                await Record.Edit_RecordAsync(6, ItemID, UserID, UserFullName);
+                Record.Edit_History(6, OrigID, TabName, TaskName, UserFullName);
+            }
             else
-			{
-				ScriptManager.RegisterStartupScript(udpToolBar, GetType(), "Abort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
-			}
+            {
+                ScriptManager.RegisterStartupScript(udpToolBar, GetType(), "Abort", "alert('Your session has timed out.  Please log in and try again.');window.opener.location.reload(false);window.close();", true);
+            }
         }
 
         protected async Task SaveFieldDataAsync(Panel TargetPanel, int ItemID, bool isCalc)
@@ -1613,24 +1663,26 @@ namespace Paradigm3
 
             try
             {
+
                 int i = 0;
                 for (i = 0; i < FieldCount; i++)
                 {
                     int FieldID = Convert.ToInt32(TabFields.Rows[i]["FieldID"]);
                     int FieldType = Convert.ToInt32(TabFields.Rows[i]["FieldType"]);
-                    bool IsMandatory = Convert.ToBoolean(TabFields.Rows[i]["IsMandatory"]);                    
+                    bool IsMandatory = Convert.ToBoolean(TabFields.Rows[i]["IsMandatory"]);
                     DataTable dtInternalEvent = Record.Has_InternalEvent(FieldID);
                     await SaveMethodAsync(ModuleID, TargetPanel, ItemID, SelectedTab, dsData, TabFields, i, FieldID, FieldType, dtInternalEvent, IsMandatory);
+
                 }
                 await Record.Purge_FieldDataAsync();
                 ViewState["IsUpdated"] = false;
                 if (!isCalc)
-                {                    
+                {
                     ScriptManager.RegisterStartupScript(udpToolBar, udpToolBar.GetType(), "myScript", "recordRefresh();alert('Item successfully saved');recordRefreshLocal();", true);
                     //EditMode(1);
                 }
                 else
-                {                    
+                {
                     ScriptManager.RegisterStartupScript(udpToolBar, udpToolBar.GetType(), "myScript", "alert('Calculation complete');recordRefreshLocal();", true);
                     //EditMode(0);
                 }
@@ -1916,7 +1968,7 @@ namespace Paradigm3
                         case 0:
                         case 7:
                             TextBox slTextBox = (TextBox)TargetPanel.FindControl(FieldID.ToString());
-                            TextValue = slTextBox.Text;                            
+                            TextValue = slTextBox.Text;
                             if (IsCalcResult)
                             {
                                 TextValue = await Record.CalculateFieldAsync(ItemID, FieldID);
@@ -1935,7 +1987,7 @@ namespace Paradigm3
                                     {
                                         await Record.Trigger_Internal_EventAsync(EventID, ItemID);
                                     }
-                                }                                
+                                }
                             }
                             break;
                         case 1:
@@ -2101,7 +2153,41 @@ namespace Paradigm3
             }
         }
 
-        #endregion
+        private void SaveUserResponsibleforStep(int itemID)
+        {
+            if (txtResponsibleData.Text.Length > 0)
+            {
+                int ModuleID = 6;
+                int index = Convert.ToInt32(MenuTabs.SelectedValue);
+                DataSet dsData = (DataSet)ViewState["GenRecord"];
+                int ObjTypeID = Convert.ToInt32(dsData.Tables["Get_TabList"].Rows[index]["ObjTypeID"]);
+                int ParentGroupID = Convert.ToInt32(Request.QueryString["ParentGroupID"]);
+                DataTable dtRoles = (DataTable)Session.Contents["dtSelected"];
+                DataTable uniqueRows = dtRoles.DefaultView.ToTable("ControlFullName", true);
+                string ItemName = dsData.Tables["Get_ItemData"].Rows[0]["Name"].ToString();
+                string TabName = "No. " + (index + 1).ToString() + " - " + dsData.Tables["Get_TabList"].Rows[index]["Caption"].ToString();
 
+                foreach (DataRow dr in uniqueRows.Rows)
+                {
+                    int RoleControlID = Convert.ToInt32(dr["ControlID"]);
+                    int nextObjID = Convert.ToInt32(dsData.Tables["Get_TabList"].Rows[index + 1]["ObjID"]);
+                    string RoleControlFullName = dr["ControlFullName"].ToString();
+                    int RoleControlType = Convert.ToInt32(dr["ControlType"]);
+                    string controlType;
+                    if (RoleControlType == 1)
+                    {
+                        controlType = "User";
+                    }
+                    else
+                    {
+                        controlType = "Entity";
+                    }
+                    Record.Add_StepResponsible(ModuleID, itemID, ObjTypeID, RoleControlID, RoleControlFullName, controlType);
+                    Record.Trigger_Event(index, 6, itemID, nextObjID, ParentGroupID, ItemName, TabName, RoleControlID, RoleControlFullName);
+                }                
+            }
+        }
+
+        #endregion
     }
 }

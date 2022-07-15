@@ -40,7 +40,7 @@ namespace Paradigm3.datalayer
                 da.TableMappings.Add("Table1", "Get_TabList");
                 da.TableMappings.Add("Table2", "Get_Fields");
                 da.TableMappings.Add("Table3", "RecordsData");
-                
+
                 da.Fill(ds);
             }
             return ds;
@@ -217,7 +217,7 @@ namespace Paradigm3.datalayer
                     dtAllAssigned = RemoveDuplicateRows(dtUsers, "ControlID");
                 }
             }
-            
+
             //DataTable dtAllAssigned = RemoveDuplicateRows(dtUsers, "ControlID");
             return dtAllAssigned;
         }
@@ -294,7 +294,7 @@ namespace Paradigm3.datalayer
         public static DataTable Load_OnePane(int ItemID, int ObjID, int ModuleID, int ReqID)
         {
             DataTable dt = new DataTable();
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);            
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
             {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
@@ -388,7 +388,7 @@ namespace Paradigm3.datalayer
             }
 
             if (dtExtField.Rows.Count > 0)
-			{
+            {
                 int ModuleID = Convert.ToInt32(dtExtField.Rows[0]["ModuleID"]);
                 int ExtSrcType = Convert.ToInt32(dtExtField.Rows[0]["ExtSrcType"]);
                 string ExtFileFullPath = dtExtField.Rows[0]["ExtFileFullPath"].ToString();
@@ -532,11 +532,11 @@ namespace Paradigm3.datalayer
                     }
                 }
             }
-            
 
-            
 
-			return dt;
+
+
+            return dt;
         }
 
         public static DataTable Get_SelListValues(int ItemID, int FieldID, int ModuleID)
@@ -940,15 +940,15 @@ namespace Paradigm3.datalayer
                             dr["NumData"] = DBNull.Value;
                             dr["TextData"] = DBNull.Value;
                             dr["MemoData"] = DBNull.Value;
-							dr["DateData"] = Convert.ToDateTime(FieldText);
-							dr["IsDeleted"] = 0;
+                            dr["DateData"] = Convert.ToDateTime(FieldText);
+                            dr["IsDeleted"] = 0;
                             break;
                     }
                     dt.Rows.Add(dr);
                 }
                 da.Update(ds, "RecordsData");
             }
-        }        
+        }
 
         public static void Update_UserField(int ItemID, int FieldID, int UserID, string UserName, int ModuleID, int ReqID, int Condition)
         {
@@ -1014,7 +1014,7 @@ namespace Paradigm3.datalayer
                 };
                 cmd.ExecuteNonQuery();
             }
-        }        
+        }
 
         public static void PurgeNull(int ItemID, int FieldID)
         {
@@ -1105,6 +1105,27 @@ namespace Paradigm3.datalayer
             }
         }
 
+        public static void RemoveResponsibleUser(int ModuleID, int ItemID, int ObjTypeID)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    conn.Open();
+                }
+                SqlCommand cmd = new SqlCommand("dbo.v4_Delete_Record_Responsible_User", conn)
+                {
+                    CommandType = CommandType.Text,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@ItemID", SqlDbType.Int, 4).Value = ItemID;
+                cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
+                cmd.Parameters.Add("ObjTypeID", SqlDbType.Int, 4).Value = ObjTypeID;
+
+                cmd.ExecuteNonQuery();
+            }
+        }
         #endregion
 
         #region Event Data
@@ -1254,7 +1275,7 @@ namespace Paradigm3.datalayer
                 ds.Tables["Items14"].Rows.Add(dr);
                 // Update database table
                 da.Update(ds, "Items14");
-            }                
+            }
             ds.Dispose();
         }
 
@@ -1833,13 +1854,13 @@ namespace Paradigm3.datalayer
                         }
                         dt.Rows.Add(dr);
                     }
-                    da.Update(dt);                                     
+                    da.Update(dt);
                 }
             }
             if (ModuleID != 12)
             {
                 Add_AllResponsible(ParentGroupID, NewItemID, ModuleID);
-            }                  
+            }
         }
 
         public static void Add_TabDueDateSettings(int ModuleID, int ParentGroupID, int NewItemID)
@@ -1943,7 +1964,7 @@ namespace Paradigm3.datalayer
 
                     cmd.ExecuteNonQuery();
                 }
-            }            
+            }
         }
 
         public static void Add_FieldValues(int ModuleID, int NewItemID, DataSet dsData)
@@ -1979,7 +2000,7 @@ namespace Paradigm3.datalayer
                         else
                         {
                             cmd.Parameters.Add("@ReqID", SqlDbType.Int, 4).Value = 0;
-                        }                        
+                        }
                         switch (FieldType)
                         {
                             case 0:
@@ -2117,8 +2138,8 @@ namespace Paradigm3.datalayer
                     throw ex;
                 }
             }
-                
-        }        
+
+        }
 
         public static int Get_ParentReq(int DefReq)
         {
@@ -2160,7 +2181,7 @@ namespace Paradigm3.datalayer
                 string[] UserValues = UserData.Split(',');
 
                 UserID = Convert.ToInt32(UserValues[0]);
-                UserFullName = UserValues[1].ToString();                
+                UserFullName = UserValues[1].ToString();
             }
 
             DataTable dtTE = dsData.Tables[3];
@@ -2234,7 +2255,7 @@ namespace Paradigm3.datalayer
                 da.InsertCommand.Parameters.Add("@ModifierID", SqlDbType.Int, 4, "ModifierID");
 
                 // Create new dataset with datatable "Items14" and create new empty row in Items14 for data.
-                DataSet ds = new DataSet();                
+                DataSet ds = new DataSet();
 
                 da.Fill(ds, "Items14");
                 int Max = (ActionItem.Get_AllAssigned(ModuleID, RelatedID, EventID).Rows.Count - 1);
@@ -2366,7 +2387,7 @@ namespace Paradigm3.datalayer
                 string UserData = ticket.UserData;
                 string[] UserValues = UserData.Split(',');
                 UserID = Convert.ToInt32(UserValues[0]);
-                UserFullName = UserValues[1].ToString();                
+                UserFullName = UserValues[1].ToString();
             }
 
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
@@ -2993,7 +3014,7 @@ namespace Paradigm3.datalayer
                 }
             }
             return NameFormula;
-        }        
+        }
 
         #endregion
     }

@@ -207,6 +207,7 @@
     <Content Include="custom\canexia\canexia-banner-left.png" />
     <Content Include="custom\canexia\canexia-banner-right.png" />
     <Content Include="custom\canexia\lab.png" />
+    <Content Include="custom\empirical\empirical.png" />
     <Content Include="custom\images\banner_logo.png" />
     <Content Include="custom\tillsonburg\admin.png" />
     <Content Include="custom\tillsonburg\admin\css\P3Admin.css" />

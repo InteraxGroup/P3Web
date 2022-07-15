@@ -307,7 +307,7 @@ namespace Paradigm3.datalayer
         }
 
         public static async Task<string> Get_GroupNameAsync(int ModuleID, int GroupID)
-		{
+        {
             string GroupName = string.Empty;
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
@@ -411,7 +411,7 @@ namespace Paradigm3.datalayer
             {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
                 {
-                    conn.Open();                    
+                    conn.Open();
                 }
                 SqlCommand cmd = new SqlCommand("dbo.v4_ListView_Get_ItemList", conn)
                 {
@@ -533,9 +533,9 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@REdit", SqlDbType.NVarChar, 50).Value = REdit;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 while (sdr.Read())
-				{
+                {
                     result = true;
-				}
+                }
             }
             return (result);
         }
@@ -584,18 +584,18 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 dt.Load(sdr);
-			}
+            }
 
             if (dt.Rows.Count > 0)
-			{
+            {
                 foreach (DataRow dr in dt.Rows)
-				{
+                {
                     if (UserID == Convert.ToInt32(dr["ID"]))
-					{
+                    {
                         result = true;
-					}
-				}
-			}
+                    }
+                }
+            }
             dt.Dispose();
             return result;
         }
@@ -623,15 +623,15 @@ namespace Paradigm3.datalayer
                 dt.Load(sdr);
             }
             if (dt.Rows.Count > 0)
-			{
+            {
                 foreach (DataRow dr in dt.Rows)
-				{
+                {
                     if (UserID == Convert.ToInt32(dr["ID"]))
-					{
+                    {
                         result = true;
-					}
-				}
-			}
+                    }
+                }
+            }
             dt.Dispose();
             return result;
         }
@@ -664,15 +664,15 @@ namespace Paradigm3.datalayer
         }
 
         public static async Task<bool> HasRenamePermissionAsync(int ModuleID, int GroupID, int UserID)
-		{
+        {
             bool result = false;
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_TreeView_Has_Rename_Permission]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
@@ -683,12 +683,12 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 while (sdr.Read())
-				{
+                {
                     result = true;
-				}
+                }
             }
             return result;
-		}
+        }
 
         public static async Task<bool> HasMovePermissionAsync(int ModuleID, int GroupID, int UserID)
         {
@@ -718,7 +718,7 @@ namespace Paradigm3.datalayer
         }
 
         public static async Task<bool> HasDeletePermissionAsync(int ModuleID, int GroupID, int UserID)
-		{
+        {
             bool result = false;
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
@@ -745,7 +745,7 @@ namespace Paradigm3.datalayer
         }
 
         public static async Task<bool> HasEventDatePermissionsAsync(int ModuleID, int OrigID, int IsGroup, int UserID)
-		{
+        {
             bool result = false;
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
@@ -770,7 +770,7 @@ namespace Paradigm3.datalayer
                 }
             }
             return result;
-		}
+        }
 
         public static async Task<bool> HasCategoryPermissionsAsync(int ModuleID, int OrigID, int IsGroup, int UserID)
         {
@@ -801,10 +801,10 @@ namespace Paradigm3.datalayer
         }
 
         public static async Task<bool> HasSetRepublishPermissionAsync(int ModuleID, int OrigID, int UserID)
-		{            
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 bool result = false;
                 await conn.OpenAsync();
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_TreeView_Has_SetRepublish_Permission]", conn)
@@ -817,12 +817,12 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 while (sdr.Read())
-				{
+                {
                     result = true;
-				}
+                }
                 return result;
-			}
-		}
+            }
+        }
 
         public static async Task<bool> HasChangetoEvidencePemission(int OrigID, int UserID)
         {
@@ -838,7 +838,7 @@ namespace Paradigm3.datalayer
                 {
                     CommandType = CommandType.StoredProcedure,
                     CommandTimeout = 120
-                };           
+                };
                 cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
                 cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
@@ -874,6 +874,33 @@ namespace Paradigm3.datalayer
                 }
             }
             return result;
+        }
+
+        public static string Get_FileExtension(int OrigID)
+        {
+            string fileExtension = "";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
+            using (conn)
+            {
+                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+                {
+                    conn.Open();
+                }
+                SqlCommand cmd = new SqlCommand("Select top 1 * from items3 where OrigID = @OrigID and IsEvidence = 0", conn)
+                {
+                    CommandType = CommandType.Text,
+                    CommandTimeout = 120
+                };
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    fileExtension = rdr["FileExtension"].ToString();
+
+                }
+                conn.Close();
+            }
+            return fileExtension;
         }
 
         #endregion
@@ -952,7 +979,7 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@TaskType", SqlDbType.Int, 4).Value = TaskType;
                 cmd.Parameters.Add("@UserName", SqlDbType.NVarChar, 255).Value = UserName;
                 await cmd.ExecuteNonQueryAsync();
-            }            
+            }
         }
 
         public static async Task<int> Add_FolderAsync(int ModuleID, int ParentGroupID, string Name, string UserName, int UserID)
@@ -1006,15 +1033,15 @@ namespace Paradigm3.datalayer
         }
 
         public static async Task<DataTable> Get_Item_Group_DetailsAsync(int ModuleID, int OrigID, bool IsGroup)
-		{
+        {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Default_Get_Item_Group_Details]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
@@ -1027,18 +1054,18 @@ namespace Paradigm3.datalayer
                 dt.Load(sdr);
             }
             return dt;
-		}
+        }
 
         public static async Task<DataTable> Get_Item_Version_DetailsAsync(int ModuleID, int OrigID)
-		{
+        {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Default_Get_ItemVersions]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
@@ -1048,19 +1075,19 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 dt.Load(sdr);
-			}
+            }
             return dt;
-		}
+        }
 
         public static async Task RenameAsync(int ModuleID, int OrigID, int UserID, bool IsGroup, string OldName, string NewName, string OldLabel, string NewLabel)
-		{
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Default_Rename]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
@@ -1075,18 +1102,18 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@OldLabel", SqlDbType.NVarChar, 255).Value = OldLabel;
                 cmd.Parameters.Add("@NewLabel", SqlDbType.NVarChar, 255).Value = NewLabel;
                 await cmd.ExecuteNonQueryAsync();
-			}
+            }
         }
 
         public static async Task DeleteAsync(int ModuleID, int OrigID, int UserID, bool IsGroup)
-		{
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-				{
+                {
                     await conn.OpenAsync();
-				}
+                }
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Default_Delete]", conn)
                 {
                     CommandType = CommandType.StoredProcedure,
@@ -1098,10 +1125,10 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@IsGroup", SqlDbType.Bit, 4).Value = IsGroup;
                 await cmd.ExecuteNonQueryAsync();
             }
-		}
+        }
 
         public static async Task MoveAsync(int ModuleID, int OrigID, int DestinationID, string SourcePath, string DestinationPath, int UserID, bool IsGroup, bool KeepProperties)
-		{
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
             {
@@ -1124,11 +1151,11 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@KeepProperties", SqlDbType.Bit, 2).Value = KeepProperties;
                 await cmd.ExecuteNonQueryAsync();
             }
-		}
+        }
 
         public static async Task<DataSet> CheckCopyRules(string Name, int ModuleID, int OrigID, int DestinationID, int UserID, bool IsGroup)
         {
-            
+
             DataSet ds = new DataSet();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
@@ -1145,7 +1172,7 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@CopyName", SqlDbType.NVarChar, 100).Value = Name;
                 cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
                 cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
-                cmd.Parameters.Add("@DestinationID", SqlDbType.Int, 4).Value = DestinationID;            
+                cmd.Parameters.Add("@DestinationID", SqlDbType.Int, 4).Value = DestinationID;
                 cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
                 cmd.Parameters.Add("@IsGroup", SqlDbType.Bit, 2).Value = IsGroup;
                 SqlDataAdapter da = new SqlDataAdapter();
@@ -1183,7 +1210,7 @@ namespace Paradigm3.datalayer
                 await cmd.ExecuteNonQueryAsync();
 
             }
-           
+
         }
 
         public static async Task ChangeToEvidenceAsync(int ModuleID, int OrigID, int UserID, int IsEvidence)
@@ -1200,10 +1227,10 @@ namespace Paradigm3.datalayer
                     CommandType = CommandType.StoredProcedure,
                     CommandTimeout = 120
                 };
-               
+
                 cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
-                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;           
-                cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;  
+                cmd.Parameters.Add("@OrigID", SqlDbType.Int, 4).Value = OrigID;
+                cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = UserID;
                 cmd.Parameters.Add("@IsEvidence", SqlDbType.Bit, 10).Value = IsEvidence;
                 await cmd.ExecuteNonQueryAsync();
 
@@ -1234,7 +1261,7 @@ namespace Paradigm3.datalayer
         }
 
         public static async Task<DataTable> Get_Users_For_SelectedNode(int NodeId)
-		{
+        {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
@@ -1250,13 +1277,13 @@ namespace Paradigm3.datalayer
                 dt.Load(sdr);
             }
             return dt;
-		}
+        }
 
         public static async Task<bool> User_ExsistsAsync(string UserName)
-		{            
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 bool result = false;
                 await conn.OpenAsync();
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Check_UserName]", conn)
@@ -1267,18 +1294,18 @@ namespace Paradigm3.datalayer
                 cmd.Parameters.Add("@UserName", SqlDbType.NVarChar, 255).Value = UserName;
                 SqlDataReader sdr = await cmd.ExecuteReaderAsync();
                 while (sdr.Read())
-				{
+                {
                     result = true;
-				}
+                }
                 return result;
-			}
-		}
+            }
+        }
 
         public static async Task<int> Set_RepublishAsync(int ID, int UserID, bool IsGroup)
-		{
+        {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
-			{
+            {
                 int result = 0;
                 await conn.OpenAsync();
                 SqlCommand cmd = new SqlCommand("[dbo].[v4_Default_Set_Republish]", conn)
@@ -1292,13 +1319,13 @@ namespace Paradigm3.datalayer
                 result = await cmd.ExecuteNonQueryAsync();
                 return result;
             }
-		}
+        }
 
         #endregion
 
     }
 
-	[Serializable]
+    [Serializable]
     public class P3Folder
     {
         public int GroupID { get; set; }

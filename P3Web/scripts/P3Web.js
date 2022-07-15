@@ -725,7 +725,10 @@ function documentRefresh() {
 }
 
 function recordRefresh() {
-    window.opener.document.getElementById('btnRefreshRec').click();
+    var refreshRecordButton = window.opener.document.getElementById('btnRefreshRec');
+    if (refreshRecordButton) {
+        window.opener.document.getElementById('btnRefreshRec').click();
+    }    
 }
 
 function recordRefreshLocal() {

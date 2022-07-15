@@ -38,32 +38,32 @@ function show(index) {
 function setDisplay() {
 	//alert(document.getElementById('LB1').value + '|' + document.getElementById('LB2').value + '|' + document.getElementById('LB3').value + '|' + document.getElementById('LB4').value + '|')
 
-	document.getElementById('LBStyle').classList = document.getElementById('LB1').value;
+	//document.getElementById('LBStyle').classList = document.getElementById('LB1').value;
 	document.getElementById('LBFleet').classList = document.getElementById('LB2').value;
 	document.getElementById('LBType').classList = document.getElementById('LB3').value;
 	document.getElementById('LBSystem').classList = document.getElementById('LB4').value;
-	document.getElementById('LBDocType').classList = document.getElementById('LB5').value;
+	//document.getElementById('LBDocType').classList = document.getElementById('LB5').value;
 	document.getElementById('LBLocation').classList = document.getElementById('LB6').value;
-	document.getElementById('LBContractor').classList = document.getElementById('LB7').value;
+	//document.getElementById('LBContractor').classList = document.getElementById('LB7').value;
 }
 
 function resetDisplay() {
-	document.getElementById('LB1').value = 'selectList';
+	//document.getElementById('LB1').value = 'selectList';
 	document.getElementById('LB2').value = 'selectList';
 	document.getElementById('LB3').value = 'selectList';
 	document.getElementById('LB4').value = 'selectList';
-	document.getElementById('LB5').value = 'selectList';
+	//document.getElementById('LB5').value = 'selectList';
 	document.getElementById('LB6').value = 'selectList';
-	document.getElementById('LB7').value = 'selectList';
+	//document.getElementById('LB7').value = 'selectList';
 
 
-	ocument.getElementById('LBStyle').classList = document.getElementById('LB1').value;
+	//document.getElementById('LBStyle').classList = document.getElementById('LB1').value;
 	document.getElementById('LBFleet').classList = document.getElementById('LB2').value;
 	document.getElementById('LBType').classList = document.getElementById('LB3').value;
 	document.getElementById('LBSystem').classList = document.getElementById('LB4').value;
-	document.getElementById('LBDocType').classList = document.getElementById('LB5').value;
+	//document.getElementById('LBDocType').classList = document.getElementById('LB5').value;
 	document.getElementById('LBLocation').classList = document.getElementById('LB6').value;
-	document.getElementById('LBContractor').classList = document.getElementById('LB7').value;
+	//document.getElementById('LBContractor').classList = document.getElementById('LB7').value;
 }
 
 function openAmtrakDocument(ItemID) {

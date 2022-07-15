@@ -189,7 +189,7 @@
                 </div>
                 <div id="listView">
                     <asp:Panel ID="pnlHome" runat="server" style="height: calc(100vh - 85px);" meta:resourcekey="pnlHomeResource1">
-                        <iframe src="homepanel.html"></iframe>
+                        <iframe src="custom/amtrak/HomePage.aspx"></iframe>
                     </asp:Panel>
                     <asp:Panel ID="pnlList" runat="server" Width="1590px" style="height: calc(100vh - 85px);" CssClass="listViewPanel" meta:resourcekey="pnlListResource1">
                         <asp:Panel ID="pnlItemListTitle" runat="server" CssClass="pnlLinkTitle" meta:resourcekey="pnlItemListTitleResource1">

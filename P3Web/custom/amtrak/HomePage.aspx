@@ -33,7 +33,7 @@
 						<div class="homeBtn-header">Search</div>
 						<div class="homeBtn-description">Mechanical Documents</div>
 					</div>
-					<div class="homeBtn" onclick="openMechDocuments(109)">
+					<div class="homeBtn" onclick="openMechDocuments(275)">
 						<div class="homeBtn-header">Browse</div>
 						<div class="homeBtn-description">Mechanical Documents</div>
 					</div>
@@ -69,7 +69,7 @@
 								<a href="javascript:alert('Send EPDM inquiries to junod@amtrak.com.');">EPDM (Drawings/Schematics)</a>
 							</li>
 							<li>
-								<a href="javascript:alert('Coming Soon');">RSER Requests</a>
+								<a href="https://amtrak.sharepoint.com/sites/mech/pm/Lists/Mech%20Initial%20Project%20Intake%20Form/NewForm.aspx?Source=https%3A%2F%2Famtrak%2Esharepoint%2Ecom%2Fsites%2Fmech%2Fpm%2FLists%2FMech%2520Initial%2520Project%2520Intake%2520Form%2FAllItems%2Easpx&ContentTypeId=0x010074C6B3E7E1675C4CB6AAB084E92DBFAA&RootFolder=%2Fsites%2Fmech%2Fpm%2FLists%2FMech%20Initial%20Project%20Intake%20Form">RSER Requests</a>
 							</li>
 						</ul>
 					</div>
@@ -83,7 +83,7 @@
 								<a href="javascript:addAmtrakRecord(6,0,68,1326);">New Document Request</a>
 							</li>
 							<li>
-								<a href="javascript:addAmtrakRecord(6,0,68,1326);">Existing Document Change Request</a>
+								<a href="javascript:addAmtrakRecord(6,0,213,202);">Existing Document Change Request</a>
 							</li>
 						</ul>
 						<span style="font-size: .75em;">

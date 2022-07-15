@@ -76,7 +76,7 @@
 					<asp:GridView ID="GVResults" runat="server" DataKeyNames="ItemID,OrigID"
 						CssClass="gv"
 						AllowPaging="true" 
-						PageSize="32"
+						PageSize="28"
 						PagerSettings-PageButtonCount="5"
 						OnPageIndexChanging="GVResults_PageIndexChanging" 
 						OnRowDataBound="GVResults_RowDataBound"
@@ -92,7 +92,7 @@
 							<asp:TemplateField HeaderText="Name" HeaderStyle-Width="380px">
 								<ItemTemplate>
 									<div>
-										<%# ((string)Eval("Name")).Length < 60 ? Eval("Name") : ((string)Eval("Name")).Substring(0,60) + "..."%>
+										<%# ((string)Eval("Name")).Length < 50 ? Eval("Name") : ((string)Eval("Name")).Substring(0,50) + "..."%>
 									</div>								
 								</ItemTemplate>							
 							</asp:TemplateField>
@@ -103,7 +103,7 @@
 									</div>							
 								</ItemTemplate>							
 							</asp:TemplateField>
-							<asp:BoundField HeaderText="Version" DataField="Version" HeaderStyle-Width="80px" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
+							<asp:BoundField HeaderText="Version" DataField="Version" HeaderStyle-Width="70px" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
 							<asp:BoundField HeaderText="Released" DataField="VersionDate" HeaderStyle-Width="100px" DataFormatString="{0:MM/dd/yyyy}" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
 						</Columns>
 					</asp:GridView>
