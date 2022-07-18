@@ -17,6 +17,8 @@ namespace Paradigm3
 			if (!IsPostBack)
 			{
                 Session["IsValidSAML"] = null;
+                bool UseCustomAttribute = Convert.ToBoolean(ConfigurationManager.AppSettings["UseCustomAttribute"]);
+                string CustomAttribute = ConfigurationManager.AppSettings["CustomAttributeName"];
                 string samlCertificate = ConfigurationManager.AppSettings["SAMLCert"];
                 Response samlResponse = new Response(samlCertificate, Request.Form["SAMLResponse"]);
 
@@ -25,6 +27,10 @@ namespace Paradigm3
                 {
                     string[] userinfo = samlResponse.GetEmail().Split('@');
                     string username = userinfo[0];
+                    if (UseCustomAttribute)
+                    {
+                        username = samlResponse.GetCustomAttribute(CustomAttribute);
+                    }                    
 
                     if (P3Security.IsWinP3User(username))
 					{
@@ -36,7 +42,7 @@ namespace Paradigm3
                     }
 
                     Session["IsValidSAML"] = username;
-                    Response.Redirect("Default.aspx");                    
+                    Response.Redirect("Default.aspx");
                 }
             }
 		}

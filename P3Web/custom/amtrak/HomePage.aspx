@@ -23,9 +23,11 @@
 				</div>
 			</div>			
 			<asp:Panel ID="pnlActionItems" runat="server" CssClass="amtrak-ActionItems" Visible="false">
-				<img src="../../images/actionitem.png" style="height: 20px; margin-right: 10px;" />
-				<asp:Label ID="lblActionItems" runat="server"></asp:Label>
-				<img src="../../images/actionitem.png" style="height: 20px; margin-left: 10px;" />
+				<a href="../../Default.aspx?ModuleID=14&GroupID=1" style="text-decoration: none; color: #000;" target="_parent">
+					<img src="../../images/actionitem.png" style="height: 20px; margin-right: 10px;" />
+					<asp:Label ID="lblActionItems" runat="server"></asp:Label>
+					<img src="../../images/actionitem.png" style="height: 20px; margin-left: 10px;" />
+				</a>
 			</asp:Panel>
 			<div class="customContent">			
 				<div class="amtrak-buttons">
@@ -83,7 +85,7 @@
 								<a href="javascript:addAmtrakRecord(6,0,68,1326);">New Document Request</a>
 							</li>
 							<li>
-								<a href="javascript:addAmtrakRecord(6,0,213,202);">Existing Document Change Request</a>
+								<a href="javascript:addAmtrakRecord(6,0,68,1326);">Existing Document Change Request</a>
 							</li>
 						</ul>
 						<span style="font-size: .75em;">
