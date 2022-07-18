@@ -1105,7 +1105,7 @@ namespace Paradigm3.datalayer
             }
         }
 
-        public static void RemoveResponsibleUser(int ModuleID, int ItemID, int ObjTypeID)
+        public static void RemoveResponsibleUser(int ItemID, int ModuleID, int ObjTypeID)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Paradigm3"].ConnectionString);
             using (conn)
@@ -1114,15 +1114,16 @@ namespace Paradigm3.datalayer
                 {
                     conn.Open();
                 }
-                SqlCommand cmd = new SqlCommand("dbo.v4_Delete_Record_Responsible_User", conn)
+                SqlCommand cmd = new SqlCommand("dbo.v4_Record_Complete_Tab", conn)
                 {
-                    CommandType = CommandType.Text,
+                    CommandType = CommandType.StoredProcedure,
                     CommandTimeout = 120
                 };
+
                 cmd.Parameters.Add("@ItemID", SqlDbType.Int, 4).Value = ItemID;
                 cmd.Parameters.Add("@ModuleID", SqlDbType.Int, 4).Value = ModuleID;
-                cmd.Parameters.Add("ObjTypeID", SqlDbType.Int, 4).Value = ObjTypeID;
-
+                cmd.Parameters.Add("@ObjTypeID", SqlDbType.Int, 4).Value = ObjTypeID;
+              
                 cmd.ExecuteNonQuery();
             }
         }
