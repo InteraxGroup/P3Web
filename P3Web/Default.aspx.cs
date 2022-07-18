@@ -664,6 +664,12 @@ namespace P3Web
                                     int ObjTypeID = P3General.Get_ObjTypeID(ModuleID, RecordParentGroupID);
                                     ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "ViewRecord", "openRecordWindow(" + ModuleID + "," + ItemID + "," + ObjTypeID + "," + RecordParentGroupID + ",0);", true);
                                     break;
+                                case 14:
+                                    int aiIndex = gvAIList.SelectedRow.RowIndex;
+                                    string strAIID = gvAIList.DataKeys[aiIndex].Values["AIID"].ToString();
+                                   
+                                    ScriptManager.RegisterStartupScript(udpSplitter, udpSplitter.GetType(), "ViewAI", "openAIWindow(" + strAIID + ")", true);
+                                    break;
                                 default:
                                     string FileStatus = gvItemList.SelectedRow.Cells[3].Text;
                                     bool IsItemID = false;
@@ -1216,6 +1222,7 @@ namespace P3Web
 
         protected async Task PopulateGridViewMenu(int ModuleID, int GroupID, int OrigID, int UserID)
         {
+            string fileExtension = P3General.Get_FileExtension(OrigID);
             // Group Level Permissions
             //bool HasAddPermission = await P3General.HasAddPermissionAsync(ModuleID, GroupID, UserID);
             bool HasRenamePermission = await P3General.HasRenamePermissionAsync(ModuleID, GroupID, UserID);
@@ -1279,7 +1286,7 @@ namespace P3Web
                 mnuGVContext.Items.Add(aiSubMenuItem);
             }
 
-            if (ModuleID == 3 && HasDeletePermission)
+            if (ModuleID == 3 && HasDeletePermission && string.IsNullOrEmpty(fileExtension) && fileExtension.ToString().ToUpper().Equals("DOCX"))
             {
                 mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionHeaderFooter").ToString(), "headerfooter"));
             }
@@ -2986,7 +2993,7 @@ namespace P3Web
                             int index = gvItemList.SelectedIndex;
                             int docOrigID = Convert.ToInt32(gvItemList.Rows[index].Cells[7].Text);
                             bool IsEvidence = Convert.ToBoolean(gvItemList.DataKeys[index].Values["IsEvidence"]);
-
+                        
                             // set IsEvidence value in session to check items.
                             Session["IsEvidenceCheck"] = IsEvidence.ToString();
                             bool IsCheckedOut = false;

@@ -21,7 +21,6 @@ namespace P3Web
         private bool checkFooterAppliedStatus = false;
         private int count = 0;
         private bool _applyAllSubFolders = false;
-
         protected async void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -102,16 +101,16 @@ namespace P3Web
                 {
                     string fileExtension = dtDoc.Rows[0]["FileExtension"].ToString();
                     Session["fileExtension"] = fileExtension;
-
+                
                     if (fileExtension.ToUpper() == "DOCX")
                     {
-                        Session["templateExtension"] = "docx";
-                        dt.DefaultView.RowFilter = "FileExtension = 'docx'";
-                        ddlTemplates.DataSource = dt;
-                        ddlTemplates.DataTextField = "Name";
-                        ddlTemplates.DataValueField = "ItemID";
-                        ddlTemplates.DataBind();
-                        txtDocumentName.Text = dtDoc.Rows[0]["Name"].ToString();
+                            Session["templateExtension"] = "docx";
+                            dt.DefaultView.RowFilter = "FileExtension = 'docx'";
+                            ddlTemplates.DataSource = dt;
+                            ddlTemplates.DataTextField = "Name";
+                            ddlTemplates.DataValueField = "ItemID";
+                            ddlTemplates.DataBind();
+                            txtDocumentName.Text = dtDoc.Rows[0]["Name"].ToString();
                     }
                     else
                     {
@@ -146,10 +145,10 @@ namespace P3Web
                         if (_applyAllSubFolders)
                         {
                             ApplytoAllSubgroupFolders();
-                        }
-
+                        }              
+                        
                         ApplytoItemsOnly();
-
+                        
                         if (checkHeaderAppliedStatus && checkFooterAppliedStatus)
                         {
                             await Paradigm3.datalayer.Document.Update_HistoryAsync(3, OrigID, UserFullName, txtHistory.Text);
@@ -198,13 +197,13 @@ namespace P3Web
                                 string filepathTo = DocPath + DocFileName;
 
                                 checkHeaderAppliedStatus = PrependHeader(filepathFrom.Replace("\\\\", "\\"), filepathTo.Replace("\\\\", "\\"));
-                                checkFooterAppliedStatus = PrependFooter(filepathFrom.Replace("\\\\", "\\"), filepathTo.Replace("\\\\", "\\"));
+                                checkFooterAppliedStatus = PrependFooter(filepathFrom.Replace("\\\\", "\\"), filepathTo.Replace("\\\\", "\\"));                   
 
                                 count++;
                             }
                             catch (Exception ex)
                             {
-                                throw ex;
+
                             }
                         }
 
@@ -339,7 +338,7 @@ namespace P3Web
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -462,7 +461,7 @@ namespace P3Web
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -524,7 +523,6 @@ namespace P3Web
                 ApplyHeaderFootertoDocumentItemID(dt);
             }
         }
-
         protected void ApplyHeaderFootertoDocumentItemID(DataTable dt)
         {
             int ModuleID = Convert.ToInt32(Request.QueryString["ModuleID"]);
@@ -560,7 +558,7 @@ namespace P3Web
                                     itemID = Convert.ToInt32(dr[i]["ItemID"]);
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
-                            }
+                            }                      
                         }
                         break;
                     case 2: // Draft/Open
@@ -590,7 +588,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-
+                           
                         }
                         break;
                     case 5: // Review
@@ -605,7 +603,7 @@ namespace P3Web
                                     ApplyHeaderFootertoDoc(itemID);
                                 }
                             }
-
+                          
                         }
                         break;
                     case 6: // Ready

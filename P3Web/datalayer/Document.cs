@@ -307,11 +307,11 @@ namespace Paradigm3.datalayer
         {
             // TransType 0 = Event Date, TransType 1 = Category
 
-            string Details = "Header/Footer applied to the item by: " + UserName + " (" + DateTime.Now.ToString() + ")\n" +
-                   "\n\n" +
-                   "****************************************************************";
+             string Details = "Header/Footer applied to the item by: " + UserName + " (" + DateTime.Now.ToString() + ")\n" +
+                    "\n\n" +
+                    "****************************************************************";
 
-            string HistoryMemo = "User notes: " + text + "\r\n" +
+            string HistoryMemo = "User notes: "+ text + "\r\n"+
                                  "User Name: " + UserName + "\r\n" +
                                  "Time: " + DateTime.Now.ToString() + "\r\n" +
                                  "Action: " + Details;
