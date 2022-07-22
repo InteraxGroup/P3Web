@@ -10,6 +10,7 @@ using System.Configuration;
 using Paradigm3.datalayer;
 using System.Threading.Tasks;
 using System.Web.Security;
+using System.Text;
 
 namespace Paradigm3.custom.amtrak
 {
@@ -108,109 +109,205 @@ namespace Paradigm3.custom.amtrak
 			string arg = btn.CommandArgument;
 			switch (arg)
 			{
-				case "submit":
+				case "submit":					
+					bool FleetSelected = false;
+					bool SystemSelected = false;
+					bool LocationSelected = false;
+					bool ExternalSelected = false;
+					string typeQuery = string.Empty;
 					string typeFilter = string.Empty;
 					string fleetFilter = string.Empty;
 					string systemFilter = string.Empty;
 					string locationFilter = string.Empty;
 					string externalFilter = string.Empty;
 
-					// Set Type Filters
-					foreach(ListItem li in LBType.Items)
-					{
-						if (li.Selected)
-						{
-							if (string.IsNullOrEmpty(typeFilter))
-							{
-								typeFilter = "[CatID] = " + li.Value + " OR";
-							}
-							else
-							{
-								typeFilter = typeFilter + " [CatID] = " + li.Value + " OR";
-							}
-						}
-					}
+					StringBuilder sbSQL = new StringBuilder();
+					sbSQL.Append("SELECT z.[ItemID], z.[OrigID], z.[Name], z.[LabelName], z.[Version], z.[VersionDate] FROM ");
 
-					// Set Fleet Filters
-					foreach (ListItem li in LBFleet.Items)
+					// Type Field Filter and Query
+					for (int i = 0; i < LBType.Items.Count; i++)
+                    {
+						if (LBType.Items[i].Selected)
+                        {
+							if (string.IsNullOrEmpty(typeFilter))
+                            {
+								typeFilter = "AND (b.[CatID] = " + LBType.Items[i].Value;
+                            }
+							else
+                            {
+								typeFilter += " OR b.[CatID] = " + LBType.Items[i].Value;
+                            }
+                        }
+                    }
+
+					if (!string.IsNullOrEmpty(typeFilter))
+                    {
+						typeFilter += ")";
+                    }
+
+					StringBuilder sbType = new StringBuilder();
+					sbType.Append("(");
+					sbType.Append("SELECT a.[ItemID], a.[OrigID], a.[Name], a.[LabelName], a.[Version], a.[VersionDate] ");
+					sbType.Append("FROM [dbo].[Items3] AS a ");
+					sbType.Append("LEFT JOIN [dbo].[CatgryValues] AS b ON a.[OrigID] = b.[OrigID] AND b.[ModuleID] = 3 AND b.[IDType] = 1 ");
+					sbType.Append("WHERE a.[Status] = 9 AND a.[IsDeleted] = 0 AND a.[IsWithDrawn] = 0 AND a.[TypeOfPublish] > 0 AND ISNULL(a.[Name], '') <> '' ");
+					sbType.Append(typeFilter);
+					sbType.Append(") ");
+					sbType.Append("AS Z");
+					sbSQL.Append(sbType.ToString());
+
+					// Fleet Field Filter and Query
+					for (int i = 0; i < LBFleet.Items.Count; i++)
 					{
-						if (li.Selected)
+						if (LBFleet.Items[i].Selected)
 						{
+							FleetSelected = true;
 							if (string.IsNullOrEmpty(fleetFilter))
 							{
-								fleetFilter = " [CatID] = " + li.Value + " OR";
+								fleetFilter = "AND (b.[CatID] = " + LBFleet.Items[i].Value;
 							}
 							else
 							{
-								fleetFilter = fleetFilter + " [CatID] = " + li.Value + " OR";
+								fleetFilter += " OR b.[CatID] = " + LBFleet.Items[i].Value;
 							}
-						}
+						}						
 					}
 
-					// Set System Filters
-					foreach(ListItem li in LBSystem.Items)
+					if (!string.IsNullOrEmpty(fleetFilter))
 					{
-						if (li.Selected)
+						fleetFilter += ")";
+					}
+
+					if (FleetSelected)
+					{
+						StringBuilder sbFleet = new StringBuilder();
+						sbFleet.Append(" INNER JOIN ");
+						sbFleet.Append("(");
+						sbFleet.Append("SELECT a.[ItemID], a.[OrigID], a.[Name], a.[LabelName], a.[Version], a.[VersionDate] ");
+						sbFleet.Append("FROM [dbo].[Items3] AS a ");
+						sbFleet.Append("LEFT JOIN [dbo].[CatgryValues] AS b ON a.[OrigID] = b.[OrigID] AND b.[ModuleID] = 3 AND b.[IDType] = 1 ");
+						sbFleet.Append("WHERE a.[Status] = 9 AND a.[IsDeleted] = 0 AND a.[IsWithDrawn] = 0 AND a.[TypeOfPublish] > 0 AND ISNULL(a.[Name], '') <> '' ");
+						sbFleet.Append(fleetFilter);
+						sbFleet.Append(") ");
+						sbFleet.Append("AS Y ON y.[OrigID] = z.[OrigID]");
+						sbSQL.Append(sbFleet.ToString());
+					}
+
+					// System Field Filter and Query
+					for (int i = 0; i < LBSystem.Items.Count; i++)
+					{
+						if (LBSystem.Items[i].Selected)
 						{
+							SystemSelected = true;
 							if (string.IsNullOrEmpty(systemFilter))
 							{
-								systemFilter = " [CatID] = " + li.Value + " OR";
+								systemFilter = "AND (b.[CatID] = " + LBSystem.Items[i].Value;
 							}
 							else
 							{
-								systemFilter = systemFilter + " [CatID] = " + li.Value + " OR";
+								systemFilter += " OR b.[CatID] = " + LBSystem.Items[i].Value;
 							}
 						}
 					}
 
-					// Set Location Filters
-					foreach (ListItem li in LBLocation.Items)
+					if (!string.IsNullOrEmpty(systemFilter))
 					{
-						if (li.Selected)
+						systemFilter += ")";
+					}
+
+					if (SystemSelected)
+					{
+						StringBuilder sbSystem = new StringBuilder();
+						sbSystem.Append(" INNER JOIN ");
+						sbSystem.Append("(");
+						sbSystem.Append("SELECT a.[ItemID], a.[OrigID], a.[Name], a.[LabelName], a.[Version], a.[VersionDate] ");
+						sbSystem.Append("FROM [dbo].[Items3] AS a ");
+						sbSystem.Append("LEFT JOIN [dbo].[CatgryValues] AS b ON a.[OrigID] = b.[OrigID] AND b.[ModuleID] = 3 AND b.[IDType] = 1 ");
+						sbSystem.Append("WHERE a.[Status] = 9 AND a.[IsDeleted] = 0 AND a.[IsWithDrawn] = 0 AND a.[TypeOfPublish] > 0 AND ISNULL(a.[Name], '') <> '' ");
+						sbSystem.Append(systemFilter);
+						sbSystem.Append(") ");
+						sbSystem.Append("AS X ON x.[OrigID] = z.[OrigID]");
+						sbSQL.Append(sbSystem.ToString());
+					}
+
+					// Location Field Filter and Query
+					for (int i = 0; i < LBLocation.Items.Count; i++)
+					{
+						if (LBLocation.Items[i].Selected)
 						{
+							LocationSelected = true;
 							if (string.IsNullOrEmpty(locationFilter))
 							{
-								locationFilter = " [CatID] = " + li.Value + " OR";
+								locationFilter = "AND (b.[CatID] = " + LBLocation.Items[i].Value;
 							}
 							else
 							{
-								locationFilter = locationFilter + " [CatID] = " + li.Value + " OR";
+								locationFilter += " OR b.[CatID] = " + LBLocation.Items[i].Value;
 							}
 						}
 					}
-
-					// Set External Filters
-					foreach (ListItem li in LBExternal.Items)
+					
+					if (!string.IsNullOrEmpty(locationFilter))
 					{
-						if (li.Selected)
+						locationFilter += ")";
+					}
+
+					if (LocationSelected)
+					{
+						StringBuilder sbLocation = new StringBuilder();
+						sbLocation.Append(" INNER JOIN ");
+						sbLocation.Append("(");
+						sbLocation.Append("SELECT a.[ItemID], a.[OrigID], a.[Name], a.[LabelName], a.[Version], a.[VersionDate] ");
+						sbLocation.Append("FROM [dbo].[Items3] AS a ");
+						sbLocation.Append("LEFT JOIN [dbo].[CatgryValues] AS b ON a.[OrigID] = b.[OrigID] AND b.[ModuleID] = 3 AND b.[IDType] = 1 ");
+						sbLocation.Append("WHERE a.[Status] = 9 AND a.[IsDeleted] = 0 AND a.[IsWithDrawn] = 0 AND a.[TypeOfPublish] > 0 AND ISNULL(a.[Name], '') <> '' ");
+						sbLocation.Append(locationFilter);
+						sbLocation.Append(") ");
+						sbLocation.Append("AS W ON w.[OrigID] = z.[OrigID]");
+						sbSQL.Append(sbLocation.ToString());
+					}
+
+					// External Field Filter and Query
+					for (int i = 0; i < LBExternal.Items.Count; i++)
+					{
+						if (LBExternal.Items[i].Selected)
 						{
+							ExternalSelected = true;
 							if (string.IsNullOrEmpty(externalFilter))
 							{
-								externalFilter = " [CatID] = " + li.Value + " OR";
+								externalFilter = "AND (b.[CatID] = " + LBExternal.Items[i].Value;
 							}
 							else
 							{
-								externalFilter = externalFilter + " [CatID] = " + li.Value + " OR";
+								externalFilter += " OR b.[CatID] = " + LBExternal.Items[i].Value;
 							}
 						}
 					}
 
-					// Build complete Search Filter string
-					string searchFilter = typeFilter + fleetFilter + systemFilter + locationFilter + externalFilter;
-					if (!string.IsNullOrEmpty(searchFilter))
+					if (!string.IsNullOrEmpty(externalFilter))
 					{
-						searchFilter = searchFilter.Substring(0, searchFilter.Length - 3);
-						searchFilter = " AND (" + searchFilter + ") ";
+						externalFilter += ")";
 					}
-					// Build Sql Command string
-					string sqlcmd = "SELECT a.[ItemID], a.[OrigID], a.[Name], a.[LabelName], a.[Version], a.[VersionDate] " +
-					"FROM[dbo].[Items3] AS a " +
-					"LEFT JOIN[dbo].[CatgryValues] AS b ON a.[OrigID] = b.[OrigID] AND b.[ModuleID] = 3 AND b.[IDType] = 1 " +
-					"WHERE a.[Status] = 9 AND a.[IsDeleted] = 0 AND a.[IsWithDrawn] = 0 AND a.[TypeOfPublish] > 0 AND ISNULL(a.[Name], '') <> '' " + searchFilter +
-					"GROUP BY a.[ItemID], a.[OrigID], a.[Name], a.[LabelName], a.[Version], a.[VersionDate] " +
-					"ORDER BY a.[Name]";
 
-					//Response.Write(sqlcmd);
+					if (ExternalSelected)
+					{
+						StringBuilder sbExternal = new StringBuilder();
+						sbExternal.Append(" INNER JOIN ");
+						sbExternal.Append("(");
+						sbExternal.Append("SELECT a.[ItemID], a.[OrigID], a.[Name], a.[LabelName], a.[Version], a.[VersionDate] ");
+						sbExternal.Append("FROM [dbo].[Items3] AS a ");
+						sbExternal.Append("LEFT JOIN [dbo].[CatgryValues] AS b ON a.[OrigID] = b.[OrigID] AND b.[ModuleID] = 3 AND b.[IDType] = 1 ");
+						sbExternal.Append("WHERE a.[Status] = 9 AND a.[IsDeleted] = 0 AND a.[IsWithDrawn] = 0 AND a.[TypeOfPublish] > 0 AND ISNULL(a.[Name], '') <> '' ");
+						sbExternal.Append(externalFilter);
+						sbExternal.Append(") ");
+						sbExternal.Append("AS V ON v.[OrigID] = z.[OrigID]");
+						sbSQL.Append(sbExternal.ToString());
+					}
+
+					sbSQL.Append(" GROUP BY z.[ItemID], z.[OrigID], z.[Name], z.[LabelName], z.[Version], z.[VersionDate]");
+					sbSQL.Append(" ORDER BY z.[Name];");
+
+					string sqlcmd = sbSQL.ToString();
 
 					DataTable dt = await Get_Results(sqlcmd);
 					ViewState["FinalResults"] = dt;
@@ -265,7 +362,6 @@ namespace Paradigm3.custom.amtrak
 					break;
 			}
 
-
 		}
 
 		protected void GVResults_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -273,8 +369,8 @@ namespace Paradigm3.custom.amtrak
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
 				string itemid = GVResults.DataKeys[e.Row.RowIndex].Values["OrigID"].ToString();
-				e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GVResults, "Select$" + e.Row.RowIndex) + ";openAmtrakDocument(" + itemid + ");";
-				//e.Row.Attributes.Add("ondblclick", "openAmtrakDocument(" + itemid + ");");
+				e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GVResults, "Select$" + e.Row.RowIndex) + ";";
+				e.Row.Attributes.Add("ondblclick", "openAmtrakDocument(" + itemid + ");");
 			}
 		}
 
