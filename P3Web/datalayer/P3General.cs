@@ -886,7 +886,7 @@ namespace Paradigm3.datalayer
                 {
                     conn.Open();
                 }
-                SqlCommand cmd = new SqlCommand("Select top 1 * from items3 where OrigID = @OrigID and IsEvidence = 0", conn)
+                SqlCommand cmd = new SqlCommand("Select top 1 * from items3 where OrigID = @OrigID and IsEvidence = 0 order by itemID desc", conn)
                 {
                     CommandType = CommandType.Text,
                     CommandTimeout = 120

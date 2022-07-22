@@ -1286,7 +1286,7 @@ namespace P3Web
                 mnuGVContext.Items.Add(aiSubMenuItem);
             }
 
-            if (ModuleID == 3 && HasDeletePermission && string.IsNullOrEmpty(fileExtension) && fileExtension.ToString().ToUpper().Equals("DOCX"))
+            if (ModuleID == 3 && HasDeletePermission && !string.IsNullOrEmpty(fileExtension) && fileExtension.ToString().ToUpper().Equals("DOCX"))
             {
                 mnuGVContext.Items.Add(new MenuItem(GetLocalResourceObject("mnuOptionHeaderFooter").ToString(), "headerfooter"));
             }
