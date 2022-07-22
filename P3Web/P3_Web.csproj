@@ -187,6 +187,7 @@
     <Content Include="custom\amtrak\AmtrakSearch.aspx" />
     <Content Include="custom\amtrak\amtrakSearch.css" />
     <Content Include="custom\amtrak\amtrakSearch.js" />
+    <Content Include="custom\amtrak\amtrak_logo - Copy.png" />
     <Content Include="custom\amtrak\amtrak_logo.png" />
     <Content Include="custom\amtrak\amtrak_logo_old.png" />
     <Content Include="custom\amtrak\HomePage.aspx" />
