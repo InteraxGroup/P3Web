@@ -65,13 +65,13 @@
 						<p style="text-decoration: underline; margin: 0; padding: 0;">Rolling Stock Engineering</p>
 						<ul style="margin: 0; padding: 10px 0 10px 15px;">
 							<li>
-								<a href="javascript:addAmtrakRecord(6,0,68,1326);">Document Discrepencies/Concerns</a>
+								<a href="javascript:addAmtrakRecord(6,0,68,1381);">Document Discrepencies/Improvement Opportunities</a>
 							</li>
 							<li>
 								<a href="javascript:alert('Send EPDM inquiries to junod@amtrak.com.');">EPDM (Drawings/Schematics)</a>
 							</li>
 							<li>
-								<a href="https://amtrak.sharepoint.com/sites/mech/pm/Lists/Mech%20Initial%20Project%20Intake%20Form/NewForm.aspx?Source=https%3A%2F%2Famtrak%2Esharepoint%2Ecom%2Fsites%2Fmech%2Fpm%2FLists%2FMech%2520Initial%2520Project%2520Intake%2520Form%2FAllItems%2Easpx&ContentTypeId=0x010074C6B3E7E1675C4CB6AAB084E92DBFAA&RootFolder=%2Fsites%2Fmech%2Fpm%2FLists%2FMech%20Initial%20Project%20Intake%20Form">RSER Requests</a>
+								<a href="https://amtrak.sharepoint.com/sites/mech/pm/Lists/Mech%20Initial%20Project%20Intake%20Form/NewForm.aspx?Source=https%3A%2F%2Famtrak%2Esharepoint%2Ecom%2Fsites%2Fmech%2Fpm%2FLists%2FMech%2520Initial%2520Project%2520Intake%2520Form%2FAllItems%2Easpx&ContentTypeId=0x010074C6B3E7E1675C4CB6AAB084E92DBFAA&RootFolder=%2Fsites%2Fmech%2Fpm%2FLists%2FMech%20Initial%20Project%20Intake%20Form" target="_blank">RSER Requests</a>
 							</li>
 						</ul>
 					</div>
@@ -82,10 +82,10 @@
 								<a href="https://amtrak.sharepoint.com/sites/mech/MMI_PFT/_layouts/15/listform.aspx?PageType=8&ListId=%7B69A3FF1F-519D-4B23-8E0E-58F093D107C7%7D&RootFolder=%2Fsites%2Fmech%2FMMI_PFT%2FLists%2FMechanical%20Bulletin%20Request%20Form&Source=https%3A%2F%2Famtrak.sharepoint.com%2Fsites%2Fmech%2FMMI_PFT%2FLists%2FMechanical%2520Bulletin%2520Request%2520Form%2FAllItems.aspx&ContentTypeId=0x010034DED711288FFA489441E6B17ECF73EE" target="_blank">Mechanical Bulletin Request</a>
 							</li>
 							<li>
-								<a href="javascript:addAmtrakRecord(6,0,68,1326);">New Document Request</a>
+								<a href="javascript:addAmtrakRecord(6,0,68,1380);">New Mech. Dept. Document Request</a>
 							</li>
 							<li>
-								<a href="javascript:addAmtrakRecord(6,0,68,1326);">Existing Document Change Request</a>
+								<a href="javascript:addAmtrakRecord(6,0,68,1380);">Existing Document Change Request</a>
 							</li>
 						</ul>
 						<span style="font-size: .75em;">
@@ -119,7 +119,7 @@
 								<a href="../../Default.aspx?ModuleID=3&GroupID=16463" target="_parent">Mechanical Department Forms</a>
 							</li>
 							<li>
-								<a href="https://amtrak.service.now.com/sp" target="_blank">Service Now</a>
+								<a href="https://amtrak.service-now.com/sp" target="_blank">Service Now</a>
 							</li>
 						</ul>
 					</div>
@@ -130,7 +130,7 @@
 									<a href="mailto:DocMgmt_Mech@Amtrak.com">Paradigm Inquiry</a>
 								</li>
 								<li>
-									New Paradigm User Request
+									<a href="https://forms.office.com/r/zMsG09qTJ9" target="_blank">New Paradigm User Request</a>
 								</li>
 								<li>
 									<a href="../../Default.aspx?ModuleID=3&GroupID=12475" target="_parent">Paradigm User Assistance</a>
